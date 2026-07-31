@@ -288,7 +288,7 @@ O segundo risco é de slop: a interface desenhada convida a escrever dentro dela
 
 **Ritmo:** muda **qual coluna o título ocupa e onde o vazio fica**. Sem variar isso, oito cards viram oito paredes iguais — é o estilo que mais precisa de disciplina de ritmo e o que mais castiga a falta dela.
 
-**Cuidado verificado:** é o oposto de um carrossel de feed — pouco contraste, corpo pequeno. Se o destino principal é LinkedIn, **suba os corpos antes de exportar**: abaixo de 30px sobre 1080 a leitura já está no limite depois que o feed reduz o documento. E Fraunces tem eixo óptico: em corpo grande use o corte de display, ou os traços finos somem.
+**Cuidado verificado:** é o oposto de um carrossel de feed — pouco contraste e muito vazio convidam a diagramar o corpo pequeno. Não caia nisso: **o piso de 30px vale aqui como em todos os outros**, e 34 se o destino é LinkedIn. O vazio deste estilo é a margem, não o corpo do texto. E Fraunces tem eixo óptico: em corpo grande use o corte de display, ou os traços finos somem.
 
 E um risco de estilo, não de execução: papel creme com serifa e acento terracota é hoje **um dos clichês de peça gerada por IA**. O que salva esta direção é o rigor da grade e a quantidade de vazio — se o card ficar "aconchegante" em vez de rigoroso, ele caiu no clichê. Compare com `editorial-1-split.jpg`: dois terços do card são papel vazio, e é isso que o tira do lugar-comum.
 

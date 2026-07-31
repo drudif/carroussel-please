@@ -42,10 +42,15 @@ Defina a escala antes de diagramar e fique nela. Para 1080 de largura, uma escal
 
 | Papel | px | Observação |
 |---|---|---|
-| Título de capa | 100–130 | três a quatro linhas, entrelinha 0,87 |
+| Título de capa | 100–130 | três a cinco linhas; entrelinha pelo piso da fonte |
 | Título de card | 90–125 | duas a três linhas |
-| Corpo | 26–30 | **nunca abaixo de 26**; 30 se o destino é LinkedIn |
-| Legenda, rótulo | 15–17 | só onde carregar informação verdadeira |
+| Corpo | 30–36 | **nunca abaixo de 30**; 34 se o destino é LinkedIn |
+| Legenda, rótulo | 17–19 | só onde carregar informação verdadeira |
+
+**Sobre o corpo:** 30 é piso, não alvo. O erro comum é diagramar o corpo pequeno porque *sobra espaço* —
+e sobra justamente porque o título já domina. Corpo de 26px sobre 1080 parece elegante na tela do
+computador e some no feed, que é onde a peça vive. Se o texto não couber em 30px, **corte o texto**,
+não reduza o corpo: a hierarquia é leitura > respiro > grafismo, e o corpo é leitura.
 
 A razão entre o maior e o menor corpo fica em pelo menos **2,5:1**. Abaixo disso não há hierarquia, só tamanhos diferentes.
 

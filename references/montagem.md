@@ -192,3 +192,33 @@ Ancore em porcentagem da zona, ou em `bottom`:
 ```
 
 O último elemento de cada zona sempre em `bottom:0`. É ele que absorve a diferença.
+
+## Duas armadilhas de cor que a captura não denuncia
+
+Ambas produzem PNG do tamanho certo, com contagem de cores normal, e **só aparecem quando você
+abre e olha**. As duas aconteceram na mesma produção.
+
+### Texto sobre campo escuro não herda a cor do campo
+
+O padrão é desenhar o campo como um `<div>` de fundo e o texto como outro `<div>` posicionado por
+cima. Os dois são **irmãos**, não pai e filho — então o texto herda a cor do card, que é a tinta
+escura, e some no campo escuro.
+
+```html
+<!-- errado: o texto herda #111 do card e desaparece -->
+<div class="campo-escuro"></div>
+<div class="conteudo">o que sobra é verificável</div>
+```
+
+Ou o texto vira filho do campo, ou ele declara a própria cor. Vale a mesma checagem para todo
+elemento que atravessa uma divisa de campo.
+
+### Acento cruzando divisa de campo
+
+A régua da entrelinha resolve colisão entre linhas. Ela **não** resolve o glifo que sobe para dentro
+de outro campo de cor: um `Õ` de 190px posicionado logo abaixo de uma divisa tem o til renderizado
+**acima** dela, no campo de cima — e se as duas cores forem iguais, o acento simplesmente não existe.
+
+A palavra continua legível o suficiente para o erro passar: `ÕÊ` vira `OE`, que ainda lê como
+alguma coisa. Deixe pelo menos `1,2 × tamanho da fonte` de folga entre a divisa e o topo do texto
+acentuado, ou mova o texto inteiro para dentro de um campo só.

@@ -62,7 +62,7 @@ Vale para qualquer plataforma. O que muda de uma para outra é a quantidade, nã
 
 **Instagram:** peça salvamento e envio de forma explícita — são os sinais que a plataforma pesa. Alt text por card, na configuração de acessibilidade.
 
-**LinkedIn:** o feed é largo e reduz o documento. **Corpo abaixo de 30px sobre 1080 fica no limite** — se o LinkedIn é o destino principal, suba os corpos antes de exportar.
+**LinkedIn:** o feed é largo e reduz o documento. O piso geral é 30px sobre 1080; **se o LinkedIn é o destino principal, suba para 34** antes de exportar.
 
 **TikTok:** o texto sobre a imagem *é* o gancho, não a legenda. Áudio em alta amplia a distribuição mesmo em post de fotos.
 

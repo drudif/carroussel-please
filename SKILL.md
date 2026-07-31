@@ -133,7 +133,7 @@ Agora, e só agora, monte a arte. O manual técnico completo — esqueleto, capt
 | LinkedIn | PDF sequencial, mesmas páginas | documento nativo, até 300 páginas e 100 MB |
 | Stories | PNG 1080×1920 | só se pedirem |
 
-O PDF do LinkedIn usa os mesmos PNGs. O feed de lá é mais largo e reduz o documento, então corpo abaixo de 30px sobre 1080 fica no limite — se o LinkedIn é o destino principal, suba os corpos antes de exportar.
+O PDF do LinkedIn usa os mesmos PNGs. O feed de lá é mais largo e reduz o documento: o piso geral de corpo é **30px** sobre 1080, e **34px** quando o LinkedIn é o destino principal.
 
 ### Área de segurança — obrigatória, sempre
 
