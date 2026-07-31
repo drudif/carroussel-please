@@ -10,29 +10,25 @@ UA="Mozilla/5.0 (Windows NT 6.1; WOW64)"     # UA antigo faz a API devolver TTF
 DEST=${DEST:-.}
 
 pares () { case "$1" in
-  bauhaus)      echo "Archivo Black:400|Archivo:400,700";;
-  brutalismo)   echo "Space Mono:700|Space Mono:400";;
-  popart)       echo "Bungee:400|Archivo:400,700";;
-  utilitario)   echo "IBM Plex Sans:700|IBM Plex Mono:400";;
-  midcentury)   echo "Poppins:700|DM Sans:400";;
-  neobrutalismo) echo "Space Grotesk:700|Space Grotesk:400";;
-  suico)        echo "Inter:900|Inter:400";;
-  memphis)      echo "Rubik Mono One:400|Rubik:400,700";;
-  janelas)      echo "Archivo Black:400|Space Mono:400";;
-  vaporwave)    echo "VT323:400|Space Mono:400";;
-  pontilhismo)  echo "Playfair Display:900|Newsreader:400";;
-  mixedmedia)   echo "Alfa Slab One:400|Libre Baskerville:400";;
-  kawaii)       echo "Fredoka:600|Nunito:400";;
-  wabisabi)     echo "Cormorant Garamond:700|Karla:400";;
-  rebus)        echo "Inter:700|Inter:400";;
-  y2k)          echo "Bungee:400|Space Grotesk:400";;
+  brutalista)  echo "Anton:400|IBM Plex Mono:400";;
+  riso)        echo "Bricolage Grotesque:800|Newsreader:400";;
+  janelas)     echo "Archivo Black:400|Space Mono:400";;
+  colagem)     echo "Bodoni Moda:900|Karla:400";;
+  neubrutal)   echo "Chivo:900|Chivo Mono:400";;
+  editorial)   echo "Fraunces:700|Work Sans:400";;
   *) return 1;;
 esac; }
 
 if [ "${1:-}" = "--listar" ] || [ $# -eq 0 ]; then
-  echo "estilos:  bauhaus brutalismo popart utilitario midcentury neobrutalismo"
-  echo "          suico memphis janelas vaporwave pontilhismo mixedmedia"
-  echo "          kawaii wabisabi rebus y2k"
+  echo "estilos:"
+  echo "  brutalista   Anton 400               / IBM Plex Mono 400"
+  echo "  riso         Bricolage Grotesque 800 / Newsreader 400"
+  echo "  janelas      Archivo Black 400       / Space Mono 400"
+  echo "  colagem      Bodoni Moda 900         / Karla 400"
+  echo "  neubrutal    Chivo 900               / Chivo Mono 400"
+  echo "  editorial    Fraunces 700            / Work Sans 400"
+  echo
+  echo "todas OFL/Apache, acentos pt-BR conferidos glifo a glifo."
   exit 0
 fi
 
