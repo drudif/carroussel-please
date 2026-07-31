@@ -1,83 +1,103 @@
 # carrossel
 
-Skill para [Claude Code](https://claude.com/claude-code) que produz carrossel de Instagram e LinkedIn com arte-final: PNGs 1080×1350 e um PDF sequencial.
+Skill para [Claude Code](https://claude.com/claude-code) que monta carrossel de feed com
+arte-final: direção de arte, texto revisado e arquivos prontos para Instagram e LinkedIn.
 
-O princípio que organiza tudo: **modelo de imagem erra letra, e erra o acento primeiro.** Toda palavra que o leitor vai ler é renderizada em HTML/CSS e capturada em PNG. O gerador de imagem entra só onde não há texto.
+O princípio que organiza tudo: **modelo de imagem erra letra, e erra o acento primeiro.** Toda
+palavra que o leitor vai ler é renderizada em HTML/CSS e capturada em PNG. O gerador entra só
+onde não há texto.
 
 ## Instalar
 
 ```bash
-git clone <url> ~/.claude/skills/carrossel
+git clone https://github.com/drudif/carroussel-please.git ~/.claude/skills/carrossel
 ```
 
-Só isso. **Não depende de nenhuma outra skill estar instalada** — a régua anti-slop vem embutida, e as regras de conversa, de formato e de julgamento visual estão incorporadas. Ver [CREDITOS.md](CREDITOS.md).
+Depois é só pedir um carrossel no Claude Code — a skill se ativa sozinha.
 
-Precisa de `python3` com `Pillow` e `fonttools`, e do Google Chrome, usado em modo headless para capturar. Costumam já estar na máquina.
+**Não depende de nenhuma outra skill estar instalada.** A régua anti-slop vem embutida, e as
+regras de conversa, formato e julgamento visual estão incorporadas. Ver [CREDITOS.md](CREDITOS.md).
 
-## Usar
+Precisa de Google Chrome, usado em modo headless para capturar, e de Python 3:
 
-Peça em português:
+```bash
+pip3 install pillow fonttools
+```
 
-- "faz um carrossel sobre X"
-- "monta a arte desses cards pro Instagram"
-- "quero um documento pro LinkedIn com esses seis projetos"
+## O que ela entrega
 
-Seis etapas, com aprovação entre elas:
+| Destino | Arquivo |
+|---|---|
+| Instagram | PNG 1080×1350, um por card |
+| LinkedIn | PDF 1080×1080, recortado da área de segurança dos mesmos PNGs |
+| Stories | PNG 1080×1920, se pedirem |
 
-1. **Perfil** — quem assina, onde publica, com o que produz. Roda uma vez e fica salvo
-2. **Estilo** — você vê as referências dos seis e escolhe; a skill renderiza capa e card do meio antes de você decidir
-3. **Conteúdo** — gancho, tese, passos, fechamento
-4. **Anti-slop** — o texto inteiro passa pela régua, obrigatoriamente
-5. **Aprovação do texto** — limpo, e editável direto no `TEXTOS.md` se você preferir
-6. **Produção** — PNGs, PDF, legenda e alt text
+Mais um `TEXTOS.md` com o texto de cada card, a legenda e o alt text. **A arte lê esse
+arquivo.** Mudou uma palavra lá, avisa no chat e a arte se regenera — sem mexer em código, e
+sem desmanchar a diagramação, porque o corpo se reajusta ao espaço já reservado em cada card.
+
+## Como funciona
+
+Seis etapas com trava entre elas. Refazer oito cards renderizados custa muito mais do que uma
+pergunta.
+
+| | Etapa | O que acontece |
+|---|---|---|
+| 0 | Perfil | quem assina, onde publica. Roda uma vez e fica salvo |
+| 1 | Estilo | seis fixos, mostrados com referência e renderizados com o seu assunto |
+| 1.5 | Nível de imagem | gerador conectado, banco aberto, ou só desenho em código |
+| 2 | Direção | aprovação, e a direção fica registrada em `DIRECAO.md` |
+| 3 | Conteúdo | três perguntas, e o mapa dos cards antes de escrever o texto |
+| 4 | Anti-slop | o texto passa por uma régua antes de você ver |
+| 5 | Aprovação | você lê o que ficou e ajusta no `.md` |
+| 6 | Produção | a arte, os PNGs, os PDFs |
 
 ## Os seis estilos
 
-Fechados, não infinitos. Cada um com paleta em hex, par tipográfico open-source com acentos pt-BR conferidos glifo a glifo, regra de material própria, e o cuidado que ele custou para descobrir. Três referências visuais cada, em `assets/referencias/`.
+| | Estilo | Em uma linha |
+|---|---|---|
+| 1 | Brutalista vetorial | forma chapada de aresta dura sobre papel cru |
+| 2 | Risografia com textura | duas tintas que se multiplicam, erro de registro |
+| 3 | Janelas | janelas de sistema em fundo preto, com conteúdo real |
+| 4 | Mixed media / colagem | camadas de origens diferentes, toda emenda à mostra |
+| 5 | Neo-brutalismo colorido | contorno preto grosso e sombra dura sobre campo saturado |
+| 6 | Minimalista editorial quente | duas colunas, geometria precisa, e muito vazio |
 
-| Estilo | Fontes |
-|---|---|
-| Brutalista vetorial | Anton / IBM Plex Mono |
-| Risografia com textura | Bricolage Grotesque / Newsreader |
-| Janelas | Archivo Black / Space Mono |
-| Mixed media / colagem | Bodoni Moda / Karla |
-| Neo-brutalismo colorido | Chivo / Chivo Mono |
-| Minimalista editorial quente | Fraunces / Work Sans |
+Cada um traz paleta em hex, par tipográfico open-source com acentos pt-BR conferidos glifo a
+glifo, entrelinha calculada a partir das métricas da fonte, e três referências visuais fixas.
 
-Especificação completa em [references/estilos.md](references/estilos.md).
+## Imagem: três níveis, e nenhum obrigatório
 
-## Gerar imagem é opcional
+**Mínimo — só código.** SVG e CSS, custo zero, e é o padrão. Para os estilos de forma
+(brutalista, janelas, neo-brutalismo) costuma ganhar de banco de imagem, porque o desenho
+nasce na paleta e carrega o conceito.
 
-**Quatro dos seis estilos ficam completos sem nenhum gerador** — a maior parte do que um card precisa é estrutura, e estrutura se desenha melhor em código do que se gera: sai na paleta exata, custa zero e não vaza dado nenhum.
+**Médio — bancos abertos.** Dupe e Openverse, tratados na paleta do estilo. Não pede chave nem
+cadastro. Rende quando o tema é imagético; em tema abstrato, o desenho ainda ganha.
 
-Dois deles mudam de patamar com gerador conectado: a risografia, que existe para a tinta cair sobre imagem, e a colagem, cujo centro é o recorte fotográfico. Quem quiser conectar tem o passo a passo de chave de API (Gemini, OpenAI) e de conector (Higgsfield, Magnific) em [references/geradores.md](references/geradores.md), escrito para quem nunca conectou nada.
+**Rico — gerador conectado.** MCP (Higgsfield, Magnific) ou chave própria de Gemini/OpenAI. É
+o único nível em que a imagem responde ao briefing. Aqui a skill roda o *laço do gabarito*:
+gera o card inteiro com texto só para ter o que diagramar, mede a composição, acha a fonte
+open-source mais próxima, refaz a imagem sem texto usando a primeira como referência, e monta
+a tipografia real por cima. O gerador compõe melhor do que escreve — o laço usa cada um no que
+ele faz bem.
 
-## Estrutura
+**A chave nunca é colada no chat.** Você exporta no terminal e diz "pronto".
 
-```
-SKILL.md                   fluxo, princípios, checagens, red flags
-CREDITOS.md                o que foi incorporado, em que densidade e por quê
-references/
-  perfil.md                a conversa de setup, sem jargão
-  estilos.md               os seis, com paleta, fonte, material e cuidado
-  texto.md                 protocolo de conversa, estrutura e formato por plataforma
-  visual.md                a régua de gosto, traduzida para peça estática
-  grafismos.md             desenhar, capturar ou gerar — e as receitas de CSS
-  geradores.md             chaves de API e conectores, passo a passo
-  anti-slop.md             a régua, embutida
-  anti-slop/               os arquivos da régua
-  montagem.md              esqueleto, captura, área de segurança, PDF, armadilhas
-assets/
-  esqueleto.html           mecânica pronta, estética neutra
-  baixar-fontes.sh         baixa o par do estilo, confere acentos, gera fonts.css
-  exportar.sh              captura os PNGs, confere e monta o PDF
-  referencias/             18 referências visuais, 3 por estilo
-```
+## O que ela nunca faz
+
+- Deixar palavra legível sair de gerador de imagem
+- Pedir para colar chave no chat, ou gravar chave em arquivo
+- Avançar de etapa sem resposta explícita nas travas
+- Entregar sem ter aberto e olhado cada PNG
+- Mandar você abrir uma pasta para ver o próprio trabalho
 
 ## Créditos
 
-A régua anti-slop é a [`sprayantislop`](https://github.com/drudif/sprayantislop), de Fernando Drudi, embutida na íntegra, derivada de Zero-Lero (MIT, Vinicius Stanula) com o aviso preservado.
+Traz embutido o `sprayantislop` (Fernando Drudi) sobre o Zero-Lero (MIT, Vinicius Stanula), e
+destilados de `brainstorming`, `carousel-writer-sms`, `bencium-innovative-ux-designer` e
+`high-end-visual-design`. Procedência completa em [CREDITOS.md](CREDITOS.md).
 
-As regras de conversa, de formato por plataforma e de julgamento visual foram destiladas de `brainstorming`, `carousel-writer-sms`, `bencium-innovative-ux-designer` e `high-end-visual-design`. O que entrou de cada uma, o que ficou de fora e por quê está em [CREDITOS.md](CREDITOS.md) — inclusive dois conflitos entre elas, e como foram resolvidos.
+Fontes: Google Fonts, todas OFL ou Apache.
 
-O que é só desta skill: a ordem das seis etapas, os seis estilos fechados, a regra de desenhar antes de gerar, e a montagem em código.
+MIT.
