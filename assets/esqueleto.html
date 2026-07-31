@@ -1,0 +1,174 @@
+<meta charset="utf-8">
+<title>Carrossel</title>
+<!--
+  ESQUELETO NEUTRO — só a mecânica. A estética vem da direção aprovada na etapa 2.
+  Uso:  cards.html?card=3        um card, no pixel exato
+        cards.html               folha de contato, para ver o ritmo
+        cards.html?card=3&safe=1 com o gabarito de área de segurança
+  As fontes entram por fonts.css, embutidas em base64 (ver references/montagem.md).
+-->
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{
+  /* ── preencher a partir do DIRECAO.md ── */
+  --papel:#FFFFFF;
+  --tinta:#111111;
+  --acento:#111111;
+  --texto:#111111;
+
+  --W:1080px; --H:1350px;
+  --M:78px;        /* margem lateral */
+  --SY:146px;      /* margem de topo e pé — respeita o corte 1:1 */
+  --col:calc((1080px - var(--M)*2)/12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#333}
+body{display:flex;flex-direction:column;align-items:center;gap:28px}
+
+/* ═══ o card: empilhamento rígido, texto nunca sobre grafismo ═══ */
+.card{
+  position:relative;width:var(--W);height:var(--H);overflow:hidden;
+  background:var(--papel);color:var(--tinta);
+  font-family:'Corpo',ui-monospace,monospace;
+  display:flex;flex-direction:column;padding:var(--SY) var(--M);
+}
+.head{flex:0 0 auto;position:relative;z-index:30;display:flex;
+      justify-content:space-between;align-items:baseline;
+      padding-bottom:14px;border-bottom:4px solid var(--tinta)}
+.txt {flex:0 0 auto;position:relative;z-index:20;padding-top:34px}
+.gfx {flex:1 1 auto;min-height:0;position:relative;overflow:hidden;
+      margin:38px calc(var(--M) * -1) 30px}
+.gfx img{width:100%;height:100%;object-fit:cover;display:block}
+.foot{flex:0 0 auto;position:relative;z-index:30;display:flex;
+      justify-content:flex-end;border-top:2px solid var(--tinta);padding-top:14px}
+
+/* ═══ tipografia ═══ */
+.tt{font-family:'Titulo',serif;line-height:1.04;letter-spacing:-.02em;
+    position:relative;z-index:20;color:var(--tinta);white-space:nowrap}
+.tt s{text-decoration:none;position:relative;display:inline-block;white-space:nowrap}
+/* erro de registro: some com .flat, escala com o corpo */
+.tt s::before{content:attr(d);position:absolute;left:5px;top:4px;
+              color:var(--acento);z-index:-1;opacity:.6}
+.tt.xl s::before{left:8px;top:7px}
+.tt.flat s::before{display:none}
+.lede{position:relative;z-index:20;font-size:33px;line-height:1.45;color:var(--texto)}
+.kick{position:relative;z-index:20;font-size:20px;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--acento)}
+.meta{font-size:18px;letter-spacing:.16em;text-transform:uppercase}
+.urls{position:relative;z-index:20;margin-top:16px}
+.urls b{display:block;font-weight:400;font-size:23px;line-height:1.5;white-space:nowrap}
+
+/* ═══ camadas de papel — ligue só as que a direção pedir ═══ */
+.grade{position:absolute;inset:0;z-index:1;
+  background-image:repeating-linear-gradient(to right,rgba(0,0,0,.06) 0 1px,transparent 1px var(--col)),
+                   repeating-linear-gradient(to bottom,rgba(0,0,0,.06) 0 1px,transparent 1px var(--col));
+  background-position:var(--M) var(--M)}
+.retic{position:absolute;inset:0;z-index:9;pointer-events:none;mix-blend-mode:multiply;opacity:.38;
+  background-image:radial-gradient(circle,rgba(0,0,0,.6) 1.1px,transparent 1.3px);background-size:5px 5px}
+.fibra{position:absolute;inset:0;z-index:44;pointer-events:none;mix-blend-mode:multiply;opacity:.16;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.012 .16' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='420' height='420' filter='url(%23f)' opacity='.55'/></svg>")}
+.grao{position:absolute;inset:0;z-index:45;pointer-events:none;mix-blend-mode:multiply;opacity:.34;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/><feColorMatrix type='saturate' values='0'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='.4'/></svg>")}
+</style>
+
+<!-- duotone: tableValues = componente RGB da tinta escura e da clara, em 0–1 -->
+<svg width="0" height="0" style="position:absolute">
+  <filter id="duo" color-interpolation-filters="sRGB">
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.067 1.000"/>
+      <feFuncG type="table" tableValues="0.067 1.000"/>
+      <feFuncB type="table" tableValues="0.067 1.000"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+<div id="root"></div>
+<script>
+const E = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const T = (linhas, px, extra='') =>
+  `<h1 class="tt ${px>=120?'xl':''}" style="font-size:${px}px;${extra}">${
+    linhas.map(l => `<s d="${E(l)}">${E(l)}</s>`).join('<br>')}</h1>`;
+const U = (...ls) => `<div class="urls">${ls.map(l => `<b>${l}</b>`).join('')}</div>`;
+const head = n => `<div class="head"><span class="meta">@handle</span><span class="meta">${n} / ${TOTAL}</span></div>`;
+const foot = (r='arrasta →') => `<div class="foot"><span class="meta">${r}</span></div>`;
+const camadas = '<div class="retic"></div><div class="fibra"></div><div class="grao"></div>';
+
+/* ── card de conteúdo: cabeça · texto · grafismo · pé ── */
+// cabeça e pé são opt-in: passe `cabeca:false` ou `pe:false` onde não informarem nada
+const conteudo = ({n, kick, t, px, urls=[], lede, art='', cabeca=true, pe=true}) => `<div class="card">
+  <div class="grade"></div>
+  ${cabeca ? head(n) : ''}
+  <div class="txt">
+    ${kick ? `<div class="kick">${E(kick)}</div>` : ''}
+    ${T(t, px, 'margin-top:16px;margin-left:-6px')}
+    ${urls.length ? U(...urls) : ''}
+    <p class="lede" style="margin-top:20px">${lede}</p>
+  </div>
+  <div class="gfx">${art}</div>
+  ${pe ? foot() : ''}
+  ${camadas}</div>`;
+
+/* ── capa: imagem sangrando, bloco de tinta, título por cima ── */
+const capa = ({t, px, lede, img}) => `<div class="card" style="padding:0">
+  <div style="position:absolute;left:0;right:0;top:0;height:1042px;overflow:hidden;z-index:4">
+    <img src="${img}" style="width:100%;height:100%;object-fit:cover;object-position:75% center">
+  </div>
+  <div style="position:absolute;left:0;top:250px;width:560px;height:600px;z-index:6;background:var(--tinta)"></div>
+  <div class="retic"></div>
+  <!-- capa dispensa eyebrow e rodapé: a função dela é fazer passar para o card 2 -->
+  <div style="position:absolute;top:var(--SY);left:var(--M);right:var(--M);z-index:30;
+              display:flex;justify-content:space-between;color:var(--papel)">
+    <span class="meta">@handle</span><span class="meta">01 / ${TOTAL}</span></div>
+  <div style="position:absolute;left:44px;top:270px;width:520px;z-index:20">
+    ${T(t, px, 'color:var(--papel)').replace('class="tt', 'class="tt flat')}
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:0;z-index:20;background:var(--papel);
+              border-top:5px solid var(--tinta);padding:26px var(--M) 150px">
+    <p class="lede" style="font-size:30px">${lede}</p></div>
+  <div class="grao"></div></div>`;
+
+/* ── fecho: índice + CTA ── */
+const fecho = ({t, px, lede, itens, cta}) => `<div class="card">
+  <div class="grade"></div>
+  ${head(TOTAL)}
+  <div class="txt">
+    ${T(t, px)}
+    <p class="lede" style="margin-top:20px">${lede}</p>
+    <div style="margin-top:28px">${itens.map(([i,nome,url]) =>
+      `<div style="display:flex;align-items:baseline;gap:16px;padding:11px 0;
+            border-bottom:2px solid rgba(0,0,0,.2)">
+         <b style="font-family:'Titulo';font-weight:400;color:var(--acento);font-size:25px">${i}</b>
+         <span style="font-size:26px">${E(nome)}</span>
+         <i style="margin-left:auto;font-style:normal;font-size:19px;opacity:.62">${E(url)}</i>
+       </div>`).join('')}</div>
+    <p class="lede" style="margin-top:26px;font-size:29px">${cta}</p>
+  </div>
+  <div style="flex:1"></div>
+  ${foot('fim')}
+  ${camadas}</div>`;
+
+/* ═══════════ os cards ═══════════ */
+const CARDS = [
+  () => capa({t:['TÍTULO','DOMINANTE','DA CAPA'], px:104, img:'capa.png',
+              lede:'Subtítulo bem menor — razão de pelo menos 2,5 para 1 com o título.'}),
+  () => conteudo({n:'02', kick:'rótulo', t:['NOME DO','ITEM'], px:104,
+                  urls:['exemplo.com/link'],
+                  lede:'Corpo de até 25 palavras. Uma ideia por card.',
+                  art:'<!-- desenho em CSS, screenshot ou <img> -->'}),
+  () => fecho({t:['FECHO.'], px:130, lede:'Frase de resumo.',
+               itens:[['01','Item um','exemplo.com/um'],['02','Item dois','exemplo.com/dois']],
+               cta:'Chamada final.'}),
+];
+const TOTAL = String(CARDS.length).padStart(2,'0');
+
+const qs = new URLSearchParams(location.search);
+const q  = qs.get('card');
+const GUIA = qs.get('safe') ? `
+  <div style="position:absolute;left:0;right:0;top:135px;height:1080px;
+       border:2px dashed #E11;z-index:99;pointer-events:none"></div>
+  <div style="position:absolute;left:78px;right:78px;top:146px;bottom:146px;
+       border:2px dashed #0A0;z-index:99;pointer-events:none"></div>` : '';
+document.getElementById('root').innerHTML =
+  q ? CARDS[+q-1]() + GUIA : CARDS.map(f => f()).join('');
+</script>

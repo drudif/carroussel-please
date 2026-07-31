@@ -1,0 +1,201 @@
+# Grafismos — desenhar, capturar ou gerar
+
+Para cada card, decida a rota **antes** de produzir, e escreva a decisão no plano que o usuário aprova.
+
+```
+Dá para desenhar? (estrutura, interface, processo, dado, ícone, lista, comparação)
+  └─ sim → DESENHAR em HTML/CSS/SVG            ← quase sempre cai aqui
+  └─ não ↓
+O valor do card está em PROVAR como a tela é de fato?
+  └─ sim → CAPTURAR a tela real
+  └─ não ↓
+É retrato, cena, textura, ilustração, atmosfera?
+  └─ sim → GERAR
+  └─ não → provavelmente o card não precisa de grafismo
+```
+
+**Interface desenhada em blocos ganha de print com filtro aplicado.** Print filtrado parece print filtrado: o filtro não conserta a paleta errada, não tira o que não interessa e não protege o dado pessoal que está na tela. A abstração desenhada nasce na direção aprovada, mostra só o esqueleto que explica a ferramenta, e é a mesma linguagem dos outros cards. O print é a exceção — entra quando o card existe justamente para provar "é assim que a tela é".
+
+Na dúvida, desenhe. Gerar custa uma rodada de prompt, uma de download, uma de recorte e quase sempre uma de refação. Um `<div>` custa uma linha e sai exatamente como você pediu.
+
+---
+
+## O grafismo é mudo
+
+**Grafismo não gera texto.** Se você desenhou algo e precisou escrever um rótulo para ele se explicar, o problema é o desenho.
+
+Texto dentro de um grafismo só é legítimo se veio da etapa 3, aprovado, ou se é dado duro e verdadeiro. Rótulo inventado, botão fictício, contagem descritiva e resumo no rodapé são a mesma coisa que eyebrow vazio — slot criado pelo template, preenchido por necessidade. Ver [anti-slop.md](anti-slop.md).
+
+Antes de renderizar, cubra o texto do grafismo com a mão. O desenho continua dizendo a mesma coisa? Então o texto era enfeite.
+
+## Desenhar — a rota padrão
+
+A maior parte do que um carrossel precisa é geometria, e geometria é o que CSS faz melhor.
+
+### Abstração de interface
+
+Quando o card apresenta um app, uma versão **desenhada** da interface costuma bater o print: você controla o que aparece, o resultado nasce na paleta certa, e nenhum dado real vaza. Reduza a tela ao seu esqueleto — barra, pílulas de filtro, grade de cards, lista, campo de composição — e desenhe em blocos.
+
+Duas telas diferentes precisam de **lógicas diferentes**, não da mesma grade com cor trocada. Um feed que esvazia é uma lista vertical com itens riscados; um catálogo é uma parede de cards. Se dois grafismos do mesmo carrossel se confundem, um dos dois está errado.
+
+```html
+<!-- lista que esvazia: os dois últimos já foram lidos -->
+<div class="linha lido">
+  <div class="marca"></div>
+  <div class="corpo"><i style="width:38%"></i><i style="width:24%"></i>
+    <div class="risco"></div></div>
+  <div class="acao vazia"></div>
+</div>
+```
+
+```css
+.lido{opacity:.45}
+.risco{position:absolute;left:18px;right:18px;top:50%;height:4px;background:var(--tinta)}
+```
+
+### Ícones que já existem no produto
+
+Se o site ou app do usuário tem ícones próprios, **reaproveite o desenho**. Muitos são SVG de `<rect>` ou `<path>` direto no HTML — extraia e use:
+
+```bash
+python3 - <<'PY'
+import re, json
+s = open('caminho/index.html', encoding='utf-8').read()
+out = []
+for m in re.finditer(r'<svg class="ICONE"([^>]*)>(.*?)</svg>', s, re.S):
+    vb = re.search(r'viewBox="([^"]+)"', m.group(1)).group(1)
+    inner = re.sub(r'<!--.*?-->', '', m.group(2), flags=re.S)
+    out.append({'vb': vb, 'd': re.sub(r'\s+', ' ', inner).strip()})
+json.dump(out, open('icones.json','w'), ensure_ascii=False, indent=1)
+print(len(out), 'ícones extraídos')
+PY
+```
+
+No card, renderize com `fill:var(--tinta)` e `shape-rendering="crispEdges"` se forem pixel art. Ícone do próprio produto é a diferença entre um card genérico e um card que é daquela ferramenta.
+
+### Textura de impressão
+
+Duas camadas, ambas discretas. Exagero vira papel amassado, que lê como filtro:
+
+```css
+/* retícula de meio-tom, sobre a arte — nunca sobre o texto */
+.retic{position:absolute;inset:0;z-index:9;pointer-events:none;
+  mix-blend-mode:multiply;opacity:.38;
+  background-image:radial-gradient(circle,rgba(0,0,0,.6) 1.1px,transparent 1.3px);
+  background-size:5px 5px}
+
+/* fibra do papel: ruído alongado numa direção */
+.fibra{position:absolute;inset:0;z-index:44;pointer-events:none;
+  mix-blend-mode:multiply;opacity:.16;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.012 .16' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='420' height='420' filter='url(%23f)' opacity='.55'/></svg>")}
+```
+
+A retícula fica **abaixo** do texto na ordem de empilhamento. Retícula sobre corpo de texto come a leitura, que é a prioridade 1.
+
+### Duotone sobre imagem
+
+Mapeia a luminância de qualquer imagem para duas tintas. Os `tableValues` são o componente RGB da tinta escura e da clara, em 0–1:
+
+```html
+<filter id="duo" color-interpolation-filters="sRGB">
+  <feColorMatrix type="saturate" values="0"/>
+  <feComponentTransfer>
+    <feFuncR type="table" tableValues="0.169 0.949"/>  <!-- escura clara -->
+    <feFuncG type="table" tableValues="0.247 0.929"/>
+    <feFuncB type="table" tableValues="0.847 0.894"/>
+  </feComponentTransfer>
+</filter>
+```
+
+Para derivar de qualquer par:
+
+```python
+h = lambda c: [int(c[i:i+2],16)/255 for i in (1,3,5)]
+tinta, papel = h('#2B3FD8'), h('#F2EDE4')
+for canal, t, p in zip('RGB', tinta, papel):
+    print(f'<feFuncR type="table" tableValues="{t:.3f} {p:.3f}"/>'.replace('FuncR', f'Func{canal}'))
+```
+
+**Se a imagem for escura**, o mapeamento joga tudo na tinta e o resultado vira uma mancha. Clareie antes: `filter:brightness(1.4) contrast(1.05) url(#duo)`.
+
+### Erro de registro
+
+Duas cópias da mesma coisa, uma deslocada, `mix-blend-mode:multiply`. O deslocamento **precisa escalar com o corpo do texto** — 8px sobre um título de 150px é sutil, sobre um de 60px cria letra fantasma e a palavra passa a ler errado:
+
+```css
+.tt s::before{content:attr(d);position:absolute;left:5px;top:4px;
+              color:var(--acento);z-index:-1;opacity:.6}
+.tt.xl s::before{left:8px;top:7px}    /* acima de 120px */
+.tt.flat s::before{display:none}       /* onde precisa de leitura limpa */
+```
+
+Depois de aplicar, **leia a palavra em voz alta olhando o PNG**. Se você hesitou, o leitor no feed não vai nem tentar.
+
+---
+
+## Capturar — a exceção, não a regra
+
+Só quando o card existe para **provar** como a tela é: um antes e depois, uma prova de que o produto existe, uma tela que o leitor vai reconhecer. Fora disso, desenhe.
+
+As armadilhas técnicas estão em [montagem.md](montagem.md).
+
+Antes de usar: **olhe o print procurando dado pessoal.** Nome, e-mail, cliente, valor, token. Tratamento de duotone abstrai bastante, mas título de card continua legível para quem ampliar — e ampliar é grátis. Avise o usuário e ofereça a versão desenhada, que quase sempre comunica melhor de qualquer forma.
+
+---
+
+## Gerar — o último recurso, com uma exceção fixa
+
+**A exceção: a capa.** Havendo MCP conectado, a capa sempre recebe imagem gerada, independentemente do estilo. Ver a regra em `SKILL.md`, seção de padrões de composição.
+
+Nos demais cards, só quando o card pede retrato, cena, textura ou ilustração. Como chamar cada gerador está em [geradores.md](geradores.md).
+
+### O assunto da imagem vem do tema; o tratamento vem do estilo
+
+Este é o erro mais fácil de cometer na geração, porque o resultado sai bonito e passa despercebido: você escolhe uma imagem que combina com a **direção visual** em vez de uma que fala do **assunto do carrossel**.
+
+Um monitor antigo combina com um estilo de janelas de sistema. Uma pilha de papel combina com um cartaz suíço. Ambos são decoração de estilo — nenhum diz o que o carrossel está falando.
+
+**O teste da troca.** Pegue a imagem de uma direção e coloque na outra. Se continuar fazendo sentido, ela não era sobre o tema: era sobre o estilo. Imagem que fala do assunto não sobrevive à troca, porque ela pertence àquele conteúdo e não àquela paleta.
+
+**Como montar o briefing, em três passos:**
+
+1. **Nomeie o tema numa frase** — o que o carrossel está realmente dizendo. Não o formato, o argumento
+2. **Ache a manifestação física dele** — que objeto, gesto, cena ou material existe no mundo que encarna esse argumento? É aqui que está o trabalho de direção
+3. **Descreva essa manifestação na linguagem do estilo** — a mesma cena vira foto de flash duro no neo-brutalismo, nanquim com retícula no pop art, linha técnica no utilitário
+
+O passo 2 é o que separa direção de arte de escolha de banco de imagem. Se você pulou direto do tema para "uma foto que combina", caiu na armadilha.
+
+| Tema do carrossel | Manifestação fraca (estilo) | Manifestação forte (tema) |
+|---|---|---|
+| Skill que monta carrossel | monitor antigo, teclado | uma sequência de cards impressos saindo de uma máquina; uma mão passando por uma tira de quadros |
+| IA generativa aplicada a criação | robô, cérebro, circuito | a mesma imagem repetida com variações mínimas; um objeto sendo remontado peça por peça |
+| Ferramenta que remove fundo | tesoura, Photoshop | o retrato recortado sobre o xadrez de transparência |
+| Feed que se organiza sozinho | pasta, ícone de arquivo | uma pilha bagunçada e a mesma pilha alinhada, lado a lado |
+
+Repare que as fortes **mostram o que a coisa faz**, e as fracas mostram o assunto de que a coisa trata. A diferença é a mesma entre desenhar a interface do produto e desenhar barras decorativas.
+
+**Um atalho que funciona quando o tema é o próprio formato:** represente o formato. Um carrossel é uma sequência — então uma tira de quadros, uma folha de contato, um baralho aberto em leque, uma esteira. O leitor reconhece a forma do que está segurando na mão.
+
+### O prompt de um grafismo que vai receber tipografia por cima
+
+- **Proíba texto explicitamente**, com redundância: `no text, no lettering, no words, no readable text anywhere`. O modelo insiste em escrever, e escreve errado.
+- **Nomeie as tintas em hex** e diga quantas são
+- **Peça composição frontal e plana** — `flat, frontal, no perspective, no depth of field`
+- **Proíba a lista do slop**: `no gradient, no glow, no 3D, no drop shadow, no bokeh`
+- **Deixe zona vazia** para a tipografia entrar: `generous empty area on the left third`
+- **Fixe a seed** quando quiser reproduzir ou variar de forma controlada
+
+### Depois de gerar, sempre
+
+1. Baixe e **confira que o arquivo tem tamanho maior que zero**
+2. **Abra e olhe** — o modelo entrega imagem errada com a mesma confiança da certa
+3. **Recorte a moldura**: geradores costumam devolver o desenho dentro de uma margem branca ou de uma borda decorativa, que dentro do card vira caixa-dentro-de-caixa
+
+```python
+from PIL import Image
+im = Image.open('gerado.png').convert('RGB'); w, h = im.size
+m = int(w * .15)                                  # ajuste olhando
+im.crop((m, m, w-m, h-m)).save('gerado-crop.png')
+```
+
+4. Se a imagem entra num card 1080×1350 e o gerador devolveu menos que isso, ela vai ser ampliada. Sob a retícula de meio-tom isso não aparece; em detalhe fino, aparece muito. É mais um motivo para desenhar.
