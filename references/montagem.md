@@ -222,3 +222,48 @@ de outro campo de cor: um `Õ` de 190px posicionado logo abaixo de uma divisa te
 A palavra continua legível o suficiente para o erro passar: `ÕÊ` vira `OE`, que ainda lê como
 alguma coisa. Deixe pelo menos `1,2 × tamanho da fonte` de folga entre a divisa e o topo do texto
 acentuado, ou mova o texto inteiro para dentro de um campo só.
+
+## O texto mora no `.md`, não no HTML
+
+O usuário vai querer trocar uma palavra depois de ver a arte. **Sempre.** Se o texto estiver
+embutido no HTML, cada troca é uma edição de código feita por você a partir de uma descrição no
+chat — lento, impreciso, e some a cada rodada.
+
+Inverta: o `TEXTOS.md` é a fonte, o HTML só desenha. Aí a instrução ao usuário — *edita o arquivo e
+me avisa* — passa a ser verdade mecânica, e a rodada de correção vira um comando.
+
+**No `TEXTOS.md`**, um bloco por card, com formato fixo:
+
+```markdown
+**01 · capa**
+ESSE / CARROSSEL / NÃO FOI FEITO
+Foi feito com uma só skill — que você instala e usa agora.
+```
+
+Primeira linha depois do cabeçalho é o título, segunda é o corpo, ` / ` marca quebra de linha.
+Explique isso **dentro do próprio arquivo**, em uma citação no topo — é lá que o usuário vai estar
+quando precisar da informação.
+
+**No HTML:**
+
+```js
+const TX = {};
+async function carregarTextos(){
+  const md = await fetch('../TEXTOS.md').then(r => r.text());
+  for (const m of md.matchAll(/^\*\*(\d{2}) · [^*]*\*\*\n(.+)\n(.+)$/gm))
+    TX[+m[1]] = { titulo: m[2].trim().split(' / ').join('<br>'), corpo: m[3].trim() };
+  const faltando = [...Array(N)].map((_,i)=>i+1).filter(n => !TX[n]);
+  if (faltando.length) throw new Error('TEXTOS.md sem os cards: ' + faltando.join(', '));
+}
+```
+
+**Falhe alto, não baixo.** Se um card não parseou, pinte a página inteira de vermelho com a
+mensagem. Card faltando renderiza como card vazio, e card vazio passa na captura sem reclamar —
+o mesmo defeito silencioso do PNG em branco.
+
+**O que continua no HTML:** corpo tipográfico de cada título, composição, grafismo. Isso é
+direção de arte, não conteúdo — e o usuário não deve precisar mexer.
+
+**Uma pegadinha de servidor:** se o `TEXTOS.md` está um nível acima do HTML, sirva a pasta do
+trabalho inteira, não a subpasta da arte. `fetch('../TEXTOS.md')` sai do escopo do servidor e
+devolve 404 sem explicar.

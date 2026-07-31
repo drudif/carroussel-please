@@ -109,7 +109,16 @@ Se você passou o texto e não cortou nada, você não aplicou. Volte e aplique.
 
 Mostre os cards numerados, a legenda e o alt text, **limpo** — sem justificar o que foi cortado.
 
-Deixe a edição fácil: grave `TEXTOS.md` na pasta do trabalho e diga que ele pode editar direto no arquivo se preferir, em vez de descrever a mudança no chat. Muita gente prefere.
+**Diga isto, com estas palavras ou parecidas:**
+
+> Os textos estão em `TEXTOS.md`, na pasta do trabalho. **Se quiser mudar qualquer palavra, edita
+> direto lá e me avisa aqui** — eu regero a arte a partir do arquivo. Você não precisa mexer em
+> código nem descrever a alteração no chat.
+
+Isso não é conveniência, é a diferença entre uma rodada e cinco. Descrever alteração de texto por
+chat é lento e impreciso; abrir o arquivo e digitar é imediato. E **só funciona se a arte ler o
+`.md` de verdade** — o padrão está em [references/montagem.md](references/montagem.md). Se você
+embutiu o texto no HTML, a promessa é falsa e o usuário vai descobrir na primeira correção.
 
 Ofereça **uma capa alternativa**. A capa é o único card que decide se os outros sete existem.
 
@@ -117,7 +126,7 @@ Ofereça **uma capa alternativa**. A capa é o único card que decide se os outr
 
 Agora, e só agora, monte a arte. O manual técnico completo — esqueleto, captura, área de segurança, PDF e as armadilhas que custam tempo — está em [references/montagem.md](references/montagem.md).
 
-1. Copie `assets/esqueleto.html` para a pasta do trabalho e aplique a direção aprovada
+1. Copie `assets/esqueleto.html` para a pasta do trabalho e aplique a direção aprovada. **O HTML lê `TEXTOS.md`; ele não guarda texto**
 2. `assets/baixar-fontes.sh <estilo>` gera o `fonts.css` com as faces embutidas
 3. `assets/exportar.sh` captura os PNGs em 1080×1350 e monta o PDF
 4. **Abra cada PNG e olhe.** Captura falha em silêncio: sai arquivo do tamanho certo, em branco

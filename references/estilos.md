@@ -55,6 +55,21 @@ assets/baixar-fontes.sh --listar
 
 O script grava `fonts.css` com as duas faces em base64, sob os nomes `Titulo` e `Corpo`.
 
+## A cauda que vale para os seis
+
+Depois do bloco do estilo e do assunto, toda geração termina com:
+
+> `Poster artwork only, no device mockup, no frame, no border. ABSOLUTELY NO TEXT, no lettering,`
+> `no numbers, no logos, no words anywhere.`
+
+E a lista de antipadrões, que é a mesma para todos: `no gradient mesh, no glow, no neon, no
+glassmorphism, no blur, no 3D render, no drop shadow, no bokeh, no rounded corners, no emoji, no
+stock photo look`.
+
+**A ordem importa:** estilo → assunto → cauda. O modelo pesa mais o começo do prompt, e o que
+precisa dominar é o estilo. Assunto primeiro devolve uma foto de banco de imagem com a paleta
+sugerida por cima.
+
 ## A régua da entrelinha
 
 **Este é o defeito mais fácil de deixar passar em pt-BR, e o mais caro.** Título em caixa alta com entrelinha apertada fica lindo em inglês e quebra em português: o til do `Ã` e o agudo do `Ó` sobem **acima da altura da linha inteira** e batem na letra de cima. O resultado não lê como erro de espaçamento — lê como sujeira, e o leitor não sabe dizer o que está errado.
@@ -110,6 +125,14 @@ A coluna da direita só entra quando as duas condições se encontram: a linha d
 
 **Entrelinha do título: `1.15`** — `var(--lh-titulo)`. A maior das seis; ver a régua da entrelinha.
 
+**Bloco de prompt** — cole antes do assunto em toda geração deste estilo:
+
+> `VECTOR BRUTALISM illustration, two-plate screenprint. Exactly three flat colours and nothing`
+> `else: raw paper #EDEAE3, ink #111111, signal red #E33420. Posterised hard-edged flat shapes`
+> `with thick confident contours, like a cut linocut. No gradient, no midtone, no shading, no soft`
+> `falloff, no halftone — every area is one flat colour with a crisp edge. The signal red appears`
+> `in exactly ONE element. Flat frontal, no perspective, no depth of field, no photographic lighting.`
+
 **Grafismo:** 100% CSS/SVG. Retângulo, círculo, diagonal, seta grossa, tabela de fio duplo, número gigante em marca-d'água. Nunca imagem no corpo do carrossel.
 
 **Material:** nenhum. Vetor é limpo por definição — grão aqui não lê como impressão, lê como sujeira.
@@ -140,6 +163,14 @@ A coluna da direita só entra quando as duas condições se encontram: a linha d
 **Fontes:** Bricolage Grotesque 800 (`Titulo`) · Newsreader 400 (`Corpo`) — `baixar-fontes.sh riso`
 
 **Entrelinha do título: `0.97`** — `var(--lh-titulo)`.
+
+**Bloco de prompt** — cole antes do assunto em toda geração deste estilo:
+
+> `RISOGRAPH PRINT, exactly two spot inks: riso blue #0078BF and riso orange #FF6C2F on cream`
+> `paper #F4F0E6. Where the inks overlap they multiply into a third dark colour. Coarse visible`
+> `halftone dot screen in both inks, deliberate plate misregistration with the orange plate offset`
+> `several millimetres, paper fibre grain, faint ink roller streaks. Nothing is perfectly flat —`
+> `the surface has defects. Reduced to two plates; not full-colour photography.`
 
 **Grafismo:** CSS. Retícula com `radial-gradient`, fibra com `feTurbulence`, erro de registro com cópia deslocada em `mix-blend-mode:multiply`. Receitas em [grafismos.md](grafismos.md).
 
@@ -176,6 +207,14 @@ A coluna da direita só entra quando as duas condições se encontram: a linha d
 
 **Entrelinha do título: `0.94`** — `var(--lh-titulo)`.
 
+**Bloco de prompt** — cole antes do assunto em toda geração deste estilo:
+
+> `SCREEN-NATIVE NEGATIVE POSTER. Near-black #0B0B0B ground; acid green #D9F218 is the ink and`
+> `never the field. Flat rectangles with 3px acid green outlines and hard offset acid green shadows`
+> `with zero blur; dark charcoal #1A1A1A interiors. One accent of red #E4002B. Everything reads as`
+> `an old operating system rendered in two colours. No gradient, no glow, no light emission, no`
+> `photographic lighting, no dark-room photography.`
+
 **Grafismo:** CSS. Janela = borda verde de 3px, barra de título com o nome real da etapa, sombra dura deslocada de 7px em verde, `transform:rotate()` de 1 a 3 graus. Cursor de seta em SVG apontando para a janela que importa.
 
 **Material:** **nenhum.** Estilo nativo de tela — papel, fibra e grão envelhecem o que deveria parecer interface. A textura vem da sombra dura.
@@ -206,6 +245,15 @@ A coluna da direita só entra quando as duas condições se encontram: a linha d
 **Fontes:** Bodoni Moda 900 (`Titulo`) · Karla 400 (`Corpo`) — `baixar-fontes.sh colagem`
 
 **Entrelinha do título: `1.09`** — `var(--lh-titulo)`.
+
+**Bloco de prompt** — cole antes do assunto em toda geração deste estilo:
+
+> `MODERN MIXED-MEDIA COLLAGE. Palette: kraft paper #E9E5DA, black #141414, hot pink #F0357A,`
+> `bottle green #0E5C3F. Layers of clearly different origin sharing one plane: a coarsely halftoned`
+> `black-and-white photographic cut-out with visible scissor edges, flat vector shapes, hand-drawn`
+> `marker scribbles, strips of matte tape, fragments of graph paper. Every edge is cut, torn or`
+> `taped — nothing is seamless. Each layer carries its own material: long fibre on the kraft,`
+> `halftone over the flat inks, fine grain on the paper strips. Scanned-flatbed feel.`
 
 A didone é escolha de mecanismo, não de gosto: colagem moderna cita a revista recortada, e o contraste extremo da Bodoni é o que faz a letra parecer **recortada com tesoura** em vez de digitada.
 
@@ -247,6 +295,14 @@ Ao contrário dos outros cinco, **este estilo não tem uma cor de fundo fixa** �
 
 **Entrelinha do título: `0.95`** — `var(--lh-titulo)`.
 
+**Bloco de prompt** — cole antes do assunto em toda geração deste estilo:
+
+> `COLOURFUL NEO-BRUTALISM. Palette: yellow #FFD84D, electric blue #2B4FE8, hot pink #FF5C8A,`
+> `mint #4BD9A8, pure black. Flat blocks outlined in 5px pure black with hard offset black shadows`
+> `and absolutely zero blur, over a saturated colour field overprinted with a fine millimetric grid.`
+> `Interface components as graphic elements — button, checkbox, speech bubble, star, toggle.`
+> `Deliberate asymmetry, elements rotated 2 to 4 degrees. No gradient, no glow, no soft shadow.`
+
 **Grafismo:** CSS puro, e o mais fácil dos seis. `border:5px solid #000` mais `box-shadow:8px 8px 0 #000`, sem blur nenhum. Grade com `repeating-linear-gradient` fino por baixo de tudo.
 
 **Material:** nenhum além da grade milimetrada. Grão aqui suja o contorno.
@@ -279,6 +335,17 @@ O segundo risco é de slop: a interface desenhada convida a escrever dentro dela
 **Fontes:** Fraunces 700 (`Titulo`) · Work Sans 400 (`Corpo`) — `baixar-fontes.sh editorial`
 
 **Entrelinha do título: `0.99`** — `var(--lh-titulo)`.
+
+**Bloco de prompt** — cole antes do assunto em toda geração deste estilo:
+
+> `WARM MINIMAL EDITORIAL PRINT. Palette: warm paper #F2EBDF, near-black warm ink #1E1B16, one`
+> `terracotta accent #C4562F, occasionally muted olive #6E7355. Quiet and refined: soft directional`
+> `daylight from one side, fine film grain, restrained contrast **with real mid-tones**. Enormous`
+> `amounts of empty paper — emptiness is the primary element. Very fine hairline rules. No saturated`
+> `colour, no gradient, no glow, no bokeh, no hard flash.`
+
+Repare que este é o **único dos seis que pede meio-tom**. Colar aqui o `no midtone` dos outros
+estilos mata a direção — é por isso que os blocos são separados e não um só com a paleta trocada.
 
 **Grafismo:** pouquíssimo. Fio, número de página grande em marca-d'água, filete separando colunas, uma tabela quando o conteúdo for comparativo. A referência de bento mostra o melhor achado do estilo: **a grade de fio virando a própria decoração**, com seis das nove células deixadas vazias.
 

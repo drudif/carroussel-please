@@ -156,9 +156,22 @@ uma foto tingida, não uma peça daquela direção. O tratamento fica sendo uma 
 percebe: a fotografia continua tendo profundidade, meio-tom e luz fotográfica por baixo da tinta,
 enquanto o resto do card é chapado.
 
-**A regra:** a especificação do estilo entra **no prompt**. Paleta em hex com o papel de cada cor,
-o material, o tipo de traço, o que é proibido. O gerador devolve a imagem já na linguagem, e o CSS
-não precisa converter nada.
+**A regra:** a imagem é **função do estilo**, não uma foto que recebe o estilo no fim. A
+especificação inteira entra no prompt, antes do assunto — paleta em hex com o papel de cada cor,
+idioma visual, material, traço, e o que aquele estilo proíbe.
+
+**Não escreva o prompt do zero.** Cada um dos seis estilos tem um **bloco de prompt pronto** em
+[estilos.md](estilos.md), verificado. A montagem é sempre:
+
+```
+bloco do estilo  →  assunto (a metáfora)  →  cauda universal
+```
+
+**A ordem importa.** O modelo pesa mais o começo, e o que precisa dominar é o estilo. Começar pelo
+assunto devolve foto de banco de imagem com a paleta sugerida por cima — que é exatamente o defeito.
+
+E **as proibições diferem por estilo**: o brutalista proíbe meio-tom, o editorial quente exige
+meio-tom. Um bloco genérico com a paleta trocada mata metade das direções.
 
 | No prompt vai | Exemplo |
 |---|---|
