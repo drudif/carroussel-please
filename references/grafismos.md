@@ -149,6 +149,32 @@ Antes de usar: **olhe o print procurando dado pessoal.** Nome, e-mail, cliente, 
 
 Nos demais cards, só quando o card pede retrato, cena, textura ou ilustração. Como chamar cada gerador está em [geradores.md](geradores.md).
 
+### A imagem nasce dentro do estilo, não é convertida para ele
+
+**O erro:** gerar uma foto neutra em preto e branco e aplicar duotone por cima em CSS. O resultado é
+uma foto tingida, não uma peça daquela direção. O tratamento fica sendo uma **camada**, e camada se
+percebe: a fotografia continua tendo profundidade, meio-tom e luz fotográfica por baixo da tinta,
+enquanto o resto do card é chapado.
+
+**A regra:** a especificação do estilo entra **no prompt**. Paleta em hex com o papel de cada cor,
+o material, o tipo de traço, o que é proibido. O gerador devolve a imagem já na linguagem, e o CSS
+não precisa converter nada.
+
+| No prompt vai | Exemplo |
+|---|---|
+| A paleta em hex, com o papel de cada cor | `exactly three flat colours: paper #EDEAE3, ink #111111, signal red #E33420` |
+| O nome do idioma visual | `VECTOR BRUTALISM illustration`, `two-plate screenprint`, `risograph print` |
+| O material do estilo | `coarse halftone screen, visible plate misregistration, paper fibre` |
+| O que o estilo proíbe | `no gradient, no midtone, no shading, no soft falloff` |
+| Onde o acento aparece | `the signal red appears in exactly ONE element` |
+
+**Consequência prática:** se a imagem já veio na paleta, **tire o duotone do CSS**. Ele achata o
+acento — o vermelho que o gerador colocou num único elemento vira tinta escura, e você perde
+exatamente o que fazia a imagem pertencer ao estilo.
+
+Quando ainda vale converter em CSS: imagem que o usuário trouxe, print de tela, ou quando o estilo
+pede a mesma foto em tratamentos diferentes ao longo do carrossel.
+
 ### O assunto da imagem vem do tema; o tratamento vem do estilo
 
 Este é o erro mais fácil de cometer na geração, porque o resultado sai bonito e passa despercebido: você escolhe uma imagem que combina com a **direção visual** em vez de uma que fala do **assunto do carrossel**.

@@ -151,7 +151,12 @@ Todo conteúdo essencial fica dentro do **corte 1:1 central**: em 1080×1350, en
 
 **Ritmo por arquétipo.** Os três arquétipos de layout — editorial split, cascata Z, bento assimétrico — entram em rodízio ao longo do carrossel. Oito cards no mesmo arquétipo viram oito paredes iguais.
 
-**Havendo gerador conectado, a capa recebe imagem gerada.** Sempre, qualquer que seja o estilo. O assunto da imagem vem do tema; o tratamento vem do estilo — e o teste da troca, em [references/grafismos.md](references/grafismos.md), reprova imagem que só combina com a paleta.
+**Havendo gerador conectado, a capa recebe imagem gerada.** Sempre, qualquer que seja o estilo.
+
+Duas regras sobre essa imagem, ambas em [references/grafismos.md](references/grafismos.md):
+
+- **O assunto vem do tema, não do estilo.** O teste da troca reprova imagem que só combina com a paleta
+- **A especificação do estilo vai no prompt.** Paleta em hex, idioma visual, material e proibições — o gerador devolve a peça já na linguagem. Foto neutra tingida com duotone depois lê como foto tingida, não como peça da direção. E se a imagem já veio na paleta, **tire o duotone do CSS**: ele achata o acento
 
 ## Hierarquia quando algo não couber
 
