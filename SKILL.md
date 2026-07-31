@@ -49,6 +49,36 @@ digraph carrossel {
 
 O protocolo de como perguntar — uma por vez, múltipla escolha, trava a cada bloco — está em [references/texto.md](references/texto.md). Este arquivo diz *o quê* e *em que ordem*.
 
+## Duas regras de conversa que valem o fluxo inteiro
+
+### Nunca pergunte duas vezes a mesma coisa
+
+Na etapa 0 você já ficou sabendo: **quem assina, onde publica, o assunto e quantos cards.**
+Nada disso se pergunta de novo mais adiante. Se precisar confirmar, **afirme e peça o aceite**
+— "são sete cards, certo?" — nunca "quantos cards você quer?". Repetir a pergunta faz parecer
+que você não estava prestando atenção, e é a queixa mais comum de quem testa a skill.
+
+Antes de perguntar qualquer coisa, releia o que já foi dito na conversa. Se a resposta está lá,
+use.
+
+### Fale como quem explica para um cliente, não para outro programador
+
+A pessoa do outro lado quer um post bonito. Ela não precisa saber como a peça é feita.
+
+| não diga | diga |
+|---|---|
+| "vou renderizar em HTML/CSS e capturar via headless" | "vou montar a arte e te mostrar" |
+| "aplicando duotone com mapeamento de rampa na paleta" | "vou deixar a foto nas cores do estilo" |
+| "o corpo está com 30px, abaixo do piso" | "o texto ficou pequeno demais para o feed, vou subir" |
+| "gerando o gabarito para extrair as coordenadas" | *não diga nada — isso é trabalho interno* |
+| "detectei conflito na área de segurança" | "isso ia sumir no corte do LinkedIn, arrumei" |
+
+**Etapa intermediária não se narra.** Gabarito, medição, teste de fonte, chapa limpa: some com
+tudo. Quem pede um carrossel quer ver o carrossel.
+
+E quando algo der errado, diga **o que ficou ruim e o que você vai fazer** — não o nome técnico
+do defeito.
+
 ---
 
 ## Etapa 0 — Perfil
@@ -83,31 +113,51 @@ Duas coisas ditas **na hora da escolha**, não depois:
 
 Para a régua de gosto — escala, respiro, o que faz uma peça parecer cara e o que a faz parecer gerada por IA — use [references/visual.md](references/visual.md).
 
-## Etapa 1.5 — Nível de imagem
+## Etapa 1.5 — De onde vêm as ilustrações
 
-**Depois do estilo, antes de qualquer arte.** De onde vem a ilustração muda o que cada estilo entrega, então pergunte agora.
+**Depois do estilo, antes de qualquer arte.**
 
-◇ **Que nível de imagem você quer?**
+Não pergunte por "nível" nem por "modelo": pergunte **o que a pessoa já tem**. Quem nunca
+conectou nada não sabe o que é MCP nem chave de API, e escolher entre A, B e C sem entender
+a diferença é escolher no escuro.
 
-| | Nível | O que é | O que custa |
-|---|---|---|---|
-| **A** | **Mais rico** | Gerador conectado — MCP ou chave própria. A ilustração é feita sob medida no estilo e na paleta | crédito ou assinatura |
-| **B** | **Médio** | Bancos abertos: Dupe e Openverse, tratados na paleta | nada, e sem criar chave |
-| **C** | **Mínimo** | Só SVG e CSS | nada |
+◇ **De onde você quer que venham as ilustrações?**
 
-Dito junto, porque muda a decisão:
+| | Opção | O que acontece |
+|---|---|---|
+| 1 | **Já tenho um gerador ligado aqui** | uso ele. Confirmo com uma chamada de saldo |
+| 2 | **Tenho conta em algum gerador de imagem** | te ajudo a ligar. Pergunto qual na sequência |
+| 3 | **Não tenho nada, quero o melhor de graça** | busco em banco aberto e trato na paleta |
+| 4 | **Só desenho, sem imagem de fora** | tudo em código, na paleta exata |
 
-- **A é o único nível em que a imagem responde ao briefing.** Nos outros dois você aceita o que existe
-- **C não é o pior.** Para brutalista, janelas e neo-brutalismo o desenho ganha do banco: nasce na paleta e carrega o conceito. Ver o limite de período em [references/grafismos.md](references/grafismos.md)
-- **B depende do assunto.** Tema imagético — relacionamento, viagem, comida, trabalho manual — o banco entrega. Tema abstrato — uma skill, um método, um conceito — não existe foto disso, e ali o banco é último recurso
+Dito junto, em uma linha cada:
 
-## Etapa 1.6 — Conexão (só no nível A)
+- Com gerador, a imagem é feita **para o seu assunto**. Sem ele, você usa o que existe
+- **Desenho não é a versão pobre.** Nos estilos de forma — brutalista, janelas, neo-brutalismo
+  — ele costuma ganhar do banco, porque nasce na paleta e carrega a ideia
+- Banco rende quando o tema **dá foto**: relacionamento, viagem, comida, trabalho manual. Num
+  tema abstrato — uma skill, um método — não existe foto disso
 
-**O nível B não passa por aqui**: Openverse responde sem chave e o Dupe não pede cadastro. É por isso que são o nível médio.
+### Se escolheu 2, pergunte qual
 
-◇ Você já sabe conectar, ou quer que eu te ensine?
+◇ **Qual conta você tem?**
 
-O passo a passo está em [references/geradores.md](references/geradores.md). Em todos os caminhos: **a chave nunca é colada no chat** — o que passa por aqui fica registrado. O usuário exporta no terminal e diz só "pronto". A skill grava o fato, `gemini: chave configurada em AAAA-MM-DD`, nunca o valor.
+E aqui **diga a verdade antes de tentar**, porque metade dos casos não conecta:
+
+| conta | dá para ligar? |
+|---|---|
+| **Gemini** | sim, e é o mais fácil: chave grátis em `aistudio.google.com/apikey`, com cota generosa |
+| **ChatGPT Plus ou Pro** | **a assinatura não serve.** A API é cobrada à parte, em `platform.openai.com`. Precisa pôr crédito lá |
+| **Higgsfield, Magnific** | sim, pelo conector no `claude.ai`. Gasta crédito da assinatura |
+| **Midjourney** | não tem API pública. Mas dá para gerar por lá e me passar o arquivo — eu trato e monto |
+
+Essa última linha vale para qualquer conta que não conecte: **gerar na mão e me entregar o
+arquivo funciona.** Não é o caminho ideal, é melhor do que desistir da imagem.
+
+O passo a passo de cada um está em [references/geradores.md](references/geradores.md). Em
+todos: **a chave nunca é colada no chat** — o que passa por aqui fica registrado. A pessoa
+exporta no terminal e diz só "pronto". A skill grava o fato, `gemini: chave configurada em
+AAAA-MM-DD`, nunca o valor.
 
 ## Etapa 2 — Aprovação da direção
 
