@@ -1,122 +1,88 @@
-# Geradores de imagem — o guia para quem nunca conectou nada
+# Gerar imagem — o guia para quem nunca conectou nada
 
-Esta é a etapa em que quem não é técnico costuma travar. Conduza com paciência: explique **o que muda no resultado** antes de pedir qualquer coisa, ofereça o caminho sem cadastro primeiro, e trate conectar como opcional de verdade — a maioria dos carrosséis fica ótima sem nenhum gerador.
+É aqui que quem não é técnico trava. Conduza com paciência: diga **o que muda no resultado** antes de pedir qualquer coisa, e trate conectar como opcional de verdade. Quatro dos seis estilos ficam completos sem nenhum gerador.
 
-## Como apresentar ao usuário
-
-Comece pelo que ele ganha, não pelo que precisa fazer:
-
-> Antes de montar a arte, uma decisão que muda o visual: eu posso desenhar os grafismos em código, gerar imagens de graça, ou usar um gerador melhor se você quiser conectar um. Te explico as três em trinta segundos e você escolhe — dá pra começar sem conectar nada e mudar de ideia depois.
-
-### O que muda, na prática
-
-**A capa muda de patamar.** Com um gerador conectado, a capa passa a receber imagem gerada sempre — e a capa é o card que decide se os outros sete serão vistos.
-
-**O número que importa:** sem gerador são **9 estilos** disponíveis na biblioteca; com qualquer gerador conectado, **16**. Os 7 extras são os que precisam de retrato, cena, textura ou colagem — Vaporwave, Pontilhismo, Mixed Media, Kawaii, Wabi Sabi, Rebus e Y2K.
+## O que muda, em português
 
 | | O que você faz | O que aparece no card |
 |---|---|---|
-| **Só código** | nada | Formas, grades, ícones, diagramas, abstrações de interface. Preciso e na sua paleta exata. Não faz retrato nem cena. |
-| **Pollinations** | nada | Tudo do código, mais textura, ilustração e cena. Resolução média — bom como fundo sob retícula, fraco em detalhe fino. |
-| **Chave de API** (Gemini ou OpenAI) | criar uma conta e copiar uma chave, ~5 min | Imagem em alta, controle melhor do estilo, consistência entre cards. Custa centavos por imagem. |
-| **MCP** (Higgsfield, Magnific) | autorizar um conector, ~2 min | Vários modelos, ampliação, remoção de fundo, controle de movimento. Consome créditos da assinatura. |
+| **Só código** (padrão) | nada | Formas, grades, ícones, diagramas, telas de app desenhadas. Sai exato na sua paleta, custa zero. Não faz retrato nem cena |
+| **Chave de API** | criar conta e copiar uma chave, ~5 min | Imagem em alta, controle de estilo, consistência entre cards. Centavos por imagem |
+| **Conector** (Higgsfield, Magnific) | autorizar uma vez, ~2 min | Vários modelos, ampliação, remoção de fundo. Consome créditos da assinatura |
 
-Diga também o que **não** muda: a tipografia é sempre desenhada em código, em qualquer um dos quatro. Nenhum gerador escreve texto de forma confiável em português — o acento é a primeira coisa que sai errada. Isso não é limitação do plano gratuito; é limitação de todos eles.
-
----
-
-## Caminho 1 — Pollinations (o padrão, zero configuração)
-
-Não pede conta, chave, cartão nem instalação. Se o usuário não quiser decidir nada, é aqui que você fica.
-
-```bash
-PROMPT=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" \
-  "risograph print, two ink plates, coarse halftone, flat frontal composition, no gradient, no glow, no 3D, no text, no lettering anywhere")
-
-curl -sS --max-time 90 -o grafismo.jpg \
-  "https://image.pollinations.ai/prompt/$PROMPT?width=1080&height=1350&seed=42&nologo=true"
-```
-
-Comportamento verificado:
-
-| | |
-|---|---|
-| Proporção | respeitada com precisão — 1080×1350 devolve 0,800 exato |
-| Resolução | limitada a ~590 mil pixels: 686×858 no 4:5, 768×768 no quadrado |
-| Determinismo | mesma seed e mesmo prompt devolvem o mesmo arquivo |
-| Modelo | `sana` — confira em `curl https://image.pollinations.ai/models` |
-| Custo | zero |
-
-Peça sempre na **proporção** do card, não no tamanho — a proporção é respeitada e é o que importa. Use a seed para variar de forma controlada: mesmo prompt com quatro seeds dá quatro composições comparáveis.
+E o que **não** muda em nenhuma das três: a tipografia é sempre desenhada em código. Nenhum gerador escreve texto confiável em português — `ç`, `ã`, `õ`, `ê` saem tortos ou viram outra letra antes de qualquer coisa. Isso não é limitação de plano gratuito, é limitação de todos eles.
 
 ---
 
-## Caminho 2 — Chave de API
+## Caminho 1 — nenhum gerador
 
-Vale a pena quando o carrossel depende de imagem de verdade: retrato, produto, cena. Explique o custo em termos reais — **alguns centavos por imagem**, e um carrossel usa poucas.
+Perfeitamente viável, e diga isso em voz alta para ele não sentir que escolheu a versão pobre. A maior parte de um carrossel é estrutura — grade, lista, ícone, diagrama, abstração de interface — e estrutura se **desenha** melhor do que se gera: nasce na paleta certa, mostra só o que interessa, e não vaza dado nenhum.
 
-### Gemini (o "nano banana")
+Os quatro estilos que ficam completos assim: brutalista vetorial, janelas, neo-brutalismo colorido, minimalista editorial quente.
 
-O modelo de imagem do Google. Bom em diagrama, texto legível em inglês e edição de imagem existente.
+---
+
+## Caminho 2 — chave de API
+
+Vale quando o carrossel depende de imagem de verdade. O custo real são **centavos por imagem**, e um carrossel usa poucas.
+
+### Gemini — o "nano banana"
+
+O modelo de imagem do Google. Bom em diagrama e em editar imagem existente.
 
 1. Abra **aistudio.google.com/apikey** e entre com a conta Google
-2. Clique em **Create API key** e escolha um projeto (se não tiver, ele cria um)
-3. Copie a chave — começa com `AIza...`
-4. **Guarde num arquivo, não no chat.** No terminal:
+2. **Create API key**, escolha um projeto — se não tiver, ele cria
+3. Copie a chave, que começa com `AIza…`
+4. **Guarde num arquivo, não no chat:**
 
 ```bash
 echo 'export GEMINI_API_KEY="cole-a-chave-aqui"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-5. Confirme que funcionou:
+5. Confirme:
 
 ```bash
 [ -n "$GEMINI_API_KEY" ] && echo "chave carregada" || echo "não carregou — reabra o terminal"
 ```
 
-O Google AI Studio tem faixa gratuita para testar. Geração de imagem costuma ser cobrada — confirme o preço atual na própria página antes de rodar em lote.
+O AI Studio tem faixa gratuita para testar; geração de imagem costuma ser cobrada. Confirme o preço na própria página antes de rodar em lote.
 
-### OpenAI (o modelo de imagem do ChatGPT)
+### OpenAI — o modelo de imagem do ChatGPT
 
 1. Abra **platform.openai.com/api-keys**
-2. **Create new secret key**, dê um nome, copie — começa com `sk-...`. Ela só aparece uma vez
+2. **Create new secret key**, dê um nome, copie. Começa com `sk-…` e **só aparece uma vez**
 3. Adicione crédito em **Settings → Billing**. Sem crédito, a chave existe mas toda chamada falha
-4. Guarde igual:
+4. Guarde igual ao anterior
 
-```bash
-echo 'export OPENAI_API_KEY="cole-a-chave-aqui"' >> ~/.zshrc
-source ~/.zshrc
-```
-
-A API é separada da assinatura do ChatGPT: pagar o ChatGPT Plus **não** dá crédito de API.
+A API é separada da assinatura: pagar o ChatGPT Plus **não** dá crédito de API.
 
 ### Regras para qualquer chave
 
-- **Nunca peça que ele cole a chave no chat.** O que passa pelo chat fica registrado. Peça que coloque na variável de ambiente e diga só "pronto"
-- **Nunca grave a chave no perfil**, no `DIRECAO.md`, no HTML ou em qualquer arquivo que vá para o git
-- No perfil, registre apenas `gemini: chave configurada em AAAA-MM-DD` — o fato, nunca o valor
-- Se o usuário colar uma chave mesmo assim, use, avise na hora que ela ficou exposta, e diga para revogar e gerar outra depois
+- **Nunca peça que ele cole a chave no chat.** O que passa pelo chat fica registrado. Peça que ponha na variável de ambiente e diga só "pronto"
+- **Nunca grave a chave** no perfil, no `DIRECAO.md`, no HTML ou em qualquer arquivo que vá para o git
+- No perfil registre apenas `gemini: chave configurada em AAAA-MM-DD`
+- Se ele colar mesmo assim: use, avise na hora que ficou exposta, e diga para revogar e gerar outra
 
 ---
 
-## Caminho 3 — MCP (Higgsfield, Magnific)
+## Caminho 3 — conector
 
-MCP é o jeito de o Claude falar direto com uma ferramenta externa. Explique assim:
+Explique o que é sem usar a sigla:
 
-> É como dar ao Claude uma chave da sua conta do Higgsfield, para ele gerar as imagens sem você sair daqui. Você autoriza uma vez e pronto.
+> É dar ao Claude uma chave da sua conta do Higgsfield, para ele gerar as imagens sem você sair daqui. Você autoriza uma vez e pronto.
 
 ### Como conectar
 
-**Se o usuário usa Claude na web ou no app:** Configurações → **Conectores** → procurar a ferramenta → **Conectar** → autorizar na janela que abre. Volta pronto.
+**No Claude web ou no app:** Configurações → **Conectores** → procurar a ferramenta → **Conectar** → autorizar na janela que abre.
 
-**Se usa Claude Code no terminal:** numa sessão interativa, digite `/mcp` para ver os conectores e autorizar. Para adicionar um novo servidor:
+**No Claude Code, no terminal:** numa sessão interativa, digite `/mcp` para ver e autorizar. Para adicionar um servidor novo:
 
 ```bash
 claude mcp add <nome> <comando-ou-url>
 ```
 
-**Importante:** o fluxo de autorização abre navegador e espera resposta, então **não roda numa sessão automatizada**. Se você estiver num contexto não interativo, avise que a autorização precisa ser feita por ele e siga com Pollinations nesse meio-tempo.
+**Importante:** a autorização abre navegador e espera resposta, então **não roda em sessão automatizada**. Num contexto não interativo, avise que ele precisa autorizar e siga desenhando em código nesse meio-tempo.
 
 ### Verifique antes de contar com o conector
 
@@ -126,7 +92,7 @@ Ferramenta que aparece na lista **não** é ferramenta autorizada. Faça uma cha
 mcp__<servidor>_higs__balance     → devolve créditos e plano
 ```
 
-Se voltar erro de autenticação, o conector não está autorizado. Diga isso claramente, explique onde autorizar, e continue com Pollinations em vez de travar o trabalho.
+Erro de autenticação significa conector não autorizado. Diga isso claramente, explique onde autorizar, e continue desenhando em vez de travar o trabalho.
 
 ### Higgsfield — como usar
 
@@ -137,22 +103,21 @@ Se voltar erro de autenticação, o conector não está autorizado. Diga isso cl
 
 Chame `balance` **antes e depois** e reporte o custo real. Estimativa não serve: crédito é dinheiro dele.
 
-Para grafismo com diagrama ou forma precisa, `nano_banana_pro` deu o melhor resultado.
+Para grafismo com forma precisa ou diagrama, `nano_banana_pro` deu o melhor resultado — foi com ele que as dezoito referências dos estilos foram feitas, a 2 créditos cada.
+
+**Comportamento verificado:** job travado existe. Um em cada cinco fica em `in_progress` indefinidamente enquanto os vizinhos terminam em 20 segundos. O sintoma é a resposta trazer `width: 896` em vez da resolução pedida. **Não fique repolando** — dispare de novo com o prompt levemente reescrito; sai na segunda. E o proxy devolve 502 esporádico, que é transitório: espere e repita.
 
 ### Magnific — como usar
 
-Serve para **ampliar e recompor imagem existente**, não para criar do zero. Útil quando o usuário traz uma imagem pequena que precisa ocupar o card inteiro, ou quando uma geração ficou boa na composição e curta na resolução.
+Serve para **ampliar e recompor imagem existente**, não para criar do zero. Útil quando o usuário traz uma imagem pequena que precisa ocupar o card, ou quando uma geração ficou boa na composição e curta na resolução.
 
 ---
 
-## Se o usuário não quiser conectar nada
+## Depois de gerar, sempre
 
-Perfeitamente viável, e vale dizer isso em voz alta para ele não sentir que está escolhendo a versão pobre. A maioria dos cards de um carrossel é estrutura — grade, lista, ícone, diagrama, abstração de interface — e estrutura se desenha melhor em código do que se gera. O gerador entra em um ou dois cards, quando o assunto pede retrato ou cena.
+1. Baixe e **confirme que o arquivo tem tamanho maior que zero**
+2. **Abra e olhe.** O modelo entrega imagem errada com a mesma confiança da certa
+3. **Recorte a moldura** se vier margem branca ou borda decorativa — dentro do card vira caixa-dentro-de-caixa
+4. Se veio texto por acidente, não tente corrigir com prompt: recorte fora, ou cubra com um bloco de tinta chapada, que é peça legítima de composição impressa
 
----
-
-## A regra que vale para todos
-
-Nenhum gerador escreve texto de forma confiável, e **o acento é onde o erro aparece primeiro** — `ç`, `ã`, `õ`, `ê` saem tortos ou viram outra letra antes de qualquer coisa. Toda palavra que o leitor vai ler é HTML/CSS capturado, sem exceção, inclusive paginação, handle e assinatura.
-
-Se um grafismo veio com texto por acidente, não tente corrigir com prompt: recorte fora, ou cubra com um bloco de tinta chapada, que é peça legítima de composição impressa.
+O briefing de imagem — como escolher o assunto, o teste da troca, o que proibir no prompt — está em [grafismos.md](grafismos.md).

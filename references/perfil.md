@@ -1,77 +1,70 @@
-# Perfil — a entrevista de setup
+# Perfil — a conversa de setup
 
 O perfil mora em `~/.claude/carrossel-perfil.md` e roda **uma vez**. Nos carrosséis seguintes, mostre um resumo de três linhas e pergunte só o que mudou.
 
 ## Como conduzir
 
-Uma pergunta por vez, seguindo `brainstorming`. Múltipla escolha sempre que der. Toda pergunta pode ser pulada — pulada vira `[CONFIRMAR]` no arquivo, e você segue com o padrão indicado.
+Uma pergunta por mensagem, seguindo o protocolo de [texto.md](texto.md). Toda pergunta pode ser pulada — pulada vira `[CONFIRMAR]` no arquivo, e você segue com o padrão indicado.
 
-Não faça as onze de uma vez. Agrupe em três rodadas curtas: **quem publica**, **como parece**, **com o que produz**.
+**Sem jargão.** Quem instala esta skill pode nunca ter aberto um terminal por vontade própria. Nada de "MCP", "chave de API", "área de segurança", "1080×1350" ou "duotone" nas perguntas. Esses termos existem no seu trabalho, não na conversa. Se um deles for inevitável, explique em uma frase e siga.
+
+Agrupe em três rodadas curtas: **quem publica**, **como parece**, **com o que produz**.
 
 ---
 
 ## Rodada 1 — quem publica
 
-**1. Quem assina?** Nome e handle. Se houver mais de uma conta (pessoal e marca), qual é a deste trabalho — muda a voz inteira.
+**1. Quem assina?** Nome e arroba. Se houver mais de uma conta — pessoal e marca —, qual é a deste trabalho. Muda a voz inteira.
 
-**2. Onde publica?** Instagram, LinkedIn, ambos, outra. Define formato, número de cards e densidade de texto.
-→ Padrão: Instagram 4:5, 8 a 10 cards.
+**2. Onde publica?** Instagram, LinkedIn, os dois, outro lugar. Define quantidade de cards e densidade de texto; a tabela está em [texto.md](texto.md).
+→ Padrão: Instagram, 8 a 10 cards.
 
 **3. Para quem?** Uma frase sobre quem lê. "Criativo de agência que não programa" e "dev sênior" produzem carrosséis opostos a partir do mesmo assunto.
 
-**4. Qual a voz?** Peça dois ou três adjetivos e, se existir, um exemplo de post que soou certo. Se o usuário já tem `.agents/social-media-context-sms.md` no projeto, **leia esse arquivo e pule esta pergunta** — a voz já está documentada lá.
+**4. Qual a voz?** Dois ou três adjetivos e, se existir, um post que soou certo. Se o projeto tiver `.agents/social-media-context-sms.md`, **leia o arquivo e pule a pergunta** — a voz já está documentada lá.
 
 ---
 
 ## Rodada 2 — como parece
 
-**5. Existe identidade visual fechada?** Paleta em hex, fontes, logo. Se sim, ela vence qualquer sugestão sua.
-→ Padrão: sem identidade fixa; a direção nasce na etapa 1.
+**5. Sua marca tem cor e fonte fechadas?** Se tiver, elas vencem qualquer sugestão sua. Peça as cores e o nome das fontes.
+→ Padrão: não tem; a direção nasce na etapa 1, dentro dos seis estilos.
 
-**6. Quais fontes estão instaladas?** Rode e mostre o resultado:
+Se ele tiver fonte de marca, confira o arquivo antes de prometer usá-la:
 
 ```bash
 ls ~/Library/Fonts | sed 's/-.*//;s/\..*//' | sort -u
 ```
 
-Fonte instalada é fonte que você pode usar sem baixar nada. Pergunte se alguma é obrigatória ou proibida.
+Fonte que não está instalada não entra. E fonte de marca precisa passar pela conferência de acentos da etapa 2 como qualquer outra.
 
-**7. Tem logo ou assinatura para o rodapé?** Caminho do arquivo, ou o handle em texto.
-→ Padrão: handle em texto.
+**6. Tem logo ou assinatura para o rodapé?** Caminho do arquivo, ou só o arroba em texto.
+→ Padrão: arroba em texto, e só na capa e no fecho.
 
-*(Não pergunte se vai impulsionar. A área de segurança do corte 1:1 é obrigatória sempre — post orgânico vira impulsionado depois sem ninguém refazer a arte.)*
+*(Não pergunte se vai impulsionar. A área de segurança do corte quadrado é obrigatória sempre — post orgânico vira impulsionado depois sem ninguém refazer a arte.)*
 
 ---
 
 ## Rodada 3 — com o que produz
 
-**9. Quais geradores de imagem você tem?** Esta é a pergunta que destrava a etapa 6 — e é a que mais muda o resultado, então explique o ganho **em número** antes de pedir qualquer coisa:
+**7. Você quer que eu gere imagens, ou desenho tudo?**
 
-> Sem conectar nada, eu tenho **9 estilos visuais** para te propor, todos desenhados em CSS. Conectando um gerador, sobem para **16** — os mesmos 9 mais 7 que precisam de imagem de verdade: retrato, cena, textura, colagem. Dá pra começar sem conectar e mudar de ideia depois.
+Esta é a única pergunta técnica do setup, então faça o custo e o ganho aparecerem em português antes de pedir qualquer coisa:
 
-Depois disso, as opções:
+> Duas formas de fazer as ilustrações dos cards. **Desenhando em código**, que é o padrão: sai exatamente na sua paleta, custa zero e serve para grade, diagrama, ícone, tela de app. Ou **gerando imagem**, para o que não se desenha — retrato, cena, textura, colagem. Gerar exige conectar uma ferramenta, uma vez, uns dois minutos. Dá pra começar sem conectar nada e mudar de ideia no meio.
 
-| Opção | O que exige | O que entrega |
-|---|---|---|
-| **Pollinations** (padrão) | nada — sem conta, sem chave | 686×858 no 4:5, determinístico por seed, grátis e ilimitado |
-| **Higgsfield** via MCP | conta e conector autorizado | resolução alta, muitos modelos, consome créditos |
-| **Magnific** via MCP | conta e conector autorizado | ampliação e recomposição de imagem existente |
-| **Nenhum** | — | tudo desenhado em código; funciona para a maioria dos carrosséis |
+O que muda de fato, e é isso que você diz:
 
-Pollinations é o piso e sempre está disponível. Os outros são teto, não substituto — mesmo com Higgsfield conectado, a regra de desenhar antes de gerar continua valendo.
+- **A capa passa a ter imagem sempre.** Com gerador conectado, isso vira regra fixa — e a capa é o card que decide se os outros sete serão vistos
+- **Dois dos seis estilos mudam de patamar**: a risografia, que existe para a tinta cair sobre imagem, e a colagem, cujo centro é o recorte fotográfico. Os outros quatro ficam completos sem nada
+- **O texto não muda em nada.** Toda palavra que o leitor vai ler é desenhada pelo navegador, com ou sem gerador. Nenhum modelo de imagem escreve português confiável, e o acento é onde ele erra primeiro
 
-Se o usuário disser que tem Higgsfield ou Magnific, **confirme que o MCP responde** com uma chamada barata de leitura antes de contar com ele:
+As opções, e como conectar cada uma, estão em [geradores.md](geradores.md). Se ele disser que já tem um conector, **confirme que responde** antes de contar com ele — ferramenta que aparece na lista não é ferramenta autorizada.
 
-```
-mcp__..._higs__balance      → devolve créditos e plano
-```
-
-MCP listado não é MCP autorizado. Se voltar erro de autenticação, avise que o conector precisa ser autorizado nas configurações e siga com Pollinations.
-
-**10. Onde salvar o trabalho?** Pasta do projeto.
+**8. Onde salvo o trabalho?**
 → Padrão: `./carrossel-<assunto>/`
 
-**11. Guardo este perfil?** Se sim, grave. Se não, use só nesta sessão.
+**9. Guardo isso pra não perguntar de novo?** Se sim, grave o arquivo. Se não, vale só nesta sessão.
 
 ---
 
@@ -83,20 +76,19 @@ MCP listado não é MCP autorizado. Se voltar erro de autenticação, avise que 
 atualizado: AAAA-MM-DD
 
 ## Quem
-- assina: Nome (@handle)
-- plataformas: Instagram (4:5, 8–10 cards) · LinkedIn (PDF)
+- assina: Nome (@arroba)
+- plataformas: Instagram (8–10 cards) · LinkedIn (PDF)
 - público: uma frase
 - voz: adjetivos · fonte da voz: caminho do arquivo, se houver
 
 ## Visual
 - identidade fixa: sim/não · paleta: #HEX #HEX #HEX
-- fontes disponíveis: Nome (arquivo.ttf), Nome (arquivo.ttf)
-- fontes obrigatórias: · proibidas:
-- assinatura de rodapé: @handle ou caminho do logo
+- fontes de marca: Nome (arquivo.ttf) — acentos conferidos em AAAA-MM-DD
+- assinatura: @arroba, só na capa e no fecho
 
 ## Produção
-- gerador padrão: pollinations
-- mcps disponíveis: higgsfield (verificado AAAA-MM-DD) · magnific (não)
+- geração de imagem: nenhuma | chave de API (qual) | conector (qual)
+- verificado em: AAAA-MM-DD
 - pasta padrão: ./carrossel-<assunto>/
 
 ## Pendências
@@ -105,6 +97,6 @@ atualizado: AAAA-MM-DD
 
 ## Regras do arquivo
 
-- **Nunca grave segredo**: token, chave de API, URL com parâmetro de acesso. Se o usuário mandar uma, use na sessão e avise que ela precisa ser rotacionada depois.
-- Registre **quando** você verificou cada MCP. Autorização expira, e um perfil de três meses atrás não é evidência de que funciona hoje.
-- Pergunta pulada vira `[CONFIRMAR]` explícito, nunca um palpite disfarçado de fato.
+- **Nunca grave segredo**: chave, token, URL com parâmetro de acesso. Registre o fato — `chave configurada em AAAA-MM-DD` — nunca o valor. Se o usuário mandar uma chave no chat, use, avise na hora que ela ficou exposta e diga para trocar depois.
+- Registre **quando** verificou cada conector. Autorização expira, e perfil de três meses atrás não é evidência de que funciona hoje.
+- Pergunta pulada vira `[CONFIRMAR]` explícito, nunca palpite disfarçado de fato.

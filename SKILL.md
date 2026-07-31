@@ -1,36 +1,35 @@
 ---
 name: carrossel
-description: Use quando o usuário pedir um carrossel para Instagram ou LinkedIn com arte pronta — "faz um carrossel", "post pro Instagram", "cards pro feed", "slides pro Insta", "carrossel de projetos", "documento pro LinkedIn", "monta a arte do carrossel". Também quando um carrossel gerado por modelo de imagem saiu com letra torta ou acento errado e precisa ser refeito, ou quando o usuário quer transformar prints de um app, um processo ou uma lista em post editorial. Entrega PNGs 1080x1350 e um PDF sequencial. Não use para só o texto dos slides — aí é carousel-writer-sms.
+description: Use quando o usuário pedir um carrossel para Instagram ou LinkedIn com arte pronta — "faz um carrossel", "post pro Instagram", "cards pro feed", "slides pro Insta", "carrossel de projetos", "documento pro LinkedIn", "monta a arte do carrossel". Também quando um carrossel gerado por modelo de imagem saiu com letra torta ou acento errado e precisa ser refeito, ou quando o usuário quer transformar prints de um app, um processo ou uma lista em post editorial. Entrega PNGs 1080x1350 e um PDF sequencial.
 metadata:
   language: pt-BR
-  gerador-padrao: pollinations.ai (grátis, sem chave, sem cadastro)
-  mcps-opcionais: higgsfield, magnific
-  herda: using-superpowers, brainstorming, bencium-innovative-ux-designer, frontend-design
+  estilos: 6, fixos — ver references/estilos.md
+  geracao-de-imagem: opcional; chave de API ou conector. Quatro dos seis estilos não precisam
   embutido: sprayantislop (Fernando Drudi) sobre Zero-Lero (MIT, Vinicius Stanula)
+  destilado: brainstorming, carousel-writer-sms, bencium-innovative-ux-designer, high-end-visual-design
+  autossuficiente: não depende de nenhuma outra skill estar instalada — ver CREDITOS.md
 ---
 
 # Carrossel
 
 Carrossel de feed com arte-final. **Toda tipografia é renderizada em HTML/CSS e capturada em PNG.** Modelo de imagem entra só onde não há palavra a ler.
 
+Tudo de que a skill precisa está dentro dela. Nada aqui depende de outra skill estar instalada — ver [CREDITOS.md](CREDITOS.md).
+
 ## Os três princípios
 
-**1. Modelo de imagem erra letra — e erra o acento primeiro.** Nenhuma palavra que o leitor vai ler sai de gerador de imagem. Nem o título, nem a paginação, nem o handle. Isso não é preferência de qualidade: é a diferença entre entregar e refazer.
+**1. Modelo de imagem erra letra — e erra o acento primeiro.** Nenhuma palavra que o leitor vai ler sai de gerador de imagem. Nem o título, nem a paginação, nem o arroba. Não é preferência de qualidade: é a diferença entre entregar e refazer.
 
-**2. Desenhar vem antes de capturar, que vem antes de gerar.** A maior parte do que um carrossel precisa — grade, blocos, ícones, abstração de interface, diagrama, tabela — se desenha em HTML/CSS/SVG com controle total e custo zero. **Interface desenhada em blocos ganha de print com filtro aplicado**: nasce na paleta certa, mostra só o que interessa, e nenhum dado real vaza. O print só entra quando o valor do card está em provar como a tela é de fato. O gerador entra por último, quando o card pede retrato, cena ou textura que não se desenha. Ver [references/grafismos.md](references/grafismos.md).
+**2. Desenhar vem antes de gerar.** A maior parte do que um carrossel precisa — grade, blocos, ícones, abstração de interface, diagrama, tabela — se desenha em HTML/CSS/SVG com controle total e custo zero. **Interface desenhada em blocos ganha de print com filtro aplicado.** O gerador entra no que não se desenha: retrato, cena, textura, colagem. Ver [references/grafismos.md](references/grafismos.md).
 
-**3. Nada avança sem aprovação.** São seis etapas com trava entre elas. Refazer oito cards renderizados custa muito mais do que uma pergunta.
-
-## Antes de começar
-
-Invoque **`using-superpowers`** para saber como localizar e usar as skills irmãs, e **`brainstorming`** para conduzir a conversa de decisão. Este arquivo diz *o que* perguntar e *em que ordem*; o `brainstorming` diz *como* perguntar — uma coisa por vez, múltipla escolha quando der, aprovação a cada bloco.
+**3. Nada avança sem aprovação.** Seis etapas com trava entre elas. Refazer oito cards renderizados custa muito mais do que uma pergunta.
 
 ## O fluxo
 
 ```dot
 digraph carrossel {
   "0 · Perfil" [shape=box];
-  "1 · Layout" [shape=box];
+  "1 · Estilo" [shape=box];
   "2 · Direção aprovada?" [shape=diamond];
   "3 · Conteúdo" [shape=box];
   "4 · Anti-slop" [shape=box];
@@ -38,8 +37,8 @@ digraph carrossel {
   "6 · Produção" [shape=box];
   "PNG + PDF" [shape=doublecircle];
 
-  "0 · Perfil" -> "1 · Layout" -> "2 · Direção aprovada?";
-  "2 · Direção aprovada?" -> "1 · Layout" [label="não"];
+  "0 · Perfil" -> "1 · Estilo" -> "2 · Direção aprovada?";
+  "2 · Direção aprovada?" -> "1 · Estilo" [label="não"];
   "2 · Direção aprovada?" -> "3 · Conteúdo" [label="sim"];
   "3 · Conteúdo" -> "4 · Anti-slop" -> "5 · Texto aprovado?";
   "5 · Texto aprovado?" -> "3 · Conteúdo" [label="não"];
@@ -48,125 +47,83 @@ digraph carrossel {
 }
 ```
 
+O protocolo de como perguntar — uma por vez, múltipla escolha, trava a cada bloco — está em [references/texto.md](references/texto.md). Este arquivo diz *o quê* e *em que ordem*.
+
 ---
 
 ## Etapa 0 — Perfil
 
-Leia `~/.claude/carrossel-perfil.md`. **Se existir**, mostre um resumo em três linhas e pergunte só o que muda neste trabalho. **Se não existir**, faça a entrevista de setup e grave o arquivo ao final.
+Leia `~/.claude/carrossel-perfil.md`. **Se existir**, mostre um resumo de três linhas e pergunte só o que muda neste trabalho. **Se não existir**, faça a conversa de setup e grave ao final.
 
-As perguntas do setup, o formato do arquivo e a pergunta sobre MCPs estão em [references/perfil.md](references/perfil.md). Em resumo, o setup cobre: quem assina e onde publica, identidade visual disponível (fontes instaladas, paleta, logo), voz e público, e **quais geradores de imagem o usuário tem** — Pollinations é o padrão e sempre funciona; Higgsfield e Magnific entram se ele tiver conta e os MCPs conectados.
+As perguntas estão em [references/perfil.md](references/perfil.md), em três rodadas curtas e **sem jargão**. Elas cobrem: quem assina e onde publica, se há identidade de marca fechada, e se o usuário quer gerar imagem ou desenhar tudo.
 
-Antes de propor layout, você precisa saber também: **o assunto do carrossel e quantos cards**. Sem isso não dá para testar se uma direção escala.
+Antes de propor estilo você precisa saber também: **o assunto e quantos cards**. Sem isso não dá para testar se uma direção escala.
 
-## Etapa 1 — Layout
+## Etapa 1 — Estilo
 
-O usuário tem três caminhos, e você oferece os três:
+São **seis, fixos**, especificados em [references/estilos.md](references/estilos.md) com paleta em hex, par tipográfico, material e o cuidado verificado de cada um:
 
-- **Anexar referências** — ele manda imagens. Você lê cada uma e devolve o que extraiu: paleta em hex, tipo de tipografia, lógica de grade, textura, o que dá para reproduzir em CSS e o que não dá.
-- **Descrever** — ele diz em palavras. Você traduz em especificação concreta e devolve para conferência antes de produzir.
-- **Não saber por onde começar** — você propõe **cinco direções que discordam entre si**, partindo da [biblioteca visual](references/biblioteca-visual.md): dezoito referências em `assets/referencias/`, cada uma descrita pelo **mecanismo de composição**, com paleta em hex e par de fontes open-source.
+| | Estilo | Em uma linha |
+|---|---|---|
+| 1 | **Brutalista vetorial** | forma chapada de aresta dura sobre papel cru, tipografia condensada como material |
+| 2 | **Risografia com textura** | duas tintas que se multiplicam, erro de registro, retícula e fibra |
+| 3 | **Janelas** | janelas de sistema em fundo preto, carregando conteúdo real |
+| 4 | **Mixed media / colagem** | camadas de origens diferentes, toda emenda à mostra |
+| 5 | **Neo-brutalismo colorido** | contorno preto grosso e sombra dura sobre campo saturado |
+| 6 | **Minimalista editorial quente** | duas colunas, serifa de contraste alto, e muito vazio |
 
-**A biblioteca é filtrada pelo que o usuário tem, e isso precisa ficar claro para ele:**
+**Não descreva os seis e peça para escolher.** Cada um tem três referências fixas em `assets/referencias/` — mostre-as. Depois renderize **capa e um card do meio** dos que ele considerar, com o texto provisório do assunto real. É barato e é a única forma honesta de escolher.
 
-| Sem gerador | Com Pollinations, chave de API ou MCP |
-|---|---|
-| **9 estilos** — Bauhaus, Brutalismo, Pop Art, Utilitário, Mid-Century, Neo-Brutalismo, Suíço, Memphis, Janelas | **os mesmos 9 + 7** — Vaporwave, Pontilhismo, Mixed Media, Kawaii, Wabi Sabi, Rebus, Y2K |
-| tudo desenhado em CSS, custo zero | os 7 extras pedem retrato, cena ou textura |
+Avise, sempre: *o texto do preview é provisório; a decisão aqui é de direção visual.*
 
-Diga isso ao usuário na etapa 0, com o número: conectar um gerador **libera 7 estilos além dos 9**. É a única forma de ele decidir se vale o esforço de conectar. Nunca proponha um dos 7 para quem não tem gerador — a direção é aprovada e você trava na etapa 6.
+Duas coisas ditas **na hora da escolha**, não depois:
 
-Dois estilos estão marcados como proibidos na biblioteca: estão lá para você reconhecer, não para propor.
+- **Se houver gerador conectado**, dois estilos mudam de patamar — risografia e colagem —, e a capa passa a receber imagem gerada sempre. Se não houver, quatro deles ficam completos assim mesmo
+- **O neo-brutalismo colorido tem prazo de validade.** É o visual mais usado em post de design hoje: acerta fácil e envelhece rápido. Isso muda a decisão, então é informação de antes
 
-O defeito a evitar tem nome: cinco direções que trocam de cor e continuam sendo a mesma composição — tipografia grande no topo, um fio, corpo abaixo, elemento no pé. Isso é uma direção com cinco roupas, e o usuário escolhe entre nada.
-
-A trava contra isso: **antes de renderizar, escreva qual é o mecanismo de cada uma das cinco.** Grade visível, diagonal fora de eixo, janelas sobrepostas, placa de papel com invasão, cena que avança. Se dois mecanismos se repetirem, troque antes de gastar render. O teste de escala, que reprova direção bonita que só funciona na capa, está em [references/direcoes-de-layout.md](references/direcoes-de-layout.md).
-
-Para a régua de gosto, puxe **`bencium-innovative-ux-designer`** e **`frontend-design`**. Elas cobrem escala tipográfica, espaçamento e o que faz uma peça parecer cara. Não reimplemente esse julgamento aqui.
-
-**Entregue como preview real, não como descrição.** Renderize a capa e um card do meio de cada direção — é barato e é a única forma honesta de escolher. Avise, sempre: *o texto do preview é provisório; a decisão aqui é de direção visual*.
-
-### Como mostrar o visual ao usuário
-
-**Nunca mande o usuário abrir uma pasta.** Caminho de arquivo não é apresentação — é lição de casa. Ele precisa ver a arte no lugar onde está conversando com você.
-
-Duas rotas, nesta ordem de preferência:
-
-1. **Artefato** — publique uma página com as artes lado a lado, usando a ferramenta de Artifact. Miniaturas em JPEG embutidas em base64 (a página não carrega host externo), numeradas, com espaço para o usuário comparar. É a melhor rota quando são muitas peças ou quando ele vai querer voltar depois.
-2. **Direto na mensagem** — quando forem uma ou duas peças, mostre na conversa mesmo.
-
-Reduza a miniatura antes de embutir: 1080×1350 vira 540×675 em JPEG qualidade 80, o que derruba de ~2 MB para ~100 KB por peça. Sete peças cabem numa página leve.
-
-Os PNGs em tamanho real continuam sendo gravados em disco — mas isso é entrega, não apresentação.
+Para a régua de gosto — escala, respiro, o que faz uma peça parecer cara e o que a faz parecer gerada por IA — use [references/visual.md](references/visual.md).
 
 ## Etapa 2 — Aprovação da direção
 
-Não avance sem resposta explícita. Se o usuário pedir mistura de duas direções, produza a mistura e mostre antes de seguir — direções misturadas costumam brigar, e é melhor descobrir agora.
+Não avance sem resposta explícita. Se o usuário pedir mistura de dois estilos, produza a mistura e mostre antes de seguir — estilos misturados costumam brigar, e é melhor descobrir agora.
 
-Ao fechar, registre a direção escolhida em `DIRECAO.md` na pasta do trabalho: paleta em hex com o uso de cada cor, fontes com nome real de arquivo, lógica de grade, e como cada tipo de card se comporta.
+Ao fechar, registre em `DIRECAO.md` na pasta do trabalho: paleta em hex com o uso de cada cor, fontes com nome de arquivo, lógica de grade, e como cada tipo de card se comporta.
 
-**As fontes vêm da biblioteca, não do acervo pessoal do usuário.** Cada estilo tem um par open-source definido — título e corpo — e o script baixa, confere os acentos e monta o `fonts.css`:
-
-```bash
-assets/baixar-fontes.sh utilitario     # baixa o par e gera fonts.css
-assets/baixar-fontes.sh --listar       # os 16 estilos disponíveis
-```
-
-Isso não é preferência: carrossel montado com fonte que só existe na máquina de uma pessoa não é reproduzível por quem instalar a skill. As dezesseis famílias foram verificadas e todas têm acento pt-BR completo.
-
-Se o usuário insistir numa fonte própria, cheque os acentos antes de fechar — fonte de display gringa costuma vir sem `ç`, `ã`, `õ`, `Ê`, e o navegador troca só o glifo faltante por outra fonte, o que é pior do que quebrar porque passa despercebido. Renderize `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` e olhe. Faltando: use **`abrasileirar-fonte`**.
+**Cheque os acentos antes de fechar.** Os doze pares dos seis estilos já foram conferidos glifo a glifo. Mas se o usuário trouxe fonte de marca, renderize `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` e olhe — o navegador troca só o glifo faltante por outra fonte, o que é pior do que quebrar, porque passa despercebido. Faltando: troque a fonte, ou use **`abrasileirar-fonte`** para desenhar os acentos no traço da própria fonte.
 
 ## Etapa 3 — Conteúdo
 
-Só agora. Pergunte, nesta ordem:
+Só agora. As cinco perguntas, a estrutura em quatro zonas, as regras de tamanho e a tabela de formato por plataforma estão em [references/texto.md](references/texto.md).
 
-1. **O gancho da capa** — qual a promessa, e por que alguém pararia o dedo nela
-2. **A tese** — o fio que liga todos os cards; sem isso vira lista solta
-3. **Os passos** — um por card, uma ideia por card, sem exceção
-4. **O fechamento** — qual ação, e o que o leitor ganha em fazê-la
-5. **Onde ficam os links** — no card, na legenda, na bio, ou em vários
-
-Para a estrutura por plataforma — quantos cards, quanto texto por card, o que vai na legenda — delegue a **`carousel-writer-sms`**. Ela já tem os limites do Instagram, LinkedIn, TikTok e Pinterest. Não duplique essas regras aqui.
-
-Regra de tamanho que vale para qualquer plataforma: **um card = uma ideia**, e o corpo de texto cabe em 25 palavras. Se não coube, são dois cards.
+A regra que vale em qualquer plataforma: **um card = uma ideia**, e o corpo cabe em 25 palavras. Se não coube, são dois cards.
 
 ## Etapa 4 — Anti-slop
 
-**Obrigatório, antes de mostrar qualquer texto ao usuário.** Passe capa, corpo, CTA, legenda e alt text pela régua anti-slop, que **está embutida nesta skill** em `references/anti-slop/` — não precisa instalar nem clonar nada.
+**Obrigatório, antes de mostrar qualquer texto ao usuário** — capa, corpo, CTA, legenda e alt text. Está embutida em [references/anti-slop.md](references/anti-slop.md), com os arquivos em `references/anti-slop/`. Não precisa instalar nada.
 
-A ordem de aplicação, o que mais aparece em carrossel e como registrar os cortes estão em [references/anti-slop.md](references/anti-slop.md).
+Se você passou o texto e não cortou nada, você não aplicou. Volte e aplique.
 
-Isso não é revisão de fachada. Se você passou o texto e não cortou nada, você não aplicou a skill — volte e aplique.
-
-## A conversa de aprovação e de edição
-
-Vale nas duas travas — direção e texto. O usuário está julgando, não operando.
-
-- **Mostre, não descreva.** Arte por artefato ou na mensagem; texto por extenso na resposta, card a card
-- **Pergunte uma coisa por vez**, com opções concretas. "Aprova ou quer ajustar algum card?" resolve melhor que uma lista de dúvidas
-- **Aceite edição em qualquer formato** — ele pode responder "troca o card 3 por X", editar o `.md` direto, ou dizer só "o 5 tá fraco". Se ele editou o arquivo, releia antes de seguir
-- **Uma pergunta de cada vez, e siga.** Aprovação não é formulário
+**Grave o registro dos cortes no arquivo, não na resposta.** No momento em que o usuário precisa julgar o texto, a memória de cálculo atrapalha. A única exceção é um corte que atropelou o que parecia escolha deliberada de voz — esse você aponta, em uma linha, para ele decidir.
 
 ## Etapa 5 — Aprovação do texto
 
-Mostre os cards numerados, a legenda e o alt text. **Só isso.**
+Mostre os cards numerados, a legenda e o alt text, **limpo** — sem justificar o que foi cortado.
 
-Não justifique o que a régua cortou. O usuário quer ler o texto final, não a memória de cálculo — a lista de cortes é ruído no momento em que ele precisa julgar o resultado. Grave o registro no arquivo, para consulta, e mantenha a resposta limpa.
-
-Exceção: se um corte atropelou algo que parecia escolha deliberada de voz, aponte **esse caso**, em uma linha.
+Deixe a edição fácil: grave `TEXTOS.md` na pasta do trabalho e diga que ele pode editar direto no arquivo se preferir, em vez de descrever a mudança no chat. Muita gente prefere.
 
 Ofereça **uma capa alternativa**. A capa é o único card que decide se os outros sete existem.
 
 ## Etapa 6 — Produção
 
-Agora, e só agora, monte a arte. O manual técnico completo — esqueleto HTML, captura, área de segurança, PDF e as armadilhas que custam tempo — está em [references/montagem.md](references/montagem.md).
+Agora, e só agora, monte a arte. O manual técnico completo — esqueleto, captura, área de segurança, PDF e as armadilhas que custam tempo — está em [references/montagem.md](references/montagem.md).
 
-O caminho curto:
+1. Copie `assets/esqueleto.html` para a pasta do trabalho e aplique a direção aprovada
+2. `assets/baixar-fontes.sh <estilo>` gera o `fonts.css` com as faces embutidas
+3. `assets/exportar.sh` captura os PNGs em 1080×1350 e monta o PDF
+4. **Abra cada PNG e olhe.** Captura falha em silêncio: sai arquivo do tamanho certo, em branco
+5. Passe a checagem antipadrão abaixo
 
-1. Copie `assets/esqueleto.html` para a pasta do trabalho e aplique a direção aprovada na etapa 2
-2. Rode `assets/exportar.sh` — ele captura os PNGs em 1080×1350 e monta o PDF
-3. **Abra cada PNG e olhe.** Captura falha em silêncio: sai arquivo do tamanho certo, em branco
-4. Passe a checagem antipadrão abaixo
-5. Entregue os PNGs numerados, o PDF, a legenda e o alt text
+**Apresente o resultado ao usuário, não o caminho da pasta.** Uma folha de contato em artefato, ou as imagens direto na mensagem. Mandar alguém abrir um diretório para ver o próprio trabalho é a pior parte de uma entrega boa.
 
 ### Formatos
 
@@ -174,24 +131,44 @@ O caminho curto:
 |---|---|---|
 | Instagram | PNG 1080×1350 (4:5) | um por card |
 | LinkedIn | PDF sequencial, mesmas páginas | documento nativo, até 300 páginas e 100 MB |
-| Stories | PNG 1080×1920 | opcional, só se pedirem |
+| Stories | PNG 1080×1920 | só se pedirem |
 
-O PDF do LinkedIn usa os mesmos PNGs. O feed de lá é mais largo e reduz o documento, então corpo abaixo de 30px sobre 1080 fica no limite — se o carrossel for prioritariamente para o LinkedIn, suba os corpos antes de exportar.
+O PDF do LinkedIn usa os mesmos PNGs. O feed de lá é mais largo e reduz o documento, então corpo abaixo de 30px sobre 1080 fica no limite — se o LinkedIn é o destino principal, suba os corpos antes de exportar.
 
-### Área de segurança — sempre
+### Área de segurança — obrigatória, sempre
 
-Todo conteúdo essencial fica dentro do **corte 1:1 central**: em 1080×1350, entre y=135 e y=1215, com 78px nas laterais. Isso não é condicional a impulsionamento — é o corte mais agressivo que o material encontra (o Explore aplica), e um post orgânico pode ser impulsionado depois sem ninguém refazer a arte.
-
-O esqueleto já nasce com as margens certas. Confira com `?card=N&safe=1`, que desenha as duas caixas por cima, e guarde a série como `_safe-NN.png`.
+Todo conteúdo essencial fica dentro do **corte 1:1 central**: em 1080×1350, entre y=135 e y=1215, com 78px nas laterais. É o corte mais agressivo que o material vai encontrar, e post orgânico vira impulsionado depois sem ninguém refazer a arte. O esqueleto traz o gabarito: `?card=N&safe=1` desenha as caixas por cima.
 
 ---
+
+## Padrões de composição
+
+**A capa tem título dominante.** A razão entre o título e o subtítulo é de pelo menos **2,5:1**. Título grande, sub pequeno, e nada mais — sem eyebrow, sem rodapé, sem rótulo, a menos que carreguem informação que o leitor precisa.
+
+**Slot vazio não se preenche, se elimina.** Se o template criou uma caixa e você precisou inventar texto para ela, a caixa sai e o vazio vira respiro. Ver a auditoria de slots em [references/anti-slop.md](references/anti-slop.md).
+
+**O grafismo é mudo.** Se você desenhou algo e precisou escrever um rótulo para ele se explicar, o problema é o desenho. Texto dentro de grafismo só é legítimo se veio da etapa 3, aprovado, ou se é dado duro e verdadeiro.
+
+**Ritmo por arquétipo.** Os três arquétipos de layout — editorial split, cascata Z, bento assimétrico — entram em rodízio ao longo do carrossel. Oito cards no mesmo arquétipo viram oito paredes iguais.
+
+**Havendo gerador conectado, a capa recebe imagem gerada.** Sempre, qualquer que seja o estilo. O assunto da imagem vem do tema; o tratamento vem do estilo — e o teste da troca, em [references/grafismos.md](references/grafismos.md), reprova imagem que só combina com a paleta.
+
+## Hierarquia quando algo não couber
+
+Sacrifique nesta ordem, **de baixo para cima**:
+
+1. **Leitura** — nunca cede. Corpo sobre papel sólido, tamanho que se lê no feed
+2. **Respiro** — cede pouco. Vão vazio é composição, não desperdício
+3. **Grafismo** — cede primeiro. Encolhe, corta, ou sai
+
+Texto sobrepondo grafismo é falha estrutural, não ajuste fino. Resolva com empilhamento rígido — cabeça, texto, grafismo, pé — onde o texto reserva a altura de que precisa e o grafismo fica com o que sobra. O esqueleto já é assim.
 
 ## Checagem antes de entregar
 
 Se qualquer item aparecer na arte, ela lê como feita por IA genérica:
 
 - [ ] Gradiente índigo → violeta, ou qualquer gradiente de dois roxos
-- [ ] Glassmorphism: card translúcido com blur e borda branca de 1px
+- [ ] Vidro fosco: card translúcido com blur e borda branca de 1px
 - [ ] Blob 3D, esfera de vidro, forma orgânica renderizada
 - [ ] Glow neon atrás de texto ou forma
 - [ ] Ícone dentro de tile pastel arredondado
@@ -199,54 +176,18 @@ Se qualquer item aparecer na arte, ela lê como feita por IA genérica:
 - [ ] Layout de landing de SaaS: hero centralizado e três cards iguais
 - [ ] Emoji como elemento gráfico
 - [ ] **Texto legível vindo de modelo de imagem**
-- [ ] **Imagem que passa no teste da troca** — se ela funcionaria igual em outra direção, é decoração de estilo, não é sobre o assunto
-- [ ] **Texto no grafismo que não veio da etapa 3** — rótulo inventado, botão fictício, contagem descritiva, resumo no rodapé
 
 E mais:
 
 - [ ] Todos os PNGs abertos e olhados, um a um
 - [ ] Nenhum texto corrido sobre grafismo
+- [ ] Nada essencial fora da área de segurança
 - [ ] Nenhum corte ou overflow — confira também os 8px finais de cada PNG
 - [ ] Print de app real revisado por dado pessoal: nome, e-mail, cliente, token
-- [ ] Acentos conferidos na fonte de display
+- [ ] Acentos conferidos, se entrou fonte de fora dos seis estilos
 - [ ] Ritmo: passando os cards em sequência, algo muda de posição ou escala
 - [ ] Alt text escrito, um por card
 - [ ] Legenda passou pela mesma régua anti-slop
-
-## Padrões de composição
-
-Valem em qualquer direção visual, porque são estrutura e não estilo.
-
-**Com MCP conectado, a capa recebe imagem gerada — obrigatoriamente.** Não é opcional e não depende do estilo escolhido. A capa tem uma função só, que é fazer passar para o card 2, e imagem é o ativo mais forte disponível para isso. Os cards do meio seguem a árvore de decisão normal (desenhar antes de capturar antes de gerar); a capa é a exceção fixa.
-
-**O assunto da imagem vem do tema do carrossel; só o tratamento vem do estilo.** Escolher uma imagem que "combina com a direção" é o erro mais comum e o mais difícil de enxergar, porque o resultado sai bonito. Aplique o teste da troca: se a imagem funcionaria igual em outra direção, ela é sobre o estilo, não sobre o assunto — refaça. O método de briefing em três passos está em [references/grafismos.md](references/grafismos.md).
-
-A imagem da capa obedece às mesmas regras de sempre: **sem nenhum texto** no prompt e no resultado, tratada com o material da direção aprovada — duotone na paleta, retícula, erro de registro — para não parecer colada. Se o resultado vier com texto por acidente, recorte fora ou cubra com bloco de tinta chapada.
-
-Sem MCP, a capa se resolve com tipografia e desenho, o que funciona — mas diga ao usuário o que ele está deixando na mesa.
-
-**A capa é título grande.** Dominante, ocupando o card. O subtítulo entra bem menor — mire numa razão de pelo menos 2,5 para 1 entre título e sub. Capa com título e subtítulo do mesmo peso não tem hierarquia, e sem hierarquia o dedo não para.
-
-**Não crie slot que não carrega informação.** Eyebrow, rótulo, rodapé, numeração: cada um só existe se disser algo que os outros níveis não dizem. Um eyebrow escrito "PROJETO 01" acima de um card que já é o card 1 é ruído com cara de sistema. É exatamente o defeito que a régua anti-slop derruba no texto — no layout ele custa a mesma coisa.
-
-Na prática:
-
-- **Capa** — em geral dispensa eyebrow e rodapé. Ela tem uma função só: fazer passar para o segundo card
-- **Rodapé** — entra quando carrega informação real: paginação numa série longa, o handle para quem vê o card fora do feed. Se você não souber dizer o que ele informa, tire
-- **Eyebrow** — entra quando classifica algo que o título não classifica ("skill", "repo", "passo 3"). Nunca quando só reformula o título abaixo dele
-- **Cada nível carrega informação de natureza diferente, ou morre**
-
-Tirar um slot vazio abre respiro, que é a prioridade 2 da hierarquia abaixo. Os dois princípios trabalham juntos.
-
-## Hierarquia quando algo não couber
-
-Quando o conteúdo não cabe no card, sacrifique nesta ordem — **de baixo para cima**:
-
-1. **Leitura** — nunca cede. Corpo sobre papel sólido, tamanho que se lê no feed
-2. **Respiro** — cede pouco. Vão vazio é composição, não desperdício
-3. **Grafismo** — cede primeiro. Encolhe, corta, ou sai
-
-Text sobrepondo grafismo é falha estrutural, não ajuste fino. Resolva com empilhamento rígido — cabeça, texto, grafismo, pé — onde o texto reserva a altura de que precisa e o grafismo fica com o que sobra. O esqueleto já é assim.
 
 ## Red flags — pare e volte uma etapa
 
@@ -254,33 +195,30 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 
 | O que você vai pensar | O que é verdade |
 |---|---|
-| "Com pressa, entrevista de setup é hostil" | O setup roda uma vez e fica salvo no perfil. Errar a lista invalida os oito cards. |
-| "Três direções bastam, cinco vira galeria" | O custo de uma direção é uma capa renderizada. O de refazer é o carrossel. |
-| "Adianto a arte enquanto ele responde o texto" | A etapa 1 pode adiantar, porque direção visual não depende de copy. A 6 nunca. |
-| "Meu default escuro com acento neon é bonito e seguro" | É exatamente o visual que hoje lê como IA. Seguro e indistinguível são a mesma coisa. |
-| "Preview da capa já mostra a direção" | Direção quebra no card 5, não na capa. Renderize um card do meio também. |
-| "O gerador acertou a letra dessa vez" | Acertou nessa geração. Não vai acertar nas oito. E o acento é onde ele erra primeiro. |
-| "Gero a imagem e ajusto o texto pra caber" | O texto passa a servir a imagem. Inverte a peça inteira. |
-| "Depois eu olho os PNGs" | Captura falha em silêncio. Olhe antes de entregar, um por um. |
-| "Isso é fácil de desenhar, gero mais rápido" | Gerar custa uma rodada de prompt, uma de download e uma de recorte. Um `<div>` custa uma linha. |
+| "Com pressa, conversa de setup é hostil" | Roda uma vez e fica salva. Errar a lista invalida os oito cards |
+| "Descrevo os seis estilos, ele escolhe pelo nome" | Ninguém escolhe direção visual lendo. Mostre a referência e renderize |
+| "Adianto a arte enquanto ele responde o texto" | A etapa 1 pode adiantar; direção não depende de copy. A 6 nunca |
+| "Meu default escuro com acento neon é bonito e seguro" | É exatamente o visual que hoje lê como IA. Seguro e indistinguível são a mesma coisa |
+| "Preview da capa já mostra a direção" | Direção quebra no card 5, não na capa. Renderize um card do meio |
+| "O gerador acertou a letra dessa vez" | Acertou nessa geração. Não vai acertar nas oito. E o acento é onde ele erra primeiro |
+| "Gero a imagem e ajusto o texto pra caber" | O texto passa a servir a imagem. Inverte a peça inteira |
+| "Isso é fácil de desenhar, gero mais rápido" | Gerar custa uma rodada de prompt, uma de download e uma de recorte. Um `<div>` custa uma linha |
+| "Depois eu olho os PNGs" | Captura falha em silêncio. Olhe antes de entregar, um por um |
+| "Mando a pasta e ele abre" | Entrega é o que ele vê, não o que ele encontra |
 
 ## Sobre disparar agentes
 
-**O padrão é fazer tudo aqui, em sequência.** Subagente não consegue perguntar nada ao usuário, e a premissa desta skill é perguntar tudo — então as etapas 0, 2 e 5 são indelegáveis por natureza, e a 6 é o laço de renderizar, olhar e ajustar com o usuário no meio, onde um agente só adiciona ida e volta e perde o contexto visual.
+**O padrão é fazer tudo aqui, em sequência.** Subagente não pergunta nada ao usuário, e a premissa desta skill é perguntar tudo — as etapas 0, 2 e 5 são indelegáveis por natureza, e a 6 é o laço de renderizar, olhar e ajustar com o usuário no meio, onde um agente só adiciona ida e volta e perde o contexto visual.
 
-Sobra **um** caso em que delegar compensa: a etapa 1 de um carrossel grande, com um agente por direção. Cinco explorações independentes divergem mais entre si do que cinco que a mesma cabeça produz em sequência. Cada agente custa na casa de 100 mil tokens, então isso é opt-in explícito do usuário, nunca padrão.
-
-Se ele topar, passe a cada agente: o assunto, o número de cards, o perfil, o território designado com instrução de não invadir os outros, a lista de antipadrões, e a exigência do teste de escala escrito. Exija de volta o preview renderizado, a paleta em hex e a fonte com nome de arquivo — sem isso você recebe descrição bonita e não consegue comparar.
+Sobra **um** caso em que delegar compensa: renderizar previews de vários estilos em paralelo na etapa 1, num carrossel grande. Isso é opt-in explícito do usuário, nunca padrão.
 
 ## Onde delegar
 
 | Situação | Vá para |
 |---|---|
-| Só o texto dos slides | `carousel-writer-sms` |
-| Só a legenda do post | `caption-writer-sms` |
 | Revisar texto que já existe, fora de carrossel | `sprayantislop` ou `deslopar` |
-| Julgamento de gosto visual | `bencium-innovative-ux-designer`, `frontend-design` |
-| Fonte sem acento em pt-BR | `abrasileirar-fonte` |
+| Fonte de marca sem acento em pt-BR | `abrasileirar-fonte` |
 | Peça única, não swipeable | `post-writer-sms` |
+| Só a legenda do post | `caption-writer-sms` |
 
-O que é só desta skill: a ordem das seis etapas, o desenho antes da geração, e a montagem em código.
+O que é só desta skill: a ordem das seis etapas, os seis estilos fechados, o desenho antes da geração, e a montagem em código.
