@@ -83,6 +83,32 @@ Duas coisas ditas **na hora da escolha**, não depois:
 
 Para a régua de gosto — escala, respiro, o que faz uma peça parecer cara e o que a faz parecer gerada por IA — use [references/visual.md](references/visual.md).
 
+## Etapa 1.5 — Nível de imagem
+
+**Depois do estilo, antes de qualquer arte.** De onde vem a ilustração muda o que cada estilo entrega, então pergunte agora.
+
+◇ **Que nível de imagem você quer?**
+
+| | Nível | O que é | O que custa |
+|---|---|---|---|
+| **A** | **Mais rico** | Gerador conectado — MCP ou chave própria. A ilustração é feita sob medida no estilo e na paleta | crédito ou assinatura |
+| **B** | **Médio** | Bancos abertos: Dupe e Openverse, tratados na paleta | nada, e sem criar chave |
+| **C** | **Mínimo** | Só SVG e CSS | nada |
+
+Dito junto, porque muda a decisão:
+
+- **A é o único nível em que a imagem responde ao briefing.** Nos outros dois você aceita o que existe
+- **C não é o pior.** Para brutalista, janelas e neo-brutalismo o desenho ganha do banco: nasce na paleta e carrega o conceito. Ver o limite de período em [references/grafismos.md](references/grafismos.md)
+- **B depende do assunto.** Tema imagético — relacionamento, viagem, comida, trabalho manual — o banco entrega. Tema abstrato — uma skill, um método, um conceito — não existe foto disso, e ali o banco é último recurso
+
+## Etapa 1.6 — Conexão (só no nível A)
+
+**O nível B não passa por aqui**: Openverse responde sem chave e o Dupe não pede cadastro. É por isso que são o nível médio.
+
+◇ Você já sabe conectar, ou quer que eu te ensine?
+
+O passo a passo está em [references/geradores.md](references/geradores.md). Em todos os caminhos: **a chave nunca é colada no chat** — o que passa por aqui fica registrado. O usuário exporta no terminal e diz só "pronto". A skill grava o fato, `gemini: chave configurada em AAAA-MM-DD`, nunca o valor.
+
 ## Etapa 2 — Aprovação da direção
 
 Não avance sem resposta explícita. Se o usuário pedir mistura de dois estilos, produza a mistura e mostre antes de seguir — estilos misturados costumam brigar, e é melhor descobrir agora.
@@ -93,13 +119,31 @@ Ao fechar, registre em `DIRECAO.md` na pasta do trabalho: paleta em hex com o us
 
 ## Etapa 3 — Conteúdo
 
-Só agora. As cinco perguntas, a estrutura em quatro zonas, as regras de tamanho e a tabela de formato por plataforma estão em [references/texto.md](references/texto.md).
+**Três perguntas, e só.** Escrever card a card não é trabalho do usuário — é da `carousel-writer-sms`, embutida em [references/texto.md](references/texto.md). A entrevista define *o que* e *como* dizer ao longo do carrossel, não arranca o texto pronto dele.
+
+Uma por vez:
+
+◇ Qual é sua tese — a única coisa que o leitor tem que levar embora?
+◇ Como termina? (comentar · salvar · seguir · instalar · outro)
+◇ Tem algum dado seu, número ou história, que só você poderia contar?
+
+▸ Com isso, **proponha o mapa dos cards**: uma sinopse de uma linha por card, numerada, mais o gancho da capa. Não é o texto final, é o roteiro — e é sobre ele que o usuário opina.
+
+◇ O mapa fecha assim?
+
+Só depois do mapa aprovado o texto é escrito de verdade.
+
+**Por que nesta ordem:** discutir o mapa custa uma rodada; descobrir na etapa 5 que o carrossel conta a história errada custa todas. E sete linhas de roteiro se julgam melhor que sete blocos de texto acabado, onde a redação disputa atenção com a estrutura.
 
 A regra que vale em qualquer plataforma: **um card = uma ideia**, e o corpo cabe em 25 palavras. Se não coube, são dois cards.
 
 ## Etapa 4 — Anti-slop
 
-**Obrigatório, antes de mostrar qualquer texto ao usuário** — capa, corpo, CTA, legenda e alt text. Está embutida em [references/anti-slop.md](references/anti-slop.md), com os arquivos em `references/anti-slop/`. Não precisa instalar nada.
+**Só texto.** Capa, corpo, CTA, legenda e alt text. Está embutida em [references/anti-slop.md](references/anti-slop.md), com os arquivos em `references/anti-slop/`. Não precisa instalar nada.
+
+**A revisão de slop gráfico saiu daqui.** Ela produzia texto genérico para descrever problema visual — o oposto do que esta etapa existe para fazer. O que é visual se resolve olhando o PNG na etapa 6, com a checagem antipadrão.
+
+**Obrigatório antes de mostrar qualquer texto ao usuário.**
 
 Se você passou o texto e não cortou nada, você não aplicou. Volte e aplique.
 
@@ -133,6 +177,14 @@ Agora, e só agora, monte a arte. O manual técnico completo — esqueleto, capt
 5. Passe a checagem antipadrão abaixo
 
 **Apresente o resultado ao usuário, não o caminho da pasta.** Uma folha de contato em artefato, ou as imagens direto na mensagem. Mandar alguém abrir um diretório para ver o próprio trabalho é a pior parte de uma entrega boa.
+
+### O artefato só aparece com a arte pronta
+
+**Etapa intermediária não vai para o usuário.** Gabarito, chapa limpa, medição, teste de fonte — tudo isso é trabalho seu. O que chega é o carrossel montado, com o texto já aplicado como sugestão final.
+
+Mostrar o caminho parece transparência e é ruído: o usuário passa a opinar sobre uma imagem que vai ser jogada fora, e você gasta uma rodada explicando por que ela não é a peça.
+
+Junto com o artefato, o aviso do `TEXTOS.md` da etapa 5 — e a parte que faz diferença dita explicitamente: **o corpo se reajusta ao espaço já reservado em cada card, então mudar uma palavra não desmancha a diagramação.**
 
 ### Formatos
 
