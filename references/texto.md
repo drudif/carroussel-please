@@ -54,7 +54,7 @@ Vale para qualquer plataforma. O que muda de uma para outra é a quantidade, nã
 |---|---|---|---|---|---|
 | **Formato** | carrossel nativo | PDF, documento nativo | post de imagens | Idea Pin | multifoto |
 | **Quantidade** | 8–10 (teto de 10) | 7–12, ideal 9–10 | 6–12 | 6–10 páginas | 5–8 |
-| **Proporção** | 1080×1350 (4:5) | 4:5 ou 1:1 | 1080×1920 (9:16) | 1080×1920 | 1:1 |
+| **Proporção** | 1080×1350 (4:5) | **1080×1080 (1:1)** | 1080×1920 (9:16) | 1080×1920 | 1:1 |
 | **Densidade** | baixa — ~25 palavras | alta, aceita profundidade | mínima — até 6 palavras por card | média, guiada por palavra-chave | média |
 | **Legenda** | gancho nos 125 primeiros caracteres | gancho + 2 parágrafos; **link só no comentário** | até 150 caracteres | descrição com palavra-chave | conversacional, 200–500 |
 | **Hashtags** | 3 a 10 | 3 a 5 | 3 a 5 | ignoradas — use palavra-chave no texto | 1 a 3 |

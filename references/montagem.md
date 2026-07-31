@@ -267,3 +267,25 @@ direção de arte, não conteúdo — e o usuário não deve precisar mexer.
 **Uma pegadinha de servidor:** se o `TEXTOS.md` está um nível acima do HTML, sirva a pasta do
 trabalho inteira, não a subpasta da arte. `fetch('../TEXTOS.md')` sai do escopo do servidor e
 devolve 404 sem explicar.
+
+## O `body` da página de captura precisa estar zerado
+
+Se o HTML de trabalho empilha os cards com `padding` e `gap` no `body` — e ele empilha, porque é
+assim que você olha todos de uma vez —, **a captura de um card só sai deslocada por esse padding e
+perde a mesma quantidade no pé**. O arquivo tem 1080×1350, a contagem de cores parece normal, e o
+defeito só aparece quando você mede.
+
+Aconteceu neste projeto: 26px de deslocamento em todos os PNGs, e o corte 1:1 do LinkedIn comendo
+a paginação por causa disso.
+
+```css
+body{ padding:26px; gap:26px }          /* a folha de contato */
+body.solo{ padding:0; gap:0 }           /* a captura de um card */
+```
+
+```js
+if (q.get('card')) document.body.classList.add('solo');
+```
+
+**A conferência**, e vale para qualquer exportação: leia o pixel do canto do PNG. Se não for a cor
+de fundo do card, a captura pegou a página em volta.

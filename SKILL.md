@@ -139,10 +139,21 @@ Agora, e só agora, monte a arte. O manual técnico completo — esqueleto, capt
 | Destino | Arquivo | Observação |
 |---|---|---|
 | Instagram | PNG 1080×1350 (4:5) | um por card |
-| LinkedIn | PDF sequencial, mesmas páginas | documento nativo, até 300 páginas e 100 MB |
+| LinkedIn | PDF sequencial **1080×1080** | o corte 1:1 central do mesmo PNG — ver abaixo |
 | Stories | PNG 1080×1920 | só se pedirem |
 
-O PDF do LinkedIn usa os mesmos PNGs. O feed de lá é mais largo e reduz o documento: o piso geral de corpo é **30px** sobre 1080, e **34px** quando o LinkedIn é o destino principal.
+**O PDF do LinkedIn é quadrado, e sai do próprio PNG vertical:** recorte cada card em `y=135..1215`
+e monte o PDF com os recortes. Não rediagrame nada — **é exatamente a área de segurança**, e é para
+isso que ela existe desde o primeiro pixel. Se algo essencial sumiu no corte, o erro está na
+diagramação do card, não no recorte.
+
+```python
+sq = [Image.open(p).crop((0, 135, 1080, 1215)) for p in pngs]
+sq[0].save('linkedin-1080.pdf', 'PDF', resolution=150, save_all=True, append_images=sq[1:])
+```
+
+O feed do LinkedIn é largo e reduz o documento: o piso geral de corpo é **30px** sobre 1080, e
+**34px** quando o LinkedIn é o destino principal.
 
 ### Área de segurança — obrigatória, sempre
 

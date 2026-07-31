@@ -127,15 +127,28 @@ A coluna da direita só entra quando as duas condições se encontram: a linha d
 
 **Bloco de prompt** — cole antes do assunto em toda geração deste estilo:
 
-> `VECTOR BRUTALISM illustration, two-plate screenprint. Exactly three flat colours and nothing`
-> `else: raw paper #EDEAE3, ink #111111, signal red #E33420. Posterised hard-edged flat shapes`
-> `with thick confident contours, like a cut linocut. No gradient, no midtone, no shading, no soft`
-> `falloff, no halftone — every area is one flat colour with a crisp edge. The signal red appears`
-> `in exactly ONE element. Flat frontal, no perspective, no depth of field, no photographic lighting.`
+> `VECTOR BRUTALISM illustration, screenprinted on raw paper. Exactly three flat colours and`
+> `nothing else: raw paper #EDEAE3, ink #111111, signal red #E33420. Posterised hard-edged flat`
+> `shapes with thick confident contours, like a cut linocut. PRINTED SURFACE: the flat areas carry`
+> `the irregularity of screenprinted ink — micro speckle, slight ink starvation at the edges of`
+> `large fields, visible paper tooth. No gradient, no midtone, no shading, no soft falloff, no`
+> `airbrush — the irregularity is texture, never a tonal ramp. The signal red appears in exactly`
+> `ONE element. Flat frontal, no perspective, no depth of field, no photographic lighting.`
+
+A distinção que segura o estilo: **irregularidade de tinta, não rampa tonal**. `ink starvation` e
+`paper tooth` dão superfície impressa; `soft falloff` e `airbrush` dariam meio-tom, que é o que o
+estilo proíbe. Se o modelo devolver degradê, o culpado é ter pedido textura sem proibir rampa.
 
 **Grafismo:** 100% CSS/SVG. Retângulo, círculo, diagonal, seta grossa, tabela de fio duplo, número gigante em marca-d'água. Nunca imagem no corpo do carrossel.
 
-**Material:** nenhum. Vetor é limpo por definição — grão aqui não lê como impressão, lê como sujeira.
+**Material:** **grão de impressão suave e permanente**, em duas camadas — grão fino em `opacity:.09`
+e dente de papel largo em `.05`, ambos em `mix-blend-mode:multiply` e **por cima de tudo, inclusive
+da tipografia**. Tinta impressa não escolhe onde assentar.
+
+Isto foi revisto em produção: a primeira versão do estilo declarava *nenhum material*, com o
+argumento de que vetor é limpo por definição. Errado. Sem grão, cor chapada em 1080×1350 lê como
+**exportação de software**, não como peça impressa — e o brutalismo vetorial cita cartaz, não
+interface. A dose é o que separa: acima de `.12` vira papel amassado e aí sim lê como filtro.
 
 **Ritmo:** o bloco de cor muda de tamanho, lado e sangria a cada card; a tipografia fica ancorada à esquerda.
 
@@ -166,11 +179,18 @@ A coluna da direita só entra quando as duas condições se encontram: a linha d
 
 **Bloco de prompt** — cole antes do assunto em toda geração deste estilo:
 
-> `RISOGRAPH PRINT, exactly two spot inks: riso blue #0078BF and riso orange #FF6C2F on cream`
-> `paper #F4F0E6. Where the inks overlap they multiply into a third dark colour. Coarse visible`
-> `halftone dot screen in both inks, deliberate plate misregistration with the orange plate offset`
-> `several millimetres, paper fibre grain, faint ink roller streaks. Nothing is perfectly flat —`
-> `the surface has defects. Reduced to two plates; not full-colour photography.`
+> `RISOGRAPH PRINT on a duplicator, exactly two spot inks: riso blue #0078BF and riso orange`
+> `#FF6C2F on cream paper #F4F0E6. Where the inks overlap they multiply into a third dark colour.`
+> `PRINTED SURFACE, and it is the point: coarse visible halftone dot screen in both inks with the`
+> `dots clearly resolvable, deliberate plate misregistration with the orange plate offset several`
+> `millimetres, roller streaks running in the feed direction, patchy ink coverage with occasional`
+> `voids, visible paper fibre, slight show-through. Nothing is perfectly flat and nothing is`
+> `perfectly registered — the defects ARE the style. Reduced to two plates; not full-colour`
+> `photography, not a digital print.`
+
+**Não peça "risograph" e pare aí.** O modelo entrega uma foto com filtro de duotone e chama de riso.
+O que produz o material de verdade é nomear os defeitos um a um: ponto resolvível, registro fora,
+listra de rolo, cobertura irregular, fibra. Cada um que você tirar, o modelo suaviza.
 
 **Grafismo:** CSS. Retícula com `radial-gradient`, fibra com `feTurbulence`, erro de registro com cópia deslocada em `mix-blend-mode:multiply`. Receitas em [grafismos.md](grafismos.md).
 

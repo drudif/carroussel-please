@@ -75,6 +75,18 @@ No card, renderize com `fill:var(--tinta)` e `shape-rendering="crispEdges"` se f
 
 ### Textura de impressão
 
+**Cor chapada em 1080×1350 lê como exportação de software.** Todo estilo que cita impressão — e são
+quatro dos seis — precisa de uma camada de material permanente, mesmo os que parecem "limpos por
+definição". O brutalista vetorial foi definido sem material e teve que ser revisto: vetor limpo
+sobre tela grande não parece cartaz, parece PDF.
+
+A dose é o que separa material de filtro: **grão fino em `.07`–`.10`, dente de papel largo em
+`.04`–`.06`**, ambos em `multiply` e por cima de tudo, inclusive da tipografia — tinta impressa não
+escolhe onde assentar. Acima de `.12` vira papel amassado.
+
+E a textura entra **nos dois lugares**: na peça, em CSS, e no prompt da imagem gerada. Imagem lisa
+dentro de card texturizado denuncia a colagem na hora.
+
 Duas camadas, ambas discretas. Exagero vira papel amassado, que lê como filtro:
 
 ```css
