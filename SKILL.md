@@ -113,51 +113,52 @@ Duas coisas ditas **na hora da escolha**, não depois:
 
 Para a régua de gosto — escala, respiro, o que faz uma peça parecer cara e o que a faz parecer gerada por IA — use [references/visual.md](references/visual.md).
 
-## Etapa 1.5 — De onde vêm as ilustrações
+## Etapa 1.5 — Qualidade das imagens
 
 **Depois do estilo, antes de qualquer arte.**
 
-Não pergunte por "nível" nem por "modelo": pergunte **o que a pessoa já tem**. Quem nunca
-conectou nada não sabe o que é MCP nem chave de API, e escolher entre A, B e C sem entender
-a diferença é escolher no escuro.
+Pergunte pelo **resultado**, não pelo que a pessoa tem instalado. Ela escolhe o que quer e
+depois descobre o que aquilo exige — o contrário faz escolher no escuro. E nada de "MCP",
+"API" ou "nível A": ninguém que nunca conectou nada sabe o que é isso.
 
-◇ **De onde você quer que venham as ilustrações?**
+◇ **Como você quer as imagens do carrossel?**
 
-| | Opção | O que acontece |
-|---|---|---|
-| 1 | **Já tenho um gerador ligado aqui** | uso ele. Confirmo com uma chamada de saldo |
-| 2 | **Tenho conta em algum gerador de imagem** | te ajudo a ligar. Pergunto qual na sequência |
-| 3 | **Não tenho nada, quero o melhor de graça** | busco em banco aberto e trato na paleta |
-| 4 | **Só desenho, sem imagem de fora** | tudo em código, na paleta exata |
+| | Opção | O que você ganha | O que precisa |
+|---|---|---|---|
+| 1 | **Feitas sob medida** | ilustração criada para o seu assunto, no estilo e nas cores escolhidas | uma conta num gerador de imagem, ligada aqui. Te ajudo |
+| 2 | **De banco grátis** | fotos e ilustrações de sites abertos, tratadas nas cores do estilo | nada. Já funciona |
+| 3 | **Sem foto nenhuma** | tudo desenhado em código, nas cores exatas | nada. Já funciona |
 
-Dito junto, em uma linha cada:
+Três coisas ditas junto, em uma linha cada:
 
-- Com gerador, a imagem é feita **para o seu assunto**. Sem ele, você usa o que existe
-- **Desenho não é a versão pobre.** Nos estilos de forma — brutalista, janelas, neo-brutalismo
-  — ele costuma ganhar do banco, porque nasce na paleta e carrega a ideia
-- Banco rende quando o tema **dá foto**: relacionamento, viagem, comida, trabalho manual. Num
-  tema abstrato — uma skill, um método — não existe foto disso
+- **Só a 1 responde ao seu assunto.** Nas outras duas você usa o que existe
+- **A 3 não é a versão pobre.** Em brutalista, janelas e neo-brutalismo o desenho costuma
+  ficar melhor que foto, porque nasce já nas cores certas
+- **A 2 depende do tema dar foto.** Relacionamento, viagem, comida, trabalho manual: rende.
+  Um método, um conceito, uma ferramenta: não existe foto disso, e aí a 3 ganha
 
-### Se escolheu 2, pergunte qual
+### Se escolheu a 1
 
-◇ **Qual conta você tem?**
+◇ **Você já tem conta em algum gerador de imagem?**
 
-E aqui **diga a verdade antes de tentar**, porque metade dos casos não conecta:
+Diga a verdade **antes** de tentar, porque metade dos casos não conecta:
 
 | conta | dá para ligar? |
 |---|---|
-| **Gemini** | sim, e é o mais fácil: chave grátis em `aistudio.google.com/apikey`, com cota generosa |
-| **ChatGPT Plus ou Pro** | **a assinatura não serve.** A API é cobrada à parte, em `platform.openai.com`. Precisa pôr crédito lá |
-| **Higgsfield, Magnific** | sim, pelo conector no `claude.ai`. Gasta crédito da assinatura |
-| **Midjourney** | não tem API pública. Mas dá para gerar por lá e me passar o arquivo — eu trato e monto |
+| **Gemini** | sim, e é o mais fácil. A chave é grátis |
+| **ChatGPT Plus ou Pro** | **a assinatura não serve.** O acesso automático é cobrado à parte |
+| **Higgsfield, Magnific** | sim, pelos conectores. Gasta crédito da assinatura |
+| **Midjourney** | não dá para ligar. Mas dá para gerar por lá e me entregar o arquivo |
 
-Essa última linha vale para qualquer conta que não conecte: **gerar na mão e me entregar o
-arquivo funciona.** Não é o caminho ideal, é melhor do que desistir da imagem.
+Essa última linha vale para qualquer conta que não conecte: **gerar na mão e entregar o
+arquivo funciona.** Não é o ideal, é melhor do que desistir da imagem.
 
-O passo a passo de cada um está em [references/geradores.md](references/geradores.md). Em
-todos: **a chave nunca é colada no chat** — o que passa por aqui fica registrado. A pessoa
-exporta no terminal e diz só "pronto". A skill grava o fato, `gemini: chave configurada em
-AAAA-MM-DD`, nunca o valor.
+Não tendo conta nenhuma, ofereça a 2 ou a 3 — não empurre assinatura.
+
+O passo a passo de cada ligação está em [references/geradores.md](references/geradores.md).
+Em todos: **a chave nunca é colada no chat** — o que passa por aqui fica registrado. A pessoa
+guarda no computador dela e responde só "pronto". A skill grava o fato,
+`gemini: chave configurada em AAAA-MM-DD`, nunca o valor.
 
 ## Etapa 2 — Aprovação da direção
 
