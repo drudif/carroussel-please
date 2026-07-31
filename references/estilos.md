@@ -55,6 +55,41 @@ assets/baixar-fontes.sh --listar
 
 O script grava `fonts.css` com as duas faces em base64, sob os nomes `Titulo` e `Corpo`.
 
+## A régua da entrelinha
+
+**Este é o defeito mais fácil de deixar passar em pt-BR, e o mais caro.** Título em caixa alta com entrelinha apertada fica lindo em inglês e quebra em português: o til do `Ã` e o agudo do `Ó` sobem **acima da altura da linha inteira** e batem na letra de cima. O resultado não lê como erro de espaçamento — lê como sujeira, e o leitor não sabe dizer o que está errado.
+
+Aconteceu em produção nos três estilos ao mesmo tempo: `ESSE CARROSSEL` com o til de `NÃO` grudado no `SS`, e `FEITO` com o agudo de `SÓ` cortando o `T`.
+
+**O piso não se estima, se calcula:**
+
+```
+entrelinha mínima = (topo do acento em caixa alta) − (transbordo óptico do S/O/C/G/U) + 0,04
+```
+
+`baixar-fontes.sh` calcula isso sozinho e grava em `fonts.css` como variável CSS. Use a variável em vez do número:
+
+```css
+h1 { line-height: var(--lh-titulo) }
+```
+
+Os seis já vêm calculados:
+
+| Estilo | Título | Piso | Se a linha de cima tiver `Q`, `J` ou `Ç` |
+|---|---|---|---|
+| brutalista | Anton | **1,15** | 1,45 |
+| riso | Bricolage Grotesque | **0,97** | 1,19 |
+| janelas | Archivo Black | **0,94** | 1,14 |
+| colagem | Bodoni Moda | **1,09** | 1,33 |
+| neubrutal | Chivo | **0,95** | 1,15 |
+| editorial | Fraunces | **0,99** | 1,19 |
+
+Repare que **Anton é o caso extremo**: caixa alta de 0,867 em, mas o acento chega a 1,101 — mais alto que o próprio corpo da fonte. É por isso que ela é a única do conjunto que precisa de entrelinha maior que o tamanho da letra.
+
+A coluna da direita só entra quando as duas condições se encontram: a linha de cima tem descendente **e** a de baixo tem acento na mesma região horizontal. Não suba a entrelinha inteira por causa de um `Ç` que está no outro canto — olhe o PNG.
+
+**O corpo de texto não precisa disso.** Ele é caixa baixa e é diagramado entre 1,35 e 1,45 por legibilidade, o que já passa folgado do piso.
+
 ---
 
 # 1 · BRUTALISTA VETORIAL
@@ -72,6 +107,8 @@ O script grava `fonts.css` com as duas faces em base64, sob os nomes `Titulo` e 
 | sinal | `#E33420` | um acento saturado, em no máximo dois elementos por card |
 
 **Fontes:** Anton 400 (`Titulo`) · IBM Plex Mono 400 (`Corpo`) — `baixar-fontes.sh brutalista`
+
+**Entrelinha do título: `1.15`** — `var(--lh-titulo)`. A maior das seis; ver a régua da entrelinha.
 
 **Grafismo:** 100% CSS/SVG. Retângulo, círculo, diagonal, seta grossa, tabela de fio duplo, número gigante em marca-d'água. Nunca imagem no corpo do carrossel.
 
@@ -101,6 +138,8 @@ O script grava `fonts.css` com as duas faces em base64, sob os nomes `Titulo` e 
 | cruzamento | — | **não escolha essa cor**: ela nasce do `multiply` das duas |
 
 **Fontes:** Bricolage Grotesque 800 (`Titulo`) · Newsreader 400 (`Corpo`) — `baixar-fontes.sh riso`
+
+**Entrelinha do título: `0.97`** — `var(--lh-titulo)`.
 
 **Grafismo:** CSS. Retícula com `radial-gradient`, fibra com `feTurbulence`, erro de registro com cópia deslocada em `mix-blend-mode:multiply`. Receitas em [grafismos.md](grafismos.md).
 
@@ -135,6 +174,8 @@ O script grava `fonts.css` com as duas faces em base64, sob os nomes `Titulo` e 
 
 **Fontes:** Archivo Black 400 (`Titulo`) · Space Mono 400 (`Corpo`) — `baixar-fontes.sh janelas`
 
+**Entrelinha do título: `0.94`** — `var(--lh-titulo)`.
+
 **Grafismo:** CSS. Janela = borda verde de 3px, barra de título com o nome real da etapa, sombra dura deslocada de 7px em verde, `transform:rotate()` de 1 a 3 graus. Cursor de seta em SVG apontando para a janela que importa.
 
 **Material:** **nenhum.** Estilo nativo de tela — papel, fibra e grão envelhecem o que deveria parecer interface. A textura vem da sombra dura.
@@ -163,6 +204,8 @@ O script grava `fonts.css` com as duas faces em base64, sob os nomes `Titulo` e 
 | verde-garrafa | `#0E5C3F` | a cor que segura — camada de fundo, sublinhado |
 
 **Fontes:** Bodoni Moda 900 (`Titulo`) · Karla 400 (`Corpo`) — `baixar-fontes.sh colagem`
+
+**Entrelinha do título: `1.09`** — `var(--lh-titulo)`.
 
 A didone é escolha de mecanismo, não de gosto: colagem moderna cita a revista recortada, e o contraste extremo da Bodoni é o que faz a letra parecer **recortada com tesoura** em vez de digitada.
 
@@ -202,6 +245,8 @@ Ao contrário dos outros cinco, **este estilo não tem uma cor de fundo fixa** �
 
 **Fontes:** Chivo 900 (`Titulo`) · Chivo Mono 400 (`Corpo`) — `baixar-fontes.sh neubrutal`
 
+**Entrelinha do título: `0.95`** — `var(--lh-titulo)`.
+
 **Grafismo:** CSS puro, e o mais fácil dos seis. `border:5px solid #000` mais `box-shadow:8px 8px 0 #000`, sem blur nenhum. Grade com `repeating-linear-gradient` fino por baixo de tudo.
 
 **Material:** nenhum além da grade milimetrada. Grão aqui suja o contorno.
@@ -232,6 +277,8 @@ O segundo risco é de slop: a interface desenhada convida a escrever dentro dela
 | oliva | `#6E7355` | segunda cor, só em card que precise de duas |
 
 **Fontes:** Fraunces 700 (`Titulo`) · Work Sans 400 (`Corpo`) — `baixar-fontes.sh editorial`
+
+**Entrelinha do título: `0.99`** — `var(--lh-titulo)`.
 
 **Grafismo:** pouquíssimo. Fio, número de página grande em marca-d'água, filete separando colunas, uma tabela quando o conteúdo for comparativo. A referência de bento mostra o melhor achado do estilo: **a grade de fio virando a própria decoração**, com seis das nove células deixadas vazias.
 

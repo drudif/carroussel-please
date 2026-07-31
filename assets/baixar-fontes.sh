@@ -59,23 +59,52 @@ for f in "$TITULO" "$CORPO"; do
   a=$(baixa "$f") && ARQS+=("$a")
 done
 
-# confere acentos e monta o fonts.css
+# confere acentos, calcula a entrelinha mínima e monta o fonts.css
 python3 - "${ARQS[@]}" <<'PY'
 from fontTools.ttLib import TTFont
-import base64, sys, os
-alvo='ÁÀÂÃÉÊÍÓÔÕÚÜÇáàâãéêíóôõúüç'
-nomes=['Titulo','Corpo']; css=[]
+from fontTools.pens.boundsPen import BoundsPen
+import base64, sys, os, math
+
+ALVO   = 'ÁÀÂÃÉÊÍÓÔÕÚÜÇáàâãéêíóôõúüç'
+ACENTO = 'ÃÕÁÀÂÉÊÍÓÔÚÜ'   # o que sobe acima da caixa alta
+OVER   = 'SOCGU'          # transbordo óptico da caixa alta abaixo da linha de base
+DESC   = 'QJÇ'            # descendentes de verdade
+FOLGA  = 0.04             # respiro: 1px de gap ainda lê como encosto
+
+nomes=['Titulo','Corpo']; css=[]; lh={}
 for i,p in enumerate(sys.argv[1:]):
-    t=TTFont(p); cm=t.getBestCmap()
-    falta=[c for c in alvo if ord(c) not in cm]
+    t=TTFont(p); cm=t.getBestCmap(); gs=t.getGlyphSet(); u=t['head'].unitsPerEm
     fam=[str(r) for r in t['name'].names if r.nameID==4][0]
+
+    falta=[c for c in ALVO if ord(c) not in cm]
     print(f"  {fam:34s} {'acentos completos' if not falta else 'FALTAM: '+''.join(falta)}")
     if falta:
         print("     → troque a fonte ou use a skill abrasileirar-fonte")
+
+    def lim(chars, idx, fn):
+        v=0
+        for c in chars:
+            g=cm.get(ord(c))
+            if not g: continue
+            bp=BoundsPen(gs)
+            try: gs[g].draw(bp)
+            except Exception: continue
+            if bp.bounds: v=fn(v, bp.bounds[idx])
+        return v/u
+    sobe = lim(ACENTO,3,max); over = lim(OVER,1,min); desc = lim(DESC,1,min)
+    piso  = math.ceil((sobe-over+FOLGA)*100)/100
+    pisoQ = math.ceil((sobe-desc+FOLGA)*100)/100
+    lh[nomes[i] if i<2 else fam] = piso
+    print(f"     entrelinha mínima em caixa alta: {piso}"
+          + (f"  ·  {pisoQ} se a linha de cima tiver Q, J ou Ç" if pisoQ > piso + .01 else ""))
+
     b=open(p,'rb').read()
     css.append("@font-face{font-family:'%s';font-weight:400;font-style:normal;"
                "src:url(data:font/ttf;base64,%s) format('truetype')}"
                % (nomes[i] if i<2 else fam, base64.b64encode(b).decode()))
+
+css.insert(0, ':root{' + ''.join(f'--lh-{k.lower()}:{v};' for k,v in lh.items()) + '}')
 open('fonts.css','w').write('\n'.join(css))
-print(f"  fonts.css: {os.path.getsize('fonts.css')//1024} KB — use font-family:'Titulo' e 'Corpo'")
+print(f"  fonts.css: {os.path.getsize('fonts.css')//1024} KB — font-family:'Titulo' e 'Corpo',")
+print( "             line-height:var(--lh-titulo) e var(--lh-corpo)")
 PY

@@ -159,3 +159,36 @@ print('trailer ok:', b.rstrip().endswith(b'%%EOF'))
 ```
 
 O feed do LinkedIn é mais largo e reduz o documento, então corpo abaixo de 30px sobre 1080 fica no limite de leitura. Se o carrossel for prioritariamente para lá, suba os corpos antes de exportar.
+
+## Entrelinha em pt-BR — o piso é calculado, não estimado
+
+Título em caixa alta com entrelinha apertada fica lindo em inglês e **quebra em português**: o til
+do `Ã` e o agudo do `Ó` sobem acima da altura da linha e batem na letra de cima. Não lê como erro
+de espaçamento — lê como sujeira, e o leitor não sabe dizer o que está errado.
+
+`baixar-fontes.sh` calcula o piso de cada face e grava em `fonts.css`:
+
+```css
+h1 { line-height: var(--lh-titulo) }
+```
+
+Use a variável, nunca um número escolhido a olho. A tabela dos seis estilos está em
+[estilos.md](estilos.md).
+
+**A conferência:** renderize o título com `ÃÕÇ` e `Ó` em linhas seguidas, amplie o PNG a 200% e
+olhe a junção. Se o acento encosta na letra de cima, encosta — 1px de folga ainda lê como colisão.
+
+## Grafismo se ancora na zona, não em pixel
+
+A zona de grafismo é o que sobra depois do bloco de texto, e **ela muda de altura quando o título
+reflui** — trocar uma palavra, corrigir a entrelinha ou mudar o corpo já desloca tudo. Grafismo
+posicionado em pixel absoluto sobra pela borda ou deixa um terço do card vazio.
+
+Ancore em porcentagem da zona, ou em `bottom`:
+
+```css
+.gfx > .bloco   { top: 0;    height: 62% }
+.gfx > .rodape  { top: 66%;  bottom: 0   }   /* absorve qualquer sobra */
+```
+
+O último elemento de cada zona sempre em `bottom:0`. É ele que absorve a diferença.
