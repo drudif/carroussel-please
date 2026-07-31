@@ -86,3 +86,13 @@ Duas perguntas, olhando o PNG pronto:
 **Dá para dizer que esta peça é desta direção, sem ler o texto?** Se a resposta depende do conteúdo, a direção não pegou — ela virou fundo colorido.
 
 **Onde o olho entra?** Deve haver uma resposta única e óbvia. Se houver duas, faltou hierarquia; se não houver nenhuma, faltou o evento.
+
+---
+
+## O piso do corpo é 34, não 30
+
+Corrigido depois de ver o sub espremido em produção. O LinkedIn reduz o documento no feed e a
+maioria dos carrosséis vai para os dois destinos: **34px é o piso, 30 é exceção justificada.**
+
+E a largura da linha do sub também é medida: ele não corre a folha inteira quando a ilustração
+está do outro lado — respeita a mesma coluna do título.

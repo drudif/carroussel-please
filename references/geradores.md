@@ -121,3 +121,127 @@ Serve para **ampliar e recompor imagem existente**, não para criar do zero. Út
 4. Se veio texto por acidente, não tente corrigir com prompt: recorte fora, ou cubra com um bloco de tinta chapada, que é peça legítima de composição impressa
 
 O briefing de imagem — como escolher o assunto, o teste da troca, o que proibir no prompt — está em [grafismos.md](grafismos.md).
+
+---
+
+# O laço do gabarito — quando há gerador conectado
+
+Gerador de imagem **compõe tipografia melhor do que a gente compõe sozinho**, e **escreve pior
+que o navegador**. O laço abaixo usa cada um no que ele faz bem: a composição vem dele, as
+letras vêm do HTML.
+
+Verificado num carrossel de sete cards. Custo: 2 gerações por card, ~4 créditos.
+
+## Os cinco passos
+
+**1 · Gera o card inteiro, com título e sub.** O texto no prompt não é para usar — é para o
+modelo ter o que diagramar. Sem texto ele devolve ilustração, não cartaz.
+
+**2 · Mede.** Isola as linhas do título por projeção, tira razão largura/caixa-alta, contagem
+de quebras, onde cada cor entra, onde a imagem cruza o tipo. **A medida é o produto desta
+etapa** — ela sobrevive mesmo que a imagem seja descartada.
+
+**3 · Acha a fonte open-source mais próxima, na hora.** Ver a régua de substituição abaixo.
+
+**4 · Refaz sem texto**, passando a primeira geração como **mídia de referência**. Gerar do
+zero devolve outra composição e o gabarito se perde.
+
+**5 · Monta em HTML por cima**, com o texto vindo do `TEXTOS.md`.
+
+## As três zonas — sem elas o laço não fecha
+
+O gabarito precisa nascer com **três zonas declaradas**, e o gerador precisa saber que as três
+são obrigatórias. Cole no prompt:
+
+```
+THREE ZONES, all mandatory, all inside the central square of the sheet:
+1 · HEADLINE ZONE — a clean, uninterrupted area for a very large headline of N lines. Behind
+    it nothing but flat ground: bare paper, or one single flat field of solid ink. No halftone,
+    no pattern, no illustration detail crosses this zone.
+2 · SUBTITLE ZONE — directly below the headline, a clean band tall enough for a thin rule plus
+    three lines of small text. Flat ground only. This band is NOT a leftover at the bottom
+    edge: it belongs to the composition and must have air beneath it.
+3 · ILLUSTRATION ZONE — everything else, free to bleed off the edges and be as dense as it wants.
+The three zones INTERLOCK: the illustration may overlap the outer edge of the headline zone so
+type and image lock together, but must NEVER enter the area where the letters sit.
+```
+
+**Por que isto é obrigatório e não recomendação.** Sem zona declarada a chapa nasce cheia, e a
+montagem vira cabo de guerra: protege o texto e a faixa chapada mata o grafismo; protege o
+grafismo e a régua sai da folha; encolhe a letra e o título deixa de ser título. Foram três
+tentativas, três defeitos, mesma raiz. **Numa chapa cheia não existe montagem certa** — a
+hierarquia de sacrifício só funciona quando há o que sacrificar, e depois da tinta seca só há
+cobrir.
+
+## Consistência entre os cards: âncora de referência
+
+Repetir o bloco de estilo em sete prompts dá sete cartazes primos, não irmãos. O que fecha a
+série é **gerar a capa primeiro e passá-la como mídia de referência nos outros seis**, pedindo
+*mesma impressão e mesmo sistema tipográfico, composição diferente*.
+
+O que atravessa os sete: as tintas, a textura, a fonte, a entrelinha, e **o comprimento de
+linha**. O que varia: de que borda a ilustração sangra, onde o título mora, a proporção entre
+zona de tipo e zona de imagem, qual campo é chapado.
+
+## A régua de substituição de fonte
+
+Nenhuma open-source bate a fonte que o modelo desenha. Testei catorze, incluindo variáveis com
+eixo de largura. **Casar só a largura não basta** — são três medidas independentes:
+
+| | gabarito | Saira wdth50 | Saira comprimida .796 | **Anton comprimida .728** |
+|---|---|---|---|---|
+| razão largura/caixa-alta | 2,504 | 3,138 | 2,497 | **2,499** |
+| densidade de tinta | 0,656 | 0,696 | 0,698 | **0,665** |
+| espessura da haste | 13,8% | 18,8% | 14,9% | **14,1%** |
+
+Anton comprimida ganhou por um motivo contraintuitivo: **ela já é mais densa, então encolher
+devolve a haste à espessura certa em vez de afiná-la.** O desvio de partida cancelou o desvio
+da compressão. Comprimir normalmente estraga o traço — aqui não estragou, e só a medição
+mostrou isso.
+
+**Confira os acentos glifo a glifo** na instância final. `fontTools.varLib.instancer` gera a
+estática; `getBestCmap()` diz o que falta.
+
+## Do gabarito, o que manda é o comprimento de linha
+
+Com fonte diferente as duas medidas não fecham juntas: mantendo a caixa alta, as linhas ficam
+mais longas na proporção do desvio e estouram por cima da ilustração. **A que segura a
+composição é o comprimento**; a caixa alta cede.
+
+E o corpo de cada card sai de **duas restrições, a menor manda**: o comprimento de linha do
+gabarito, que faz os sete lerem como a mesma série, e a altura do vão medido na chapa, que
+impede o título de invadir a ilustração. Num carrossel de sete, o comprimento mandou em quatro
+e a altura em três — corpos de 107 a 280 px, e mesmo assim um sistema só.
+
+## A régua da chapa é o divisor das zonas
+
+O gerador desenha uma régua fina entre a zona do título e a do sub. **Leia essa régua em vez de
+dividir a faixa livre por conta própria** — corrida horizontal longa, com menos de ~26px de
+espessura. Ela diz exatamente onde uma zona acaba. Ignorá-la punha a régua da montagem em cima
+do grafismo, e desenhava uma segunda régua ao lado da que já existia.
+
+## O que o gerador erra, sempre
+
+**Texto.** Em sete gerações de teste, sete tiveram defeito: letra comida (`ENTIEVISTA`), letra
+dobrada (`LINKEDIIN`), palavra repetida (`SÓ SÓ`), frase inteira duplicada. Os **acentos saem
+certos** em corpo grande a 2k — `Ã`, `Ó`, `ê` todos bem desenhados —, o que calibra a regra sem
+derrubá-la: o modelo já acerta o acento e continua errando a palavra. Como estudo de composição
+vale muito; como arte-final, nunca.
+
+**Moldura de maquete.** Volta como folha fotografada mesmo com `no frame, no border, no paper
+mockup` escrito. Resolve no recorte, que é mais barato que regerar.
+
+**Miolo vazio**, quando você pede um card "arejado" — ele lê vazio como buraco. E aqui a lição
+é maior que o defeito: **descrever o que ocupa o meio vence proibir o vazio.** "Duas formas
+geométricas sobrepondo o pé do título, no meio da folha" resolve sozinho; `NO DEAD CENTRE`
+sozinho, não. Proibição não diz o que desenhar no lugar.
+
+**Ilustração demais.** Quando a chapa não deixa zona de título utilizável, a correção é
+proporção — e proporção cabe num recorte. Reduzir a arte ao terço de cima custa zero; regerar
+custa dois créditos e pode travar.
+
+## Sobre jobs travados
+
+`width:896` na resposta **não** é sinal de travamento — é o estado intermediário, e o mesmo job
+completa em 1856 depois. Travado é o que fica em `in_progress` depois de três consultas
+seguidas. Aí sim: re-dispare com o prompt reescrito, não fique consultando.

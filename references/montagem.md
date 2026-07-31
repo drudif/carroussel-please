@@ -289,3 +289,59 @@ if (q.get('card')) document.body.classList.add('solo');
 
 **A conferência**, e vale para qualquer exportação: leia o pixel do canto do PNG. Se não for a cor
 de fundo do card, a captura pegou a página em volta.
+
+---
+
+## Cinco armadilhas de código que a captura não denuncia
+
+Todas verificadas em produção. As três primeiras produzem um PNG do tamanho certo, com
+contagem de cores plausível, e nada de útil dentro.
+
+### `const` declarado duas vezes mata o script inteiro
+
+Sobrescrever o motor de desenho de um estilo redeclarando `const DESENHO` num escopo que já o
+tem derruba o script todo, e **a captura sai com a cor de fundo da página**. Sobrescreva as
+chaves — `DESENHO.capa = ...` — em vez de redeclarar.
+
+### `file://` sem caminho absoluto
+
+`--screenshot ... "arquivo.html?card=1"` faz o Chrome procurar um arquivo chamado
+`arquivo.html?card=1`, que não existe: sai um PNG branco. Sempre `file://$PWD/...` — e no
+Bash do agente **o `$PWD` volta ao diretório inicial a cada chamada**, então use o caminho
+absoluto escrito por extenso.
+
+### `transform-origin` do lado errado do alinhamento
+
+Tipografia comprimida com `scaleX()` precisa da origem **do mesmo lado do alinhamento**.
+Título alinhado à direita com `transform-origin: left` escorre para fora da folha e você lê
+"VOC" e "PER" em vez da frase.
+
+### `mix-blend-mode: multiply` em tipo vazado
+
+Papel multiplicado sobre azul dá azul: o título desaparece. Multiply só quando o fundo do tipo
+é **papel**. Sobre campo de tinta, tipo claro e sem mistura.
+
+### Dupla inversão que se cancela
+
+Inverter o cinza **e** trocar as pontas da rampa de cor devolve exatamente a imagem original.
+Inverta uma coisa só.
+
+## Medir a chapa antes de diagramar
+
+Posicionar título e lede na mão é chutar o que dá para medir. A chapa carrega a informação:
+
+1. Classifique papel × tinta e faça o perfil de cobertura por linha, na coluna do título
+2. A maior corrida abaixo do limiar é o vão do título — lado, topo, altura
+3. Se **nenhuma** corrida serve, a chapa é toda tinta: o tipo vai vazado, sem multiply, e a
+   faixa escolhida é a de menor variância no terço de cima
+4. O campo atrás do lede não se decide pelo perfil da coluna: **mede-se o retângulo onde o
+   lede vai cair**. E não basta ter tinta — campo uniforme lê bem com tipo claro por cima.
+   Faixa só quando a área é **agitada**, porque aí a letra briga com o desenho
+5. Faixa atrás do texto é **caixa do tamanho do texto**, nunca de borda a borda até o pé —
+   isso apaga o grafismo inteiro do card
+
+## O bloco do pé é reservado, não é sobra
+
+O pé precisa caber régua, respiro, até três linhas de corpo e folga antes da assinatura: cerca
+de **250px**. É esse bloco que define até onde o título pode descer, e não o contrário.
+Inverter isso é o que espreme o sub no rodapé.
