@@ -132,7 +132,7 @@ depois descobre o que aquilo exige — o contrário faz escolher no escuro. E na
 
 | | Opção | O que você ganha | O que precisa |
 |---|---|---|---|
-| 1 | **Feitas sob medida** | ilustração criada para o seu assunto, no estilo e nas cores escolhidas | uma conta num gerador de imagem, ligada aqui. Te ajudo |
+| 1 | **Feitas sob medida** | o card inteiro é composto pelo gerador e a tipografia entra por cima, limpa | uma conta num gerador de imagem, ligada aqui. Te ajudo |
 | 2 | **De banco grátis** | fotos e ilustrações de sites abertos, tratadas nas cores do estilo | nada. Já funciona |
 | 3 | **Sem foto nenhuma** | tudo desenhado em código, nas cores exatas | nada. Já funciona |
 
@@ -171,7 +171,12 @@ guarda no computador dela e responde só "pronto". A skill grava o fato,
 
 Não avance sem resposta explícita. Se o usuário pedir mistura de dois estilos, produza a mistura e mostre antes de seguir — estilos misturados costumam brigar, e é melhor descobrir agora.
 
-Ao fechar, registre em `DIRECAO.md` na pasta do trabalho: paleta em hex com o uso de cada cor, fontes com nome de arquivo, lógica de grade, e como cada tipo de card se comporta.
+Ao fechar, registre em `DIRECAO.md` na pasta do trabalho: paleta em hex com o uso de cada cor,
+fontes com nome de arquivo, lógica de grade, e como cada tipo de card se comporta.
+
+**Registre também o nível de imagem da etapa 1.5, e qual gerador.** Sem isso a etapa 6 não sabe
+que existe gerador ligado e monta pelo caminho de quem não tem — foi assim que um Higgsfield
+conectado terminou sem laço de gabarito nenhum.
 
 **Cheque os acentos antes de fechar.** Os doze pares dos seis estilos já foram conferidos glifo a glifo. Mas se o usuário trouxe fonte de marca, renderize `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` e olhe — o navegador troca só o glifo faltante por outra fonte, o que é pior do que quebrar, porque passa despercebido. Faltando: troque a fonte, ou use **`abrasileirar-fonte`** para desenhar os acentos no traço da própria fonte.
 
@@ -246,6 +251,32 @@ Ofereça **uma capa alternativa**. A capa é o único card que decide se os outr
 ## Etapa 6 — Produção
 
 Agora, e só agora, monte a arte. O manual técnico completo — esqueleto, captura, área de segurança, PDF e as armadilhas que custam tempo — está em [references/montagem.md](references/montagem.md).
+
+### Antes do passo 1: há gerador ligado?
+
+**Se a etapa 1.5 fechou na opção 1, a produção é outra.** Não comece pelo esqueleto — comece
+pelo **laço do gabarito**, em [references/geradores.md](references/geradores.md#o-laço-do-gabarito--quando-há-gerador-conectado).
+Este é o erro que já aconteceu em produção: o gerador foi conectado, a skill gerou ilustração
+solta e montou como se não houvesse gerador nenhum. **Conectar e não rodar o laço desperdiça a
+única coisa que o nível 1 compra.**
+
+O laço, em uma linha cada — os cinco passos completos estão no arquivo:
+
+1. **Gera o card inteiro, com título e sub.** O texto no prompt não é para usar: é para o modelo
+   ter o que diagramar. Sem texto ele devolve ilustração, não cartaz
+2. **Mede a chapa.** É esta a entrega da etapa — ela sobrevive mesmo que a imagem seja jogada fora
+3. **Acha a fonte open-source mais próxima**, pela régua de três medidas
+4. **Refaz sem texto**, passando a primeira geração como **mídia de referência** — gerar do zero
+   devolve outra composição e o gabarito se perde
+5. **Monta o HTML por cima**, com o texto vindo do `TEXTOS.md`
+
+Duas coisas que decidem se o laço fecha, e ambas moram no prompt da geração: as **três zonas
+declaradas**, sem as quais a chapa nasce cheia e nenhuma montagem é possível; e a **âncora de
+referência**, gerar a capa primeiro e passá-la nos outros cards, sem a qual saem cartazes primos
+em vez de irmãos.
+
+Depois do laço, a montagem segue os passos abaixo normalmente — o esqueleto continua sendo a
+mecânica, com a chapa entrando como fundo e as coordenadas medidas mandando no tipo.
 
 1. Copie `assets/esqueleto.html` para a pasta do trabalho e aplique a direção aprovada. **O HTML lê `TEXTOS.md`; ele não guarda texto**
 
@@ -328,7 +359,9 @@ Todo conteúdo essencial fica dentro do **corte 1:1 central**: em 1080×1350, en
 
 **Ritmo por arquétipo.** Os três arquétipos de layout — editorial split, cascata Z, bento assimétrico — entram em rodízio ao longo do carrossel. Oito cards no mesmo arquétipo viram oito paredes iguais.
 
-**Havendo gerador conectado, a capa recebe imagem gerada.** Sempre, qualquer que seja o estilo.
+**Havendo gerador conectado, todos os cards nascem de gabarito gerado** — não só a capa. O laço
+está na etapa 6. A capa é o piso, não o teto: se o crédito for curto, gere a capa e o fecho e
+desenhe o miolo, mas diga isso ao usuário com o número de créditos, não decida em silêncio.
 
 Duas regras sobre essa imagem, ambas em [references/grafismos.md](references/grafismos.md):
 
@@ -389,6 +422,8 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 | "Isso é fácil de desenhar, gero mais rápido" | Gerar custa uma rodada de prompt, uma de download e uma de recorte. Um `<div>` custa uma linha |
 | "Depois eu olho os PNGs" | Captura falha em silêncio. Olhe antes de entregar, um por um |
 | "Mando a pasta e ele abre" | Entrega é o que ele vê, não o que ele encontra |
+| "Tenho gerador ligado, gero as ilustrações e monto" | Gerar ilustração solta é o nível 2 pagando preço de nível 1. Com gerador, o card inteiro nasce dele e a letra entra por cima — é o laço do gabarito |
+| "Gero o card sem texto, que é o que eu quero no fim" | Sem texto no prompt o modelo devolve ilustração, não cartaz. O texto da primeira geração é descartável; a composição dele é o produto |
 
 ## Sobre disparar agentes
 
