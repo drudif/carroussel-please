@@ -105,6 +105,42 @@ A ferramenta de bash espera o processo de fundo, e a chamada trava por outro mot
 
 ### Armadilhas verificadas
 
+**Texto invisível porque a fonte ainda não chegou — e o PNG sai perfeito.** As faces vêm
+embutidas em base64 e levam alguns instantes para decodificar. Até lá o navegador pinta o
+*período de bloqueio*, que não é fallback: é letra invisível. A captura entrega a arte inteira,
+no tamanho certo, com as cores certas e **zero texto**, sem uma linha no console. Numa produção
+saiu assim a capa e só a capa — os outros sete cards tinham texto, porque a decodificação já
+tinha terminado quando eles foram capturados, e a diferença entre um caso e outro é de
+milissegundos. Não é flaky do navegador, é ordem de pintura:
+
+```js
+await Promise.all([document.fonts.load("100px 'Titulo'"), document.fonts.load("32px 'Corpo'")]);
+await document.fonts.ready;                       // só então monte o innerHTML
+```
+
+O `esqueleto.html` já faz isso e falha alto se a face não carregar. Se você reescreveu a
+montagem do zero, é a primeira coisa que se perde — e o sintoma parece qualquer outra coisa.
+
+**Camada de material com `mix-blend-mode` num `<div>` próprio apaga o texto pintado depois
+dela.** Retícula, fibra, grão e listra de rolo em quatro divs irmãos, cada um com `multiply`:
+no Chromium headless o grupo de blend sobe até o `body` e o texto de `z-index` maior
+simplesmente não aparece — de novo, PNG do tamanho certo e nenhuma letra. Duas correções, e
+valem juntas: `isolation:isolate` no `.card`, que contém o blend onde ele deve viver, e
+**menos camadas** — retícula e listra de rolo cabem no mesmo elemento, como duas
+`background-image`. O material também volta para **abaixo** do texto, que é onde ele já devia
+estar.
+
+**O Chrome completo desconta ~87px da altura pedida.** `--window-size=1080,1350` renderiza num
+viewport de 1080×1263 e a captura completa os 87px que faltam com a página em volta — o PNG tem
+1080×1350, a conferência de tamanho passa, e o pé do card fica com uma faixa cinza. O
+`headless_shell` entrega o viewport pedido. A checagem é a mesma do canto: **leia o pixel do pé
+do PNG**; se não for a cor de fundo do card, a captura pegou a página.
+
+**`preserveAspectRatio="slice"` recorta o desenho quando o texto reflui.** A zona de grafismo
+muda de altura a cada palavra trocada, e `slice` escala para cobrir: um SVG largo numa zona
+alta perde as laterais e vira borrão sem que nada acuse. Use `meet` — o desenho encolhe
+inteiro, o que sobra é papel, e papel é composição.
+
 **Título com `nowrap` transborda em silêncio, e `scrollWidth` não denuncia.** Num bloco, o
 `scrollWidth` devolve a largura do bloco enquanto o texto couber — sete cards com a mesma
 medida é a assinatura de um medidor inútil. Meça encolhendo o elemento até o conteúdo:

@@ -10,8 +10,18 @@ set -euo pipefail
 N=${1:-8}
 SAFE=${2:-}
 PORTA=${PORTA:-8910}
-CHROME=${CHROME:-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"}
-[ -x "$CHROME" ] || { echo "Chrome não encontrado em: $CHROME"; exit 1; }
+# O Chrome completo em headless desconta ~87px da altura pedida — --window-size=1080,1350
+# renderiza num viewport de 1080x1263 e o PNG sai com a página em volta no pé. O
+# headless_shell entrega o viewport pedido. Onde os dois existem, ele vem primeiro.
+if [ -z "${CHROME:-}" ]; then
+  for c in "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+           "$(command -v chromium-headless-shell || true)" \
+           /opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell \
+           "$(command -v chromium || true)" "$(command -v google-chrome || true)"; do
+    [ -n "$c" ] && [ -x "$c" ] && CHROME="$c" && break
+  done
+fi
+[ -n "${CHROME:-}" ] && [ -x "$CHROME" ] || { echo "Chrome não encontrado. Aponte com CHROME=..."; exit 1; }
 [ -f cards.html ] || { echo "cards.html não está nesta pasta"; exit 1; }
 
 # O HTML lê o TEXTOS.md com fetch('../TEXTOS.md'). Servir só a pasta da arte põe o

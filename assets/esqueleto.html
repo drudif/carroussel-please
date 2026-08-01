@@ -28,6 +28,7 @@ body{display:flex;flex-direction:column;align-items:center;gap:28px}
 /* ═══ o card: empilhamento rígido, texto nunca sobre grafismo ═══ */
 .card{
   position:relative;width:var(--W);height:var(--H);overflow:hidden;
+  isolation:isolate;   /* contém o multiply das camadas de material dentro do card */
   background:var(--papel);color:var(--tinta);
   font-family:'Corpo',ui-monospace,monospace;
   display:flex;flex-direction:column;padding:var(--SY) var(--M);
@@ -174,8 +175,27 @@ const GUIA = qs.get('safe') ? `
        border:2px dashed #E11;z-index:99;pointer-events:none"></div>
   <div style="position:absolute;left:78px;top:213px;width:924px;height:924px;
        border:2px dashed #0A0;z-index:99;pointer-events:none"></div>` : '';
-document.getElementById('root').innerHTML =
-  q ? CARDS[+q-1]() + GUIA : CARDS.map(f => f()).join('');
+/* ESPERE AS FONTES ANTES DE PINTAR. As faces vêm embutidas em base64 e demoram a
+   decodificar; até lá o navegador pinta o período de bloqueio, que é texto INVISÍVEL.
+   A captura sai com a arte inteira, o PNG no tamanho certo, e nenhuma letra — sem erro
+   no console e sem nada quebrado na tela. Aconteceu na capa de uma produção inteira, e
+   o sintoma engana: card 2 saía com texto, card 1 não, na mesma rodada. */
+async function fontesProntas(){
+  await Promise.all([document.fonts.load("100px 'Titulo'"), document.fonts.load("32px 'Corpo'")]);
+  await document.fonts.ready;
+  if (!document.fonts.check("100px 'Titulo'") || !document.fonts.check("32px 'Corpo'"))
+    throw new Error('fonts.css não carregou — a captura sairia sem texto');
+}
+
+fontesProntas().then(() => {
+  document.getElementById('root').innerHTML =
+    q ? CARDS[+q-1]() + GUIA : CARDS.map(f => f()).join('');
+  medir();
+}).catch(err => {                       /* falhe alto: página vermelha, não PNG em branco */
+  document.body.style.background = '#C00';
+  document.getElementById('root').innerHTML =
+    `<pre style="color:#fff;font:22px/1.5 ui-monospace;padding:40px">${err.message}</pre>`;
+});
 
 /* -- ?medir=1 -------------------------------------------------------------
    Largura real de cada título e altura de cada zona. Rode ANTES de capturar: pega
@@ -184,7 +204,8 @@ document.getElementById('root').innerHTML =
 
    Meça encolhendo o h1 até o conteúdo. `scrollWidth` num bloco devolve a largura do
    BLOCO enquanto o texto couber — sete cards com a mesma medida é a assinatura disso. */
-if (qs.get('medir')) {
+function medir(){
+  if (!qs.get('medir')) return;
   const LIM = 1080 - 78*2;
   const alt = e => e ? Math.ceil(e.offsetHeight) : null;
   const linhas = [...document.querySelectorAll('.card')].map((c, i) => {
