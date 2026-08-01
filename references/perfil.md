@@ -10,7 +10,7 @@ Uma pergunta por mensagem, seguindo o protocolo de [texto.md](texto.md). Toda pe
 
 Agrupe em três rodadas curtas: **quem publica**, **como parece**, **com o que produz**.
 
-São nove perguntas. A de imagem **não está aqui** — ela é a etapa 2, depois do estilo.
+São nove perguntas. A de imagem **não está aqui** — ela é a etapa 1, logo depois do perfil.
 
 ---
 
@@ -30,7 +30,7 @@ São nove perguntas. A de imagem **não está aqui** — ela é a etapa 2, depoi
 ## Rodada 2 — como parece
 
 **5. Sua marca tem cor e fonte fechadas?** Se tiver, elas vencem qualquer sugestão sua. Peça as cores e o nome das fontes.
-→ Padrão: não tem; a direção nasce na etapa 1, dentro dos sete estilos.
+→ Padrão: não tem; a direção nasce na etapa 2, dentro dos sete estilos.
 
 Se ele tiver fonte de marca, confira o arquivo antes de prometer usá-la:
 
@@ -50,17 +50,18 @@ Fonte que não está instalada não entra. E fonte de marca precisa passar pela 
 ## Rodada 3 — com o que produz
 
 **Não pergunte de imagem nesta rodada.** A pergunta de como as ilustrações são feitas é a
-**etapa 2** da SKILL.md, e ela vem depois do estilo por um motivo: só ali dá para dizer o que
-cada opção muda naquele estilo específico.
+**etapa 1** da SKILL.md, e ela é a primeira coisa depois do perfil por um motivo: **é ela que
+filtra os estilos**. Cada nível favorece uns e enfraquece outros, e a etapa 2 abre já pelos que
+funcionam melhor no nível escolhido.
 
 **E não a antecipe em versão binária** — *"você quer gerar imagem ou desenhar tudo?"*. Binário
 **não distingue banco aberto de desenho em código**, que são duas opções diferentes e ambas sem
 conectar nada. Quem responde "desenho tudo, sem conectar nada" pode estar recusando o gerador,
-não o banco. Toda vez que essa pergunta vazou para cá, a etapa 2 depois foi tratada como já
-respondida e o meio sumiu do trabalho inteiro.
+não o banco. Toda vez que essa pergunta vazou para cá, a etapa 1 depois foi tratada como já
+respondida e o meio sumiu do trabalho inteiro — e com ele o funil de estilos.
 
 Se o assunto é imagético e o banco aberto renderia — retrato histórico, obra em domínio
-público, lugar, objeto — isso vale um segundo da etapa 2, não uma pergunta a mais aqui.
+público, lugar, objeto — isso vale um segundo da etapa 1, não uma pergunta a mais aqui.
 
 **7. Onde salvo o trabalho?**
 → Padrão: `./carrossel-<assunto>/`
@@ -68,11 +69,11 @@ público, lugar, objeto — isso vale um segundo da etapa 2, não uma pergunta a
 **8. Quantos cards?** Recomende, com o motivo: 8 a 10 no Instagram (teto de 10), 9 a 10 se o
 LinkedIn é o destino principal.
 
-Isto **não é detalhe de produção, é pré-requisito da etapa 1**: uma direção que fecha bem em
+Isto **não é detalhe de produção, é pré-requisito da etapa 2**: uma direção que fecha bem em
 6 cards vira parede em 10, e é olhando as três referências de arquétipo do estilo que se julga
 se ela aguenta o número. Sem o número, não há o que julgar.
 
-E **pergunte uma vez só.** Sabendo o número, a etapa 1 confirma — *"são sete, certo?"* — nunca
+E **pergunte uma vez só.** Sabendo o número, a etapa 2 confirma — *"são sete, certo?"* — nunca
 repete a pergunta do zero.
 
 **9. Guardo isso pra não perguntar de novo?** Se sim, grave o arquivo. Se não, vale só nesta sessão.

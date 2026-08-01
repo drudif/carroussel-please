@@ -4,7 +4,7 @@ Sete, fixos. Não são sete pontos de partida para variar — são sete sistemas
 
 **Por que fixos e não uma biblioteca aberta:** direção inventada na hora sai bonita na capa e quebra no card 5. Estas sete já passaram pelo teste de escala, e cada verbete carrega o cuidado que aquele estilo custou para descobrir.
 
-Cada um tem **três referências fixas** em `assets/referencias/`, uma por arquétipo de layout. Mostre-as ao usuário na etapa 1.
+Cada um tem **três referências fixas** em `assets/referencias/`, uma por arquétipo de layout. Mostre-as ao usuário na etapa 2.
 
 ## O briefing que vale para os sete
 
@@ -29,9 +29,38 @@ As três referências de cada estilo são o mesmo sistema visual em três compos
 | **Cascata Z** | camadas sobrepostas, giradas, algumas cortadas pela borda | processo, acúmulo, "e tem mais" |
 | **Bento assimétrico** | células de tamanhos desiguais, uma sempre deixada vazia | comparação, lista, dado |
 
+## O critério: de onde vem a espessura da peça
+
+**A escolha do estilo é um funil, e quem abre o funil é o nível de imagem da etapa 1.** Não é
+questão de gosto: cada estilo tira o que tem de melhor de uma fonte diferente, e a foto ajuda,
+atrapalha ou é indiferente conforme essa fonte.
+
+| origem | estilos | o que a foto faz |
+|---|---|---|
+| **superfície fotográfica processada** — retícula, duotone, recorte | riso, colagem | **é o centro.** Sem ela o estilo funciona, mas em versão reduzida |
+| **forma desenhada** — geometria chapada, contorno, fio | brutalista, neubrutal | **é acessório.** Entra na capa e sai do miolo sem prejuízo |
+| **vazio** — o material principal é a área que não tem nada | terminal, iridescente | **compete com o material.** Ocupa exatamente o que sustenta a peça |
+| **vazio + uma foto** | editorial | o sistema prevê **uma** imagem grande sangrando por um lado. Uma, não oito |
+
+Daí sai a ordem em que os estilos são abertos:
+
+| nível | abra primeiro | também funcionam, com o custo dito |
+|---|---|---|
+| **3 · só código** | **terminal**, **iridescente** | riso e colagem viram retícula e recorte desenhados — funciona, mas tira o centro do estilo |
+| **2 · banco aberto** | **colagem**, **riso** | brutalista só se quantizar em três degraus · terminal e iridescente não pedem foto |
+| **1 · gerador** | **riso**, **colagem** | terminal não pede imagem · iridescente só a pedido do usuário |
+
+**Brutalista, neo-brutalismo e editorial são polivalentes** — servem nos três níveis, e isso se
+diz com essas palavras em qualquer um deles. Não é prêmio de consolação: **quem não quer que a
+peça dependa de imagem escolhe exatamente ali**, e essa decisão só aparece se ela for nomeada.
+
+**O funil ordena, não esconde.** Os sete continuam disponíveis e o usuário sabe que são sete. Se
+ele escolher fora da recomendação, diga o que muda em uma linha, ofereça mudar de nível **uma
+vez**, e siga com a escolha dele.
+
 ## Escolha
 
-Os sete rodam **sem nenhum gerador de imagem** — todo grafismo é CSS/SVG. Dois mudam de patamar com gerador conectado, e isso entra na conversa da etapa 1:
+Os sete rodam **sem nenhum gerador de imagem** — todo grafismo é CSS/SVG. Dois mudam de patamar com gerador conectado:
 
 | Estilo | Sem gerador | Com gerador conectado |
 |---|---|---|
@@ -535,7 +564,13 @@ título nunca fica à mesma altura duas vezes seguidas. Centralizado no eixo x, 
 
 ---
 
-## A conversa da etapa 1
+## A conversa da etapa 2
+
+**Abra pelos recomendados do nível.** A etapa 1 já fechou o nível de imagem, e o critério acima
+diz quais estilos ele favorece — comece por esses dois, uma linha cada dizendo por que aquele
+nível funciona neles. Depois, uma frase: *"os outros também funcionam aqui — quer ver?"*. E, em
+qualquer nível, nomeie os polivalentes: brutalista, neubrutal e editorial servem nos três, e há
+quem escolha justamente por isso.
 
 Não descreva os sete em texto e peça para escolher. **Mostre as três referências do estilo** —
 `<estilo>-1-split.jpg`, `-2-cascata.jpg`, `-3-bento.jpg` — abertas, não descritas. São três de
@@ -544,7 +579,7 @@ arquétipos de layout. É isso que a pessoa está julgando.
 
 **Não renderize nada com o assunto dele aqui.** Preview do trabalho real só existe na etapa 7,
 com o texto aprovado e o nível de imagem decidido — a regra está no topo da SKILL.md. Preview de
-estilo chega antes da etapa 2, então mostra uma peça feita por um caminho de produção que talvez
+estilo chega antes de qualquer produção, então mostra uma peça feita por um caminho de produção que talvez
 nem seja o escolhido, com texto provisório que ainda vai mudar: o usuário opina duas vezes sobre
 a mesma coisa e a segunda contradiz a primeira.
 

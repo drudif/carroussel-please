@@ -3,7 +3,7 @@ name: carrossel
 description: Use quando o usuário pedir um carrossel para Instagram ou LinkedIn com arte pronta — "faz um carrossel", "post pro Instagram", "cards pro feed", "slides pro Insta", "carrossel de projetos", "documento pro LinkedIn", "monta a arte do carrossel". Também quando um carrossel gerado por modelo de imagem saiu com letra torta ou acento errado e precisa ser refeito, ou quando o usuário quer transformar prints de um app, um processo ou uma lista em post editorial. Entrega PNGs 1080x1350 e um PDF sequencial.
 metadata:
   language: pt-BR
-  estilos: 6, fixos — ver references/estilos.md
+  estilos: 7, fixos — ver references/estilos.md. O nível de imagem (etapa 1) filtra quais entram primeiro
   geracao-de-imagem: opcional; chave de API ou conector. Cinco dos sete estilos não precisam
   embutido: sprayantislop (Fernando Drudi) sobre Zero-Lero (MIT, Vinicius Stanula)
   destilado: brainstorming, carousel-writer-sms, bencium-innovative-ux-designer, high-end-visual-design
@@ -29,8 +29,8 @@ Tudo de que a skill precisa está dentro dela. Nada aqui depende de outra skill 
 ```dot
 digraph carrossel {
   "0 · Perfil" [shape=box];
-  "1 · Estilo" [shape=box];
-  "2 · Nível de imagem" [shape=box];
+  "1 · Nível de imagem" [shape=box];
+  "2 · Estilo" [shape=box];
   "3 · Direção aprovada?" [shape=diamond];
   "4 · Conteúdo" [shape=box];
   "5 · Anti-slop" [shape=box];
@@ -38,8 +38,8 @@ digraph carrossel {
   "7 · Produção" [shape=box];
   "PNG + PDF" [shape=doublecircle];
 
-  "0 · Perfil" -> "1 · Estilo" -> "2 · Nível de imagem" -> "3 · Direção aprovada?";
-  "3 · Direção aprovada?" -> "1 · Estilo" [label="não"];
+  "0 · Perfil" -> "1 · Nível de imagem" -> "2 · Estilo" -> "3 · Direção aprovada?";
+  "3 · Direção aprovada?" -> "2 · Estilo" [label="não"];
   "3 · Direção aprovada?" -> "4 · Conteúdo" [label="sim"];
   "4 · Conteúdo" -> "5 · Anti-slop" -> "6 · Texto aprovado?";
   "6 · Texto aprovado?" -> "4 · Conteúdo" [label="não"];
@@ -48,10 +48,11 @@ digraph carrossel {
 }
 ```
 
-**A etapa 2 já foi "1.5" e era pulada em toda sessão de teste.** Meio número lê como
-observação de rodapé de uma etapa que acabou; a etapa 1 terminava mostrando arte, o usuário
-aprovava a direção e ninguém voltava para perguntar de imagem. Ela é uma etapa inteira, com
-trava, e o `exportar.sh` para se a decisão dela não estiver gravada.
+**O nível de imagem vem ANTES do estilo, e essa ordem é o coração do fluxo.** Ela já foi o
+contrário, e não funcionava: a pergunta de imagem era meio número — "1.5" — depois de uma etapa
+que terminava mostrando arte, e era pulada em toda sessão de teste. Invertida, ela deixa de ser
+um detalhe e vira **funil**: cada nível favorece estilos diferentes, e a etapa 2 já abre com os
+que funcionam melhor ali. O `exportar.sh` para se a decisão da etapa 1 não estiver gravada.
 
 O protocolo de como perguntar — uma por vez, múltipla escolha, trava a cada bloco — está em [references/texto.md](references/texto.md). Este arquivo diz *o quê* e *em que ordem*.
 
@@ -118,43 +119,12 @@ As perguntas estão em [references/perfil.md](references/perfil.md), em três ro
 
 Antes de propor estilo você precisa saber também: **o assunto e quantos cards**. Sem isso não dá para testar se uma direção escala.
 
-## Etapa 1 — Estilo
+## Etapa 1 — Nível de imagem
 
-São **sete, fixos**, especificados em [references/estilos.md](references/estilos.md) com paleta em hex, par tipográfico, material e o cuidado verificado de cada um:
-
-| | Estilo | Em uma linha |
-|---|---|---|
-| 1 | **Brutalista vetorial** | forma chapada de aresta dura sobre papel cru, tipografia condensada como material |
-| 2 | **Risografia com textura** | duas tintas que se multiplicam, erro de registro, retícula e fibra |
-| 3 | **Terminal** | paleta de editor de código sobre off-white, grade de caractere e muito vazio |
-| 4 | **Mixed media / colagem** | camadas de origens diferentes, toda emenda à mostra |
-| 5 | **Neo-brutalismo colorido** | contorno preto grosso e sombra dura sobre campo saturado |
-| 6 | **Minimalista editorial quente** | duas colunas, serifa de contraste alto, e muito vazio |
-| 7 | **Iridescente minimal** | campo chapado que troca de cor a cada card, uma forma grande, centralizado |
-
-**Não descreva os sete e peça para escolher.** Ninguém escolhe direção visual lendo adjetivo.
-Cada estilo tem três referências fixas em `assets/referencias/` — `<estilo>-1-split.jpg`,
-`-2-cascata.jpg`, `-3-bento.jpg` — e são elas que vão para o usuário, abertas com `open`, não
-descritas. São três porque uma capa bonita não prova nada: o que quebra no card 5 é o estilo
-não ter três arquétipos de layout, e as três referências mostram justamente isso.
-
-**E para por aí.** Nada é renderizado com o assunto dele nesta etapa — a regra do preview está
-lá em cima e vale aqui em primeiro lugar. Se ele ficar dividido entre dois estilos, mostre as
-seis referências dos dois lado a lado e pergunte qual dos dois mundos é o dele; não desempate
-com arte que vai ser jogada fora.
-
-Duas coisas ditas **na hora da escolha**, não depois:
-
-- **Se houver gerador conectado**, dois estilos mudam de patamar — risografia e colagem —, e a capa passa a receber imagem gerada sempre. Se não houver, quatro deles ficam completos assim mesmo
-- **O neo-brutalismo colorido tem prazo de validade.** É o visual mais usado em post de design hoje: acerta fácil e envelhece rápido. Isso muda a decisão, então é informação de antes
-
-Para a régua de gosto — escala, respiro, o que faz uma peça parecer cara e o que a faz parecer gerada por IA — use [references/visual.md](references/visual.md).
-
-## Etapa 2 — Nível de imagem
-
-> **Esta pergunta é obrigatória e tem três opções.** Nenhuma linha de arte é escrita antes da
-> resposta. Se você chegou na etapa 4 e não sabe dizer se este trabalho é 1, 2 ou 3, você pulou
-> uma etapa — volte e pergunte, mesmo que pareça tarde.
+> **Esta é a primeira pergunta depois do perfil, é obrigatória e tem três opções.** Ela vem antes
+> do estilo porque **é ela que filtra os estilos**: cada nível favorece uns e enfraquece outros.
+> Se você chegou na etapa 4 e não sabe dizer se este trabalho é 1, 2 ou 3, você pulou uma etapa —
+> volte e pergunte, mesmo que pareça tarde.
 
 **O erro que se repete não é esquecer a pergunta, é reduzi-la a duas opções.** Em três testes
 seguidos o meio sumiu: ou "tenho gerador conectado, gero tudo", ou "não tenho, desenho tudo em
@@ -221,6 +191,89 @@ isso se diz na hora, não se disfarça com foto quase certa.
 Nada a ligar. Vá para [references/grafismos.md](references/grafismos.md), que é o repertório do
 que se desenha: grade, blocos, diagrama, abstração de interface, ícone, tabela.
 
+### Fechado o nível, ele abre a etapa 2
+
+**Não anuncie a resposta como se fosse só um registro.** O nível acabou de decidir por onde a
+escolha de estilo começa, e dizer isso em uma linha faz a etapa seguinte parecer o que ela é —
+uma consequência, não um menu novo:
+
+> *"Sem foto então. Nesse caso dois estilos são feitos sob medida para isso, vou te mostrar
+> primeiro: terminal e iridescente."*
+
+A tabela do funil está na etapa 2, e o critério inteiro em
+[references/estilos.md](references/estilos.md#o-critério-de-onde-vem-a-espessura-da-peça).
+
+## Etapa 2 — Estilo
+
+São **sete, fixos**, especificados em [references/estilos.md](references/estilos.md) com paleta em hex, par tipográfico, material e o cuidado verificado de cada um:
+
+| | Estilo | Em uma linha | vive de |
+|---|---|---|---|
+| 1 | **Brutalista vetorial** | forma chapada de aresta dura sobre papel cru, tipografia condensada como material | forma |
+| 2 | **Risografia com textura** | duas tintas que se multiplicam, erro de registro, retícula e fibra | **foto processada** |
+| 3 | **Terminal** | paleta de editor de código sobre chumbo, grade de caractere e muito vazio | **vazio** |
+| 4 | **Mixed media / colagem** | camadas de origens diferentes, toda emenda à mostra | **foto processada** |
+| 5 | **Neo-brutalismo colorido** | contorno preto grosso e sombra dura sobre campo saturado | forma |
+| 6 | **Minimalista editorial quente** | duas colunas, serifa de contraste alto, e muito vazio | vazio + **uma** foto |
+| 7 | **Iridescente minimal** | papel fixo, uma forma grande e centralizada, tudo em volta vazio | **vazio** |
+
+### O funil: o nível de imagem já escolheu por onde começar
+
+A coluna da direita não é curiosidade — é o critério. **De onde vem a espessura da peça** decide
+como cada estilo reage ao nível fechado na etapa 1:
+
+| nível | abra primeiro | por quê |
+|---|---|---|
+| **3 · só código** | **terminal**, **iridescente** | nasceram sem foto: o desenho já entrega o material, e nos dois o vazio é o material |
+| **2 · banco aberto** | **colagem**, **risografia** | colagem recorta qualquer coisa e riso pede gradação — é o que banco de imagem dá |
+| **1 · gerador** | **risografia**, **colagem** | são os dois que **mudam de patamar**: a tinta riso existe para cair sobre imagem, e o recorte fotográfico é o centro da colagem |
+
+**Brutalista, neo-brutalismo e editorial são polivalentes** — servem nos três níveis, e isso vai
+dito com essas palavras. Não é consolo: **quem não quer que a peça dependa de imagem escolhe
+exatamente ali**, e essa é uma decisão legítima que só aparece se você nomear.
+
+Os outros dois de cada nível entram como **"também funcionam aqui"**, com o custo em uma linha —
+riso e colagem no nível 3 viram retícula e recorte desenhados, o que funciona mas tira o centro do
+estilo; terminal e iridescente nos níveis 1 e 2 simplesmente não pedem foto.
+
+**Nenhum estilo some da conversa.** O funil ordena, não esconde: os sete continuam disponíveis, e
+o usuário sabe que são sete.
+
+### Como mostrar
+
+**Não descreva os sete e peça para escolher.** Ninguém escolhe direção visual lendo adjetivo.
+Cada estilo tem três referências fixas em `assets/referencias/` — `<estilo>-1-split.jpg`,
+`-2-cascata.jpg`, `-3-bento.jpg` — e são elas que vão para o usuário, abertas com `open`, não
+descritas. São três porque uma capa bonita não prova nada: o que quebra no card 5 é o estilo
+não ter três arquétipos de layout, e as três referências mostram justamente isso.
+
+Abra as dos **recomendados** primeiro, com uma linha por estilo dizendo por que aquele nível
+favorece ele. Depois, uma frase só: *"os outros também funcionam aqui — quer ver?"*. Se ele
+pedir, abra as referências deles com o custo dito, na mesma linha.
+
+**E para por aí.** Nada é renderizado com o assunto dele nesta etapa — a regra do preview está
+lá em cima e vale aqui em primeiro lugar. Se ele ficar dividido entre dois estilos, mostre as
+seis referências dos dois lado a lado e pergunte qual dos dois mundos é o dele; não desempate
+com arte que vai ser jogada fora.
+
+### Se ele escolher um estilo fora da recomendação
+
+**A escolha é dele e vale.** Mas diga o que muda, em uma linha, e **ofereça o caminho de volta uma
+vez** — o funil aceita ser desandado, e desandar aqui custa uma frase, enquanto descobrir na
+entrega custa a rodada inteira:
+
+> *"Colagem sem foto é recorte desenhado: funciona, mas o recorte fotográfico é o centro do
+> estilo. Quer que eu ligue um gerador, ou seguimos assim mesmo?"*
+
+Disse que segue assim, **segue e não volta ao assunto**. Insistir duas vezes é a diferença entre
+avisar e discutir com o cliente.
+
+Uma coisa mais, dita **na hora da escolha**, não depois:
+
+- **O neo-brutalismo colorido tem prazo de validade.** É o visual mais usado em post de design hoje: acerta fácil e envelhece rápido. Isso muda a decisão, então é informação de antes
+
+Para a régua de gosto — escala, respiro, o que faz uma peça parecer cara e o que a faz parecer gerada por IA — use [references/visual.md](references/visual.md).
+
 ## Etapa 3 — Aprovação da direção
 
 Não avance sem resposta explícita.
@@ -242,7 +295,7 @@ imagem: 2 · dupe + openverse
 imagem: 3 · só desenho em código
 ```
 
-O número é o da etapa 2, e a linha é a prova de que a etapa aconteceu. Sem ela a etapa 7 não
+O número é o da etapa 1, e a linha é a prova de que a etapa aconteceu. Sem ela a etapa 7 não
 sabe que existe gerador ligado e monta pelo caminho de quem não tem — foi assim que um
 Higgsfield conectado terminou sem laço de gabarito nenhum. Os arquivos do laço ficam como
 `gabarito-NN.png` e `chapa-NN.png`.
@@ -329,13 +382,13 @@ a etapa que a produz foi pulada:
 
 | | existe? | quem produz |
 |---|---|---|
-| `DIRECAO.md` com a linha `imagem: N` | senão o `exportar.sh` para | etapas 2 e 3 |
+| `DIRECAO.md` com a linha `imagem: N` | senão o `exportar.sh` para | etapas 1 e 3 |
 | `TEXTOS.md` com o texto aprovado | senão a arte é chute | etapas 4 a 6 |
 | número de cards confirmado | senão a grade não fecha | etapa 0 |
 
 ### Antes do passo 1: há gerador ligado?
 
-**Se a etapa 2 fechou na opção 1, a produção é outra.** Não comece pelo esqueleto — comece
+**Se a etapa 1 fechou na opção 1, a produção é outra.** Não comece pelo esqueleto — comece
 pelo **laço do gabarito**, em [references/geradores.md](references/geradores.md#o-laço-do-gabarito--quando-há-gerador-conectado).
 Este é o erro que já aconteceu em produção: o gerador foi conectado, a skill gerou ilustração
 solta e montou como se não houvesse gerador nenhum. **Conectar e não rodar o laço desperdiça a
@@ -391,7 +444,7 @@ As rotas, em ordem:
 | 2 | artefato publicado | onde essa capacidade existir. Melhor para folha de contato, porque o usuário navega |
 | 3 | imagem na mensagem | só onde a superfície de fato renderiza para quem lê |
 
-Isso vale nas **duas** vezes em que imagem sai daqui: as referências fixas da etapa 1 e a arte
+Isso vale nas **duas** vezes em que imagem sai daqui: as referências fixas da etapa 2 e a arte
 da etapa 7. Nas duas, **mostre e só então pergunte** — nunca as duas coisas na mesma mensagem
 sem saber se a imagem chegou.
 
@@ -533,6 +586,8 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 |---|---|
 | "Com pressa, conversa de setup é hostil" | Roda uma vez e fica salva. Errar a lista invalida os oito cards |
 | "Descrevo os sete estilos, ele escolhe pelo nome" | Ninguém escolhe direção visual lendo. Abra as três referências fixas do estilo |
+| "Pergunto o estilo primeiro, imagem depois" | Era assim, e não funcionava. O nível é o funil: perguntado depois, ele vira detalhe — e o estilo escolhido pode ser justamente o que menos aproveita o nível que ele tem |
+| "Mostro só os recomendados, é mais rápido" | O usuário precisa saber que são sete. O funil ordena, não esconde — e três deles servem em qualquer nível, o que é informação de decisão |
 | "Adianto a arte enquanto ele responde o texto" | Arte nenhuma existe antes da etapa 7. Nem para adiantar, nem para ilustrar a conversa |
 | "Meu default escuro com acento neon é bonito e seguro" | É exatamente o visual que hoje lê como IA. Seguro e indistinguível são a mesma coisa |
 | "Renderizo uma capa rápida só para ele ver a direção" | Ela vem antes do nível de imagem: mostra uma peça que não é a que será produzida. E o texto ainda é provisório, então metade do que voltar é sobre palavra que já ia mudar |

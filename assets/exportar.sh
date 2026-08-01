@@ -26,7 +26,7 @@ else
 fi
 
 # ── trava do nível de imagem ───────────────────────────────────────────────────
-# Quatro testes seguidos falharam pelo mesmo motivo: a decisão da etapa 2 não
+# Quatro testes seguidos falharam pelo mesmo motivo: a decisão da etapa 1 não
 # sobreviveu até aqui — ou porque a pergunta nunca foi feita, ou porque foi feita
 # com duas opções em vez de três. Prosa não segurou. Isto segura, porque roda
 # sempre e é a última coisa entre a arte e a entrega.
@@ -49,7 +49,7 @@ if [ -z "$NIVEL" ]; then
     echo "  $DIR_MD existe mas não tem a linha 'imagem:'."
   fi
   echo
-  echo "  A etapa 2 pergunta como as imagens do carrossel são feitas, e tem TRÊS"
+  echo "  A etapa 1 pergunta como as imagens do carrossel são feitas, e tem TRÊS"
   echo "  opções — não duas:"
   echo "     1 · feitas sob medida por um gerador conectado"
   echo "     2 · de banco aberto (Dupe, Openverse) — não conecta nada"
