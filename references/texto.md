@@ -72,7 +72,7 @@ Vale para qualquer plataforma. O que muda de uma para outra é a quantidade, nã
 
 ---
 
-## As perguntas da etapa 3
+## As perguntas da etapa 4
 
 Nesta ordem, uma por vez:
 
@@ -82,4 +82,4 @@ Nesta ordem, uma por vez:
 4. **O fechamento** — qual ação, e o que o leitor ganha em fazê-la
 5. **Onde ficam os links** — no card, na legenda, na bio, ou em vários
 
-Depois disso, e antes de mostrar qualquer coisa, roda a etapa 4. Sem exceção.
+Depois disso, e antes de mostrar qualquer coisa, roda a etapa 5. Sem exceção.

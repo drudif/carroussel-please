@@ -24,7 +24,7 @@ Na dúvida, desenhe. Gerar custa uma rodada de prompt, uma de download, uma de r
 
 **Grafismo não gera texto.** Se você desenhou algo e precisou escrever um rótulo para ele se explicar, o problema é o desenho.
 
-Texto dentro de um grafismo só é legítimo se veio da etapa 3, aprovado, ou se é dado duro e verdadeiro. Rótulo inventado, botão fictício, contagem descritiva e resumo no rodapé são a mesma coisa que eyebrow vazio — slot criado pelo template, preenchido por necessidade. Ver [anti-slop.md](anti-slop.md).
+Texto dentro de um grafismo só é legítimo se veio da etapa 4, aprovado, ou se é dado duro e verdadeiro. Rótulo inventado, botão fictício, contagem descritiva e resumo no rodapé são a mesma coisa que eyebrow vazio — slot criado pelo template, preenchido por necessidade. Ver [anti-slop.md](anti-slop.md).
 
 Antes de renderizar, cubra o texto do grafismo com a mão. O desenho continua dizendo a mesma coisa? Então o texto era enfeite.
 

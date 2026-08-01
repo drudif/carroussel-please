@@ -10,7 +10,7 @@ Uma pergunta por mensagem, seguindo o protocolo de [texto.md](texto.md). Toda pe
 
 Agrupe em três rodadas curtas: **quem publica**, **como parece**, **com o que produz**.
 
-São nove perguntas. A de imagem **não está aqui** — ela é a etapa 1.5, depois do estilo.
+São nove perguntas. A de imagem **não está aqui** — ela é a etapa 2, depois do estilo.
 
 ---
 
@@ -38,7 +38,7 @@ Se ele tiver fonte de marca, confira o arquivo antes de prometer usá-la:
 ls ~/Library/Fonts | sed 's/-.*//;s/\..*//' | sort -u
 ```
 
-Fonte que não está instalada não entra. E fonte de marca precisa passar pela conferência de acentos da etapa 2 como qualquer outra.
+Fonte que não está instalada não entra. E fonte de marca precisa passar pela conferência de acentos da etapa 3 como qualquer outra.
 
 **6. Tem logo ou assinatura para o rodapé?** Caminho do arquivo, ou só o arroba em texto.
 → Padrão: arroba em texto, e só na capa e no fecho.
@@ -49,15 +49,18 @@ Fonte que não está instalada não entra. E fonte de marca precisa passar pela 
 
 ## Rodada 3 — com o que produz
 
-**Não pergunte de imagem nesta rodada.** A pergunta de como as ilustrações são feitas é a **etapa 1.5**
-da SKILL.md, e ela vem depois do estilo por um motivo: só ali dá para dizer o que cada opção
-muda naquele estilo específico. Esta rodada já perguntou uma versão binária dela — *gerar ou
-desenhar* — e binário **não distingue banco aberto de desenho em código**, que são duas opções
-diferentes e ambas sem conectar nada. Quem responde "desenho tudo, sem conectar nada" pode
-estar recusando o gerador, não o banco.
+**Não pergunte de imagem nesta rodada.** A pergunta de como as ilustrações são feitas é a
+**etapa 2** da SKILL.md, e ela vem depois do estilo por um motivo: só ali dá para dizer o que
+cada opção muda naquele estilo específico.
 
-Se o assunto do trabalho é imagético e o banco aberto renderia — retrato histórico, obra em
-domínio público, lugar, objeto — isso vale um segundo da 1.5, não uma pergunta a mais aqui.
+**E não a antecipe em versão binária** — *"você quer gerar imagem ou desenhar tudo?"*. Binário
+**não distingue banco aberto de desenho em código**, que são duas opções diferentes e ambas sem
+conectar nada. Quem responde "desenho tudo, sem conectar nada" pode estar recusando o gerador,
+não o banco. Toda vez que essa pergunta vazou para cá, a etapa 2 depois foi tratada como já
+respondida e o meio sumiu do trabalho inteiro.
+
+Se o assunto é imagético e o banco aberto renderia — retrato histórico, obra em domínio
+público, lugar, objeto — isso vale um segundo da etapa 2, não uma pergunta a mais aqui.
 
 **7. Onde salvo o trabalho?**
 → Padrão: `./carrossel-<assunto>/`
@@ -66,8 +69,8 @@ domínio público, lugar, objeto — isso vale um segundo da 1.5, não uma pergu
 LinkedIn é o destino principal.
 
 Isto **não é detalhe de produção, é pré-requisito da etapa 1**: uma direção que fecha bem em
-6 cards vira parede em 10, e o preview que você vai renderizar precisa ser testado no tamanho
-certo. Perguntar depois de mostrar o preview invalida o preview.
+6 cards vira parede em 10, e é olhando as três referências de arquétipo do estilo que se julga
+se ela aguenta o número. Sem o número, não há o que julgar.
 
 E **pergunte uma vez só.** Sabendo o número, a etapa 1 confirma — *"são sete, certo?"* — nunca
 repete a pergunta do zero.

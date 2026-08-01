@@ -2,7 +2,7 @@
 
 **Está embutida.** Não precisa instalar nada, não precisa clonar repositório, não depende de outra skill estar presente. Os arquivos vivem em `references/anti-slop/`.
 
-Isso é deliberado: a etapa 4 é obrigatória, e etapa obrigatória não pode depender de uma dependência externa que pode não estar lá.
+Isso é deliberado: a etapa 5 é obrigatória, e etapa obrigatória não pode depender de uma dependência externa que pode não estar lá.
 
 ## Como rodar
 
@@ -28,6 +28,7 @@ Antes de mostrar **qualquer** texto ao usuário — capa, corpo, CTA, legenda, a
 | Número de performance sem fonte — "em 30 segundos", "3x mais rápido" | Corte, ou substitua por algo verificável |
 | Comparação de preço inventada — "sem mensalidade" | Só entra se for fato do briefing |
 | Falsa intimidade — "Aquele PDF que você..." | Tire o "aquele". O fato sobrevive sem a piscadela |
+| **Substantivo sem artigo** — "com data errada", "é literalmente sistema" | "com **a** data errada", "é **um** sistema". Sintaxe do inglês em frase de português; ver [anti-slop/estruturas.md](anti-slop/estruturas.md#substantivo-pelado-o-artigo-que-o-inglês-não-põe-e-o-português-põe) para as exceções, que são reais |
 | Enquadramento de produtividade — "sobra tempo pra" | Diga o que a ferramenta faz, não o tempo que economiza |
 | CTA em pergunta — "Quer fazer as suas?" | Vira afirmação |
 | Eyebrow que só existe porque o template tem a caixa | Mata o slot inteiro |
@@ -37,9 +38,9 @@ Antes de mostrar **qualquer** texto ao usuário — capa, corpo, CTA, legenda, a
 
 Este é o mesmo defeito de slot, aplicado ao desenho — e é o mais fácil de cometer, porque parece trabalho de design.
 
-Você desenha um diagrama e ele fica com uma área vazia. Você escreve um rótulo para preencher. Você desenha um botão e escreve "baixar" dentro. Você desenha quatro camadas e escreve "4 CAMADAS" na lateral. **Nenhuma dessas palavras veio da etapa 3.** Elas nasceram da necessidade gráfica, e é exatamente isso que a régua derruba.
+Você desenha um diagrama e ele fica com uma área vazia. Você escreve um rótulo para preencher. Você desenha um botão e escreve "baixar" dentro. Você desenha quatro camadas e escreve "4 CAMADAS" na lateral. **Nenhuma dessas palavras veio da etapa 4.** Elas nasceram da necessidade gráfica, e é exatamente isso que a régua derruba.
 
-**A regra:** o grafismo só pode conter texto que (a) foi aprovado na etapa 3, ou (b) é dado duro e verdadeiro do produto — um número de versão, uma dimensão, um nome de etapa que existe de fato.
+**A regra:** o grafismo só pode conter texto que (a) foi aprovado na etapa 4, ou (b) é dado duro e verdadeiro do produto — um número de versão, uma dimensão, um nome de etapa que existe de fato.
 
 Tudo o mais o desenho comunica **por forma**: posição, tamanho, repetição, corte, seta, contraste. Se o desenho só se entende com legenda, o desenho está errado — troque o desenho, não acrescente a legenda.
 

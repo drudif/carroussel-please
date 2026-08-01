@@ -12,7 +12,7 @@ Quatro skills foram incorporadas, em **três densidades diferentes**. A densidad
 
 **Onde:** `references/anti-slop/` — `REGRAS.md`, `slots.md`, `estruturas.md`, `frases.md`, `exemplos.md`, `briefing.md`
 **Autoria:** Fernando Drudi — [github.com/drudif/sprayantislop](https://github.com/drudif/sprayantislop)
-**Por que íntegra:** a etapa 4 é obrigatória, e etapa obrigatória não pode depender de uma dependência externa que pode não estar lá. É a única das quatro cuja aplicação parcial não funciona — a régua opera por densidade, e uma versão resumida derruba as instâncias óbvias e deixa passar o padrão.
+**Por que íntegra:** a etapa 5 é obrigatória, e etapa obrigatória não pode depender de uma dependência externa que pode não estar lá. É a única das quatro cuja aplicação parcial não funciona — a régua opera por densidade, e uma versão resumida derruba as instâncias óbvias e deixa passar o padrão.
 
 A camada léxico-estrutural da sprayantislop deriva de **Zero-Lero**, de Vinicius Stanula, sob licença MIT. O aviso de copyright está preservado em [references/anti-slop/LICENSE-zero-lero](references/anti-slop/LICENSE-zero-lero), como a licença exige.
 
@@ -28,7 +28,7 @@ O que foi extraído são as regras operacionais. O que ficou de fora está lista
 
 **Onde:** [references/texto.md](references/texto.md), seções "A estrutura, em quatro zonas", "Regras de escrita" e "Por plataforma"
 **O que entrou:** a tabela de formato por plataforma — quantidade de cards, proporção, densidade de texto, papel da legenda, sinal de engajamento que importa em cada uma — e a estrutura capa/contexto/corpo/fecho, com a regra de 25 palavras por card.
-**O que ficou de fora:** os cinco formatos de carrossel (listicle, framework, antes/depois, dados, estudo de caso), os exemplos de saída e a seção de limites. São genéricos e já estão cobertos pelas perguntas da etapa 3.
+**O que ficou de fora:** os cinco formatos de carrossel (listicle, framework, antes/depois, dados, estudo de caso), os exemplos de saída e a seção de limites. São genéricos e já estão cobertos pelas perguntas da etapa 4.
 
 ### brainstorming
 

@@ -38,19 +38,23 @@ sem desmanchar a diagramação, porque o corpo se reajusta ao espaço já reserv
 
 ## Como funciona
 
-Seis etapas com trava entre elas. Refazer oito cards renderizados custa muito mais do que uma
+Oito etapas com trava entre elas. Refazer oito cards renderizados custa muito mais do que uma
 pergunta.
 
 | | Etapa | O que acontece |
 |---|---|---|
 | 0 | Perfil | quem assina, onde publica. Roda uma vez e fica salvo |
-| 1 | Estilo | seis fixos, mostrados com referência e renderizados com o seu assunto |
-| 1.5 | Nível de imagem | gerador conectado, banco aberto, ou só desenho em código |
-| 2 | Direção | aprovação, e a direção fica registrada em `DIRECAO.md` |
-| 3 | Conteúdo | três perguntas, e o mapa dos cards antes de escrever o texto |
-| 4 | Anti-slop | o texto passa por uma régua antes de você ver |
-| 5 | Aprovação | você lê o que ficou e ajusta no `.md` |
-| 6 | Produção | a arte, os PNGs, os PDFs |
+| 1 | Estilo | seis fixos, escolhidos pelas três referências visuais de cada um |
+| 2 | Nível de imagem | gerador conectado, banco aberto, ou só desenho em código |
+| 3 | Direção | aprovação, e a direção fica registrada em `DIRECAO.md` |
+| 4 | Conteúdo | três perguntas, e o mapa dos cards antes de escrever o texto |
+| 5 | Anti-slop | o texto passa por uma régua antes de você ver |
+| 6 | Aprovação | você lê o que ficou e ajusta no `.md` |
+| 7 | Produção | a arte, os PNGs, os PDFs |
+
+**Você vê arte uma vez: pronta.** Não há preview intermediário — ele chegaria antes da etapa 2,
+mostrando uma peça feita por um caminho que talvez nem seja o escolhido, com texto ainda
+provisório. A escolha de estilo se faz nas 18 referências fixas que já vêm na skill.
 
 ## Os seis estilos
 

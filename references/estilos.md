@@ -357,7 +357,7 @@ Ao contrário dos outros cinco, **este estilo não tem uma cor de fundo fixa** �
 
 **Cuidado verificado — de estratégia, não de execução:** este é **o visual mais usado em post de design hoje**. Ele acerta fácil e envelhece rápido: distintivo agora, genérico em seis meses. Diga isso ao usuário **na hora em que ele escolhe**, não depois de pronto — é informação que muda a decisão, e escondê-la é entregar uma peça com prazo de validade sem avisar.
 
-O segundo risco é de slop: a interface desenhada convida a escrever dentro dela. Botão com "baixar", aba com "opções", barra com "85%". **Nenhuma dessas palavras veio da etapa 3.** Vale a regra do grafismo mudo.
+O segundo risco é de slop: a interface desenhada convida a escrever dentro dela. Botão com "baixar", aba com "opções", barra com "85%". **Nenhuma dessas palavras veio da etapa 4.** Vale a regra do grafismo mudo.
 
 **O cartaz aqui:** cartaz de festa impresso em serigrafia de duas passadas, com o registro fora de esquadro de propósito.
 
@@ -411,11 +411,20 @@ E um risco de estilo, não de execução: papel creme com serifa e acento terrac
 
 ## A conversa da etapa 1
 
-Não descreva os seis em texto e peça para escolher. **Mostre as referências e renderize.** Apresente as três imagens do estilo, e renderize capa e um card do meio com o texto provisório do assunto real — é barato e é a única forma honesta de escolher.
+Não descreva os seis em texto e peça para escolher. **Mostre as três referências do estilo** —
+`<estilo>-1-split.jpg`, `-2-cascata.jpg`, `-3-bento.jpg` — abertas, não descritas. São três de
+propósito: uma capa bonita não prova nada, e o que quebra no card 5 é o estilo não ter três
+arquétipos de layout. É isso que a pessoa está julgando.
 
-Ao apresentar, diga sempre: *o texto do preview é provisório; a decisão aqui é de direção visual.*
+**Não renderize nada com o assunto dele aqui.** Preview do trabalho real só existe na etapa 7,
+com o texto aprovado e o nível de imagem decidido — a regra está no topo da SKILL.md. Preview de
+estilo chega antes da etapa 2, então mostra uma peça feita por um caminho de produção que talvez
+nem seja o escolhido, com texto provisório que ainda vai mudar: o usuário opina duas vezes sobre
+a mesma coisa e a segunda contradiz a primeira.
 
-Se o usuário pedir mistura de dois estilos, produza a mistura e mostre antes de seguir. Estilos misturados costumam brigar — a paleta de um com a grade do outro quase sempre perde os dois — e é melhor descobrir agora, não no card 5.
+Se o usuário pedir **mistura de dois estilos**, resolva por escrito: diga qual dos dois manda em
+cada camada — paleta, tipografia, material, grafismo. Estilo misturado quebra quando os dois
+disputam a mesma camada; a paleta de um com a grade do outro quase sempre perde os dois.
 
 ---
 

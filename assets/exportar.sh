@@ -26,18 +26,45 @@ else
 fi
 
 # ── trava do nível de imagem ───────────────────────────────────────────────────
-# Três testes seguidos falharam pelo mesmo motivo: a decisão da etapa 1.5 não
-# sobreviveu até aqui, e a arte foi montada pelo caminho de quem não tem gerador.
-# Prosa não segurou. Isto segura, porque roda sempre.
+# Quatro testes seguidos falharam pelo mesmo motivo: a decisão da etapa 2 não
+# sobreviveu até aqui — ou porque a pergunta nunca foi feita, ou porque foi feita
+# com duas opções em vez de três. Prosa não segurou. Isto segura, porque roda
+# sempre e é a última coisa entre a arte e a entrega.
 DIR_MD=""
 [ -f DIRECAO.md ] && DIR_MD="DIRECAO.md"
 [ -f ../DIRECAO.md ] && DIR_MD="../DIRECAO.md"
 
-if [ -z "$DIR_MD" ]; then
-  echo "AVISO: não achei DIRECAO.md. A etapa 2 devia ter gravado — sem ele ninguém"
-  echo "       sabe qual paleta, fonte e nível de imagem foram aprovados."
-else
-  NIVEL=$(grep -i '^imagem:' "$DIR_MD" | head -1 | cut -d: -f2- | tr -d ' ')
+NIVEL=""
+# o `|| true` não é decoração: com pipefail, o grep sem achar nada derruba o script
+# inteiro — e a trava morria em silêncio, saindo com erro e sem imprimir uma linha
+[ -n "$DIR_MD" ] && NIVEL=$(grep -i '^imagem:' "$DIR_MD" | head -1 | cut -d: -f2- | tr -d ' ' || true)
+
+if [ -z "$NIVEL" ]; then
+  echo "PARADO — não há nível de imagem gravado."
+  echo
+  if [ -z "$DIR_MD" ]; then
+    echo "  Não achei DIRECAO.md. A etapa 3 devia ter gravado: paleta, fontes, grade"
+    echo "  e a linha do nível de imagem."
+  else
+    echo "  $DIR_MD existe mas não tem a linha 'imagem:'."
+  fi
+  echo
+  echo "  A etapa 2 pergunta como as imagens do carrossel são feitas, e tem TRÊS"
+  echo "  opções — não duas:"
+  echo "     1 · feitas sob medida por um gerador conectado"
+  echo "     2 · de banco aberto (Dupe, Openverse) — não conecta nada"
+  echo "     3 · sem foto nenhuma, tudo desenhado em código"
+  echo
+  echo "  A opção 2 é a que some sozinha. Se você não fez essa pergunta ao usuário,"
+  echo "  faça agora: montar sem ela é escolher no lugar dele."
+  echo
+  echo "  Depois grave no DIRECAO.md, uma linha:   imagem: 2 · dupe + openverse"
+  echo
+  echo "  Já perguntou e só faltou gravar? FORCA=1 ./exportar.sh $N"
+  [ -z "${FORCA:-}" ] && exit 1
+fi
+
+if [ -n "$NIVEL" ]; then
   case "$NIVEL" in
     1*|gerador*)
       # isole o status: com pipefail, o ls falhando num glob vazio derruba o teste

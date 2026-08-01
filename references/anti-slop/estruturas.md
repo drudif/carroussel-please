@@ -94,6 +94,29 @@ Futuro perifrástico de telemarketing. Concentrado em email comercial (100% dos 
 | "Estaremos disponibilizando" | "Vamos disponibilizar" |
 | "Vamos estar oferecendo" | "Vamos oferecer" |
 
+## Substantivo pelado (o artigo que o inglês não põe e o português põe)
+
+O inglês diz *with wrong date*, *the subject is system*. O português diz **com a data errada**,
+**o assunto é um sistema**. Texto gerado por modelo herda a sintaxe do original e vai soltando
+substantivo sem artigo: cada frase soa quase certa, e o acúmulo soa traduzido.
+
+| escrito | como se fala |
+|---|---|
+| "carrossel de cronologia com data errada é o pior tipo de erro" | "...com **a** data errada..." |
+| "o assunto é literalmente sistema" | "o assunto é literalmente **um** sistema" |
+| "cliente não lê briefing" | "**o** cliente não lê **o** briefing" |
+| "a skill roda entrevista antes de escrever" | "roda **uma** entrevista" |
+
+**Onde o artigo NÃO entra** — e aqui a régua estraga o texto se for aplicada no automático:
+
+- plural genérico: *carrosséis não vendem sozinhos*
+- abstrato como objeto direto: *isso exige método*, *faltou tempo*, *o post tem gancho*
+- expressão fixa: *em casa*, *por e-mail*, *de cabeça*, *com pressa*
+- **título, rótulo e paginação**, onde o telegráfico é a forma. A régua vale para corpo e legenda
+
+**Como flagrar:** leia em voz alta. Se você poria o artigo falando, ele falta. E vale o princípio
+da densidade: um substantivo pelado passa, três no mesmo bloco denunciam a origem.
+
 ## Esqueleto retórico exposto
 
 O texto anuncia a própria estrutura em vez de fluir.
