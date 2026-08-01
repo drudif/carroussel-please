@@ -85,6 +85,13 @@ do defeito.
 
 Leia `~/.claude/carrossel-perfil.md`. **Se existir**, mostre um resumo de três linhas e pergunte só o que muda neste trabalho. **Se não existir**, faça a conversa de setup e grave ao final.
 
+**Há um terceiro estado, e ele é pedido com frequência:** *"esquece o que está salvo, faz como
+se eu fosse novo"*. Quem acabou de instalar a skill quer testá-la na própria máquina, e o
+perfil dele atrapalha o teste. Nesse caso rode o setup inteiro e **não leia o arquivo** — mas
+**não sobrescreva nem apague o arquivo real**, e ao fim pergunte se o resultado deve substituir
+o que estava lá. Se ele disse "ignore o gerador conectado" junto, trate como quem nunca
+conectou nada: as opções sem conexão vão na conversa como se fossem as únicas.
+
 As perguntas estão em [references/perfil.md](references/perfil.md), em três rodadas curtas e **sem jargão**. Elas cobrem: quem assina e onde publica, se há identidade de marca fechada, e se o usuário quer gerar imagem ou desenhar tudo.
 
 Antes de propor estilo você precisa saber também: **o assunto e quantos cards**. Sem isso não dá para testar se uma direção escala.
@@ -186,7 +193,26 @@ Só depois do mapa aprovado o texto é escrito de verdade.
 
 **Por que nesta ordem:** discutir o mapa custa uma rodada; descobrir na etapa 5 que o carrossel conta a história errada custa todas. E sete linhas de roteiro se julgam melhor que sete blocos de texto acabado, onde a redação disputa atenção com a estrutura.
 
-A regra que vale em qualquer plataforma: **um card = uma ideia**, e o corpo cabe em 25 palavras. Se não coube, são dois cards.
+A regra que vale em qualquer plataforma: **um card = uma ideia**. Essa não cede nunca.
+
+**O tamanho do corpo, sim.** As 25 palavras são a régua do Instagram; o LinkedIn aceita
+profundidade, e quando o usuário marca os dois destinos as duas regras se contradizem. Quem
+ganha:
+
+- **Marcou só Instagram** → 25 palavras, e se não coube são dois cards
+- **Marcou LinkedIn, com ou sem Instagram** → o teto passa a ser **físico, não editorial**:
+  o corpo cresce até onde a zona do grafismo começaria a ser esmagada, e quem diz onde é isso
+  é o `?medir=1`, não a contagem. Costuma dar o dobro
+- **Assunto que exige traduzir termo** — "função executiva", "externalidade", qualquer coisa
+  que o público não tem — **entra no segundo caso mesmo em post só de Instagram.** Cortar a
+  tradução para caber na régua entrega um card que não explica nada, e a crítica que volta é
+  "está superficial"
+
+E há uma saída que não custa card nem palavra do corpo: **em janelas, colagem e neo-brutalismo
+o grafismo carrega texto de verdade.** A definição do conceito vai para dentro da janela, da
+tira de papel ou do balão, e o corpo continua sendo só o argumento. É como se tem o dobro de
+conteúdo sem perder "uma ideia por card" — e o que vai ali é conteúdo aprovado na etapa 3, o
+que mantém a regra do grafismo mudo de pé.
 
 ## Etapa 4 — Anti-slop
 
@@ -222,12 +248,40 @@ Ofereça **uma capa alternativa**. A capa é o único card que decide se os outr
 Agora, e só agora, monte a arte. O manual técnico completo — esqueleto, captura, área de segurança, PDF e as armadilhas que custam tempo — está em [references/montagem.md](references/montagem.md).
 
 1. Copie `assets/esqueleto.html` para a pasta do trabalho e aplique a direção aprovada. **O HTML lê `TEXTOS.md`; ele não guarda texto**
+
+   **Copie e troque valores. Não reescreva o CSS do zero.** Parece mais rápido escrever um
+   arquivo limpo com a direção já aplicada, e é onde a produção quebra: o esqueleto carrega
+   propriedades que não parecem importantes e são estruturais — `white-space:nowrap` no `.tt`,
+   que impede o título de quebrar sozinho, e `overflow:hidden` no `.gfx`, que é o que faz o
+   empilhamento valer para elemento posicionado em absoluto. Quem reescreve perde as duas e
+   descobre depois de capturar, olhando. **Mude cor, fonte, tamanho e composição; a mecânica
+   fica.** Vale o mesmo para os scripts: `exportar.sh` já traz o laço de captura, a checagem de
+   erro de JS e a conferência dos PNGs. Reimplementar isso custa as armadilhas de novo
 2. `assets/baixar-fontes.sh <estilo>` gera o `fonts.css` com as faces embutidas
 3. `assets/exportar.sh` captura os PNGs em 1080×1350 e monta o PDF
 4. **Abra cada PNG e olhe.** Captura falha em silêncio: sai arquivo do tamanho certo, em branco
 5. Passe a checagem antipadrão abaixo
 
-**Apresente o resultado ao usuário, não o caminho da pasta.** Uma folha de contato em artefato, ou as imagens direto na mensagem. Mandar alguém abrir um diretório para ver o próprio trabalho é a pior parte de uma entrega boa.
+**Apresente o resultado ao usuário, não o caminho da pasta.** Mandar alguém abrir um diretório
+para ver o próprio trabalho é a pior parte de uma entrega boa.
+
+**Mas confirme que ele viu.** Abrir um PNG com a ferramenta de leitura mostra a imagem **para
+você, não para ele** — em várias superfícies isso não chega do outro lado, e a etapa vira uma
+pergunta de aprovação sobre uma imagem invisível. Aconteceu em produção: a folha de contato foi
+montada, descrita e submetida à decisão, e a resposta foi *"não estou vendo as gerações, onde
+estão?"*. Uma rodada inteira queimada.
+
+As rotas, em ordem:
+
+| | Rota | Quando |
+|---|---|---|
+| 1 | `open <arquivo>` | qualquer superfície local. **É o padrão seguro** — abre no visualizador do sistema, e o arquivo aparece sem ninguém procurar pasta |
+| 2 | artefato publicado | onde essa capacidade existir. Melhor para folha de contato, porque o usuário navega |
+| 3 | imagem na mensagem | só onde a superfície de fato renderiza para quem lê |
+
+Isso vale nas **duas** entregas visuais: o preview de estilo da etapa 1 e a arte da etapa 6.
+Em ambas, **mostre e só então pergunte** — nunca as duas coisas na mesma mensagem sem saber se
+a imagem chegou.
 
 ### O artefato só aparece com a arte pronta
 
@@ -308,7 +362,9 @@ Se qualquer item aparecer na arte, ela lê como feita por IA genérica:
 E mais:
 
 - [ ] Todos os PNGs abertos e olhados, um a um
-- [ ] Nenhum texto corrido sobre grafismo
+- [ ] **Nenhum texto coberto — nem por grafismo, nem por outro grafismo.** Em janelas, colagem
+      e em qualquer cascata os elementos se sobrepõem por projeto: o que come letra ali não é o
+      texto do card sobre o desenho, é um elemento do desenho sobre o texto de outro
 - [ ] Nada essencial fora da área de segurança
 - [ ] Nenhum corte ou overflow — confira também os 8px finais de cada PNG
 - [ ] Print de app real revisado por dado pessoal: nome, e-mail, cliente, token

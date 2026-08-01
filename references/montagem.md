@@ -74,7 +74,50 @@ kill $SRV
 
 `--virtual-time-budget` espera fonte, imagem e layout assentarem. Curto demais captura a página pela metade.
 
+### `--user-data-dir` faz o Chrome não encerrar — a armadilha mais cara
+
+**Leia esta antes das outras.** Com um perfil novo, o Chrome roda a inicialização de primeiro
+uso, **escreve o PNG e não encerra**. A chamada de bash fica presa até o timeout, e o sintoma
+engana: o arquivo chega em ~4s e está correto, então quem não olhar o disco conclui que a
+captura falhou e vai depurar a página.
+
+Medido nesta máquina, mesma URL, mesmo Chrome:
+
+| | tempo |
+|---|---|
+| sem `--user-data-dir` | **sai sozinho em 2s** |
+| com `--user-data-dir` num diretório novo | escreve o PNG e **nunca sai** |
+
+**A correção é não passar o flag.** `exportar.sh` não passa. Ele só é necessário quando você
+precisa de perfis simultâneos, e aí o encerramento vira problema seu:
+
+```bash
+nohup "$CHROME" --headless ... --user-data-dir="$DIR" --screenshot="$OUT" "$URL" \
+  </dev/null >/dev/null 2>&1 & disown
+for i in $(seq 1 40); do [ -s "$OUT" ] && sleep 1 && break; sleep 1; done
+pkill -9 -f "user-data-dir=$DIR"     # o único identificador único por invocação
+```
+
+O erro que costuma preceder este: **subir o servidor com `&` na mesma chamada da captura.**
+A ferramenta de bash espera o processo de fundo, e a chamada trava por outro motivo. Servidor
+é uma chamada própria, em background de verdade. Quem conserta isso acrescentando
+`--user-data-dir` troca um travamento por outro.
+
 ### Armadilhas verificadas
+
+**Título com `nowrap` transborda em silêncio, e `scrollWidth` não denuncia.** Num bloco, o
+`scrollWidth` devolve a largura do bloco enquanto o texto couber — sete cards com a mesma
+medida é a assinatura de um medidor inútil. Meça encolhendo o elemento até o conteúdo:
+
+```js
+h.style.display = 'inline-block';                 // encolhe até a linha mais larga
+const larg = h.getBoundingClientRect().width;
+h.style.display = '';
+```
+
+É o que o `?medir=1` do esqueleto faz, junto com a altura das zonas. **Rode antes de capturar** —
+título transbordando e zona de grafismo esmagada produzem PNG do tamanho certo, e por isso
+passam na conferência automática.
 
 **Chrome headless tem largura mínima de viewport de 500px.** Capturar com `--window-size=390,...` renderiza a 500 e **recorta** para 390 — o resultado parece conteúdo estourando a margem, mas é corte de captura. Para conferir layout estreito de verdade, meça em vez de olhar:
 
@@ -244,6 +287,23 @@ Primeira linha depois do cabeçalho é o título, segunda é o corpo, ` / ` marc
 Explique isso **dentro do próprio arquivo**, em uma citação no topo — é lá que o usuário vai estar
 quando precisar da informação.
 
+**Estilo cujo grafismo carrega texto estende o formato.** Em janelas, colagem e neo-brutalismo
+metade das palavras do card pode viver dentro do desenho — e costuma ser justamente o que o
+usuário vai querer corrigir. Sem uma linha para elas, a promessa *"edita o `.md` e me avisa"* é
+falsa para metade da peça. A extensão é uma quarta forma de linha, começada por `>`:
+
+```markdown
+**03 · o desenho**
+A PLATAFORMA / FOI DESENHADA / PRA ISSO
+63,8% do planeta é usuário ativo de rede social.
+> DELBIANCO, 2023 | 63,8% da população mundial é usuária ativa de rede social.
+> ALOUFI ET AL., 2022 | attention hijacking: o design premia absorção rápida.
+```
+
+Antes da `|` vai o rótulo do elemento — barra de janela, tira de fita, aba; depois, o conteúdo
+dentro dele. **Explique a extensão no topo do próprio arquivo também**, com o exemplo do estilo
+que está em uso, não com o genérico.
+
 **No HTML:**
 
 ```js
@@ -267,6 +327,15 @@ direção de arte, não conteúdo — e o usuário não deve precisar mexer.
 **Uma pegadinha de servidor:** se o `TEXTOS.md` está um nível acima do HTML, sirva a pasta do
 trabalho inteira, não a subpasta da arte. `fetch('../TEXTOS.md')` sai do escopo do servidor e
 devolve 404 sem explicar.
+
+Use `--directory` **sempre**, com caminho absoluto: o `cwd` do bash do agente volta ao
+diretório inicial a cada chamada, então `python3 -m http.server 8910` sozinho sobe onde você
+não espera. E a URL passa a incluir a subpasta:
+
+```bash
+python3 -m http.server 8910 --directory /caminho/carrossel-assunto   # chamada própria
+# http://localhost:8910/arte/cards.html?card=1
+```
 
 ## O `body` da página de captura precisa estar zerado
 

@@ -36,14 +36,19 @@ body{display:flex;flex-direction:column;align-items:center;gap:28px}
       justify-content:space-between;align-items:baseline;
       padding-bottom:14px;border-bottom:4px solid var(--tinta)}
 .txt {flex:0 0 auto;position:relative;z-index:20;padding-top:34px}
-.gfx {flex:1 1 auto;min-height:0;position:relative;overflow:hidden;
+.gfx {flex:1 1 auto;min-height:0;position:relative;overflow:hidden;   /* ESTRUTURAL: sem
+      isto o empilhamento não vale para filho posicionado em absoluto, e grafismo girado
+      atravessa o pé. É o que torna "sobreposição impossível por construção" verdade */
       margin:38px calc(var(--M) * -1) 30px}
 .gfx img{width:100%;height:100%;object-fit:cover;display:block}
 .foot{flex:0 0 auto;position:relative;z-index:30;display:flex;
       justify-content:flex-end;border-top:2px solid var(--tinta);padding-top:14px}
 
 /* ═══ tipografia ═══ */
-.tt{font-family:'Titulo',serif;line-height:1.04;letter-spacing:-.02em;
+/* white-space:nowrap é ESTRUTURAL: sem ele o título quebra sozinho onde quiser, o PNG
+   sai do tamanho certo e com a quebra errada, e nada denuncia. As quebras são as do
+   TEXTOS.md, marcadas com " / " — nunca as que o navegador decidir. */
+.tt{font-family:'Titulo',serif;line-height:var(--lh-titulo,1.04);letter-spacing:-.02em;
     position:relative;z-index:20;color:var(--tinta);white-space:nowrap}
 .tt s{text-decoration:none;position:relative;display:inline-block;white-space:nowrap}
 /* erro de registro: some com .flat, escala com o corpo */
@@ -171,4 +176,31 @@ const GUIA = qs.get('safe') ? `
        border:2px dashed #0A0;z-index:99;pointer-events:none"></div>` : '';
 document.getElementById('root').innerHTML =
   q ? CARDS[+q-1]() + GUIA : CARDS.map(f => f()).join('');
+
+/* -- ?medir=1 -------------------------------------------------------------
+   Largura real de cada título e altura de cada zona. Rode ANTES de capturar: pega
+   título transbordando e zona de grafismo esmagada, que são defeitos que produzem
+   PNG do tamanho certo e por isso passam na conferência automática.
+
+   Meça encolhendo o h1 até o conteúdo. `scrollWidth` num bloco devolve a largura do
+   BLOCO enquanto o texto couber — sete cards com a mesma medida é a assinatura disso. */
+if (qs.get('medir')) {
+  const LIM = 1080 - 78*2;
+  const alt = e => e ? Math.ceil(e.offsetHeight) : null;
+  const linhas = [...document.querySelectorAll('.card')].map((c, i) => {
+    /* capa e fecho não têm as mesmas zonas dos cards de conteúdo — tolere a falta,
+       ou o medidor morre justamente no card que mais importa */
+    const h = c.querySelector('.tt'), t = alt(c.querySelector('.txt')), g = alt(c.querySelector('.gfx'));
+    let larg = null;
+    if (h) { h.style.display = 'inline-block';
+             larg = Math.ceil(h.getBoundingClientRect().width);
+             h.style.display = ''; }
+    return `card ${String(i+1).padStart(2,'0')}: `
+         + (larg === null ? 'sem titulo' : `titulo=${larg}px ${larg > LIM ? 'TRANSBORDA' : 'ok'}`)
+         + (t === null ? '' : ` · txt=${t}px`)
+         + (g === null ? '' : ` · gfx=${g}px` + (g < 150 ? ' ZONA ESMAGADA' : ''));
+  });
+  document.body.innerHTML = '<pre id="medida" style="color:#fff;font:16px/1.6 ui-monospace;padding:24px">'
+    + linhas.join('\n') + '</pre>';
+}
 </script>

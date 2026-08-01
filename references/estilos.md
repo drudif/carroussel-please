@@ -103,7 +103,21 @@ Repare que **Anton é o caso extremo**: caixa alta de 0,867 em, mas o acento che
 
 A coluna da direita só entra quando as duas condições se encontram: a linha de cima tem descendente **e** a de baixo tem acento na mesma região horizontal. Não suba a entrelinha inteira por causa de um `Ç` que está no outro canto — olhe o PNG.
 
-**O corpo de texto não precisa disso.** Ele é caixa baixa e é diagramado entre 1,35 e 1,45 por legibilidade, o que já passa folgado do piso.
+**O corpo de texto não precisa disso.** Ele é caixa baixa e é diagramado entre 1,35 e 1,45 por
+legibilidade, o que já passa folgado do piso — por isso o `--lh-corpo` que o script calcula é
+**conferência, não valor de uso**: se o que você diagramou ficar abaixo dele, alguma coisa está
+errada no seu CSS, não na fonte.
+
+## Palavra não é a unidade, caractere é
+
+A régua de 25 palavras foi feita para fonte proporcional. **Dois dos seis estilos usam
+monoespaçada no corpo** — IBM Plex Mono no brutalista, Space Mono em janelas — e ali o mesmo
+texto ocupa muito mais.
+
+O número que serve para os dois casos: **a 34px sobre uma coluna de 924px, uma mono cabe ~45
+caracteres por linha.** 280 caracteres viram 7 linhas e mais de 330px de altura, que em vários
+cards é mais que a zona de grafismo inteira. Conte caracteres, ou rode o `?medir=1` e olhe a
+altura da `.gfx` antes de fechar o texto.
 
 ---
 
@@ -241,7 +255,19 @@ listra de rolo, cobertura irregular, fibra. Cada um que você tirar, o modelo su
 
 **Ritmo:** muda quais janelas aparecem, o ângulo, o tamanho e qual está em primeiro plano. O cursor muda de posição.
 
-**Cuidado verificado:** janela posicionada por cima do bloco de título **come letra** — aconteceu na própria referência de cascata, onde a palavra "DISRUPT" foi cortada ao meio por uma janela. Defina a zona do título primeiro, com empilhamento rígido; as janelas ficam com o que sobra. E a barra de título só pode conter nome de etapa que existe de fato — rótulo inventado ali é slop de grafismo.
+**A barra de título é o campo da citação.** Foi o achado que decidiu uma escolha de estilo em
+produção: `1854 · WALDEN`, `DELBIANCO, 2023`, `ÖZPENÇE, 2024`. A fonte fica **dentro** do
+grafismo em vez de virar rodapé miúdo, e nenhum card é gasto com bibliografia. Isso faz de
+janelas o estilo certo para **conteúdo que precisa de fonte visível** — artigo, dado, pesquisa,
+processo com etapas nomeadas.
+
+Vale a mesma regra de sempre, e ela é o que separa isso de slop: a barra só carrega **referência
+que existe de fato**. Rótulo inventado ali é grafismo produzindo texto.
+
+**Cuidado verificado:** janela posicionada por cima do bloco de título **come letra** — aconteceu na própria referência de cascata, onde a palavra "DISRUPT" foi cortada ao meio por uma janela. Defina a zona do título primeiro, com empilhamento rígido; as janelas ficam com o que sobra. E o defeito irmão, que passou despercebido em produção: **janela por cima do texto de outra
+janela.** Aqui os elementos se sobrepõem por projeto, então o que come letra raramente é o texto
+do card sobre o desenho — é um pedaço do desenho sobre o texto de outro pedaço. Só aparece
+olhando o PNG.
 
 **O cartaz aqui:** cartaz de rave dos anos 90 feito no computador da época. Tipografia que ocupa, e o sistema à mostra.
 

@@ -10,6 +10,8 @@ Uma pergunta por mensagem, seguindo o protocolo de [texto.md](texto.md). Toda pe
 
 Agrupe em três rodadas curtas: **quem publica**, **como parece**, **com o que produz**.
 
+São nove perguntas. A de imagem **não está aqui** — ela é a etapa 1.5, depois do estilo.
+
 ---
 
 ## Rodada 1 — quem publica
@@ -47,22 +49,28 @@ Fonte que não está instalada não entra. E fonte de marca precisa passar pela 
 
 ## Rodada 3 — com o que produz
 
-**7. Você quer que eu gere imagens, ou desenho tudo?**
+**Não pergunte de imagem nesta rodada.** A pergunta de como as ilustrações são feitas é a **etapa 1.5**
+da SKILL.md, e ela vem depois do estilo por um motivo: só ali dá para dizer o que cada opção
+muda naquele estilo específico. Esta rodada já perguntou uma versão binária dela — *gerar ou
+desenhar* — e binário **não distingue banco aberto de desenho em código**, que são duas opções
+diferentes e ambas sem conectar nada. Quem responde "desenho tudo, sem conectar nada" pode
+estar recusando o gerador, não o banco.
 
-Esta é a única pergunta técnica do setup, então faça o custo e o ganho aparecerem em português antes de pedir qualquer coisa:
+Se o assunto do trabalho é imagético e o banco aberto renderia — retrato histórico, obra em
+domínio público, lugar, objeto — isso vale um segundo da 1.5, não uma pergunta a mais aqui.
 
-> Duas formas de fazer as ilustrações dos cards. **Desenhando em código**, que é o padrão: sai exatamente na sua paleta, custa zero e serve para grade, diagrama, ícone, tela de app. Ou **gerando imagem**, para o que não se desenha — retrato, cena, textura, colagem. Gerar exige conectar uma ferramenta, uma vez, uns dois minutos. Dá pra começar sem conectar nada e mudar de ideia no meio.
-
-O que muda de fato, e é isso que você diz:
-
-- **A capa passa a ter imagem sempre.** Com gerador conectado, isso vira regra fixa — e a capa é o card que decide se os outros sete serão vistos
-- **Dois dos seis estilos mudam de patamar**: a risografia, que existe para a tinta cair sobre imagem, e a colagem, cujo centro é o recorte fotográfico. Os outros quatro ficam completos sem nada
-- **O texto não muda em nada.** Toda palavra que o leitor vai ler é desenhada pelo navegador, com ou sem gerador. Nenhum modelo de imagem escreve português confiável, e o acento é onde ele erra primeiro
-
-As opções, e como conectar cada uma, estão em [geradores.md](geradores.md). Se ele disser que já tem um conector, **confirme que responde** antes de contar com ele — ferramenta que aparece na lista não é ferramenta autorizada.
-
-**8. Onde salvo o trabalho?**
+**7. Onde salvo o trabalho?**
 → Padrão: `./carrossel-<assunto>/`
+
+**8. Quantos cards?** Recomende, com o motivo: 8 a 10 no Instagram (teto de 10), 9 a 10 se o
+LinkedIn é o destino principal.
+
+Isto **não é detalhe de produção, é pré-requisito da etapa 1**: uma direção que fecha bem em
+6 cards vira parede em 10, e o preview que você vai renderizar precisa ser testado no tamanho
+certo. Perguntar depois de mostrar o preview invalida o preview.
+
+E **pergunte uma vez só.** Sabendo o número, a etapa 1 confirma — *"são sete, certo?"* — nunca
+repete a pergunta do zero.
 
 **9. Guardo isso pra não perguntar de novo?** Se sim, grave o arquivo. Se não, vale só nesta sessão.
 

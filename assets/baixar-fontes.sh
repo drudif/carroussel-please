@@ -106,5 +106,6 @@ for i,p in enumerate(sys.argv[1:]):
 css.insert(0, ':root{' + ''.join(f'--lh-{k.lower()}:{v};' for k,v in lh.items()) + '}')
 open('fonts.css','w').write('\n'.join(css))
 print(f"  fonts.css: {os.path.getsize('fonts.css')//1024} KB — font-family:'Titulo' e 'Corpo',")
-print( "             line-height:var(--lh-titulo) e var(--lh-corpo)")
+print( "             titulo: line-height:var(--lh-titulo). corpo: diagrame entre 1.35 e 1.45")
+print( "             (--lh-corpo e piso de conferencia, nao valor de uso)")
 PY
