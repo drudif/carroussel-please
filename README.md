@@ -52,6 +52,10 @@ pergunta.
 | 6 | Aprovação | você lê o que ficou e ajusta no `.md` |
 | 7 | Produção | a arte, os PNGs, os PDFs |
 
+Na hora de escolher o nível, a skill abre um **board** (`assets/board-niveis.jpg`) com os três
+caminhos lado a lado e os sete estilos agrupados por afinidade — o que cada caminho custa, e que
+cara ele tem. Ele se regera com `assets/board/gerar.sh`.
+
 **O nível de imagem vem antes do estilo, e é de propósito.** Cada nível favorece estilos
 diferentes — terminal e iridescente nasceram sem foto, riso e colagem mudam de patamar com uma —,
 então a escolha do nível já ordena a lista. Os sete continuam à vista; o que muda é por onde a

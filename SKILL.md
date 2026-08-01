@@ -136,23 +136,40 @@ Pergunte pelo **resultado**, não pelo que a pessoa tem instalado. Ela escolhe o
 depois descobre o que aquilo exige — o contrário faz escolher no escuro. E nada de "MCP",
 "API" ou "nível A": ninguém que nunca conectou nada sabe o que é isso.
 
+### Abra o board ANTES de perguntar
+
+```bash
+open <pasta-da-skill>/assets/board-niveis.jpg
+```
+
+**O board é a pergunta.** Ele mostra os três caminhos lado a lado, o que cada um custa, e — o
+que a tabela de texto nunca conseguiu passar — **quais estilos combinam com cada caminho, com a
+cara de cada um**. Perguntar sem mostrar transforma a decisão mais importante do fluxo em
+formulário, e foi assim que ela virou item pulável duas versões seguidas.
+
+Espere ele dizer que viu, como em qualquer entrega visual. Só então:
+
 ◇ **Como você quer as imagens do carrossel?**
 
-| | Opção | O que você ganha | O que precisa |
-|---|---|---|---|
-| 1 | **Feitas sob medida** | o card inteiro é composto pelo gerador e a tipografia entra por cima, limpa | uma conta num gerador de imagem, ligada aqui. Te ajudo |
-| 2 | **De banco grátis** | fotos e ilustrações de sites abertos, tratadas nas cores do estilo | nada. Já funciona |
-| 3 | **Sem foto nenhuma** | tudo desenhado em código, nas cores exatas | nada. Já funciona |
+| Opção | O que você ganha | O que precisa |
+|---|---|---|
+| **Sem foto nenhuma** | tudo desenhado em código, nas cores exatas do estilo | nada. Já funciona |
+| **De banco grátis** | fotos de sites abertos, tratadas nas cores do estilo | nada. Já funciona |
+| **Feitas sob medida** | o card inteiro é composto pelo gerador e a tipografia entra por cima, limpa | uma conta num gerador de imagem, ligada aqui. Te ajudo |
+
+**Fale por nome, nunca por número.** "Nível 1" não quer dizer nada para quem chegou agora, e
+número embaralha: o mais barato tem o número maior. Os números existem só no `DIRECAO.md`, que
+é máquina lendo máquina — a correspondência está na etapa 3.
 
 Três coisas ditas junto, em uma linha cada:
 
-- **Só a 1 responde ao seu assunto.** Nas outras duas você usa o que existe
-- **A 3 não é a versão pobre.** Em brutalista, terminal, neo-brutalismo e iridescente o desenho costuma
-  ficar melhor que foto, porque nasce já nas cores certas
-- **A 2 depende do tema dar foto.** Relacionamento, viagem, comida, trabalho manual: rende.
-  Um método, um conceito, uma ferramenta: não existe foto disso, e aí a 3 ganha
+- **Só a sob medida responde ao seu assunto.** Nas outras duas você usa o que existe
+- **Sem foto não é a versão pobre.** Em brutalista, terminal, neo-brutalismo e iridescente o
+  desenho costuma ficar melhor que foto, porque nasce já nas cores certas
+- **Banco depende do tema dar foto.** Relacionamento, viagem, comida, trabalho manual: rende.
+  Um método, um conceito, uma ferramenta: não existe foto disso, e aí o desenho ganha
 
-### Se escolheu a 1
+### Se escolheu **feitas sob medida**
 
 ◇ **Você já tem conta em algum gerador de imagem?**
 
@@ -168,14 +185,14 @@ Diga a verdade **antes** de tentar, porque metade dos casos não conecta:
 Essa última linha vale para qualquer conta que não conecte: **gerar na mão e entregar o
 arquivo funciona.** Não é o ideal, é melhor do que desistir da imagem.
 
-Não tendo conta nenhuma, ofereça a 2 ou a 3 — não empurre assinatura.
+Não tendo conta nenhuma, ofereça banco ou desenho — não empurre assinatura.
 
 O passo a passo de cada ligação está em [references/geradores.md](references/geradores.md).
 Em todos: **a chave nunca é colada no chat** — o que passa por aqui fica registrado. A pessoa
 guarda no computador dela e responde só "pronto". A skill grava o fato,
 `gemini: chave configurada em AAAA-MM-DD`, nunca o valor.
 
-### Se escolheu a 2
+### Se escolheu **de banco grátis**
 
 **Dupe** e **Openverse**, nesta ordem, e a busca é por **assunto — nunca por estilo**: quem
 busca "minimal aesthetic" traz foto de banco com a paleta por cima, que é o defeito. O estilo
@@ -186,7 +203,7 @@ Uma coisa dita agora, não na entrega: **o banco não responde ao seu assunto, e
 que existe.** Se as buscas voltarem fracas, a saída é a 3 naquele card — desenho em código —, e
 isso se diz na hora, não se disfarça com foto quase certa.
 
-### Se escolheu a 3
+### Se escolheu **sem foto nenhuma**
 
 Nada a ligar. Vá para [references/grafismos.md](references/grafismos.md), que é o repertório do
 que se desenha: grade, blocos, diagrama, abstração de interface, ícone, tabela.
@@ -199,6 +216,9 @@ uma consequência, não um menu novo:
 
 > *"Sem foto então. Nesse caso dois estilos são feitos sob medida para isso, vou te mostrar
 > primeiro: terminal e iridescente."*
+
+O board já preparou o terreno — ele mostra os estilos agrupados por caminho, e o usuário chega na
+etapa 2 sabendo que existem sete e por que dois deles vieram primeiro.
 
 A tabela do funil está na etapa 2, e o critério inteiro em
 [references/estilos.md](references/estilos.md#o-critério-de-onde-vem-a-espessura-da-peça).
@@ -247,8 +267,9 @@ Cada estilo tem três referências fixas em `assets/referencias/` — `<estilo>-
 descritas. São três porque uma capa bonita não prova nada: o que quebra no card 5 é o estilo
 não ter três arquétipos de layout, e as três referências mostram justamente isso.
 
-Abra as dos **recomendados** primeiro, com uma linha por estilo dizendo por que aquele nível
-favorece ele. Depois, uma frase só: *"os outros também funcionam aqui — quer ver?"*. Se ele
+**O board da etapa 1 já mostrou os sete agrupados** — o usuário chegou aqui sabendo quantos são
+e por que dois vieram na frente. Aqui você abre as **três** referências dos recomendados, no
+tamanho cheio, com uma linha por estilo dizendo por que aquele caminho favorece ele. Depois, uma frase só: *"os outros também funcionam aqui — quer ver?"*. Se ele
 pedir, abra as referências deles com o custo dito, na mesma linha.
 
 **E para por aí.** Nada é renderizado com o assunto dele nesta etapa — a regra do preview está
@@ -290,10 +311,13 @@ fontes com nome de arquivo, lógica de grade, e como cada tipo de card se compor
 essa linha, e **para se ela não existir**:
 
 ```markdown
-imagem: 1 · higs / nano_banana_pro
-imagem: 2 · dupe + openverse
-imagem: 3 · só desenho em código
+imagem: 1 · higs / nano_banana_pro     ← feitas sob medida
+imagem: 2 · dupe + openverse           ← de banco grátis
+imagem: 3 · só desenho em código       ← sem foto nenhuma
 ```
+
+Esta é a **única** superfície em que os níveis são números: o `exportar.sh` lê essa linha. Na
+conversa eles têm nome.
 
 O número é o da etapa 1, e a linha é a prova de que a etapa aconteceu. Sem ela a etapa 7 não
 sabe que existe gerador ligado e monta pelo caminho de quem não tem — foi assim que um

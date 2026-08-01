@@ -1,0 +1,170 @@
+<meta charset="utf-8">
+<title>Board dos níveis de imagem</title>
+<!--
+  O board que o usuário vê na ETAPA 1, na hora de escolher como as imagens do carrossel
+  são feitas. Gera assets/board-niveis.png:
+
+      cd assets/board && ./gerar.sh
+
+  Ele existe porque a escolha de nível parecia burocracia quando era só uma tabela de
+  texto — e é a escolha que decide quais estilos entram primeiro. Aqui a pessoa vê,
+  de uma vez, o que cada caminho custa e que cara ele tem.
+
+  Uma referência por estilo, não três: o board é o MAPA. As três referências de cada
+  estilo abrem depois, na etapa 2, quando ele já sabe por onde começar.
+-->
+<link rel="stylesheet" href="fontes.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1600px;background:#F4F2ED;color:#161616;font-family:'BC',system-ui,sans-serif;
+     padding:64px 72px 76px}
+
+h1{font-family:'BT';font-weight:500;font-size:62px;line-height:1.02;letter-spacing:-.022em;
+   max-width:1180px}
+.lede{font-size:25px;line-height:1.52;max-width:1060px;margin-top:26px;color:#2C2C2C}
+.lede b{font-weight:600}
+
+.regua{display:flex;gap:22px;margin:44px 0 8px}
+.regua .col{flex:1;background:#EAE7E0;padding:26px 28px 28px;border-top:5px solid #161616}
+.regua h3{font-family:'BT';font-weight:500;font-size:27px;line-height:1.12;margin-bottom:12px}
+.regua p{font-size:19px;line-height:1.46;color:#333}
+.regua .custo{font-family:'BM';font-size:15px;letter-spacing:.05em;text-transform:uppercase;
+  margin-top:16px;color:#161616;border-top:1px solid rgba(0,0,0,.18);padding-top:12px}
+
+.bloco{margin-top:64px;border-top:3px solid #161616;padding-top:30px}
+.cab{display:flex;align-items:flex-start;gap:34px}
+.cab .n{font-family:'BM';font-size:16px;letter-spacing:.16em;text-transform:uppercase;
+  background:#161616;color:#F4F2ED;padding:9px 15px;white-space:nowrap;margin-top:6px}
+.cab .txt{flex:1}
+.cab h2{font-family:'BT';font-weight:500;font-size:42px;line-height:1.06;letter-spacing:-.018em}
+.cab p{font-size:21px;line-height:1.5;color:#333;margin-top:12px;max-width:1160px}
+.cab p b{font-weight:600;color:#161616}
+
+.fila{display:flex;gap:24px;margin-top:30px}
+.fig{width:352px}
+.fig img{width:352px;height:437px;object-fit:cover;display:block;
+  box-shadow:0 0 0 1px rgba(0,0,0,.13)}
+.fig h4{font-family:'BT';font-weight:500;font-size:26px;margin-top:16px;letter-spacing:-.01em}
+.fig p{font-size:18px;line-height:1.44;color:#3A3A3A;margin-top:7px}
+
+.pe{margin-top:64px;border-top:1px solid rgba(0,0,0,.25);padding-top:22px;
+    font-family:'BM';font-size:16px;line-height:1.6;color:#4A4A4A;letter-spacing:.02em}
+</style>
+
+<h1>Como as imagens do seu carrossel são feitas</h1>
+
+<p class="lede">São três caminhos, e a escolha é sua. Ela vem antes de escolher o visual porque
+<b>cada caminho favorece estilos diferentes</b> — alguns estilos nasceram para viver de foto,
+outros perdem a graça quando entra uma. Escolhido o caminho, eu te mostro primeiro os estilos
+que funcionam melhor nele.</p>
+
+<div class="regua">
+  <div class="col">
+    <h3>Sem foto nenhuma</h3>
+    <p>Tudo desenhado: formas, blocos, grades, linhas. Sai nas cores exatas do estilo, porque
+       nada precisa ser tratado depois.</p>
+    <div class="custo">não precisa de nada · já funciona</div>
+  </div>
+  <div class="col">
+    <h3>Foto de banco grátis</h3>
+    <p>Fotos de sites abertos, tratadas nas cores do estilo. Funciona quando o assunto rende
+       foto — e o banco responde ao que existe, não ao seu tema.</p>
+    <div class="custo">não precisa de nada · já funciona</div>
+  </div>
+  <div class="col">
+    <h3>Imagem feita sob medida</h3>
+    <p>O card inteiro é composto por um gerador de imagem e a tipografia entra por cima, limpa.
+       É o único caminho em que a imagem responde ao <i>seu</i> assunto.</p>
+    <div class="custo">precisa de uma conta num gerador · eu te ajudo a ligar</div>
+  </div>
+</div>
+
+<div class="bloco">
+  <div class="cab">
+    <div class="n">sem foto</div>
+    <div class="txt">
+      <h2>Dois estilos nasceram assim</h2>
+      <p>Nestes dois o <b>vazio é o material principal</b>: o que sustenta a peça é a área que
+         não tem nada. Foto ocuparia exatamente isso — por isso eles não pedem imagem, e ficam
+         melhores sem.</p>
+    </div>
+  </div>
+  <div class="fila">
+    <div class="fig"><img src="../referencias/terminal-1-split.jpg">
+      <h4>Terminal</h4>
+      <p>Fundo chumbo, letra de código leve, e cor só em fichas curtas. Cada cor quer dizer
+         uma coisa fixa.</p></div>
+    <div class="fig"><img src="../referencias/irid-2-cascata.jpg">
+      <h4>Iridescente minimal</h4>
+      <p>Papel claro sempre, uma forma grande no meio e nada em volta. A cor vive só na forma.</p></div>
+  </div>
+</div>
+
+<div class="bloco">
+  <div class="cab">
+    <div class="n">com foto</div>
+    <div class="txt">
+      <h2>Dois estilos vivem de foto</h2>
+      <p>Aqui a foto <b>não é ilustração, é o material</b>: um transforma a imagem em duas tintas
+         impressas fora de registro, o outro recorta ela de tesoura e cola. Funcionam com banco
+         grátis; <b>com imagem sob medida eles mudam de patamar</b>, porque a foto passa a
+         responder ao seu assunto em vez de ser a que existia.</p>
+    </div>
+  </div>
+  <div class="fila">
+    <div class="fig"><img src="../referencias/riso-3-bento.jpg">
+      <h4>Risografia com textura</h4>
+      <p>Duas tintas que se cruzam e criam uma terceira cor. Erro de impressão de propósito,
+         retícula e fibra de papel.</p></div>
+    <div class="fig"><img src="../referencias/colagem-3-bento.jpg">
+      <h4>Mixed media / colagem</h4>
+      <p>Camadas de origens diferentes no mesmo plano, com toda emenda à mostra: recorte, fita,
+         rabisco, papel milimetrado.</p></div>
+  </div>
+</div>
+
+<div class="bloco">
+  <div class="cab">
+    <div class="n">qualquer um</div>
+    <div class="txt">
+      <h2>E três servem nos três caminhos</h2>
+      <p>Nestes a espessura vem da <b>forma desenhada</b>, não da foto — ela entra na capa como
+         reforço e sai do miolo sem fazer falta. <b>Se você não quer que o post dependa de
+         imagem nenhuma, é aqui que se escolhe</b>, e continua sendo uma escolha boa se depois
+         você resolver ligar um gerador.</p>
+    </div>
+  </div>
+  <div class="fila">
+    <div class="fig"><img src="../referencias/brutalista-2-cascata.jpg">
+      <h4>Brutalista vetorial</h4>
+      <p>Formas chapadas de aresta dura sobre papel cru, e tipografia gigante tratada como
+         material de construção.</p></div>
+    <div class="fig"><img src="../referencias/neubrutal-2-cascata.jpg">
+      <h4>Neo-brutalismo colorido</h4>
+      <p>Contorno preto grosso e sombra dura sobre campo saturado. Acerta fácil — e é o visual
+         mais usado hoje, então envelhece rápido.</p></div>
+    <div class="fig"><img src="../referencias/editorial-1-split.jpg">
+      <h4>Minimalista editorial quente</h4>
+      <p>Duas colunas, serifa de contraste alto e muito papel vazio. Aceita uma foto grande
+         sangrando por um lado — uma, não oito.</p></div>
+  </div>
+</div>
+
+<div class="pe">
+  Sete estilos ao todo. Este board mostra por onde começar; as três referências de cada estilo
+  escolhido abrem depois, no tamanho cheio.<br>
+  Nada aqui é a arte do seu carrossel — são referências fixas da skill, para você escolher a
+  direção.
+</div>
+
+<script>
+/* ?medir=1 imprime a altura do documento no DOM, para o gerar.sh capturar a página
+   inteira em vez do viewport — captura cortada não avisa, só sai cortada. */
+if (new URLSearchParams(location.search).get('medir')) {
+  addEventListener('load', () => {
+    const i = document.createElement('i');
+    i.id = 'alt'; i.textContent = Math.ceil(document.documentElement.scrollHeight) + 24;
+    document.body.appendChild(i);
+  });
+}
+</script>
