@@ -44,7 +44,7 @@ pergunta.
 | | Etapa | O que acontece |
 |---|---|---|
 | 0 | Perfil | quem assina, onde publica. Roda uma vez e fica salvo |
-| 1 | Estilo | seis fixos, escolhidos pelas três referências visuais de cada um |
+| 1 | Estilo | sete fixos, escolhidos pelas três referências visuais de cada um |
 | 2 | Nível de imagem | gerador conectado, banco aberto, ou só desenho em código |
 | 3 | Direção | aprovação, e a direção fica registrada em `DIRECAO.md` |
 | 4 | Conteúdo | três perguntas, e o mapa dos cards antes de escrever o texto |
@@ -54,18 +54,19 @@ pergunta.
 
 **Você vê arte uma vez: pronta.** Não há preview intermediário — ele chegaria antes da etapa 2,
 mostrando uma peça feita por um caminho que talvez nem seja o escolhido, com texto ainda
-provisório. A escolha de estilo se faz nas 18 referências fixas que já vêm na skill.
+provisório. A escolha de estilo se faz nas 21 referências fixas que já vêm na skill.
 
-## Os seis estilos
+## Os sete estilos
 
 | | Estilo | Em uma linha |
 |---|---|---|
 | 1 | Brutalista vetorial | forma chapada de aresta dura sobre papel cru |
 | 2 | Risografia com textura | duas tintas que se multiplicam, erro de registro |
-| 3 | Janelas | janelas de sistema em fundo preto, com conteúdo real |
+| 3 | Terminal | paleta de editor de código sobre off-white, grade de caractere, muito vazio |
 | 4 | Mixed media / colagem | camadas de origens diferentes, toda emenda à mostra |
 | 5 | Neo-brutalismo colorido | contorno preto grosso e sombra dura sobre campo saturado |
 | 6 | Minimalista editorial quente | duas colunas, geometria precisa, e muito vazio |
+| 7 | Iridescente minimal | campo chapado que troca de cor a cada card, uma forma grande |
 
 Cada um traz paleta em hex, par tipográfico open-source com acentos pt-BR conferidos glifo a
 glifo, entrelinha calculada a partir das métricas da fonte, e três referências visuais fixas.
@@ -73,7 +74,7 @@ glifo, entrelinha calculada a partir das métricas da fonte, e três referência
 ## Imagem: três níveis, e nenhum obrigatório
 
 **Mínimo — só código.** SVG e CSS, custo zero, e é o padrão. Para os estilos de forma
-(brutalista, janelas, neo-brutalismo) costuma ganhar de banco de imagem, porque o desenho
+(brutalista, terminal, neo-brutalismo, iridescente) costuma ganhar de banco de imagem, porque o desenho
 nasce na paleta e carrega o conceito.
 
 **Médio — bancos abertos.** Dupe e Openverse, tratados na paleta do estilo. Não pede chave nem

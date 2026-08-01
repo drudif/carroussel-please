@@ -163,7 +163,14 @@ Depois disso, **abra cada PNG e olhe**. As duas coisas que só aparecem olhando:
 
 ## Área de segurança
 
-Se o post vai ser impulsionado, todo conteúdo essencial fica dentro do **corte 1:1 central** — em 1080×1350, entre y=135 e y=1215. É o corte que o Explore aplica, e é o mais agressivo que o material encontra.
+**A área viva é um quadrado de 924×924 no centro do card** — `x 78..1002`, `y 213..1137`. Texto
+mora ali, inclusive o pé; fora dela até a borda é sangria, onde grafismo entra e texto não.
+
+Dois cortes se encaixam nessa conta. O **1:1 central**, `y 135..1215`, é o que o Explore aplica e
+**é também a página do PDF do LinkedIn** — e página tem margem, que é o que os 78px seguintes
+reservam. Contar a margem a partir da borda de 1350 entrega 165px de folga no Instagram e 15px no
+LinkedIn: o mesmo card, respirando num e espremido no outro, sem que a exportação possa fazer
+nada a respeito.
 
 Gabarito por query, para conferir sem adivinhar:
 
@@ -171,11 +178,11 @@ Gabarito por query, para conferir sem adivinhar:
 const GUIA = qs.get('safe') ? `
   <div style="position:absolute;left:0;right:0;top:135px;height:1080px;
        border:2px dashed #E11;z-index:99;pointer-events:none"></div>
-  <div style="position:absolute;left:78px;right:78px;top:146px;bottom:146px;
+  <div style="position:absolute;left:78px;top:213px;width:924px;height:924px;
        border:2px dashed #0A0;z-index:99;pointer-events:none"></div>` : '';
 ```
 
-Capture uma série com `&safe=1` e guarde como `_safe-0N.png`. Vermelho é o corte 1:1; verde é a margem confortável.
+Capture uma série com `&safe=1` e guarde como `_safe-0N.png`. **Vermelho é a página do LinkedIn; verde é o quadrado vivo** — nada de texto pode cruzar o verde.
 
 ## PDF para LinkedIn
 
@@ -215,7 +222,7 @@ de espaçamento — lê como sujeira, e o leitor não sabe dizer o que está err
 h1 { line-height: var(--lh-titulo) }
 ```
 
-Use a variável, nunca um número escolhido a olho. A tabela dos seis estilos está em
+Use a variável, nunca um número escolhido a olho. A tabela dos sete estilos está em
 [estilos.md](estilos.md).
 
 **A conferência:** renderize o título com `ÃÕÇ` e `Ó` em linhas seguidas, amplie o PNG a 200% e
@@ -287,7 +294,7 @@ Primeira linha depois do cabeçalho é o título, segunda é o corpo, ` / ` marc
 Explique isso **dentro do próprio arquivo**, em uma citação no topo — é lá que o usuário vai estar
 quando precisar da informação.
 
-**Estilo cujo grafismo carrega texto estende o formato.** Em janelas, colagem e neo-brutalismo
+**Estilo cujo grafismo carrega texto estende o formato.** Em terminal, colagem e neo-brutalismo
 metade das palavras do card pode viver dentro do desenho — e costuma ser justamente o que o
 usuário vai querer corrigir. Sem uma linha para elas, a promessa *"edita o `.md` e me avisa"* é
 falsa para metade da peça. A extensão é uma quarta forma de linha, começada por `>`:

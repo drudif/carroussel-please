@@ -30,7 +30,7 @@ São nove perguntas. A de imagem **não está aqui** — ela é a etapa 2, depoi
 ## Rodada 2 — como parece
 
 **5. Sua marca tem cor e fonte fechadas?** Se tiver, elas vencem qualquer sugestão sua. Peça as cores e o nome das fontes.
-→ Padrão: não tem; a direção nasce na etapa 1, dentro dos seis estilos.
+→ Padrão: não tem; a direção nasce na etapa 1, dentro dos sete estilos.
 
 Se ele tiver fonte de marca, confira o arquivo antes de prometer usá-la:
 

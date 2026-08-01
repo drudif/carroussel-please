@@ -172,7 +172,7 @@ const q  = qs.get('card');
 const GUIA = qs.get('safe') ? `
   <div style="position:absolute;left:0;right:0;top:135px;height:1080px;
        border:2px dashed #E11;z-index:99;pointer-events:none"></div>
-  <div style="position:absolute;left:78px;right:78px;top:146px;bottom:146px;
+  <div style="position:absolute;left:78px;top:213px;width:924px;height:924px;
        border:2px dashed #0A0;z-index:99;pointer-events:none"></div>` : '';
 document.getElementById('root').innerHTML =
   q ? CARDS[+q-1]() + GUIA : CARDS.map(f => f()).join('');

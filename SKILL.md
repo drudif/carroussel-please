@@ -4,7 +4,7 @@ description: Use quando o usuário pedir um carrossel para Instagram ou LinkedIn
 metadata:
   language: pt-BR
   estilos: 6, fixos — ver references/estilos.md
-  geracao-de-imagem: opcional; chave de API ou conector. Quatro dos seis estilos não precisam
+  geracao-de-imagem: opcional; chave de API ou conector. Cinco dos sete estilos não precisam
   embutido: sprayantislop (Fernando Drudi) sobre Zero-Lero (MIT, Vinicius Stanula)
   destilado: brainstorming, carousel-writer-sms, bencium-innovative-ux-designer, high-end-visual-design
   autossuficiente: não depende de nenhuma outra skill estar instalada — ver CREDITOS.md
@@ -69,7 +69,7 @@ em código quando a decisão vai ser gerador, ou o contrário. O usuário opina 
 descartável, o texto ainda é provisório, e metade dos comentários é sobre palavra que já ia
 mudar. Duas vezes em teste a conversa parou para discutir um card que não existiria.
 
-**A escolha de estilo não precisa de render** — para isso existem as 18 referências fixas em
+**A escolha de estilo não precisa de render** — para isso existem as 21 referências fixas em
 `assets/referencias/`, que são imagens de verdade e mostram o estilo em três arquétipos de
 layout. Escolhe-se olhando aquilo.
 
@@ -120,18 +120,19 @@ Antes de propor estilo você precisa saber também: **o assunto e quantos cards*
 
 ## Etapa 1 — Estilo
 
-São **seis, fixos**, especificados em [references/estilos.md](references/estilos.md) com paleta em hex, par tipográfico, material e o cuidado verificado de cada um:
+São **sete, fixos**, especificados em [references/estilos.md](references/estilos.md) com paleta em hex, par tipográfico, material e o cuidado verificado de cada um:
 
 | | Estilo | Em uma linha |
 |---|---|---|
 | 1 | **Brutalista vetorial** | forma chapada de aresta dura sobre papel cru, tipografia condensada como material |
 | 2 | **Risografia com textura** | duas tintas que se multiplicam, erro de registro, retícula e fibra |
-| 3 | **Janelas** | janelas de sistema em fundo preto, carregando conteúdo real |
+| 3 | **Terminal** | paleta de editor de código sobre off-white, grade de caractere e muito vazio |
 | 4 | **Mixed media / colagem** | camadas de origens diferentes, toda emenda à mostra |
 | 5 | **Neo-brutalismo colorido** | contorno preto grosso e sombra dura sobre campo saturado |
 | 6 | **Minimalista editorial quente** | duas colunas, serifa de contraste alto, e muito vazio |
+| 7 | **Iridescente minimal** | campo chapado que troca de cor a cada card, uma forma grande, centralizado |
 
-**Não descreva os seis e peça para escolher.** Ninguém escolhe direção visual lendo adjetivo.
+**Não descreva os sete e peça para escolher.** Ninguém escolhe direção visual lendo adjetivo.
 Cada estilo tem três referências fixas em `assets/referencias/` — `<estilo>-1-split.jpg`,
 `-2-cascata.jpg`, `-3-bento.jpg` — e são elas que vão para o usuário, abertas com `open`, não
 descritas. São três porque uma capa bonita não prova nada: o que quebra no card 5 é o estilo
@@ -176,7 +177,7 @@ depois descobre o que aquilo exige — o contrário faz escolher no escuro. E na
 Três coisas ditas junto, em uma linha cada:
 
 - **Só a 1 responde ao seu assunto.** Nas outras duas você usa o que existe
-- **A 3 não é a versão pobre.** Em brutalista, janelas e neo-brutalismo o desenho costuma
+- **A 3 não é a versão pobre.** Em brutalista, terminal, neo-brutalismo e iridescente o desenho costuma
   ficar melhor que foto, porque nasce já nas cores certas
 - **A 2 depende do tema dar foto.** Relacionamento, viagem, comida, trabalho manual: rende.
   Um método, um conceito, uma ferramenta: não existe foto disso, e aí a 3 ganha
@@ -246,7 +247,7 @@ sabe que existe gerador ligado e monta pelo caminho de quem não tem — foi ass
 Higgsfield conectado terminou sem laço de gabarito nenhum. Os arquivos do laço ficam como
 `gabarito-NN.png` e `chapa-NN.png`.
 
-**Cheque os acentos antes de fechar.** Os doze pares dos seis estilos já foram conferidos glifo a glifo. Mas se o usuário trouxe fonte de marca, renderize `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` e olhe — o navegador troca só o glifo faltante por outra fonte, o que é pior do que quebrar, porque passa despercebido. Faltando: troque a fonte, ou use **`abrasileirar-fonte`** para desenhar os acentos no traço da própria fonte.
+**Cheque os acentos antes de fechar.** Os pares dos sete estilos já foram conferidos glifo a glifo. Mas se o usuário trouxe fonte de marca, renderize `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` e olhe — o navegador troca só o glifo faltante por outra fonte, o que é pior do que quebrar, porque passa despercebido. Faltando: troque a fonte, ou use **`abrasileirar-fonte`** para desenhar os acentos no traço da própria fonte.
 
 ## Etapa 4 — Conteúdo
 
@@ -281,7 +282,7 @@ ganha:
   tradução para caber na régua entrega um card que não explica nada, e a crítica que volta é
   "está superficial"
 
-E há uma saída que não custa card nem palavra do corpo: **em janelas, colagem e neo-brutalismo
+E há uma saída que não custa card nem palavra do corpo: **em terminal, colagem e neo-brutalismo
 o grafismo carrega texto de verdade.** A definição do conceito vai para dentro da janela, da
 tira de papel ou do balão, e o corpo continua sendo só o argumento. É como se tem o dobro de
 conteúdo sem perder "uma ideia por card" — e o que vai ali é conteúdo aprovado na etapa 4, o
@@ -411,9 +412,16 @@ Junto com o artefato, o aviso do `TEXTOS.md` da etapa 6 — e a parte que faz di
 | Stories | PNG 1080×1920 | só se pedirem |
 
 **O PDF do LinkedIn é quadrado, e sai do próprio PNG vertical:** recorte cada card em `y=135..1215`
-e monte o PDF com os recortes. Não rediagrame nada — **é exatamente a área de segurança**, e é para
-isso que ela existe desde o primeiro pixel. Se algo essencial sumiu no corte, o erro está na
-diagramação do card, não no recorte.
+e monte o PDF com os recortes. Não rediagrame nada.
+
+**Mas o recorte só funciona se a margem já estiver dentro dele.** Foi assim que a queixa apareceu:
+*"a versão do LinkedIn está virando só um crop, o texto fica sem respiro em cima e embaixo"* —
+e estava certa. O card tinha sido diagramado com margem contada a partir da borda de 1350, então
+o corte comia a margem inteira e entregava texto colado no topo da página. A área viva de
+924×924 abaixo existe por causa disso: **a margem do quadrado se reserva na diagramação, não na
+exportação.**
+
+Se algo essencial sumiu no corte, ou ficou espremido nele, o erro está na diagramação do card.
 
 ```python
 sq = [Image.open(p).crop((0, 135, 1080, 1215)) for p in pngs]
@@ -425,7 +433,37 @@ O feed do LinkedIn é largo e reduz o documento: o piso geral de corpo é **30px
 
 ### Área de segurança — obrigatória, sempre
 
-Todo conteúdo essencial fica dentro do **corte 1:1 central**: em 1080×1350, entre y=135 e y=1215, com 78px nas laterais. É o corte mais agressivo que o material vai encontrar, e post orgânico vira impulsionado depois sem ninguém refazer a arte. O esqueleto traz o gabarito: `?card=N&safe=1` desenha as caixas por cima.
+**A área viva é um quadrado de 924×924 no centro do card** — `x 78..1002`, `y 213..1137`. Todo
+texto mora ali dentro, **inclusive o pé**. Fora dela, até a borda, é sangria: grafismo entra,
+texto não.
+
+```
+1080×1350  ┌──────────────────────────┐
+           │      sangria · 135       │   grafismo pode entrar
+    y=135  ├──────────────────────────┤ ← corte 1:1: a PÁGINA do LinkedIn
+           │  ┌────────────────────┐  │
+           │  │                    │  │
+    y=213  │  │   924 × 924        │  │ ← área viva: todo o texto, e o pé
+           │  │   x 78..1002       │  │
+           │  │                    │  │
+   y=1137  │  └────────────────────┘  │
+   y=1215  ├──────────────────────────┤
+           │      sangria · 135       │
+           └──────────────────────────┘
+```
+
+**Por que 213 e não 135 em cima e embaixo.** Porque o corte 1:1 não é um recorte de emergência:
+**é a página do LinkedIn**, e página tem margem. Encostar o texto em y=150 dá 165px de folga no
+Instagram e **15px** no LinkedIn — o card sai apertado lá, e não há nada a fazer na exportação
+porque o problema nasceu na diagramação. A margem tem que estar dentro do corte.
+
+Repare que a área viva é **quadrada e do tamanho da largura útil**: os mesmos 924 nos dois eixos,
+com 213 de sangria em cima e embaixo. Diagramando ali, os dois formatos saem certos do mesmo
+arquivo — o vertical ganha respiro extra, o quadrado tem a margem que precisa, e nenhum dos dois
+foi rediagramado.
+
+O esqueleto traz o gabarito: `?card=N&safe=1` desenha o corte em vermelho e o quadrado vivo em
+verde.
 
 ---
 
@@ -475,13 +513,14 @@ Se qualquer item aparecer na arte, ela lê como feita por IA genérica:
 E mais:
 
 - [ ] Todos os PNGs abertos e olhados, um a um
-- [ ] **Nenhum texto coberto — nem por grafismo, nem por outro grafismo.** Em janelas, colagem
+- [ ] **Nenhum texto coberto — nem por grafismo, nem por outro grafismo.** Em terminal, colagem
       e em qualquer cascata os elementos se sobrepõem por projeto: o que come letra ali não é o
       texto do card sobre o desenho, é um elemento do desenho sobre o texto de outro
-- [ ] Nada essencial fora da área de segurança
+- [ ] Nada essencial fora do quadrado vivo de 924×924 — e **olhe o PDF quadrado**, não só o PNG:
+      é lá que a falta de margem aparece
 - [ ] Nenhum corte ou overflow — confira também os 8px finais de cada PNG
 - [ ] Print de app real revisado por dado pessoal: nome, e-mail, cliente, token
-- [ ] Acentos conferidos, se entrou fonte de fora dos seis estilos
+- [ ] Acentos conferidos, se entrou fonte de fora dos sete estilos
 - [ ] Ritmo: passando os cards em sequência, algo muda de posição ou escala
 - [ ] Alt text escrito, um por card
 - [ ] Legenda passou pela mesma régua anti-slop
@@ -493,7 +532,7 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 | O que você vai pensar | O que é verdade |
 |---|---|
 | "Com pressa, conversa de setup é hostil" | Roda uma vez e fica salva. Errar a lista invalida os oito cards |
-| "Descrevo os seis estilos, ele escolhe pelo nome" | Ninguém escolhe direção visual lendo. Abra as três referências fixas do estilo |
+| "Descrevo os sete estilos, ele escolhe pelo nome" | Ninguém escolhe direção visual lendo. Abra as três referências fixas do estilo |
 | "Adianto a arte enquanto ele responde o texto" | Arte nenhuma existe antes da etapa 7. Nem para adiantar, nem para ilustrar a conversa |
 | "Meu default escuro com acento neon é bonito e seguro" | É exatamente o visual que hoje lê como IA. Seguro e indistinguível são a mesma coisa |
 | "Renderizo uma capa rápida só para ele ver a direção" | Ela vem antes do nível de imagem: mostra uma peça que não é a que será produzida. E o texto ainda é provisório, então metade do que voltar é sobre palavra que já ia mudar |
@@ -527,4 +566,4 @@ existir**: não há mais preview de estilo. Sobra zero. Se o usuário pedir agen
 | Peça única, não swipeable | `post-writer-sms` |
 | Só a legenda do post | `caption-writer-sms` |
 
-O que é só desta skill: a ordem das oito etapas, os seis estilos fechados, o desenho antes da geração, e a montagem em código.
+O que é só desta skill: a ordem das oito etapas, os sete estilos fechados, o desenho antes da geração, e a montagem em código.

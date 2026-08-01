@@ -18,7 +18,7 @@ A regra original é "escolha um extremo estético e execute com precisão, sem m
 
 Bate com a checagem da `SKILL.md` e é a parte mais valiosa das duas skills. Se algum destes aparecer, a peça lê como gerada por IA:
 
-**Fontes** — Inter, Roboto, Arial, Helvetica, Open Sans, fonte de sistema como escolha principal, e **Space Grotesk**, que virou o default seguro de todo modelo. Os seis estilos já resolvem isso: nenhum par tipográfico deles está nesta lista.
+**Fontes** — Inter, Roboto, Arial, Helvetica, Open Sans, fonte de sistema como escolha principal, e **Space Grotesk**, que virou o default seguro de todo modelo. Os sete estilos já resolvem isso: nenhum par tipográfico deles está nesta lista.
 
 **Cor** — azul de SaaS `#3B82F6`, gradiente roxo sobre branco, gradiente índigo→violeta, iridescência.
 
@@ -28,7 +28,7 @@ Bate com a checagem da `SKILL.md` e é a parte mais valiosa das duas skills. Se 
 
 ### Atmosfera vem de material, não de cor
 
-A recomendação original é preferir textura, padrão e fotografia a campos de cor chapada. Traduzida: **um campo de cor sozinho não sustenta oito cards.** O que dá espessura é a camada de material — retícula, fibra, grão, erro de registro, grade milimetrada, papel rasgado. Cada um dos seis estilos declara qual material usa e em que opacidade, e três deles declaram **nenhum** — o que também é uma decisão, não uma omissão.
+A recomendação original é preferir textura, padrão e fotografia a campos de cor chapada. Traduzida: **um campo de cor sozinho não sustenta oito cards.** O que dá espessura é a camada de material — retícula, fibra, grão, erro de registro, grade milimetrada, papel rasgado. Cada um dos sete estilos declara qual material usa e em que opacidade, e quatro deles declaram **nenhum** — o que também é uma decisão, não uma omissão.
 
 ### Macro-respiro
 

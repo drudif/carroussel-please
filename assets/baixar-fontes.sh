@@ -11,8 +11,10 @@ DEST=${DEST:-.}
 
 pares () { case "$1" in
   brutalista)  echo "Anton:400|IBM Plex Mono:400";;
-  riso)        echo "Bricolage Grotesque:800|Newsreader:400";;
-  janelas)     echo "Archivo Black:400|Space Mono:400";;
+  riso)        echo "Antonio:700|Newsreader:400";;
+  riso-imagem) echo "Bricolage Grotesque:800|Newsreader:400";;
+  terminal)    echo "Cascadia Mono:300|Cascadia Mono:400";;
+  iridescente) echo "Hanken Grotesk:500|Hanken Grotesk:400";;
   colagem)     echo "Bodoni Moda:900|Karla:400";;
   neubrutal)   echo "Chivo:900|Chivo Mono:400";;
   editorial)   echo "Fraunces:700|Work Sans:400";;
@@ -22,8 +24,10 @@ esac; }
 if [ "${1:-}" = "--listar" ] || [ $# -eq 0 ]; then
   echo "estilos:"
   echo "  brutalista   Anton 400               / IBM Plex Mono 400"
-  echo "  riso         Bricolage Grotesque 800 / Newsreader 400"
-  echo "  janelas      Archivo Black 400       / Space Mono 400"
+  echo "  riso         Antonio 700             / Newsreader 400"
+  echo "  riso-imagem  Bricolage Grotesque 800 / Newsreader 400   (riso com imagem gerada)"
+  echo "  terminal     Cascadia Mono 300       / Cascadia Mono 400"
+  echo "  iridescente  Hanken Grotesk 500      / Hanken Grotesk 400"
   echo "  colagem      Bodoni Moda 900         / Karla 400"
   echo "  neubrutal    Chivo 900               / Chivo Mono 400"
   echo "  editorial    Fraunces 700            / Work Sans 400"

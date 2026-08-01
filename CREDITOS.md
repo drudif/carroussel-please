@@ -73,6 +73,6 @@ Além da tradução de meio, dois motivos:
 
 ## As referências visuais
 
-As dezoito imagens de `assets/referencias/` foram geradas com **Nano Banana Pro** (Google), via conector do Higgsfield, em 4:5 e 2K, a 2 créditos cada. Os prompts combinam: o briefing de sistema `posts inspired in editorial graphic posters`, a especificação de paleta e material de cada estilo, os três arquétipos de layout da `high-end-visual-design`, e a lista de antipadrões da `bencium` aplicada como negativa.
+As vinte e uma imagens de `assets/referencias/` foram geradas com **Nano Banana Pro** (Google), via conector do Higgsfield, em 4:5 e 2K, a 2 créditos cada. Os prompts combinam: o briefing de sistema `posts inspired in editorial graphic posters`, a especificação de paleta e material de cada estilo, os três arquétipos de layout da `high-end-visual-design`, e a lista de antipadrões da `bencium` aplicada como negativa.
 
-As fontes dos seis estilos são todas do Google Fonts, sob OFL ou Apache 2.0, com acentos pt-BR conferidos glifo a glifo: Anton, IBM Plex Mono, Bricolage Grotesque, Newsreader, Archivo Black, Space Mono, Bodoni Moda, Karla, Chivo, Chivo Mono, Fraunces, Work Sans.
+As fontes dos sete estilos são todas do Google Fonts, sob OFL ou Apache 2.0, com acentos pt-BR conferidos glifo a glifo: Anton, IBM Plex Mono, Antonio, Bricolage Grotesque, Newsreader, Cascadia Mono, Bodoni Moda, Karla, Chivo, Chivo Mono, Fraunces, Work Sans, Hanken Grotesk.

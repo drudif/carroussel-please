@@ -139,9 +139,11 @@ print('  conferência automática: ok' if not alerta else f'  {alerta} ponto(s) 
 PY
 
 # 4 · os dois PDFs
-#    Instagram é 4:5. O LinkedIn é QUADRADO, e sai do recorte central do mesmo PNG —
-#    é exatamente a área de segurança, e é para isso que ela existe desde o primeiro
-#    pixel. Não rediagrame: se algo essencial some no corte, o erro está no card.
+#    Instagram é 4:5. O LinkedIn é QUADRADO, e sai do recorte central do mesmo PNG.
+#    Não rediagrame: o recorte só entrega margem se a margem tiver sido reservada na
+#    diagramação — a área viva é o quadrado de 924x924 em x78..1002, y213..1137. Card
+#    diagramado com o texto em y=150 sai com 15px de respiro na página do LinkedIn, e
+#    nao ha nada que a exportacao possa fazer por ele.
 python3 - "$N" <<'PY'
 import sys, os
 from PIL import Image

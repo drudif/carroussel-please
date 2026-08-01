@@ -14,7 +14,7 @@ Vale nas etapas 0, 1, 3 e 5 — em toda pergunta que a skill faz.
 2. **Múltipla escolha sempre que couber.** Escolher entre opções nomeadas é mais rápido e mais preciso que redigir do zero. Ponha a sua recomendação em primeiro e diga que é a sua recomendação.
 3. **Aprovação a cada bloco, não no fim.** Cada etapa tem uma trava. Nada avança sem resposta explícita.
 4. **Pergunta pulada vira `[CONFIRMAR]` explícito**, nunca um palpite disfarçado de fato.
-5. **Nada de produção antes da aprovação.** Vale para os seis cards de arte e para o texto — refazer oito cards renderizados custa muito mais do que uma pergunta.
+5. **Nada de produção antes da aprovação.** Vale para os cards de arte e para o texto — refazer oito cards renderizados custa muito mais do que uma pergunta.
 
 O que **não** veio da `brainstorming`: o documento de spec, a passagem para `writing-plans`, o companion visual em navegador. Um carrossel não tem arquitetura para documentar; a spec dele é o `DIRECAO.md` e o `TEXTOS.md`.
 

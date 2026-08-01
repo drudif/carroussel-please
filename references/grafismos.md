@@ -76,7 +76,7 @@ No card, renderize com `fill:var(--tinta)` e `shape-rendering="crispEdges"` se f
 ### Textura de impressão
 
 **Cor chapada em 1080×1350 lê como exportação de software.** Todo estilo que cita impressão — e são
-quatro dos seis — precisa de uma camada de material permanente, mesmo os que parecem "limpos por
+quatro dos sete — precisa de uma camada de material permanente, mesmo os que parecem "limpos por
 definição". O brutalista vetorial foi definido sem material e teve que ser revisto: vetor limpo
 sobre tela grande não parece cartaz, parece PDF.
 
@@ -172,7 +172,7 @@ enquanto o resto do card é chapado.
 especificação inteira entra no prompt, antes do assunto — paleta em hex com o papel de cada cor,
 idioma visual, material, traço, e o que aquele estilo proíbe.
 
-**Não escreva o prompt do zero.** Cada um dos seis estilos tem um **bloco de prompt pronto** em
+**Não escreva o prompt do zero.** Cada um dos sete estilos tem um **bloco de prompt pronto** em
 [estilos.md](estilos.md), verificado. A montagem é sempre:
 
 ```
@@ -204,7 +204,7 @@ pede a mesma foto em tratamentos diferentes ao longo do carrossel.
 
 Este é o erro mais fácil de cometer na geração, porque o resultado sai bonito e passa despercebido: você escolhe uma imagem que combina com a **direção visual** em vez de uma que fala do **assunto do carrossel**.
 
-Um monitor antigo combina com um estilo de janelas de sistema. Uma pilha de papel combina com um cartaz suíço. Ambos são decoração de estilo — nenhum diz o que o carrossel está falando.
+Um monitor antigo combina com um estilo que cita tela. Uma pilha de papel combina com um cartaz suíço. Ambos são decoração de estilo — nenhum diz o que o carrossel está falando.
 
 **O teste da troca.** Pegue a imagem de uma direção e coloque na outra. Se continuar fazendo sentido, ela não era sobre o tema: era sobre o estilo. Imagem que fala do assunto não sobrevive à troca, porque ela pertence àquele conteúdo e não àquela paleta.
 
@@ -279,7 +279,7 @@ vira serigrafia. Sem isso vira meio-tom e some.
 
 Não existe acervo público de forma vetorial chapada do século XX: no Art Institute são **275
 obras em domínio público entre 1920 e 1975**, num acervo de 62 mil. O domínio público nos EUA
-para em ~1930, e é justamente o período que brutalismo, neo-brutalismo e janelas citam.
+para em ~1930, e é justamente o período que brutalismo e neo-brutalismo citam.
 Gravura acadêmica recolorida na paleta certa continua sendo gravura acadêmica — combina com a
 paleta e briga com tudo o mais.
 
