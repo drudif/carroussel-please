@@ -58,6 +58,17 @@ peça dependa de imagem escolhe exatamente ali**, e essa decisão só aparece se
 ele escolher fora da recomendação, diga o que muda em uma linha, ofereça mudar de nível **uma
 vez**, e siga com a escolha dele.
 
+### O critério roda nos dois sentidos
+
+A mesma pergunta que ordena os estilos **lê uma referência trazida pelo usuário**: olhe onde está
+a massa da peça — foto, forma ou vazio — e você tem o caminho que ela exige e o estilo de que ela
+está mais perto. É por isso que a oferta de mandar referência mora na etapa 1 e não na 2: ela
+responde à pergunta do nível, só que de trás para frente.
+
+O protocolo — as cinco perguntas da leitura, o que devolver ao usuário e a regra de que
+referência não vira um oitavo estilo — está na
+[etapa 1 da SKILL.md](../SKILL.md#se-ele-trouxer-uma-referência-própria).
+
 ## Escolha
 
 Os sete rodam **sem nenhum gerador de imagem** — todo grafismo é CSS/SVG. Dois mudam de patamar com gerador conectado:

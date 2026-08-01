@@ -56,6 +56,11 @@ Na hora de escolher o nível, a skill abre um **board** (`assets/board-niveis.jp
 caminhos lado a lado e os sete estilos agrupados por afinidade — o que cada caminho custa, e que
 cara ele tem. Ele se regera com `assets/board/gerar.sh`.
 
+**Você pode mandar a sua própria referência** em vez de responder a pergunta: de como a peça
+parece dá para deduzir o que ela custa para fazer, então a skill lê a referência e devolve qual
+caminho ela pede e de qual dos sete estilos ela está mais perto. Ela não vira um oitavo estilo —
+escolhe entre os sete e afina o escolhido.
+
 **O nível de imagem vem antes do estilo, e é de propósito.** Cada nível favorece estilos
 diferentes — terminal e iridescente nasceram sem foto, riso e colagem mudam de patamar com uma —,
 então a escolha do nível já ordena a lista. Os sete continuam à vista; o que muda é por onde a

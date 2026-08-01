@@ -169,6 +169,63 @@ Três coisas ditas junto, em uma linha cada:
 - **Banco depende do tema dar foto.** Relacionamento, viagem, comida, trabalho manual: rende.
   Um método, um conceito, uma ferramenta: não existe foto disso, e aí o desenho ganha
 
+### Se ele trouxer uma referência própria
+
+**Ofereça isso junto com o board, não depois:**
+
+> *"Se você já tem uma referência que te agradou — um post, um cartaz, um print —, me manda.
+> Eu leio ela e te digo qual desses caminhos ela pede."*
+
+Uma referência trazida pelo usuário **responde à pergunta da etapa 1 ao contrário**: em vez de
+ele escolher como as imagens são feitas, ele mostra como a peça parece, e de como ela parece se
+deduz o que ela custa para fazer. É o jeito mais confortável de responder essa etapa, e o único
+que não exige que ele entenda nada de produção.
+
+**Antes de olhar, desfaça a ambiguidade** — são duas coisas diferentes com o mesmo nome, e
+confundi-las coloca a foto do usuário dentro do card sem ninguém decidir isso:
+
+◇ **Isso é uma referência de como você quer que fique, ou é uma imagem para entrar na arte?**
+
+Imagem para entrar na arte é **material**, não referência: vai para o fluxo de quem entrega
+arquivo pronto, e os direitos de uso são de quem mandou — diga isso uma vez, sem sermão.
+
+**A leitura, em cinco perguntas.** São as mesmas cinco em qualquer referência, e as respostas
+caem direto no critério do funil:
+
+| o que olhar | e o que isso quer dizer |
+|---|---|
+| **Onde está a massa da peça** — foto, forma chapada, ou vazio | é o critério inteiro: define o caminho |
+| **A tipografia é o evento ou é legenda** | tipo gigante pede estilo de forma; tipo pequeno pede vazio ou foto |
+| **Quantas cores, e são chapadas ou têm rampa** | rampa contínua pede foto ou meio-tom; chapado dispensa os dois |
+| **Tem material — grão, retícula, fibra, textura — ou é limpo** | material impresso quase sempre veio de foto processada |
+| **A composição é split, cascata, bento ou centralizada** | diz qual arquétipo o carrossel vai puxar, e centralizada é sinal de iridescente |
+
+Devolva em **duas frases, sem jargão**, e nessa ordem: o que a peça precisa para existir, e de
+qual dos sete ela está mais perto.
+
+> *"Essa aí vive de foto tratada — dá para fazer com banco grátis, e fica ainda mais parecida
+> com imagem sob medida. Entre os sete, ela é praticamente a colagem."*
+
+**A referência não vira um oitavo estilo.** Ela escolhe entre os sete e afina o escolhido —
+paleta, peso do tipo, quanto de vazio. Direção inventada na hora sai bonita na capa e quebra no
+card 5, e é por isso que os sete são fechados. Se o usuário insistir em reproduzir a referência
+fora dos sete, é decisão dele: diga em uma linha que a direção não passou por teste de escala,
+e siga.
+
+**Se ele já escolheu "feitas sob medida", a referência não mexe no caminho.** Com gerador ligado
+os sete funcionam bem, e aí ela serve para duas coisas melhores: entra no **bloco de prompt** do
+estilo escolhido, e entra na geração como **mídia de referência** — o mesmo mecanismo que o laço
+do gabarito já usa para manter os sete cards irmãos.
+
+Grave no `DIRECAO.md`:
+
+```markdown
+referencia: caminho/do/arquivo.jpg · lida em AAAA-MM-DD · resolveu para colagem
+```
+
+E uma linha que evita um mal-entendido caro: **referência é referência, não modelo para copiar.**
+A peça sai no sistema do estilo escolhido, não decalcada — e é isso que a mantém sua.
+
 ### Se escolheu **feitas sob medida**
 
 ◇ **Você já tem conta em algum gerador de imagem?**
@@ -611,6 +668,8 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 | "Com pressa, conversa de setup é hostil" | Roda uma vez e fica salva. Errar a lista invalida os oito cards |
 | "Descrevo os sete estilos, ele escolhe pelo nome" | Ninguém escolhe direção visual lendo. Abra as três referências fixas do estilo |
 | "Pergunto o estilo primeiro, imagem depois" | Era assim, e não funcionava. O nível é o funil: perguntado depois, ele vira detalhe — e o estilo escolhido pode ser justamente o que menos aproveita o nível que ele tem |
+| "Ele mandou uma imagem, então é para usar no card" | Pergunte qual das duas coisas é. Referência é como ele quer que fique; imagem para entrar na arte é material, com direitos dele. Confundir põe a foto dentro do card sem ninguém ter decidido isso |
+| "A referência dele é a direção, vou reproduzir" | Ela escolhe entre os sete e afina o escolhido. Direção inventada na hora sai bonita na capa e quebra no card 5 — é a razão de os sete serem fechados |
 | "Mostro só os recomendados, é mais rápido" | O usuário precisa saber que são sete. O funil ordena, não esconde — e três deles servem em qualquer nível, o que é informação de decisão |
 | "Adianto a arte enquanto ele responde o texto" | Arte nenhuma existe antes da etapa 7. Nem para adiantar, nem para ilustrar a conversa |
 | "Meu default escuro com acento neon é bonito e seguro" | É exatamente o visual que hoje lê como IA. Seguro e indistinguível são a mesma coisa |
