@@ -1,6 +1,6 @@
 # Procedência
 
-A `carrossel` é **autossuficiente**: nada dentro dela depende de outra skill estar instalada. Isso é decisão de arquitetura, não conveniência — a promessa é `git clone` e funciona, e uma chamada em tempo de execução para uma skill ausente falha em silêncio na máquina de quem instalou.
+A `carroussel-please` é **autossuficiente**: nada dentro dela depende de outra skill estar instalada. Isso é decisão de arquitetura, não conveniência — a promessa é `git clone` e funciona, e uma chamada em tempo de execução para uma skill ausente falha em silêncio na máquina de quem instalou.
 
 Quatro skills foram incorporadas, em **três densidades diferentes**. A densidade foi escolhida pelo que sobrevive à tradução para o meio — uma peça estática de 1080×1350 — e pelo que pode ser redistribuído.
 
