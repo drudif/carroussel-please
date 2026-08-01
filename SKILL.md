@@ -174,9 +174,16 @@ Não avance sem resposta explícita. Se o usuário pedir mistura de dois estilos
 Ao fechar, registre em `DIRECAO.md` na pasta do trabalho: paleta em hex com o uso de cada cor,
 fontes com nome de arquivo, lógica de grade, e como cada tipo de card se comporta.
 
-**Registre também o nível de imagem da etapa 1.5, e qual gerador.** Sem isso a etapa 6 não sabe
-que existe gerador ligado e monta pelo caminho de quem não tem — foi assim que um Higgsfield
-conectado terminou sem laço de gabarito nenhum.
+**Registre o nível de imagem numa linha própria, com este formato exato** — o `exportar.sh` lê
+essa linha e se recusa a montar quando o nível diz gerador e não há gabarito na pasta:
+
+```markdown
+imagem: 1 · higs / nano_banana_pro
+```
+
+O número é o da etapa 1.5. Sem essa linha a etapa 6 não sabe que existe gerador ligado e monta
+pelo caminho de quem não tem — foi assim que um Higgsfield conectado terminou sem laço de
+gabarito nenhum. Os arquivos do laço ficam como `gabarito-NN.png` e `chapa-NN.png`.
 
 **Cheque os acentos antes de fechar.** Os doze pares dos seis estilos já foram conferidos glifo a glifo. Mas se o usuário trouxe fonte de marca, renderize `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` e olhe — o navegador troca só o glifo faltante por outra fonte, o que é pior do que quebrar, porque passa despercebido. Faltando: troque a fonte, ou use **`abrasileirar-fonte`** para desenhar os acentos no traço da própria fonte.
 

@@ -25,6 +25,40 @@ else
   BASE="cards.html"
 fi
 
+# ── trava do nível de imagem ───────────────────────────────────────────────────
+# Três testes seguidos falharam pelo mesmo motivo: a decisão da etapa 1.5 não
+# sobreviveu até aqui, e a arte foi montada pelo caminho de quem não tem gerador.
+# Prosa não segurou. Isto segura, porque roda sempre.
+DIR_MD=""
+[ -f DIRECAO.md ] && DIR_MD="DIRECAO.md"
+[ -f ../DIRECAO.md ] && DIR_MD="../DIRECAO.md"
+
+if [ -z "$DIR_MD" ]; then
+  echo "AVISO: não achei DIRECAO.md. A etapa 2 devia ter gravado — sem ele ninguém"
+  echo "       sabe qual paleta, fonte e nível de imagem foram aprovados."
+else
+  NIVEL=$(grep -i '^imagem:' "$DIR_MD" | head -1 | cut -d: -f2- | tr -d ' ')
+  case "$NIVEL" in
+    1*|gerador*)
+      # isole o status: com pipefail, o ls falhando num glob vazio derruba o teste
+      # inteiro e a trava dispara mesmo com o gabarito ali do lado
+      TEM=$(ls gabarito-*.png chapa-*.png ../gabarito/*.png 2>/dev/null | head -1 || true)
+      if [ -z "$TEM" ]; then
+        echo "PARADO — o DIRECAO.md diz nível 1 (gerador ligado) e não há gabarito nenhum aqui."
+        echo
+        echo "  Nível 1 não é 'ilustração gerada e colada no card'. O card inteiro nasce"
+        echo "  composto pelo gerador e a tipografia entra por cima, limpa. O laço está em"
+        echo "  references/geradores.md e os arquivos ficam como gabarito-NN.png e chapa-NN.png."
+        echo
+        echo "  Montar sem ele desperdiça a única coisa que o nível 1 compra, e cobra crédito"
+        echo "  por um resultado de nível 2."
+        echo
+        echo "  Se o laço já rodou e as chapas têm outro nome: FORCA=1 ./exportar.sh $N"
+        [ -z "${FORCA:-}" ] && exit 1
+      fi ;;
+  esac
+fi
+
 mkdir -p out
 python3 -m http.server "$PORTA" --directory "$RAIZ" >/dev/null 2>&1 &
 SRV=$!
