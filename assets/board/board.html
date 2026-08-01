@@ -40,12 +40,18 @@ h1{font-family:'BT';font-weight:500;font-size:62px;line-height:1.02;letter-spaci
 .cab p{font-size:21px;line-height:1.5;color:#333;margin-top:12px;max-width:1160px}
 .cab p b{font-weight:600;color:#161616}
 
-.fila{display:flex;gap:24px;margin-top:30px}
-.fig{width:352px}
-.fig img{width:352px;height:437px;object-fit:cover;display:block;
+.estilo{display:flex;gap:38px;margin-top:34px;align-items:flex-start}
+.estilo .info{width:392px;flex:none;padding-top:2px}
+.estilo h4{font-family:'BT';font-weight:500;font-size:30px;letter-spacing:-.012em}
+.estilo .info p{font-size:19px;line-height:1.45;color:#3A3A3A;margin-top:9px}
+/* as três variantes são os três ARQUÉTIPOS de layout do mesmo sistema: uma capa
+   bonita não prova nada, o que quebra no card 5 é o estilo não ter três composições */
+.tres{display:flex;gap:18px}
+.tres figure{width:326px}
+.tres img{width:326px;height:405px;object-fit:cover;display:block;
   box-shadow:0 0 0 1px rgba(0,0,0,.13)}
-.fig h4{font-family:'BT';font-weight:500;font-size:26px;margin-top:16px;letter-spacing:-.01em}
-.fig p{font-size:18px;line-height:1.44;color:#3A3A3A;margin-top:7px}
+.tres figcaption{font-family:'BM';font-size:14px;letter-spacing:.09em;text-transform:uppercase;
+  color:#6A6A6A;margin-top:9px}
 
 .pe{margin-top:64px;border-top:1px solid rgba(0,0,0,.25);padding-top:22px;
     font-family:'BM';font-size:16px;line-height:1.6;color:#4A4A4A;letter-spacing:.02em}
@@ -89,14 +95,27 @@ que funcionam melhor nele.</p>
          melhores sem.</p>
     </div>
   </div>
-  <div class="fila">
-    <div class="fig"><img src="../referencias/terminal-1-split.jpg">
+    <div class="estilo">
+    <div class="info">
       <h4>Terminal</h4>
-      <p>Fundo chumbo, letra de código leve, e cor só em fichas curtas. Cada cor quer dizer
-         uma coisa fixa.</p></div>
-    <div class="fig"><img src="../referencias/irid-2-cascata.jpg">
+      <p>Fundo chumbo, letra de código leve, e cor só em fichas curtas. Cada cor quer dizer uma coisa fixa: azul estrutura, verde valor, âmbar medida, magenta o que quebra.</p>
+    </div>
+    <div class="tres">
+      <figure><img src="../referencias/terminal-1-split.jpg"><figcaption>editorial split</figcaption></figure>
+      <figure><img src="../referencias/terminal-2-cascata.jpg"><figcaption>cascata z</figcaption></figure>
+      <figure><img src="../referencias/terminal-3-bento.jpg"><figcaption>bento assimétrico</figcaption></figure>
+    </div>
+  </div>
+  <div class="estilo">
+    <div class="info">
       <h4>Iridescente minimal</h4>
-      <p>Papel claro sempre, uma forma grande no meio e nada em volta. A cor vive só na forma.</p></div>
+      <p>Papel claro sempre, uma forma grande no meio e nada em volta. A cor vive só na forma, e é ela que muda de um card para o outro.</p>
+    </div>
+    <div class="tres">
+      <figure><img src="../referencias/irid-1-split.jpg"><figcaption>editorial split</figcaption></figure>
+      <figure><img src="../referencias/irid-2-cascata.jpg"><figcaption>cascata z</figcaption></figure>
+      <figure><img src="../referencias/irid-3-bento.jpg"><figcaption>bento assimétrico</figcaption></figure>
+    </div>
   </div>
 </div>
 
@@ -111,15 +130,27 @@ que funcionam melhor nele.</p>
          responder ao seu assunto em vez de ser a que existia.</p>
     </div>
   </div>
-  <div class="fila">
-    <div class="fig"><img src="../referencias/riso-3-bento.jpg">
+    <div class="estilo">
+    <div class="info">
       <h4>Risografia com textura</h4>
-      <p>Duas tintas que se cruzam e criam uma terceira cor. Erro de impressão de propósito,
-         retícula e fibra de papel.</p></div>
-    <div class="fig"><img src="../referencias/colagem-3-bento.jpg">
+      <p>Duas tintas que se cruzam e criam uma terceira cor. Erro de impressão de propósito, retícula grossa e fibra de papel por cima de tudo.</p>
+    </div>
+    <div class="tres">
+      <figure><img src="../referencias/riso-1-split.jpg"><figcaption>editorial split</figcaption></figure>
+      <figure><img src="../referencias/riso-2-cascata.jpg"><figcaption>cascata z</figcaption></figure>
+      <figure><img src="../referencias/riso-3-bento.jpg"><figcaption>bento assimétrico</figcaption></figure>
+    </div>
+  </div>
+  <div class="estilo">
+    <div class="info">
       <h4>Mixed media / colagem</h4>
-      <p>Camadas de origens diferentes no mesmo plano, com toda emenda à mostra: recorte, fita,
-         rabisco, papel milimetrado.</p></div>
+      <p>Camadas de origens diferentes no mesmo plano, com toda emenda à mostra: recorte de tesoura, fita, rabisco, papel milimetrado.</p>
+    </div>
+    <div class="tres">
+      <figure><img src="../referencias/colagem-1-split.jpg"><figcaption>editorial split</figcaption></figure>
+      <figure><img src="../referencias/colagem-2-cascata.jpg"><figcaption>cascata z</figcaption></figure>
+      <figure><img src="../referencias/colagem-3-bento.jpg"><figcaption>bento assimétrico</figcaption></figure>
+    </div>
   </div>
 </div>
 
@@ -134,25 +165,46 @@ que funcionam melhor nele.</p>
          você resolver ligar um gerador.</p>
     </div>
   </div>
-  <div class="fila">
-    <div class="fig"><img src="../referencias/brutalista-2-cascata.jpg">
+    <div class="estilo">
+    <div class="info">
       <h4>Brutalista vetorial</h4>
-      <p>Formas chapadas de aresta dura sobre papel cru, e tipografia gigante tratada como
-         material de construção.</p></div>
-    <div class="fig"><img src="../referencias/neubrutal-2-cascata.jpg">
+      <p>Formas chapadas de aresta dura sobre papel cru, e tipografia gigante tratada como material de construção. Uma cor de sinal, e só.</p>
+    </div>
+    <div class="tres">
+      <figure><img src="../referencias/brutalista-1-split.jpg"><figcaption>editorial split</figcaption></figure>
+      <figure><img src="../referencias/brutalista-2-cascata.jpg"><figcaption>cascata z</figcaption></figure>
+      <figure><img src="../referencias/brutalista-3-bento.jpg"><figcaption>bento assimétrico</figcaption></figure>
+    </div>
+  </div>
+  <div class="estilo">
+    <div class="info">
       <h4>Neo-brutalismo colorido</h4>
-      <p>Contorno preto grosso e sombra dura sobre campo saturado. Acerta fácil — e é o visual
-         mais usado hoje, então envelhece rápido.</p></div>
-    <div class="fig"><img src="../referencias/editorial-1-split.jpg">
+      <p>Contorno preto grosso e sombra dura sobre campo saturado. Acerta fácil — e é o visual mais usado em post de design hoje, então envelhece rápido.</p>
+    </div>
+    <div class="tres">
+      <figure><img src="../referencias/neubrutal-1-split.jpg"><figcaption>editorial split</figcaption></figure>
+      <figure><img src="../referencias/neubrutal-2-cascata.jpg"><figcaption>cascata z</figcaption></figure>
+      <figure><img src="../referencias/neubrutal-3-bento.jpg"><figcaption>bento assimétrico</figcaption></figure>
+    </div>
+  </div>
+  <div class="estilo">
+    <div class="info">
       <h4>Minimalista editorial quente</h4>
-      <p>Duas colunas, serifa de contraste alto e muito papel vazio. Aceita uma foto grande
-         sangrando por um lado — uma, não oito.</p></div>
+      <p>Duas colunas, serifa de contraste alto e muito papel vazio. Aceita uma foto grande sangrando por um lado — uma, não oito.</p>
+    </div>
+    <div class="tres">
+      <figure><img src="../referencias/editorial-1-split.jpg"><figcaption>editorial split</figcaption></figure>
+      <figure><img src="../referencias/editorial-2-cascata.jpg"><figcaption>cascata z</figcaption></figure>
+      <figure><img src="../referencias/editorial-3-bento.jpg"><figcaption>bento assimétrico</figcaption></figure>
+    </div>
   </div>
 </div>
 
 <div class="pe">
-  Sete estilos ao todo. Este board mostra por onde começar; as três referências de cada estilo
-  escolhido abrem depois, no tamanho cheio.<br>
+  Sete estilos, três composições cada — as vinte e uma referências que vêm dentro da skill.
+  As três de cada estilo são o mesmo sistema em três arquétipos de layout, e é por isso que são
+  três: uma capa bonita não prova nada, o que quebra no card 5 é o estilo não ter composição
+  para o card 5.<br>
   Nada aqui é a arte do seu carrossel — são referências fixas da skill, para você escolher a
   direção.
 </div>

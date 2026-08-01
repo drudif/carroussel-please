@@ -591,4 +591,23 @@ disputam a mesma camada; a paleta de um com a grade do outro quase sempre perde 
 
 ## Procedência das referências
 
+**As referências têm letreiro; os cards não.** É a única exceção à cauda `ABSOLUTELY NO TEXT` que
+vale para toda geração desta skill, e ela é deliberada: a referência existe para mostrar **como o
+tipo se comporta dentro daquele sistema** — que tamanho ocupa, onde pousa, quanto de vazio sobra
+em volta. Sem uma palavra na peça, o usuário está escolhendo um fundo, não uma direção.
+
+Isso não afrouxa o princípio 1: **nenhuma dessas imagens vira card.** Elas são vitrine, e o
+letreiro delas é decorativo — em inglês, curto, e ninguém vai lê-lo como conteúdo.
+
+Duas armadilhas apareceram gerando as duas com texto dos estilos novos, e valem para qualquer
+regeração:
+
+- **o modelo imprime o próprio prompt.** Pedir tipografia junto com a paleta em hex devolveu um
+  cartaz com `blue #6E8BFF / green #4ADE9B` escrito nele. Some com os hex de perto da instrução
+  de tipografia, ou proíba explicitamente: `no colour names, no hexadecimal codes`
+- **e imprime os escapes.** Pedir `"quiet systems" on two lines` devolveu a peça com o escape
+  literal desenhado nela. Diga *a primeira linha lê X, a segunda lê Y* — sem aspas e sem barra
+
+
+
 As vinte e uma imagens de `assets/referencias/` foram geradas com **Nano Banana Pro** via MCP do Higgsfield, em 4:5, 2K, a partir de prompts que combinam: o briefing de sistema acima, a especificação de paleta e material de cada estilo, os três arquétipos de layout do variance engine da `high-end-visual-design`, e a lista de antipadrões da `bencium-innovative-ux-designer` aplicada como negativa. Os masters em resolução cheia ficam fora do repositório.
