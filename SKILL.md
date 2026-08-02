@@ -43,6 +43,8 @@ digraph carrossel {
   "3 · Direção aprovada?" -> "2 · Estilo" [label="não"];
   "3 · Direção aprovada?" -> "4 · Conteúdo" [label="sim"];
   "4 · Conteúdo" -> "5 · Anti-slop" -> "6 · Texto aprovado?";
+  "4 · Conteúdo" -> "4 · Conteúdo"
+      [label="o mapa passa pela\nmeia passada antes\nde ser mostrado"];
   "0 · Perfil\n(inclui o inventário:\no que ele já tem)" -> "5 · Anti-slop"
       [label="texto pronto:\na 4 não roda", style=dashed];
   "6 · Texto aprovado?" -> "4 · Conteúdo" [label="não"];
@@ -340,14 +342,12 @@ fotos dele resolvem os cards que elas cobrem; a pergunta continua valendo para o
 **Foto que o usuário subiu entra como ela é — sem duotone, sem retícula, sem quantizar, sem
 remapear paleta.** O padrão é o inverso do banco de imagem, e de propósito: ele escolheu aquela
 foto porque é o produto dele, o trabalho dele, a pessoa certa. Tingir isso em duas tintas destrói
-exatamente o que ele queria mostrar. **Tratamento só se ele pedir.**
+exatamente o que ele queria mostrar.
 
-Ofereça **uma vez**, e siga:
-
-> *"Posso deixar essas fotos nas cores do estilo, se você quiser. Por mim entram como estão —
-> elas são suas e ficam melhores assim."*
-
-Disse que não, ou não respondeu: **entram como estão e o assunto morre ali.**
+**Não ofereça o tratamento aqui.** Nesta etapa ainda não existe estilo, então "nas cores do
+estilo" não quer dizer nada — é oferecer o tratamento de uma direção que não foi escolhida. **A
+pergunta é a última da etapa 2**, quando já dá para nomear a coisa. Aqui você só registra que há
+foto do usuário e segue.
 
 ### Sem tratamento, quem se adapta é o card
 
@@ -488,6 +488,38 @@ Uma coisa mais, dita **na hora da escolha**, não depois:
 
 Para a régua de gosto — escala, respiro, o que faz uma peça parecer cara e o que a faz parecer gerada por IA — use [references/visual.md](references/visual.md).
 
+### A última pergunta da etapa 2 — só se ele subiu fotos
+
+**Fechado o estilo, e só então**, resolva o que acontece com as fotos dele. Antes disso a
+pergunta não existe: "quer nas cores do estilo?" sem estilo escolhido é oferecer o tratamento de
+uma direção que ninguém decidiu.
+
+Agora dá para nomear a coisa:
+
+◇ **Suas fotos: entram inteiras, como você mandou, ou passam pelo tratamento da risografia?**
+
+| opção | o que acontece |
+|---|---|
+| **inteiras** — o padrão | cor, luz e detalhe da foto ficam intactos. O estilo aparece em volta: no tipo, nos campos chapados, na régua. **É o padrão porque a foto é dele** |
+| **no estilo** | a foto passa pelo material daquele estilo — duas tintas na riso, três degraus no brutalista, recorte na colagem — e a peça fica de uma superfície só |
+
+Diga o que se ganha e o que se perde, **uma linha cada**, com o nome do estilo escolhido:
+
+> *"Inteiras, a cor do produto sai fiel e o carrossel fica mais parecido com um catálogo.
+> Na risografia, tudo vira as duas tintas — fica mais peça e menos foto, e o azul do seu
+> produto deixa de ser aquele azul."*
+
+**Mostre, não descreva — e isto não fere a regra do preview.** Trate **uma** foto dele e ponha as
+duas lado a lado. É a foto, não é um card: sem texto, sem diagramação, sem paginação, e nada
+disso vai virar arte. A regra do preview existe contra card montado com texto provisório; aqui
+não há nem card nem texto. E o princípio da skill puxa para o mesmo lado — **ninguém escolhe
+direção visual lendo adjetivo.**
+
+Nunca mostre a foto tratada **dentro de uma maquete de card**. Aí vira preview, e aí a regra vale.
+
+Se não houver como mostrar imagem naquela superfície, descreva e pergunte assim mesmo — a
+resposta é dele em qualquer caso.
+
 ## Etapa 3 — Aprovação da direção
 
 Não avance sem resposta explícita.
@@ -514,11 +546,16 @@ do fluxo sem trava justamente quando sumiu em produção.
 A segunda é o nível de imagem:
 
 ```markdown
-imagem: 1 · higs / nano_banana_pro     ← feitas sob medida
-imagem: 2 · dupe + openverse           ← de banco grátis
-imagem: 2 · fotos do usuário           ← ele trouxe o material
-imagem: 3 · só desenho em código       ← sem foto nenhuma
+imagem: 1 · higs / nano_banana_pro              ← feitas sob medida
+imagem: 2 · dupe + openverse                    ← de banco grátis
+imagem: 2 · fotos do usuário · sem tratamento   ← ele trouxe, e ficam inteiras
+imagem: 2 · fotos do usuário · tratadas na riso ← ele trouxe, e pediu o estilo
+imagem: 3 · só desenho em código                ← sem foto nenhuma
 ```
+
+Havendo foto do usuário, **o sufixo é obrigatório** — é ele que carrega a resposta da última
+pergunta da etapa 2 até a montagem. Sem o sufixo, a etapa 7 decide sozinha, e o padrão silencioso
+de qualquer diagramador é aplicar o estilo.
 
 Foto do usuário é **2**, e não um número novo: para tudo o que vem depois — funil de estilos,
 tratamento, escolha de esqueleto — ela se comporta como banco. O que muda é a procedência, e
@@ -545,6 +582,21 @@ Uma por vez:
 ◇ Tem algum dado seu, número ou história, que só você poderia contar?
 
 ▸ Com isso, **proponha o mapa dos cards**: uma sinopse de uma linha por card, numerada, mais o gancho da capa. Não é o texto final, é o roteiro — e é sobre ele que o usuário opina.
+
+> **O mapa passa pelo anti-slop ANTES de ser mostrado.** Ele é texto que vai ao usuário, e a
+> regra da etapa 5 diz *qualquer texto* — sem exceção para rascunho. Aqui é meia passada, e
+> são estes três arquivos, porque o mapa é estrutura e ainda não é redação:
+>
+> - **`slots.md`** — este card deveria existir? É a pergunta do mapa por excelência, e no mapa
+>   ela custa uma linha; depois custa um card montado
+> - **`estruturas.md`** — contraste binário, fôrma de gênero, ritmo. Um mapa em que todo card é
+>   *"erro → correção"* já é uma fôrma, e ela sobrevive a qualquer reescrita de frase
+> - **a regra de claims** — número que entra na sinopse sai no card. `[CONFIRMAR]` desde já
+>
+> O `frases.md` fica para a etapa 5, que é onde existe frase para medir.
+>
+> **Por que aqui e não só depois:** reescrever frase com slop é barato. Reescrever **estrutura**
+> com slop é refazer o carrossel — e a estrutura se decide exatamente neste mapa.
 
 ◇ O mapa fecha assim?
 
@@ -600,7 +652,9 @@ que mantém a regra do grafismo mudo de pé.
 
 **A revisão de slop gráfico saiu daqui.** Ela produzia texto genérico para descrever problema visual — o oposto do que esta etapa existe para fazer. O que é visual se resolve olhando o PNG na etapa 7, com a checagem antipadrão.
 
-**Obrigatório antes de mostrar qualquer texto ao usuário.**
+**Obrigatório antes de mostrar qualquer texto ao usuário — e "qualquer" inclui o mapa da etapa
+4.** Lá roda a meia passada estrutural, com `slots.md`, `estruturas.md` e a regra de claims; aqui
+roda a passada inteira, com o `frases.md`, que só faz sentido quando existe frase.
 
 Se você passou o texto e não cortou nada, você não aplicou. Volte e aplique.
 
@@ -870,6 +924,8 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 | "Não tem navegador aqui, mas eu monto a arte de outro jeito" | Não existe outro jeito: a arte é impressa por um navegador, e é daí que vem a letra com acento. Entregue o texto e os arquivos prontos, e diga que a impressão é numa máquina com Chrome |
 | "A referência dele resolveu para colagem, então o estilo está escolhido" | Resolveu é sugestão sua; escolhido é ele dizendo sim. Pular esse passo faz a escolha voltar no meio da montagem, como pergunta sobre um card que não fecha — foi assim que a etapa 2 sumiu em produção |
 | "Não consigo abrir as referências aqui, sigo com a que faz mais sentido" | Não mostrar é problema de qualidade; **não perguntar é escolher no lugar dele.** Descreva, diga que escolher sem ver é pior, e pergunte assim mesmo |
+| "O mapa é só um rascunho, o anti-slop roda depois" | O mapa é texto que vai ao usuário, e a regra diz *qualquer texto*. Pior: é onde a ESTRUTURA se decide, e estrutura com slop não se conserta reescrevendo frase — se refaz o carrossel |
+| "Pergunto logo na etapa 1 se ele quer as fotos no estilo" | Não há estilo ainda. A pergunta é a última da etapa 2, quando dá para dizer o nome e mostrar uma foto dele tratada ao lado da original |
 | "A foto dele fica melhor na paleta do estilo, vou aplicar o duotone" | Foto do usuário entra COMO ELA É. Ele subiu aquela foto porque é o produto, o trabalho ou a pessoa dele — tingir em duas tintas destrói o que ele queria mostrar. Ofereça uma vez; sem o sim, não trate |
 | "Depois eu olho os PNGs" | Captura falha em silêncio. Olhe antes de entregar, um por um |
 | "Mando a pasta e ele abre" | Entrega é o que ele vê, não o que ele encontra |

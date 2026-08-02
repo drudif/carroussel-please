@@ -14,6 +14,21 @@ Antes de mostrar **qualquer** texto ao usuário — capa, corpo, CTA, legenda, a
 4. **[anti-slop/frases.md](anti-slop/frases.md)** — as famílias léxicas, flexionáveis
 5. **[anti-slop/exemplos.md](anti-slop/exemplos.md)** — transformações de referência, quando estiver em dúvida
 
+## Ela roda duas vezes, e a primeira é no mapa
+
+O fluxo mostra texto ao usuário em **dois** momentos, não um: o **mapa dos cards** na etapa 4, e o
+**texto final** na etapa 6. A regra diz *qualquer texto*, então vale nos dois.
+
+| quando | o que roda | por quê |
+|---|---|---|
+| **mapa da etapa 4** | `REGRAS.md` (claims) · `slots.md` · `estruturas.md` | o mapa é **estrutura**: quais cards existem, em que ordem, com que fôrma |
+| **texto da etapa 5** | os cinco, inteiros | agora existe frase, e o `frases.md` tem o que medir |
+
+**A primeira passada é a que mais economiza.** Frase com slop se reescreve numa linha. Fôrma com
+slop — todo card em "não é X, é Y", oito sinopses do mesmo comprimento, um card que só existe
+porque o template pedia — atravessa qualquer reescrita de frase, porque não está na frase. E no
+mapa ela custa uma linha para corrigir; depois custa um card montado.
+
 ## Os dois princípios
 
 **Densidade é o tell, não a instância.** Um "além disso" é humano; um por parágrafo é máquina. Procure famílias flexionáveis, não strings — o slop migra, "Em resumo" vira "Resumindo:".

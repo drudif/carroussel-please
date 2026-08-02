@@ -73,11 +73,13 @@ errado.
 ninguém ter decidido isso. Se ele mandar imagem sem dizer qual das duas é, pergunte — a
 distinção está na [etapa 1 da SKILL.md](../SKILL.md#se-ele-trouxer-uma-referência-própria).
 
-**Foto do usuário entra como ela é.** Sem duotone, sem retícula, sem quantizar — o oposto do que
-se faz com foto de banco, e de propósito: ele escolheu aquela foto porque é o produto dele, o
-trabalho dele, a pessoa certa. Ofereça o tratamento **uma vez** e siga; disse que não, entra como
-está. O que se adapta é o card, não a foto — a paleta do estilo aparece em volta, no tipo e nos
-campos, nunca por cima dela.
+**Foto do usuário entra como ela é**, por padrão: sem duotone, sem retícula, sem quantizar — o
+oposto do que se faz com foto de banco, e de propósito. Ele escolheu aquela foto porque é o
+produto dele, o trabalho dele, a pessoa certa.
+
+**Não pergunte aqui se ele quer o tratamento.** Ainda não há estilo, e a pergunta sem o nome do
+estilo não quer dizer nada. Ela é a **última da etapa 2**; aqui você só registra que existem
+fotos.
 
 E se as fotos não cobrirem todos os cards, diga agora — o resto sai de banco ou de desenho, e
 essa é uma decisão dele.
