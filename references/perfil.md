@@ -1,6 +1,17 @@
 # Perfil — a conversa de setup
 
-O perfil mora em `~/.claude/carrossel-perfil.md` e roda **uma vez**. Nos carrosséis seguintes, mostre um resumo de três linhas e pergunte só o que mudou.
+O perfil roda **uma vez**. Nos carrosséis seguintes, mostre um resumo de três linhas e pergunte
+só o que mudou.
+
+**Onde ele mora, nesta ordem:**
+
+1. `~/.claude/carrossel-perfil.md` — o padrão, e vale para todos os trabalhos
+2. `carrossel-perfil.md` **na pasta do trabalho** — quando não há `~/` gravável, que é o caso
+   de ambiente em container. Vale só para aquele trabalho, e é melhor que não ter nenhum
+
+Procure nos dois antes de perguntar qualquer coisa. Rodar o setup inteiro em cima de um perfil
+que existe é a queixa nº 1 de quem testa a skill, e ela não some só porque o arquivo mudou de
+lugar.
 
 ## Como conduzir
 

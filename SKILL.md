@@ -7,7 +7,8 @@ metadata:
   geracao-de-imagem: opcional; chave de API ou conector. Cinco dos sete estilos não precisam
   embutido: sprayantislop (Fernando Drudi) sobre Zero-Lero (MIT, Vinicius Stanula)
   destilado: brainstorming, carousel-writer-sms, bencium-innovative-ux-designer, high-end-visual-design
-  autossuficiente: não depende de nenhuma outra skill estar instalada — ver CREDITOS.md
+  autossuficiente: não depende de outra skill; fontes e referências viajam no pacote, sem rede
+  requisito: um navegador (Chrome/Chromium/Brave/Edge) + bash e python3. Sem navegador não há etapa 7
 ---
 
 # Carroussel Please
@@ -57,6 +58,41 @@ um detalhe e vira **funil**: cada nível favorece estilos diferentes, e a etapa 
 que funcionam melhor ali. O `exportar.sh` para se a decisão da etapa 1 não estiver gravada.
 
 O protocolo de como perguntar — uma por vez, múltipla escolha, trava a cada bloco — está em [references/texto.md](references/texto.md). Este arquivo diz *o quê* e *em que ordem*.
+
+## Onde a skill roda — e o que fazer quando falta o navegador
+
+**A arte não é gerada, é impressa.** A skill escreve uma página com o card e um navegador tira a
+foto dela em 1080×1350 — é daí que vem a letra certa, com acento. Isso torna o navegador um
+requisito duro, e é o único que a skill tem.
+
+Tudo o mais viaja dentro do pacote: as **15 fontes** em `assets/fontes/`, as **21 referências**,
+o **board**, os dois esqueletos e os quatro scripts. Para os sete estilos, **rede não é
+necessária em nenhum momento**.
+
+| precisa | onde vive | se faltar |
+|---|---|---|
+| **navegador** (Chrome, Chromium, Brave, Edge) | no sistema | **não há etapa 7.** O `exportar.sh` procura em macOS e Linux, no PATH e no cache do Playwright, e **para com mensagem** se não achar |
+| **bash e python3** | no sistema | sem os scripts, as travas não rodam — ver abaixo |
+| mostrar imagem ao usuário | `open`, artefato, ou imagem na mensagem | use a rota que a superfície tiver; o importante é **confirmar que ele viu** |
+| perfil | `~/.claude/`, ou a pasta do trabalho | pergunte o que faltar, e grave onde der |
+
+### Sem navegador, entregue menos — e diga que é menos
+
+**Não monte arte pela metade.** O que a skill entrega sem renderizador continua sendo trabalho
+real, e é isto:
+
+- o `TEXTOS.md` com o texto aprovado e a régua anti-slop passada
+- o `DIRECAO.md` fechado: paleta, fontes, grade, a linha `imagem:`
+- o `cards.html` e o `fonts.css` prontos, com as fontes já embutidas em base64
+
+E uma frase ao usuário, sem rodeio: *"aqui não tem como imprimir os PNGs. Está tudo pronto —
+numa máquina com Chrome, um comando entrega a arte."*
+
+**Por que isso importa mais do que parece.** Quase toda trava desta skill é executável: o
+`exportar.sh` sozinho tem sete pontos de parada, e o que faz a etapa 1 não ser pulada é o board
+abrir, não a regra estar escrita. **Prosa já falhou nos testes — foi por isso que as travas
+viraram código.** Num ambiente sem execução, a skill volta a ser a versão que já se sabe que não
+segura, e montar arte assim entrega defeito com cara de entrega.
 
 ## Três regras de conversa que valem o fluxo inteiro
 
@@ -141,7 +177,7 @@ do defeito.
 
 ## Etapa 0 — Perfil
 
-Leia `~/.claude/carrossel-perfil.md`. **Se existir**, mostre um resumo de três linhas e pergunte só o que muda neste trabalho. **Se não existir**, faça a conversa de setup e grave ao final.
+Leia `~/.claude/carrossel-perfil.md` — e, se não houver, `carrossel-perfil.md` na pasta do trabalho. **Se existir**, mostre um resumo de três linhas e pergunte só o que muda neste trabalho. **Se não existir em nenhum dos dois**, faça a conversa de setup e grave ao final, no primeiro caminho que for gravável.
 
 **Há um terceiro estado, e ele é pedido com frequência:** *"esquece o que está salvo, faz como
 se eu fosse novo"*. Quem acabou de instalar a skill quer testá-la na própria máquina, e o
@@ -769,6 +805,7 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 | "Ele tem as fotos, então não preciso perguntar do nível" | As fotos dele cobrem alguns cards, não o carrossel. Pergunte quantos, e resolva o resto com ele — não em silêncio, na entrega |
 | "Gero a imagem e ajusto o texto pra caber" | O texto passa a servir a imagem. Inverte a peça inteira |
 | "Isso é fácil de desenhar, gero mais rápido" | Gerar custa uma rodada de prompt, uma de download e uma de recorte. Um `<div>` custa uma linha |
+| "Não tem navegador aqui, mas eu monto a arte de outro jeito" | Não existe outro jeito: a arte é impressa por um navegador, e é daí que vem a letra com acento. Entregue o texto e os arquivos prontos, e diga que a impressão é numa máquina com Chrome |
 | "Depois eu olho os PNGs" | Captura falha em silêncio. Olhe antes de entregar, um por um |
 | "Mando a pasta e ele abre" | Entrega é o que ele vê, não o que ele encontra |
 | "Tenho gerador ligado, gero as ilustrações e monto" | Gerar ilustração solta é o nível 2 pagando preço de nível 1. Com gerador, o card inteiro nasce dele e a letra entra por cima — é o laço do gabarito |

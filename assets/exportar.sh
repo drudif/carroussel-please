@@ -10,8 +10,57 @@ set -euo pipefail
 N=${1:-8}
 SAFE=${2:-}
 PORTA=${PORTA:-8910}
-CHROME=${CHROME:-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"}
-[ -x "$CHROME" ] || { echo "Chrome não encontrado em: $CHROME"; exit 1; }
+
+# ── acha o navegador em vez de assumir onde ele está ──────────────────────────
+# O caminho do Chrome do macOS estava cravado aqui, e isso amarrava a skill a uma
+# máquina. A arte não é "gerada": ela é IMPRESSA por um navegador — é daí que vem
+# a letra certa, com acento. Sem navegador não existe etapa 7, e é melhor dizer
+# isso alto do que montar meia arte.
+acha_navegador () {
+  local c
+  for c in "${CHROME:-}" \
+      "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      "/Applications/Chromium.app/Contents/MacOS/Chromium" \
+      "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" \
+      "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge" \
+      /usr/bin/google-chrome /usr/bin/google-chrome-stable \
+      /usr/bin/chromium /usr/bin/chromium-browser \
+      /opt/google/chrome/chrome /snap/bin/chromium; do
+    [ -n "$c" ] && [ -x "$c" ] && { echo "$c"; return 0; }
+  done
+  for c in google-chrome google-chrome-stable chromium chromium-browser \
+           chrome microsoft-edge; do
+    command -v "$c" >/dev/null 2>&1 && { command -v "$c"; return 0; }
+  done
+  # container com Playwright instalado é o caso mais comum fora de desktop
+  c=$(ls -d "$HOME"/.cache/ms-playwright/chromium-*/chrome-linux/chrome 2>/dev/null | head -1 || true)
+  [ -n "$c" ] && [ -x "$c" ] && { echo "$c"; return 0; }
+  return 1
+}
+
+if ! CHROME=$(acha_navegador); then
+  echo "PARADO — não há navegador nesta máquina, e sem ele não sai arte."
+  echo
+  echo "  A arte deste carrossel não é gerada por modelo de imagem: ela é IMPRESSA."
+  echo "  A skill escreve uma página com o card e um navegador tira a foto dela — é"
+  echo "  por isso que a letra sai certa, com acento. Sem navegador, não há impressora."
+  echo
+  echo "  Procurei: Chrome, Chromium, Brave e Edge, no macOS e no Linux, no PATH e no"
+  echo "  cache do Playwright."
+  echo
+  echo "  O QUE FAZER — e diga isto ao usuário, não monte arte pela metade:"
+  echo "    · o texto, a direção e os arquivos JÁ ESTÃO prontos nesta pasta"
+  echo "    · num computador com Chrome, rodar este mesmo script entrega os PNGs"
+  echo "    · aqui, o que dá para entregar é o TEXTOS.md e o DIRECAO.md fechados"
+  echo
+  echo "  Se o navegador existe e eu não achei:   CHROME=/caminho/dele ./exportar.sh $N"
+  exit 1
+fi
+
+# rodando como root — container —, o sandbox do Chrome derruba a chamada
+SANDBOX=""
+[ "$(id -u)" = "0" ] && SANDBOX="--no-sandbox"
+
 [ -f cards.html ] || { echo "cards.html não está nesta pasta"; exit 1; }
 
 # O HTML lê o TEXTOS.md com fetch('../TEXTOS.md'). Servir só a pasta da arte põe o
@@ -99,7 +148,7 @@ sleep 2
 URL="http://localhost:$PORTA/$BASE"
 
 # 1 · erro de JS derruba a página inteira e a captura sai em branco, sem avisar
-ERRO=$("$CHROME" --headless --disable-gpu --virtual-time-budget=4000 --enable-logging=stderr \
+ERRO=$("$CHROME" --headless $SANDBOX --disable-gpu --virtual-time-budget=4000 --enable-logging=stderr \
   --log-level=0 --dump-dom "$URL?card=1" 2>&1 >/dev/null \
   | grep -i "uncaught" | head -3 || true)
 if [ -n "$ERRO" ]; then echo "ERRO DE JS — nada foi capturado:"; echo "$ERRO"; exit 1; fi
@@ -110,10 +159,10 @@ if [ -n "$ERRO" ]; then echo "ERRO DE JS — nada foi capturado:"; echo "$ERRO";
 #    até o timeout. Medido: sem o flag sai sozinho em 2s; com ele, nunca sai.
 for i in $(seq 1 "$N"); do
   nn=$(printf "%02d" "$i")
-  "$CHROME" --headless --disable-gpu --hide-scrollbars --virtual-time-budget=6000 \
+  "$CHROME" --headless $SANDBOX --disable-gpu --hide-scrollbars --virtual-time-budget=6000 \
     --window-size=1080,1350 --screenshot="out/card-$nn.png" \
     "$URL?card=$i" >/dev/null 2>&1
-  [ -n "$SAFE" ] && "$CHROME" --headless --disable-gpu --hide-scrollbars \
+  [ -n "$SAFE" ] && "$CHROME" --headless $SANDBOX --disable-gpu --hide-scrollbars \
     --virtual-time-budget=6000 --window-size=1080,1350 --screenshot="out/_safe-$nn.png" \
     "$URL?card=$i&safe=1" >/dev/null 2>&1
   echo "  card-$nn.png"

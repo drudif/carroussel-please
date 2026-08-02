@@ -43,7 +43,7 @@ A rota à prova disso é embutir em base64:
 import base64
 faces = []
 for nome, arq in [('Titulo','XanhMono-Regular.ttf'), ('Corpo','CascadiaMono.ttf')]:
-    b = open(f'/Users/você/Library/Fonts/{arq}','rb').read()
+    b = open(f'{PASTA_DA_SKILL}/assets/fontes/{arq}','rb').read()   # embutidas, não do sistema
     faces.append("@font-face{font-family:'%s';font-weight:400;font-style:normal;"
                  "src:url(data:font/ttf;base64,%s) format('truetype')}"
                  % (nome, base64.b64encode(b).decode()))
@@ -61,7 +61,7 @@ document.fonts.ready.then(() => console.log(document.fonts.check("64px 'Titulo'"
 ## Captura
 
 ```bash
-CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+CHROME=$(command -v chromium || command -v google-chrome || echo "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 python3 -m http.server 8910 >/dev/null 2>&1 & SRV=$!
 sleep 2
 for n in 1 2 3 4 5 6 7 8; do
