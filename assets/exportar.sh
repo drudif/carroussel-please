@@ -69,7 +69,11 @@ if [ -n "$NIVEL" ]; then
     1*|gerador*)
       # isole o status: com pipefail, o ls falhando num glob vazio derruba o teste
       # inteiro e a trava dispara mesmo com o gabarito ali do lado
-      TEM=$(ls gabarito-*.png chapa-*.png ../gabarito/*.png 2>/dev/null | head -1 || true)
+      # gfx/ está aqui porque o esqueleto usa essa pasta para grafismo e a documentação
+      # também — a trava dava falso negativo em produção com as chapas lá dentro, e a
+      # saída foi symlink. O glob é mais barato que a explicação.
+      TEM=$(ls gabarito-*.png chapa-*.png gfx/gabarito-*.png gfx/chapa-*.png \
+               ../gabarito/*.png 2>/dev/null | head -1 || true)
       if [ -z "$TEM" ]; then
         echo "PARADO — o DIRECAO.md diz nível 1 (gerador ligado) e não há gabarito nenhum aqui."
         echo

@@ -89,14 +89,24 @@ imagem só entra a pedido do usuário.
 
 ## As fontes
 
-Treze famílias, todas open-source do Google Fonts (OFL/Apache), **acentos pt-BR conferidos glifo a glifo** — `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` mais `º ª « » — " "`. Nenhuma sai de acervo pessoal: o carrossel precisa ser reproduzível por quem clonar a skill.
+Treze famílias, quinze faces, **todas OFL 1.1** e **embutidas em `assets/fontes/`** com a licença
+de cada uma ao lado. Acentos pt-BR conferidos glifo a glifo — `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` mais
+`º ª « » — " "`. Nenhuma sai de acervo pessoal: o carrossel precisa ser reproduzível por quem
+clonar a skill.
 
 ```bash
-assets/baixar-fontes.sh riso        # baixa o par, confere acentos, gera fonts.css
-assets/baixar-fontes.sh --listar
+assets/fontes.sh riso        # lê do disco, confere acentos, gera fonts.css — sem rede
+assets/fontes.sh --listar
+assets/fontes.sh "Space Mono:700"   # família avulsa: aqui sim, baixa
 ```
 
 O script grava `fonts.css` com as duas faces em base64, sob os nomes `Titulo` e `Corpo`.
+
+**Elas são embutidas e não baixadas** porque o piso de entrelinha e o comprimento de linha do
+laço do gabarito são calculados **a partir do arquivo**. Uma revisão da fonte no Google não
+quebraria nada — só faria esses números passarem a ser outros, em silêncio, num sistema que
+existe para eles serem estáveis entre os oito cards. E **não são subsetadas de propósito**: o
+navegador troca só o glifo faltante por outra fonte, sem erro, e os esqueletos usam `→` e `·`.
 
 ## A cauda que vale para os sete
 
@@ -125,28 +135,51 @@ Aconteceu em produção nos três estilos ao mesmo tempo: `ESSE CARROSSEL` com o
 entrelinha mínima = (topo do acento em caixa alta) − (transbordo óptico do S/O/C/G/U) + 0,04
 ```
 
-`baixar-fontes.sh` calcula isso sozinho e grava em `fonts.css` como variável CSS. Use a variável em vez do número:
+`fontes.sh` calcula isso sozinho e grava em `fonts.css` como variável CSS. Use a variável em vez do número:
 
 ```css
 h1 { line-height: var(--lh-titulo) }
 ```
 
-Os sete já vêm calculados:
+Os sete já vêm calculados, e são **duas** variáveis:
 
-| Estilo | Título | Piso | Se a linha de cima tiver `Q`, `J` ou `Ç` |
+| Estilo | Título | `--lh-titulo` | `--lh-titulo-q` |
 |---|---|---|---|
-| brutalista | Anton | **1,15** | 1,45 |
-| riso | Antonio | **1,18** | 1,49 |
-| riso *com imagem* | Bricolage Grotesque | **0,97** | 1,19 |
-| terminal | Cascadia Mono Light | **0,98** | 1,20 |
-| colagem | Bodoni Moda | **1,09** | 1,33 |
-| neubrutal | Chivo | **0,95** | 1,15 |
-| editorial | Fraunces | **0,99** | 1,19 |
-| iridescente | Hanken Grotesk Medium | **0,97** | 1,16 |
+| brutalista | Anton | **1,15** | 1,65 |
+| riso | Antonio | **1,18** | 1,69 |
+| riso *com imagem por baixo* | Bricolage Grotesque | **0,97** | 1,39 |
+| terminal | Cascadia Mono Light | **0,98** | 1,40 |
+| colagem | Bodoni Moda | **1,09** | 1,53 |
+| neubrutal | Chivo | **0,95** | 1,35 |
+| editorial | Fraunces | **0,99** | 1,39 |
+| iridescente | Hanken Grotesk Medium | **0,97** | 1,36 |
 
 Repare que **Anton é o caso extremo**: caixa alta de 0,867 em, mas o acento chega a 1,101 — mais alto que o próprio corpo da fonte. É por isso que ela é a única do conjunto que precisa de entrelinha maior que o tamanho da letra.
 
-A coluna da direita só entra quando as duas condições se encontram: a linha de cima tem descendente **e** a de baixo tem acento na mesma região horizontal. Não suba a entrelinha inteira por causa de um `Ç` que está no outro canto — olhe o PNG.
+### A segunda coluna resolve leitura, não colisão — e o esqueleto aplica sozinha
+
+A primeira coluna impede que o acento de baixo **encoste** na letra de cima. A segunda resolve
+outro defeito, que passou por essa trava e saiu num PNG entregue:
+
+```
+EM BROWNING,
+O ALMOÇO CHEGA
+NA PISTA          ← leu "NA PISTÁ"
+```
+
+A cedilha de `ALMOÇO` **não colidiu** — ficou 3px acima do último `A` de `NA PISTA`. E virou o
+acento dele. **Não encostar não é o critério; o critério é a cauda continuar pertencendo à
+palavra de cima.** Por isso a folga da segunda coluna é óptica, `0,24em`, e não os `0,04em`
+geométricos da primeira: com 0,04 são 3px e lê como acento; com 0,24 são 18px e a palavra volta.
+
+Duas consequências práticas:
+
+- **Não escolha a coluna na mão, e não olhe o PNG para decidir.** O esqueleto troca sozinho:
+  se qualquer linha do título que não seja a última tem `Ç`, `Q` ou `J`, ele usa
+  `--lh-titulo-q`. Julgamento visual foi o que deixou passar
+- **Não recalcule o piso por string.** Otimizar para o par de linhas real dá um número menor —
+  foi assim que o card acima ficou com `1.221`, que é geometricamente correto e
+  tipograficamente errado. **O piso publicado já é o pior caso da família, e é o número seguro**
 
 **O corpo de texto não precisa disso.** Ele é caixa baixa e é diagramado entre 1,35 e 1,45 por
 legibilidade, o que já passa folgado do piso — por isso o `--lh-corpo` que o script calcula é
@@ -180,7 +213,7 @@ altura da `.gfx` antes de fechar o texto.
 | tinta | `#111111` | tipografia, fios, blocos |
 | sinal | `#E33420` | um acento saturado, em no máximo dois elementos por card |
 
-**Fontes:** Anton 400 (`Titulo`) · IBM Plex Mono 400 (`Corpo`) — `baixar-fontes.sh brutalista`
+**Fontes:** Anton 400 (`Titulo`) · IBM Plex Mono 400 (`Corpo`) — `fontes.sh brutalista`
 
 **Entrelinha do título: `1.15`** — `var(--lh-titulo)`. A maior das sete; ver a régua da entrelinha.
 
@@ -232,7 +265,7 @@ interface. A dose é o que separa: acima de `.12` vira papel amassado e aí sim 
 | tinta B | `#FF6C2F` | laranja-riso — acento e a cópia deslocada |
 | cruzamento | — | **não escolha essa cor**: ela nasce do `multiply` das duas |
 
-**Fontes:** **Antonio 700** (`Titulo`) · Newsreader 400 (`Corpo`) — `baixar-fontes.sh riso`
+**Fontes:** **Antonio 700** (`Titulo`) · Newsreader 400 (`Corpo`) — `fontes.sh riso`
 
 **Entrelinha do título: `1.18`** — `var(--lh-titulo)`.
 
@@ -241,9 +274,36 @@ que é o padrão —, a Antonio é a certa: condensada, ela devolve linha longa 
 corpo grande que faz a chapa fora de registro ler como material em vez de defeito. O
 deslocamento de 9px que some numa Bricolage de 70px é evidente numa Antonio de 110px.
 
-Havendo imagem gerada por baixo, a Antonio perde: sobre foto reticulada a haste fina de uma
-condensada some, e aí volta a **Bricolage Grotesque 800**, que é pesada o bastante para se
-segurar — `baixar-fontes.sh riso-imagem`, entrelinha `0.97`.
+**A condição é a imagem passar POR BAIXO DO TIPO** — recorte de colagem, foto tratada sangrando
+atrás das letras. Aí a Antonio perde: sobre foto reticulada a haste fina de uma condensada some,
+e volta a **Bricolage Grotesque 800**, pesada o bastante para se segurar — `fontes.sh
+riso-imagem`.
+
+**Com laço do gabarito, a condição NÃO se aplica, e trocar a fonte estraga o laço.** O laço
+existe justamente para o tipo cair numa **zona chapada declarada**, nunca sobre retícula — e o
+que ele compra é o sistema de comprimento de linha que o gabarito acabou de entregar. Medido
+contra um gabarito real, pela régua de substituição:
+
+| | razão larg/caixa-alta | densidade | espessura da haste | desvio total |
+|---|---|---|---|---|
+| **gabarito** — o que o modelo desenhou | 4,192 | 0,600 | 15,2% | — |
+| Bricolage Grotesque 800 | 8,297 | 0,510 | 23,2% | **166%** |
+| Archivo 800 | 8,179 | 0,551 | 25,3% | 170% |
+| **Antonio 700** | 4,514 | 0,532 | 14,8% | **21,5%** |
+
+A Bricolage tem **o dobro da largura** do que o modelo desenha. Seguir a regra pela leitura
+antiga — *"havendo imagem gerada"*, que descreve exatamente o nível 1 — jogaria fora a única
+coisa que o laço compra. **Nível 1 é Antonio.**
+
+**O grão vai ACIMA do texto, e isso é regra, não gosto.** Tipo vetorial nítido sobre chapa
+impressa lê como adesivo colado por cima da peça — as duas superfícies não se encontram. Uma
+camada de grão ou fibra em `opacity:.13`, **acima de tudo, inclusive do texto**, é o que faz
+elas virarem a mesma coisa. Sobre chapa gerada use `.13` e não os `.34` do papel limpo: embaixo
+já existe a textura que veio na própria chapa, e somar as duas suja a letra.
+
+**Retícula por cima do texto continua proibida** — ela tem estrutura, e estrutura come a
+leitura. Grão fino não é retícula: é ruído sem forma, e a diferença é exatamente essa. Os dois
+esqueletos já trazem a camada montada no z-index certo.
 
 **Bloco de prompt** — cole antes do assunto em toda geração deste estilo:
 
@@ -309,7 +369,7 @@ As quatro cores têm papel semântico, e é isso que impede o estilo de virar co
 três das quatro por card**, cada uma dizendo a mesma coisa em todos os cards. Cor que muda de
 significado entre um card e outro é decoração.
 
-**Fontes:** Cascadia Mono **Light 300** (`Titulo`) · Cascadia Mono 400 (`Corpo`) — `baixar-fontes.sh terminal`
+**Fontes:** Cascadia Mono **Light 300** (`Titulo`) · Cascadia Mono 400 (`Corpo`) — `fontes.sh terminal`
 
 **Entrelinha do título: `0.98`** — `var(--lh-titulo)`. E **teto de corpo: 84px**. É o único dos sete
 com teto: aqui o título não cresce até encher o campo, ele para.
@@ -380,7 +440,7 @@ Uma ideia, muito vazio, e a cor entrando como marcação.
 | rosa | `#F0357A` | a cor que grita — uma zona por card |
 | verde-garrafa | `#0E5C3F` | a cor que segura — camada de fundo, sublinhado |
 
-**Fontes:** Bodoni Moda 900 (`Titulo`) · Karla 400 (`Corpo`) — `baixar-fontes.sh colagem`
+**Fontes:** Bodoni Moda 900 (`Titulo`) · Karla 400 (`Corpo`) — `fontes.sh colagem`
 
 **Entrelinha do título: `1.09`** — `var(--lh-titulo)`.
 
@@ -429,7 +489,7 @@ E cuidado com o segundo risco, que é de conteúdo: colagem convida a encher. Re
 
 Ao contrário dos outros cinco, **este estilo não tem uma cor de fundo fixa** — o campo muda a cada card. É parte do ritmo.
 
-**Fontes:** Chivo 900 (`Titulo`) · Chivo Mono 400 (`Corpo`) — `baixar-fontes.sh neubrutal`
+**Fontes:** Chivo 900 (`Titulo`) · Chivo Mono 400 (`Corpo`) — `fontes.sh neubrutal`
 
 **Entrelinha do título: `0.95`** — `var(--lh-titulo)`.
 
@@ -470,7 +530,7 @@ O segundo risco é de slop: a interface desenhada convida a escrever dentro dela
 | terracota | `#C4562F` | o acento, um por card |
 | oliva | `#6E7355` | segunda cor, só em card que precise de duas |
 
-**Fontes:** Fraunces 700 (`Titulo`) · Work Sans 400 (`Corpo`) — `baixar-fontes.sh editorial`
+**Fontes:** Fraunces 700 (`Titulo`) · Work Sans 400 (`Corpo`) — `fontes.sh editorial`
 
 **Entrelinha do título: `0.99`** — `var(--lh-titulo)`.
 
@@ -528,7 +588,7 @@ em vez de piscar.
 **Duas ou três cores de forma por card, nunca mais.** O que alterna de um card para o outro é
 qual delas domina — e é isso que faz a sequência cambiar.
 
-**Fontes:** Hanken Grotesk **Medium 500** (`Titulo`) · Hanken Grotesk 400 (`Corpo`) — `baixar-fontes.sh iridescente`
+**Fontes:** Hanken Grotesk **Medium 500** (`Titulo`) · Hanken Grotesk 400 (`Corpo`) — `fontes.sh iridescente`
 
 **Entrelinha do título: `0.97`** — `var(--lh-titulo)`.
 

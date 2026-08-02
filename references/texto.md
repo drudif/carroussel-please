@@ -10,6 +10,7 @@ Este arquivo condensa duas skills que a `carrossel` não pode depender de encont
 
 Vale nas etapas 0, 1, 3 e 5 — em toda pergunta que a skill faz.
 
+0. **Antes de perguntar, tente parsear.** O usuário responde em bloco — *"com mcp higsfield layout risografia"* fecha duas etapas de uma vez. Se a mensagem respondeu N etapas, ecoe as N decisões numa frase afirmativa e peça o aceite. A regra 1 vale para o que **falta**, e aplicá-la ao que já foi dito é o mesmo defeito que ela existe para evitar.
 1. **Uma pergunta por mensagem.** Bloco de cinco perguntas volta com três respondidas e duas perdidas.
 2. **Múltipla escolha sempre que couber.** Escolher entre opções nomeadas é mais rápido e mais preciso que redigir do zero. Ponha a sua recomendação em primeiro e diga que é a sua recomendação.
 3. **Aprovação a cada bloco, não no fim.** Cada etapa tem uma trava. Nada avança sem resposta explícita.

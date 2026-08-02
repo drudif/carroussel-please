@@ -119,6 +119,17 @@ h.style.display = '';
 título transbordando e zona de grafismo esmagada produzem PNG do tamanho certo, e por isso
 passam na conferência automática.
 
+**E a soma dos avanços do `hmtx` é otimista.** Dimensionar título em Python pela soma dos
+avanços e confiar na conta não fecha: medido nos oito cards de uma produção, o navegador
+renderizou entre **5,6% e 9,0% mais largo** — 1,079 · 1,085 · 1,056 · 1,090 · 1,082 — e um card
+transbordou a coluna. O `?medir=1` pegou; a conferência automática teria dito "ok" para um PNG
+de 1080×1350 com a palavra estourada.
+
+A folga varia com a fonte e com a string, então **não existe constante para copiar** — 1,08 vale
+para aquele par e aquelas palavras, não para o próximo trabalho. A regra é a que sobra:
+**nunca dimensione tipo só pela soma dos avanços.** Meça no navegador, e trate o `?medir=1` como
+obrigatório sempre que o corpo tiver sido calculado fora dele.
+
 **Chrome headless tem largura mínima de viewport de 500px.** Capturar com `--window-size=390,...` renderiza a 500 e **recorta** para 390 — o resultado parece conteúdo estourando a margem, mas é corte de captura. Para conferir layout estreito de verdade, meça em vez de olhar:
 
 ```js
@@ -216,7 +227,7 @@ Título em caixa alta com entrelinha apertada fica lindo em inglês e **quebra e
 do `Ã` e o agudo do `Ó` sobem acima da altura da linha e batem na letra de cima. Não lê como erro
 de espaçamento — lê como sujeira, e o leitor não sabe dizer o que está errado.
 
-`baixar-fontes.sh` calcula o piso de cada face e grava em `fonts.css`:
+`fontes.sh` calcula o piso de cada face e grava em `fonts.css`:
 
 ```css
 h1 { line-height: var(--lh-titulo) }
@@ -282,13 +293,23 @@ chat — lento, impreciso, e some a cada rodada.
 Inverta: o `TEXTOS.md` é a fonte, o HTML só desenha. Aí a instrução ao usuário — *edita o arquivo e
 me avisa* — passa a ser verdade mecânica, e a rodada de correção vira um comando.
 
-**No `TEXTOS.md`**, um bloco por card, com formato fixo:
+**No `TEXTOS.md`**, um cabeçalho que identifica o trabalho e um bloco por card:
+
+```markdown
+# Textos — Montana Grind · @timeriding
+```
 
 ```markdown
 **01 · capa**
 ESSE / CARROSSEL / NÃO FOI FEITO
 Foi feito com uma só skill — que você instala e usa agora.
 ```
+
+**O cabeçalho existe para ser lido de volta.** Ao carregar o arquivo — no início de uma sessão
+retomada, principalmente — **ecoe uma linha do que foi parseado**: *"li 8 cards, assinatura
+@timeriding, assunto Montana Grind"*. Custa uma frase e é a única coisa entre um arquivo mandado
+por engano e oito cards do carrossel errado. Aconteceu; só não passou porque o assunto era
+obviamente outro. Com dois trabalhos parecidos, passa.
 
 Primeira linha depois do cabeçalho é o título, segunda é o corpo, ` / ` marca quebra de linha.
 Explique isso **dentro do próprio arquivo**, em uma citação no topo — é lá que o usuário vai estar
@@ -404,7 +425,13 @@ Inverta uma coisa só.
 
 ## Medir a chapa antes de diagramar
 
-Posicionar título e lede na mão é chutar o que dá para medir. A chapa carrega a informação:
+Posicionar título e lede na mão é chutar o que dá para medir. A chapa carrega a informação.
+
+**E a ordem é esta, não a inversa.** Com gerador ligado, a proporção que sai da geração não é a
+que foi pedida — desvios de até 19 pontos, trocando de sinal entre rodadas ([a medição está em
+geradores.md](geradores.md#peça-zona-desenhada-nunca-fração--e-depois-meça)). Quem tenta forçar
+a chapa a caber num layout planejado antes queima crédito em vaivém de geometria. **A chapa
+manda, o layout cede:** gera, mede o vão que veio, dimensiona o tipo para ele.
 
 1. Classifique papel × tinta e faça o perfil de cobertura por linha, na coluna do título
 2. A maior corrida abaixo do limiar é o vão do título — lado, topo, altura

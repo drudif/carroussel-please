@@ -1,0 +1,189 @@
+<meta charset="utf-8">
+<title>Carrossel — chapa</title>
+<!--
+  ESQUELETO DE CHAPA — a mecânica do NÍVEL 1, quando há gerador conectado e o laço do
+  gabarito rodou. Use este quando o DIRECAO.md diz `imagem: 1`. Para os níveis 2 e 3,
+  use o esqueleto.html, que é o empilhamento rígido.
+
+  A DIFERENÇA, e é arquitetural — não é o mesmo arquivo com outra cor:
+
+    esqueleto.html    o grafismo é FILHO do card. head / txt / gfx / foot empilhados em
+                      flex; o texto reserva a altura que precisa e o grafismo fica com o
+                      que sobra. Sobreposição impossível por construção.
+
+    este arquivo      a chapa é o FUNDO SANGRADO do card inteiro, e o texto é posicionado
+                      em absoluto dentro de um vão MEDIDO nela. Não existe "o que sobra",
+                      então o flex não protege nada e o .gfx ficaria vazio.
+
+  Quem tenta adaptar um no outro reescreve a estrutura do card — e perde `white-space:
+  nowrap` no .tt e a troca automática de entrelinha no caminho. Aconteceu. Por isso são
+  dois arquivos e não um com if.
+
+  Uso:  cards.html?card=3        um card, no pixel exato
+        cards.html               folha de contato, para ver o ritmo
+        cards.html?card=3&safe=1 com o gabarito de área de segurança
+        cards.html?medir=1       largura do título e conferência do vão — RODE ANTES DE CAPTURAR
+-->
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{
+  /* ── preencher a partir do DIRECAO.md ── */
+  --papel:#F4F0E6;
+  --tinta:#111111;
+  --acento:#FF6C2F;
+  --texto:#111111;
+
+  --W:1080px; --H:1350px;
+  --M:78px;        /* margem lateral — a borda do quadrado vivo */
+  --VIVO-T:213px;  /* topo do quadrado vivo */
+  --VIVO-B:213px;  /* pé do quadrado vivo */
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#333}
+body{display:flex;flex-direction:column;align-items:center;gap:28px}
+/* a captura de um card só: sem isto o padding da folha de contato desloca o PNG e come
+   a mesma quantidade no pé, com o arquivo saindo do tamanho certo */
+body.solo{padding:0;gap:0}
+
+/* ═══ o card: a chapa é o fundo, o texto flutua no vão medido ═══ */
+.card{position:relative;width:var(--W);height:var(--H);overflow:hidden;
+      background:var(--papel);color:var(--tinta);
+      font-family:'Corpo',ui-monospace,monospace}
+
+/* a chapa sangra por definição: ela nasceu do gerador já composta para o card inteiro */
+.chapa{position:absolute;inset:0;z-index:1}
+.chapa img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ═══ o bloco de texto: absoluto, ancorado no vão ═══
+   Um bloco por card. `top` vem da medida da chapa, nunca de gosto — e o ?medir=1
+   confere se ele cabe na interseção entre o vão e o quadrado vivo. */
+.bloco{position:absolute;left:var(--M);right:var(--M);z-index:20}
+.bloco.pe{bottom:var(--VIVO-B)}                     /* ancorado no pé do quadrado vivo */
+
+.tt{font-family:'Titulo',serif;line-height:var(--lh-titulo,1.04);letter-spacing:-.02em;
+    color:var(--tinta);white-space:nowrap}
+/* white-space:nowrap é ESTRUTURAL: as quebras são as do TEXTOS.md, marcadas com " / ",
+   nunca as que o navegador decidir. Sem ele o PNG sai com a quebra errada e nada avisa. */
+/* .q entra sozinho quando uma linha que não é a última tem Ç, Q ou J — ver o script.
+   NÃO ponha e NÃO tire na mão. */
+.tt.q{line-height:var(--lh-titulo-q,var(--lh-titulo,1.04))}
+
+.lede{font-size:33px;line-height:1.45;color:var(--texto);max-width:820px}
+.regua{height:3px;background:var(--tinta);opacity:.9;margin:22px 0 20px}
+.meta{font-size:18px;letter-spacing:.16em;text-transform:uppercase}
+.head{position:absolute;left:var(--M);right:var(--M);top:var(--VIVO-T);z-index:30;
+      display:flex;justify-content:space-between}
+.foot{position:absolute;left:var(--M);right:var(--M);bottom:var(--VIVO-B);z-index:30;
+      display:flex;justify-content:flex-end}
+
+/* ═══ o grão vai ACIMA DE TUDO, inclusive do texto ═══
+   Tipo vetorial nítido sobre chapa impressa lê como adesivo colado por cima da peça. Uma
+   camada fina de grão sobre as duas superfícies é o que faz elas virarem a mesma coisa.
+   .13 e não .34: aqui embaixo já existe a textura que veio na própria chapa, e somar as
+   duas suja a letra.
+   RETÍCULA continua proibida por cima do texto — ela tem estrutura e come a leitura.
+   Grão fino não é retícula: é ruído sem forma, e a diferença é essa. */
+.grao{position:absolute;inset:0;z-index:45;pointer-events:none;mix-blend-mode:multiply;opacity:.13;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/><feColorMatrix type='saturate' values='0'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='.4'/></svg>")}
+</style>
+
+<div id="root"></div>
+<script>
+const E = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+/* Cauda de Ç, Q ou J que POUSA sobre a letra de baixo vira o acento dela — "O ALMOÇO
+   CHEGA / NA PISTA" leu "NA PISTÁ" com a cedilha 3px acima do A, sem encostar em nada.
+   O piso geométrico impede colisão, não leitura errada. A troca é automática de
+   propósito: julgamento visual foi o que deixou o defeito passar. */
+const CAUDA = /[ÇQJ]/;
+const temCauda = linhas => linhas.slice(0, -1).some(l => CAUDA.test(l));
+
+const T = (linhas, px, extra='') =>
+  `<h1 class="tt ${temCauda(linhas)?'q':''}" style="font-size:${px}px;${extra}">${
+    linhas.map(E).join('<br>')}</h1>`;
+
+/* ── o card de chapa ──────────────────────────────────────────────────────────────
+   vao   : {y, h} MEDIDOS na chapa — o vão chapado onde o tipo pode cair. Sai do passo 2
+           do laço (references/montagem.md#medir-a-chapa-antes-de-diagramar). Não estime:
+           a proporção que o gerador devolve não é a que foi pedida.
+   ancora: 'vao'  → o bloco começa no topo do vão medido
+           'pe'   → o bloco termina no pé do quadrado vivo, e o vão só serve de conferência
+   px    : corpo do título. Sai da MENOR de duas restrições — o comprimento de linha do
+           gabarito, que faz os cards lerem como série, e a altura do vão. Ver geradores.md. */
+const chapa = ({n, img, vao, t, px, lede, ancora='vao', cabeca=true, pe=true, claro=false}) => {
+  const cor = claro ? 'color:var(--papel)' : '';
+  const topo = ancora === 'vao' ? `top:${Math.max(vao.y, 213)}px` : '';
+  return `<div class="card" data-vao-y="${vao.y}" data-vao-h="${vao.h}">
+  <div class="chapa"><img src="${img}" alt=""></div>
+  ${cabeca ? `<div class="head" style="${cor}"><span class="meta">@handle</span>
+              <span class="meta">${n} / ${TOTAL}</span></div>` : ''}
+  <div class="bloco ${ancora === 'pe' ? 'pe' : ''}" style="${topo};${cor}">
+    ${T(t, px, cor)}
+    <div class="regua" ${claro ? 'style="background:var(--papel)"' : ''}></div>
+    <p class="lede" style="${cor}">${lede}</p>
+  </div>
+  ${pe ? `<div class="foot" style="${cor}"><span class="meta">arrasta →</span></div>` : ''}
+  <div class="grao"></div></div>`;
+};
+
+/* ═══════════ os cards ═══════════
+   O texto vem do TEXTOS.md — ver o padrão de carregamento em references/montagem.md.
+   O que fica aqui é direção de arte: corpo do título, âncora, vão medido. */
+const CARDS = [
+  () => chapa({n:'01', img:'gfx/chapa-01.png', vao:{y:648, h:420},
+               t:['TÍTULO','DOMINANTE'], px:118, ancora:'vao',
+               lede:'Subtítulo bem menor — razão de pelo menos 2,5 para 1 com o título.'}),
+  () => chapa({n:'02', img:'gfx/chapa-02.png', vao:{y:213, h:390},
+               t:['NOME DO','ITEM'], px:104, ancora:'vao',
+               lede:'Corpo de até 25 palavras. Uma ideia por card.'}),
+  () => chapa({n:'03', img:'gfx/chapa-03.png', vao:{y:760, h:377},
+               t:['FECHO.'], px:130, ancora:'pe', claro:true,
+               lede:'Frase de resumo e a chamada final.'}),
+];
+const TOTAL = String(CARDS.length).padStart(2,'0');
+
+const qs = new URLSearchParams(location.search);
+const q  = qs.get('card');
+if (q) document.body.classList.add('solo');
+const GUIA = qs.get('safe') ? `
+  <div style="position:absolute;left:0;right:0;top:135px;height:1080px;
+       border:2px dashed #E11;z-index:99;pointer-events:none"></div>
+  <div style="position:absolute;left:78px;top:213px;width:924px;height:924px;
+       border:2px dashed #0A0;z-index:99;pointer-events:none"></div>` : '';
+document.getElementById('root').innerHTML =
+  q ? CARDS[+q-1]() + GUIA : CARDS.map(f => f()).join('');
+
+/* -- ?medir=1 -------------------------------------------------------------------
+   Três conferências, e as três produzem PNG do tamanho certo quando falham — por isso
+   a conferência automática do exportar.sh não pega nenhuma delas:
+
+     1 · o título transborda a largura viva  (mede encolhendo o h1 até o conteúdo;
+         scrollWidth num bloco devolve a largura do BLOCO enquanto o texto couber)
+     2 · o bloco de texto sai do quadrado vivo de 924×924 — o que some no PDF do LinkedIn
+     3 · o bloco de texto sai do vão medido na chapa — o que põe letra sobre ilustração
+
+   A 3 é a que só existe neste esqueleto, e é o ponto inteiro dele. */
+if (qs.get('medir')) {
+  const LIM = 1080 - 78*2, VIVO_T = 213, VIVO_B = 1137;
+  const linhas = [...document.querySelectorAll('.card')].map((c, i) => {
+    const h = c.querySelector('.tt'), b = c.querySelector('.bloco');
+    const rc = c.getBoundingClientRect(), rb = b.getBoundingClientRect();
+    const topo = Math.round(rb.top - rc.top), base = Math.round(rb.bottom - rc.top);
+    const vy = +c.dataset.vaoY, vh = +c.dataset.vaoH;
+
+    let larg = null;
+    if (h) { h.style.display = 'inline-block';
+             larg = Math.ceil(h.getBoundingClientRect().width);
+             h.style.display = ''; }
+
+    const av = [];
+    if (larg !== null && larg > LIM) av.push(`TÍTULO TRANSBORDA (${larg} > ${LIM})`);
+    if (topo < VIVO_T || base > VIVO_B) av.push(`FORA DO QUADRADO VIVO (${topo}..${base})`);
+    if (topo < vy || base > vy + vh)    av.push(`FORA DO VÃO (${topo}..${base} vs ${vy}..${vy+vh})`);
+    return `card ${String(i+1).padStart(2,'0')}: titulo=${larg}px · bloco=${topo}..${base} `
+         + `· vao=${vy}..${vy+vh}  ${av.length ? '← ' + av.join(' · ') : 'ok'}`;
+  });
+  document.body.innerHTML = '<pre id="medida" style="color:#fff;font:16px/1.6 ui-monospace;padding:24px">'
+    + linhas.join('\n') + '</pre>';
+}
+</script>

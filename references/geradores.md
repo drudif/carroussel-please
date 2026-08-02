@@ -105,7 +105,9 @@ Chame `balance` **antes e depois** e reporte o custo real. Estimativa não serve
 
 Para grafismo com forma precisa ou diagrama, `nano_banana_pro` deu o melhor resultado — foi com ele que as dezoito referências dos estilos foram feitas, a 2 créditos cada.
 
-**Comportamento verificado:** job travado existe. Um em cada cinco fica em `in_progress` indefinidamente enquanto os vizinhos terminam em 20 segundos. O sintoma é a resposta trazer `width: 896` em vez da resolução pedida. **Não fique repolando** — dispare de novo com o prompt levemente reescrito; sai na segunda. E o proxy devolve 502 esporádico, que é transitório: espere e repita.
+**Comportamento verificado:** job travado existe, e é **raro** — 1 em 16 na medição mais longa.
+O sintoma está descrito em [Sobre jobs travados](#sobre-jobs-travados), no fim deste arquivo, e
+**não é** `width:896`. E o proxy devolve 502 esporádico, que é transitório: espere e repita.
 
 ### Magnific — como usar
 
@@ -130,7 +132,18 @@ Gerador de imagem **compõe tipografia melhor do que a gente compõe sozinho**, 
 que o navegador**. O laço abaixo usa cada um no que ele faz bem: a composição vem dele, as
 letras vêm do HTML.
 
-Verificado num carrossel de sete cards. Custo: 2 gerações por card, ~4 créditos.
+**Custo, em faixa — e diga a faixa ao usuário antes de começar, não o melhor caso.** Quem tem
+60 créditos precisa saber disso enquanto ainda dá para escolher outro caminho:
+
+| | por card | de onde vem |
+|---|---|---|
+| caminho feliz | 2 gerações, **4 créditos** | gabarito + chapa limpa |
+| geometria precisando de segunda tentativa | **6 a 8 créditos** | vaivém de proporção |
+
+Medido num carrossel real de 8 cards: **16 gerações, 32 créditos** — 5 das extras vieram do
+vaivém de geometria e 1 job travou. Aquela medição é de **antes** das duas correções abaixo (a
+âncora que prendia composição e a fração de zona que não sobrevivia), que existem justamente
+para eliminar esse vaivém; a faixa deve encolher, e o número acima não é a nova expectativa.
 
 ## Os cinco passos
 
@@ -173,17 +186,77 @@ tentativas, três defeitos, mesma raiz. **Numa chapa cheia não existe montagem 
 hierarquia de sacrifício só funciona quando há o que sacrificar, e depois da tinta seca só há
 cobrir.
 
-## Consistência entre os cards: âncora de referência
+### Peça zona desenhada, nunca fração — e depois meça
 
-Repetir o bloco de estilo em sete prompts dá sete cartazes primos, não irmãos. O que fecha a
-série é **gerar a capa primeiro e passá-la como mídia de referência nos outros seis**, pedindo
-*mesma impressão e mesmo sistema tipográfico, composição diferente*.
+As zonas são controláveis; **a proporção entre elas não é.** O modelo puxa tudo para o meio, e
+a fração escrita no prompt não sobrevive de uma rodada para a outra:
 
-O que atravessa os sete: as tintas, a textura, a fonte, a entrelinha, e **o comprimento de
-linha**. O que varia: de que borda a ilustração sangra, onde o título mora, a proporção entre
-zona de tipo e zona de imagem, qual campo é chapado.
+| pedi | veio |
+|---|---|
+| ilustração em 34% | 38%, depois 53% |
+| ilustração em 22% | 41% |
+| ilustração em 15% | 24% |
+| vazio até 84% | 64%, depois 78% |
+
+Os desvios chegaram a **19 pontos percentuais**, e mudaram de sinal entre gerações — calibrar
+um "+8%" com uma amostra e a amostra seguinte desmentir foi exatamente o que aconteceu. Por
+isso não existe tolerância publicável aqui: pedir fração com margem só mantém a ilusão de
+controle. **Não peça fração.** Peça uma faixa desenhada e um campo vazio grande, e aceite onde
+a divisa cair.
+
+**O veredito, e ele vale para o laço inteiro: a chapa manda, o layout cede.** Não se planeja o
+layout e se força a chapa a caber nele. Gera-se, **mede-se o vão chapado que veio**, e
+dimensiona-se o tipo para ele, com teto no comprimento de linha do gabarito.
+
+Como medir o vão está em [montagem.md](montagem.md#medir-a-chapa-antes-de-diagramar) — os
+cinco passos do perfil de cobertura. É o passo 2 do laço, e é a entrega real desta etapa.
+
+## Consistência entre os cards: a âncora carrega tinta, não composição
+
+Repetir o bloco de estilo em sete prompts dá sete cartazes primos, não irmãos. Passar a capa
+como **mídia de referência** nos outros fecha a impressão — e **sobrescreve a geometria pedida
+no texto do prompt**, por cima de instrução em caixa alta.
+
+Medido três vezes, mesmo assunto, `nano_banana_pro`:
+
+| geração | âncora? | pedi | o vão chapado começou em |
+|---|---|---|---|
+| capa v1 | — | "metade de baixo" | y 648 |
+| capa v2 | **sim** | "34%, ilustração compacta" | y 648 — *idêntico à v1* |
+| capa v3 | **não** | "30%" | **y 511** |
+| card 02 | **sim** | "62% de papel limpo" | y 749, tendo pedido 838 |
+
+Com âncora a proporção da referência voltou ao pixel, mesmo com `RECOMPOSED with a different
+vertical proportion` escrito em caixa alta. Sem âncora, a geometria obedeceu na primeira.
+
+**A regra:** a âncora serve para **tinta, retícula e traço**. Se a composição precisa mudar
+entre um card e outro — e num carrossel ela precisa, senão são sete paredes iguais —, **a
+âncora sai**.
+
+**E isso quase não dói, por um motivo estrutural:** num carrossel de nível 1 **a tipografia é
+HTML**. O principal serviço que a âncora prestava — manter o sistema tipográfico e o
+comprimento de linha entre os cards — já está garantido pelo CSS, que é o mesmo arquivo para
+os sete. Quem segura a impressão sozinho é o **bloco de estilo** do estilo escolhido, que é
+longo e específico de propósito.
+
+Então: o bloco de estilo é a âncora; a imagem não é. Use mídia de referência só quando a
+composição **deve** repetir — capa e fecho de uma série de duas peças, por exemplo.
+
+Sem essa correção foram 3 gerações perdidas, 6 créditos, num carrossel só.
 
 ## A régua de substituição de fonte
+
+**Ela vem pronta: `assets/regua-fonte.py`.**
+
+```bash
+./regua-fonte.py chapa-01.png 290,590 "O ALMOÇO"      # candidatas: todas as embutidas
+```
+
+Os três argumentos são o PNG, a faixa vertical `topo,base` da linha, e **a string que está
+naquela faixa**. A string é obrigatória: as três medidas dependem de quais letras foram medidas,
+e comparar `"AÇÃO"` contra uma amostra genérica dá razão largura/caixa-alta 1,31 contra 3,87 na
+**mesma fonte** — a régua elege a errada com toda a confiança. O script também para se a faixa
+estiver cortando o glifo, que distorce as três medidas juntas e em silêncio.
 
 Nenhuma open-source bate a fonte que o modelo desenha. Testei catorze, incluindo variáveis com
 eixo de largura. **Casar só a largura não basta** — são três medidas independentes:
@@ -245,3 +318,14 @@ custa dois créditos e pode travar.
 `width:896` na resposta **não** é sinal de travamento — é o estado intermediário, e o mesmo job
 completa em 1856 depois. Travado é o que fica em `in_progress` depois de três consultas
 seguidas. Aí sim: re-dispare com o prompt reescrito, não fique consultando.
+
+Frequência medida: **1 em 16**, não 1 em 5.
+
+### Quando o observado contradiz o que está gravado, atualize o perfil
+
+O `~/.claude/carrossel-perfil.md` carregou o diagnóstico velho de job travado — `1 em 5`,
+sintoma `width:896` — depois de este arquivo já ter sido corrigido. Perfil só escrito na etapa 0
+envelhece calado, e o custo é você desistir de um job que ia completar.
+
+**Então: comportamento de gerador que você observar e que contradiga o perfil, corrija o perfil
+na hora**, com a data. É a única linha do fluxo que a etapa 7 tem permissão de escrever ali.

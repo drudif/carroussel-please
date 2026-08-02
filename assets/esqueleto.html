@@ -50,6 +50,9 @@ body{display:flex;flex-direction:column;align-items:center;gap:28px}
    TEXTOS.md, marcadas com " / " — nunca as que o navegador decidir. */
 .tt{font-family:'Titulo',serif;line-height:var(--lh-titulo,1.04);letter-spacing:-.02em;
     position:relative;z-index:20;color:var(--tinta);white-space:nowrap}
+/* .q entra sozinho quando uma linha que não é a última tem Ç, Q ou J — ver o comentário
+   no script. NÃO ponha e NÃO tire na mão. */
+.tt.q{line-height:var(--lh-titulo-q,var(--lh-titulo,1.04))}
 .tt s{text-decoration:none;position:relative;display:inline-block;white-space:nowrap}
 /* erro de registro: some com .flat, escala com o corpo */
 .tt s::before{content:attr(d);position:absolute;left:5px;top:4px;
@@ -91,8 +94,17 @@ body{display:flex;flex-direction:column;align-items:center;gap:28px}
 <div id="root"></div>
 <script>
 const E = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+/* Cauda de Ç, Q ou J que POUSA sobre a letra de baixo vira o acento dela — "O ALMOÇO
+   CHEGA / NA PISTA" leu "NA PISTÁ" com a cedilha 3px acima do A, sem encostar em nada.
+   O piso geométrico não pega isso: ele impede colisão, não leitura errada. Por isso a
+   troca é AUTOMÁTICA e não julgamento visual — foi olhar o PNG e decidir na mão que
+   deixou o defeito passar. A última linha não conta: não há linha abaixo dela. */
+const CAUDA = /[ÇQJ]/;
+const temCauda = linhas => linhas.slice(0, -1).some(l => CAUDA.test(l));
+
 const T = (linhas, px, extra='') =>
-  `<h1 class="tt ${px>=120?'xl':''}" style="font-size:${px}px;${extra}">${
+  `<h1 class="tt ${px>=120?'xl':''} ${temCauda(linhas)?'q':''}" style="font-size:${px}px;${extra}">${
     linhas.map(l => `<s d="${E(l)}">${E(l)}</s>`).join('<br>')}</h1>`;
 const U = (...ls) => `<div class="urls">${ls.map(l => `<b>${l}</b>`).join('')}</div>`;
 const head = n => `<div class="head"><span class="meta">@handle</span><span class="meta">${n} / ${TOTAL}</span></div>`;

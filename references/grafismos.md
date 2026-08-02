@@ -253,6 +253,19 @@ im.crop((m, m, w-m, h-m)).save('gerado-crop.png')
 
 ---
 
+## O alt text é o melhor briefing de imagem que existe na pasta
+
+O alt text de cada card é escrito na etapa 4, **antes de a arte existir**, e descreve o que o
+leitor deveria ver. Isso faz dele um briefing melhor do que qualquer assunto inventado na hora
+de gerar: ele já passou pela entrevista, já está no assunto do card, e já foi aprovado.
+
+> *"faixa laranja com o contorno de uma piscina vazia vista de cima — ralo no meio e escada
+> num canto"*
+
+Use como assunto da chapa ou do desenho. E **confira a volta**: se a arte divergiu, o alt text
+virou descrição falsa de uma imagem real, que é pior do que alt text ausente. A checagem da
+etapa 7 pede isso explicitamente.
+
 ## Banco de imagem — se buscar assunto, nunca estilo
 
 Verificado contra três bancos. Pedir **estilo** devolve o que o rótulo significa para quem sobe

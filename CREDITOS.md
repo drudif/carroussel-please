@@ -75,4 +75,26 @@ Além da tradução de meio, dois motivos:
 
 As vinte e uma imagens de `assets/referencias/` foram geradas com **Nano Banana Pro** (Google), via conector do Higgsfield, em 4:5 e 2K, a 2 créditos cada. Os prompts combinam: o briefing de sistema `posts inspired in editorial graphic posters`, a especificação de paleta e material de cada estilo, os três arquétipos de layout da `high-end-visual-design`, e a lista de antipadrões da `bencium` aplicada como negativa.
 
-As fontes dos sete estilos são todas do Google Fonts, sob OFL ou Apache 2.0, com acentos pt-BR conferidos glifo a glifo: Anton, IBM Plex Mono, Antonio, Bricolage Grotesque, Newsreader, Cascadia Mono, Bodoni Moda, Karla, Chivo, Chivo Mono, Fraunces, Work Sans, Hanken Grotesk.
+## As fontes
+
+As treze famílias dos sete estilos — **quinze faces, 1,8 MB** — estão **embutidas** em
+`assets/fontes/`, e não baixadas em tempo de execução. Todas vieram do Google Fonts e **todas
+são OFL 1.1**, não OFL-ou-Apache como esta linha dizia antes de eu conferir arquivo por arquivo.
+A licença de cada família viaja junto, em `assets/fontes/LICENCA-<familia>.txt`, que é o que a
+OFL exige de quem redistribui.
+
+Anton · IBM Plex Mono · Antonio · Bricolage Grotesque · Newsreader · Cascadia Mono · Bodoni Moda
+· Karla · Chivo · Chivo Mono · Fraunces · Work Sans · Hanken Grotesk. Acentos pt-BR conferidos
+glifo a glifo nas quinze — o `fontes.sh` reconfere a cada execução e avisa se faltar algum.
+
+**Por que embutidas e não baixadas**, já que baixar funcionava: o piso de entrelinha e o
+comprimento de linha do laço do gabarito são calculados **a partir do arquivo**. Uma revisão da
+fonte no Google não quebraria nada — ela só faria esses números passarem a ser outros, em
+silêncio, num sistema que existe para eles serem estáveis entre os oito cards. E o download
+dependia de mandar um User-Agent antigo para a API devolver TTF em vez de woff2, que é
+comportamento não documentado.
+
+**Não subsetadas, de propósito.** Reduzir aos glifos usados levaria os 1,8 MB para uns 200 KB, e
+reintroduziria exatamente a falha que o `montagem.md` gasta um parágrafo avisando: o navegador
+troca **só o glifo faltante** por outra fonte, sem erro no console. Os esqueletos usam `→` no pé
+e `·` na paginação. 1,5 MB é barato perto de uma classe nova de erro silencioso.

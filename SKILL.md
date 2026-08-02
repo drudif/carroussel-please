@@ -74,6 +74,39 @@ mudar. Duas vezes em teste a conversa parou para discutir um card que não exist
 `assets/referencias/`, que são imagens de verdade e mostram o estilo em três arquétipos de
 layout. Escolhe-se olhando aquilo.
 
+### Retomando um trabalho: as etapas já respondidas não se refazem
+
+O fluxo está escrito para quem começa do zero, e **metade das sessões reais não começa do zero.**
+O usuário chega com um `TEXTOS.md` aprovado numa conversa anterior e decide estilo e nível numa
+frase só — *"com mcp higsfield layout risografia"*. Rodar as oito etapas em cima disso é
+exatamente a queixa nº 1 de quem testa a skill, com a agravante de que agora tem razão.
+
+| o que existe | o que isso fecha |
+|---|---|
+| `TEXTOS.md` com os blocos no formato | **etapas 4, 5 e 6** |
+| `DIRECAO.md` com paleta, fontes e a linha `imagem:` | **etapas 1, 2 e 3** |
+| o usuário nomeia estilo e nível na mesma frase | **etapas 1 e 2** |
+| chapas ou gabaritos na pasta | o laço já rodou — **não regere** |
+
+O que sobra é gravar o que falta no `DIRECAO.md` e ir para a etapa 7. E a confirmação vira **uma
+linha só, afirmativa**, nunca uma bateria de perguntas:
+
+> *"Montana Grind, 8 cards, @timeriding, risografia, gerador ligado. Certo?"*
+
+**Antes de retomar, ecoe o que você leu do arquivo.** Uma linha: *"li 8 cards, assinatura
+@timeriding, assunto Montana Grind"*. Custa uma frase e pega o erro que quase produziu um
+carrossel inteiro do assunto errado — o usuário mandou o `TEXTOS.md` de outro trabalho, e só não
+passou porque o conteúdo era obviamente de outro tema. Com dois trabalhos parecidos, passa.
+
+### Antes de perguntar, tente parsear
+
+A regra de **uma pergunta por mensagem** existe para o usuário não perder resposta num bloco de
+cinco. Ela **não** autoriza reperguntar item a item o que ele já disse numa linha — aí ela vira o
+próprio defeito que devia evitar.
+
+Se a mensagem dele respondeu N etapas, **ecoe as N decisões numa frase afirmativa e peça o
+aceite**. A regra de uma por vez vale para o que **falta**.
+
 ### Nunca pergunte duas vezes a mesma coisa
 
 Na etapa 0 você já ficou sabendo: **quem assina, onde publica, o assunto e quantos cards.**
@@ -480,20 +513,42 @@ O laço, em uma linha cada — os cinco passos completos estão no arquivo:
 1. **Gera o card inteiro, com título e sub.** O texto no prompt não é para usar: é para o modelo
    ter o que diagramar. Sem texto ele devolve ilustração, não cartaz
 2. **Mede a chapa.** É esta a entrega da etapa — ela sobrevive mesmo que a imagem seja jogada fora
-3. **Acha a fonte open-source mais próxima**, pela régua de três medidas
-4. **Refaz sem texto**, passando a primeira geração como **mídia de referência** — gerar do zero
-   devolve outra composição e o gabarito se perde
+3. **Acha a fonte open-source mais próxima:** `assets/regua-fonte.py <chapa.png> <topo,base>
+   "<a string que está ali>" ` compara as três medidas contra todas as faces embutidas e elege
+4. **Refaz sem texto.** Gerar do zero devolve outra composição e o gabarito se perde
 5. **Monta o HTML por cima**, com o texto vindo do `TEXTOS.md`
 
-Duas coisas que decidem se o laço fecha, e ambas moram no prompt da geração: as **três zonas
-declaradas**, sem as quais a chapa nasce cheia e nenhuma montagem é possível; e a **âncora de
-referência**, gerar a capa primeiro e passá-la nos outros cards, sem a qual saem cartazes primos
-em vez de irmãos.
+**A regra que custa crédito quando se esquece dela: a chapa manda, o layout cede.** A proporção
+que o gerador devolve não é a que foi pedida — desvios medidos de até 19 pontos, trocando de
+sinal entre rodadas. Não planeje o layout e force a chapa a caber nele: gere, meça o vão que
+veio, dimensione o tipo para ele. Pedir fração no prompt não funciona; peça faixa desenhada e
+campo vazio grande.
 
-Depois do laço, a montagem segue os passos abaixo normalmente — o esqueleto continua sendo a
-mecânica, com a chapa entrando como fundo e as coordenadas medidas mandando no tipo.
+**E a âncora de referência carrega tinta, não composição.** Passar a capa como mídia de
+referência sobrescreve a geometria do prompt, por cima de instrução em caixa alta — três
+gerações voltaram com a proporção idêntica ao pixel. Se a composição precisa mudar entre os
+cards, e num carrossel precisa, **a âncora sai**. Quem mantém os cards irmãos é o bloco de
+estilo, e a tipografia já é a mesma porque é o mesmo CSS.
 
-1. Copie `assets/esqueleto.html` para a pasta do trabalho e aplique a direção aprovada. **O HTML lê `TEXTOS.md`; ele não guarda texto**
+### O esqueleto do nível 1 é outro arquivo
+
+| a linha `imagem:` do `DIRECAO.md` diz | copie |
+|---|---|
+| `1 · <gerador>` | **`assets/esqueleto-chapa.html`** |
+| `2 · <banco>` ou `3 · só desenho` | `assets/esqueleto.html` |
+
+Não são o mesmo arquivo com outra cor. No `esqueleto.html` o grafismo é **filho** do card e o
+empilhamento rígido torna sobreposição impossível por construção. No nível 1 a chapa é o **fundo
+sangrado do card inteiro** e o texto é absoluto dentro de um vão medido — não existe "o que
+sobra", então o `flex` não protege nada e o `.gfx` fica vazio. Quem adapta um no outro reescreve
+a estrutura do card, que é exatamente o que o passo 1 abaixo proíbe, e perde `white-space:nowrap`
+e a troca automática de entrelinha no caminho. Já aconteceu.
+
+O `?medir=1` do `esqueleto-chapa.html` confere três coisas, e as três produzem PNG do tamanho
+certo quando falham: título transbordando, bloco fora do quadrado vivo, e **bloco fora do vão
+medido** — que é letra caindo sobre ilustração.
+
+1. Copie o esqueleto da tabela acima para a pasta do trabalho e aplique a direção aprovada. **O HTML lê `TEXTOS.md`; ele não guarda texto**
 
    **Copie e troque valores. Não reescreva o CSS do zero.** Parece mais rápido escrever um
    arquivo limpo com a direção já aplicada, e é onde a produção quebra: o esqueleto carrega
@@ -503,10 +558,15 @@ mecânica, com a chapa entrando como fundo e as coordenadas medidas mandando no 
    descobre depois de capturar, olhando. **Mude cor, fonte, tamanho e composição; a mecânica
    fica.** Vale o mesmo para os scripts: `exportar.sh` já traz o laço de captura, a checagem de
    erro de JS e a conferência dos PNGs. Reimplementar isso custa as armadilhas de novo
-2. `assets/baixar-fontes.sh <estilo>` gera o `fonts.css` com as faces embutidas
-3. `assets/exportar.sh` captura os PNGs em 1080×1350 e monta o PDF
-4. **Abra cada PNG e olhe.** Captura falha em silêncio: sai arquivo do tamanho certo, em branco
-5. Passe a checagem antipadrão abaixo
+2. `assets/fontes.sh <estilo>` gera o `fonts.css`. As 15 faces são **embutidas na skill**, não
+   baixadas: o piso de entrelinha e o comprimento de linha do laço saem do arquivo, e uma
+   revisão da fonte no Google mudaria os dois em silêncio
+3. **`?medir=1` antes de capturar.** Obrigatório sempre que o corpo do título tiver sido
+   calculado fora do navegador — a soma dos avanços do `hmtx` é otimista, e o navegador
+   renderizou de 5,6% a 9,0% mais largo na medição
+4. `assets/exportar.sh` captura os PNGs em 1080×1350 e monta o PDF
+5. **Abra cada PNG e olhe.** Captura falha em silêncio: sai arquivo do tamanho certo, em branco
+6. Passe a checagem antipadrão abaixo
 
 **Apresente o resultado ao usuário, não o caminho da pasta.** Mandar alguém abrir um diretório
 para ver o próprio trabalho é a pior parte de uma entrega boa.
@@ -647,6 +707,11 @@ Se qualquer item aparecer na arte, ela lê como feita por IA genérica:
 E mais:
 
 - [ ] Todos os PNGs abertos e olhados, um a um
+- [ ] **Cada título lido em voz alta olhando o PNG.** Cauda de `Ç`, `Q` ou `J` que pousa sobre
+      uma letra da linha de baixo **vira o acento dela** — `O ALMOÇO CHEGA / NA PISTA` leu
+      `NA PISTÁ` com 3px de folga, sem encostar em nada. Nenhuma conferência automática pega
+      isso, e o piso de entrelinha não impede: ele resolve colisão, não leitura. É irmão do
+      `ABRASILEIRAR` lendo `ABRASILEITRAR` por erro de registro
 - [ ] **Nenhum texto coberto — nem por grafismo, nem por outro grafismo.** Em terminal, colagem
       e em qualquer cascata os elementos se sobrepõem por projeto: o que come letra ali não é o
       texto do card sobre o desenho, é um elemento do desenho sobre o texto de outro
@@ -656,7 +721,10 @@ E mais:
 - [ ] Print de app real revisado por dado pessoal: nome, e-mail, cliente, token
 - [ ] Acentos conferidos, se entrou fonte de fora dos sete estilos
 - [ ] Ritmo: passando os cards em sequência, algo muda de posição ou escala
-- [ ] Alt text escrito, um por card
+- [ ] Alt text escrito, um por card — **e conferido contra a arte que saiu**, não só contra a
+      lista. O alt text da etapa 4 descreve a arte que ainda não existe e é excelente briefing
+      de imagem, melhor que inventar assunto na hora porque já passou pela entrevista. O preço
+      disso é o inverso: se a arte divergir, **o alt text vira mentira e nada checa**
 - [ ] Legenda passou pela mesma régua anti-slop
 
 ## Red flags — pare e volte uma etapa
