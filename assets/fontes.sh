@@ -4,7 +4,7 @@
 #   ./fontes.sh --listar           mostra os estilos disponíveis
 #   ./fontes.sh "Space Mono:700"   baixa uma família avulsa do Google Fonts
 #
-# As 15 faces dos sete estilos moram em assets/fontes/, todas OFL, com a licença de
+# As faces dos sete estilos moram em assets/fontes/, todas OFL, com a licença de
 # cada família ao lado. Elas são EMBUTIDAS, não baixadas, por um motivo que não é
 # conveniência: o piso de entrelinha e o comprimento de linha do laço do gabarito são
 # CALCULADOS A PARTIR DO ARQUIVO. Uma revisão da fonte no Google não quebra nada — ela
@@ -24,7 +24,7 @@ pares () { case "$1" in
   riso)        echo "Antonio:700|Newsreader:400";;
   riso-imagem) echo "Bricolage Grotesque:800|Newsreader:400";;
   terminal)    echo "Cascadia Mono:300|Cascadia Mono:400";;
-  iridescente) echo "Hanken Grotesk:500|Hanken Grotesk:400";;
+  superminimal) echo "Plus Jakarta Sans:500|Plus Jakarta Sans:400";;
   colagem)     echo "Bodoni Moda:900|Karla:400";;
   neubrutal)   echo "Chivo:900|Chivo Mono:400";;
   editorial)   echo "Fraunces:700|Work Sans:400";;
@@ -37,10 +37,16 @@ if [ "${1:-}" = "--listar" ] || [ $# -eq 0 ]; then
   echo "  riso         Antonio 700             / Newsreader 400"
   echo "  riso-imagem  Bricolage Grotesque 800 / Newsreader 400"
   echo "  terminal     Cascadia Mono 300       / Cascadia Mono 400"
-  echo "  iridescente  Hanken Grotesk 500      / Hanken Grotesk 400"
+  echo "  superminimal Plus Jakarta Sans 500    / Plus Jakarta Sans 400"
   echo "  colagem      Bodoni Moda 900         / Karla 400"
   echo "  neubrutal    Chivo 900               / Chivo Mono 400"
   echo "  editorial    Fraunces 700            / Work Sans 400"
+  echo
+  echo "  superminimal pede Satoshi, e a Satoshi NÃO PODE ir no pacote: a licença do"
+  echo "  Fontshare proíbe redistribuir — 'uploading them in a public server'. Plus Jakarta"
+  echo "  Sans 500 ficou a 7,2% dela pela régua de substituição, o que é casamento apertado"
+  echo "  (para comparar: a Antonio ficou a 21,5% do gabarito da riso). Quem quiser a Satoshi"
+  echo "  literal baixa do fontshare.com e roda:  ./fontes.sh \"Satoshi:500\""
   echo
   echo "  riso-imagem é para imagem passando POR BAIXO DO TIPO — colagem, foto tratada"
   echo "  sangrando atrás das letras. NÃO é o caso do laço do gabarito, onde o tipo cai"

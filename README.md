@@ -62,7 +62,7 @@ caminho ela pede e de qual dos sete estilos ela está mais perto. Ela não vira 
 escolhe entre os sete e afina o escolhido.
 
 **O nível de imagem vem antes do estilo, e é de propósito.** Cada nível favorece estilos
-diferentes — terminal e iridescente nasceram sem foto, riso e colagem mudam de patamar com uma —,
+diferentes — terminal e brutalista nascem sem foto, superminimal vive dela, riso e colagem mudam de patamar com uma —,
 então a escolha do nível já ordena a lista. Os sete continuam à vista; o que muda é por onde a
 conversa começa.
 
@@ -80,7 +80,7 @@ provisório. A escolha de estilo se faz nas 21 referências fixas que já vêm n
 | 4 | Mixed media / colagem | camadas de origens diferentes, toda emenda à mostra |
 | 5 | Neo-brutalismo colorido | contorno preto grosso e sombra dura sobre campo saturado |
 | 6 | Minimalista editorial quente | duas colunas, geometria precisa, e muito vazio |
-| 7 | Iridescente minimal | campo chapado que troca de cor a cada card, uma forma grande |
+| 7 | Superminimal | branco, preto, e a imagem como bloco chapado — nenhum grafismo em volta |
 
 Cada um traz paleta em hex, par tipográfico open-source com acentos pt-BR conferidos glifo a
 glifo, entrelinha calculada a partir das métricas da fonte, e três referências visuais fixas.
@@ -88,7 +88,7 @@ glifo, entrelinha calculada a partir das métricas da fonte, e três referência
 ## Imagem: três níveis, e nenhum obrigatório
 
 **Mínimo — só código.** SVG e CSS, custo zero, e é o padrão. Para os estilos de forma
-(brutalista, terminal, neo-brutalismo, iridescente) costuma ganhar de banco de imagem, porque o desenho
+(brutalista, terminal, neo-brutalismo) costuma ganhar de banco de imagem, porque o desenho
 nasce na paleta e carrega o conceito.
 
 **Médio — bancos abertos.** Dupe e Openverse, tratados na paleta do estilo. Não pede chave nem

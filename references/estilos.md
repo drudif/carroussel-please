@@ -39,7 +39,8 @@ atrapalha ou é indiferente conforme essa fonte.
 |---|---|---|
 | **superfície fotográfica processada** — retícula, duotone, recorte | riso, colagem | **é o centro.** Sem ela o estilo funciona, mas em versão reduzida |
 | **forma desenhada** — geometria chapada, contorno, fio | brutalista, neubrutal | **é acessório.** Entra na capa e sai do miolo sem prejuízo |
-| **vazio** — o material principal é a área que não tem nada | terminal, iridescente | **compete com o material.** Ocupa exatamente o que sustenta a peça |
+| **vazio** — o material principal é a área que não tem nada | terminal | **compete com o material.** Ocupa exatamente o que sustenta a peça |
+| **vazio + imagem em bloco** | superminimal | **é o evento.** A cor da peça vem dela — sem imagem, o card é só tipografia sobre branco |
 | **vazio + uma foto** | editorial | o sistema prevê **uma** imagem grande sangrando por um lado. Uma, não oito |
 
 **Foto trazida pelo usuário cai na primeira linha**, e por isso lê como nível 2: o que decide é
@@ -55,9 +56,9 @@ Daí sai a ordem em que os estilos são abertos:
 
 | nível | abra primeiro | também funcionam, com o custo dito |
 |---|---|---|
-| **3 · só código** | **terminal**, **iridescente** | riso e colagem viram retícula e recorte desenhados — funciona, mas tira o centro do estilo |
-| **2 · banco aberto, ou fotos do próprio usuário** | **colagem**, **riso** | brutalista só se quantizar em três degraus · terminal e iridescente não pedem foto |
-| **1 · gerador** | **riso**, **colagem** | terminal não pede imagem · iridescente só a pedido do usuário |
+| **3 · só código** | **terminal**, **brutalista** | superminimal fica de pé, mas magro — ele quer imagem · riso e colagem viram retícula e recorte desenhados |
+| **2 · banco aberto, ou fotos do próprio usuário** | **superminimal**, **colagem**, **riso** | superminimal é o que mais ganha: recorte limpo cai direto no branco, sem tratamento · brutalista só se quantizar em três degraus · terminal não pede foto |
+| **1 · gerador** | **riso**, **colagem**, **superminimal** | terminal não pede imagem |
 
 **Brutalista, neo-brutalismo e editorial são polivalentes** — servem nos três níveis, e isso se
 diz com essas palavras em qualquer um deles. Não é prêmio de consolação: **quem não quer que a
@@ -89,7 +90,7 @@ critério do funil:
 | **A tipografia é o evento ou é legenda** | tipo gigante pede estilo de forma; tipo pequeno pede vazio ou foto |
 | **Quantas cores, e são chapadas ou têm rampa** | rampa contínua pede foto ou meio-tom; chapado dispensa os dois |
 | **Tem material — grão, retícula, fibra, textura — ou é limpo** | material impresso quase sempre veio de foto processada |
-| **A composição é split, cascata, bento ou centralizada** | diz qual arquétipo o carrossel vai puxar, e centralizada é sinal de iridescente |
+| **A composição é split, cascata, bento ou centralizada** | diz qual arquétipo o carrossel vai puxar. Muito branco com um bloco de imagem e nada mais é sinal de superminimal |
 
 Devolva em **duas frases, sem jargão**, e nessa ordem: o que a peça precisa para existir, e de
 qual dos sete ela está mais perto.
@@ -125,19 +126,20 @@ Os sete rodam **sem nenhum gerador de imagem** — todo grafismo é CSS/SVG. Doi
 | **Mixed media / colagem** | funciona | **muda de patamar** — o recorte fotográfico é o centro do estilo |
 | Neo-brutalismo colorido | completo | capa ganha imagem em corte duro |
 | Minimalista editorial quente | completo | uma imagem grande sangrando por um lado |
-| **Iridescente minimal** | completo | **só se o usuário pedir** — ver a exceção abaixo |
+| **Superminimal** | funciona, mas magro | **muda de patamar** — a imagem em bloco é o evento do estilo |
 
 Regra fixa: **havendo gerador conectado, todos os cards nascem de gabarito gerado** — não só a
 capa. É o laço do gabarito, na etapa 7. A capa é o piso, não o teto: com crédito curto, gere a
 capa e o fecho e desenhe o miolo, dizendo o número de créditos ao usuário em vez de decidir em
 silêncio.
 
-**Uma exceção:** o iridescente minimal vive do campo chapado e do vazio, e perde os dois quando
-entra foto. Ali a imagem só entra a pedido do usuário.
+**Não há mais exceção.** Ela existia para o iridescente minimal, que vivia do campo chapado e
+perdia os dois quando entrava foto. O superminimal, que tomou o lugar dele, é o oposto: a imagem
+em bloco é o evento.
 
 ## As fontes
 
-Treze famílias, quinze faces, **todas OFL 1.1** e **embutidas em `assets/fontes/`** com a licença
+Doze famílias, quinze faces, **todas OFL 1.1** e **embutidas em `assets/fontes/`** com a licença
 de cada uma ao lado. Acentos pt-BR conferidos glifo a glifo — `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` mais
 `º ª « » — " "`. Nenhuma sai de acervo pessoal: o carrossel precisa ser reproduzível por quem
 clonar a skill.
@@ -200,7 +202,7 @@ Os sete já vêm calculados, e são **duas** variáveis:
 | colagem | Bodoni Moda | **1,09** | 1,53 |
 | neubrutal | Chivo | **0,95** | 1,35 |
 | editorial | Fraunces | **0,99** | 1,39 |
-| iridescente | Hanken Grotesk Medium | **0,97** | 1,36 |
+| superminimal | Plus Jakarta Sans Medium | **1,06** | 1,48 |
 
 Repare que **Anton é o caso extremo**: caixa alta de 0,867 em, mas o acento chega a 1,101 — mais alto que o próprio corpo da fonte. É por isso que ela é a única do conjunto que precisa de entrelinha maior que o tamanho da letra.
 
@@ -612,77 +614,94 @@ E um risco de estilo, não de execução: papel creme com serifa e acento terrac
 
 ---
 
-# 7 · IRIDESCENTE MINIMAL
+# 7 · SUPERMINIMAL
 
-`irid-1-split.jpg` · `irid-2-cascata.jpg` · `irid-3-bento.jpg`
+`superminimal-1-split.jpg` · `superminimal-2-cascata.jpg` · `superminimal-3-bento.jpg`
 
-**Mecanismo:** fundo **off-white fixo** em todos os cards, e uma forma geométrica grande e
-centralizada onde mora toda a cor. A iridescência está na sequência das **formas** — o campo não
-muda nunca. Composição centralizada, vazio enorme em volta, tipografia sem serifa e leve.
+**Mecanismo:** fundo **branco**, texto **preto**, e a imagem entrando como **bloco chapado
+direto sobre o branco** — sem moldura, sem sombra, sem borda, sem forma nenhuma acompanhando.
+Não existe grafismo neste estilo: **a imagem é o grafismo**, e o resto é vazio e tipografia.
 
-**O fundo era colorido e alternava; não é mais.** Campo saturado em oito cards cansa o olho no
-feed e rouba do grafismo o único lugar onde a cor deveria estar. Com o papel fixo, a peça inteira
-vira moldura da forma — que é o que este estilo tem de melhor — e a sequência ganha continuidade
-em vez de piscar.
+**Este estilo substituiu o iridescente minimal**, que vivia de uma forma geométrica grande e
+chapada sobre papel off-white. A troca não foi de paleta: o iridescente **recusava foto** —
+era o único dos sete assim —, e o superminimal é o oposto. Aqui a imagem é o evento.
 
 **Paleta**
 
 | cor | hex | uso |
 |---|---|---|
-| papel | `#F7F5F2` | o fundo de **todos** os cards, sem exceção |
-| tinta | `#161327` | tipografia |
-| lilás | `#B9A7F0` | forma |
-| água | `#7ADAD0` | forma |
-| pêssego | `#F2B3A0` | forma |
-| céu | `#A9C6F5` | forma |
+| papel | `#FFFFFF` | o fundo de **todos** os cards, sem exceção |
+| tinta | `#0B0B0C` | tipografia |
+| cinza | `#86868B` | texto secundário, paginação, assinatura |
 
-**Duas ou três cores de forma por card, nunca mais.** O que alterna de um card para o outro é
-qual delas domina — e é isso que faz a sequência cambiar.
+**Três cores, e nenhuma delas é acento.** A cor da peça vem **das imagens** — é por isso que não
+existe cor de destaque aqui. Acrescentar uma mata o estilo: o branco deixa de ser o material e
+vira fundo.
 
-**Fontes:** Hanken Grotesk **Medium 500** (`Titulo`) · Hanken Grotesk 400 (`Corpo`) — `fontes.sh iridescente`
+**Fontes:** Plus Jakarta Sans **Medium 500** (`Titulo`) · Plus Jakarta Sans 400 (`Corpo`) —
+`fontes.sh superminimal`
 
-**Entrelinha do título: `0.97`** — `var(--lh-titulo)`.
+**Entrelinha do título: `1.06`** — `var(--lh-titulo)`. Com `Ç`, `Q` ou `J` numa linha que não é a
+última, o esqueleto troca sozinho para `1.48`.
 
-**Peso médio, não bold, e a mesma família nos dois.** Grotesca humanista de terminação macia em
-peso médio é o que sustenta o tom — bold aqui endurece a peça e briga com o vazio, que é o
-material principal. Uma família só nos dois papéis é parte do mesmo silêncio.
+**A fonte pedida era a Satoshi, e ela não pode ir no pacote.** A licença do Fontshare permite usar,
+comercialmente inclusive, e **proíbe redistribuir** — *"uploading them in a public server"*, que é
+exatamente o que um repositório público faz. Rodei a régua de substituição contra Satoshi Medium:
+
+| | razão larg/caixa-alta | densidade | haste | desvio |
+|---|---|---|---|---|
+| **Satoshi Medium** (gabarito) | 6,832 | 0,240 | 10,5% | — |
+| **Plus Jakarta Sans 500** | 6,792 | 0,243 | 9,9% | **7,2%** |
+| Onest 500 | 6,665 | 0,255 | 10,5% | 9,1% |
+| Manrope 500 | 6,648 | 0,238 | 9,5% | 12,2% |
+| Geist 500 | 7,104 | 0,266 | 11,5% | 24,2% |
+
+7,2% é casamento apertado — para calibrar, a Antonio ficou a **21,5%** do gabarito da risografia e
+foi considerada boa. Quem quiser o traço literal baixa a Satoshi em `fontshare.com` e roda
+`fontes.sh "Satoshi:500"`; o caminho de família avulsa existe para isso.
+
+**Tipografia, o que importa:** título grande com `letter-spacing` **negativo** — `-.03em` a
+`-.04em` —, que é o que separa esta escola de uma sem-serifa qualquer. Corpo em cinza, pequeno,
+com muito ar. E a razão título/corpo aqui é maior que os 2,5:1 da skill: fica perto de **4:1**.
+
+**Grafismo: não existe.** Regra dura, e é o que define o estilo. Nada de forma, fio, régua,
+moldura, ícone, tile, contorno ou sombra. Se um card não tem imagem, ele é **só tipografia sobre
+branco** — e isso é uma composição legítima, não um card faltando.
+
+**Imagem: em bloco, direto no branco.** Sangrando por uma borda, ou como retângulo com margem
+generosa. **Nunca com canto arredondado, nunca com sombra, nunca dentro de moldura.** Foto
+recortada em fundo branco é o caso ideal; foto de cena inteira também serve, desde que o bloco
+seja limpo.
+
+**Ritmo: é aqui que o estilo se prova.** A diagramação é solta e muda de card para card — o bloco
+de imagem sobe, desce, sangra por um lado, ocupa metade, ocupa dois terços, some. O título vai ao
+topo num card e ao pé no outro. **Oito cards com a imagem no mesmo lugar viram catálogo de
+template**, que é a morte deste estilo — ele não tem material nem cor para disfarçar repetição.
 
 **Bloco de prompt** — cole antes do assunto em toda geração deste estilo:
 
-> `MINIMAL IRIDESCENT POSTER on a plain OFF-WHITE ground #F7F5F2 that fills the entire image, edge`
-> `to edge. CENTRED composition with enormous empty off-white space: one single very large simple`
-> `geometric graphic dead centre — circle, arc, lens, arch — built from two or three perfectly FLAT`
-> `colours of a pearlescent oil-slick family: lilac #B9A7F0, aqua #7ADAD0, peach #F2B3A0, sky`
-> `#A9C6F5. All the colour of the poster lives in that one shape; the rest of the page is bare`
-> `off-white. Every colour is absolutely flat and even: no gradient, no mesh, no sheen, no glow, no`
-> `shimmer, no texture. Calm, quiet, expensive, almost nothing on the page.`
+> `ULTRA-MINIMAL PRODUCT PHOTOGRAPH on a pure WHITE seamless background #FFFFFF that fills the`
+> `entire image, edge to edge. One single subject, centred or slightly off-centre, lit with soft`
+> `even studio light and a very subtle contact shadow directly beneath it only. Enormous empty`
+> `white space around the subject. Colour comes from the subject alone; the ground stays pure`
+> `white. Crisp focus, high detail, no vignette. No frame, no border, no rounded corners, no drop`
+> `shadow, no gradient, no reflection, no props, no background scenery, no texture.`
 
-**Grafismo:** círculo, arco, lente, meia-lua, arco pleno. **Uma forma por card**, grande — ela
-ocupa de um terço a metade da altura viva, o que é muito maior do que o grafismo dos outros seis.
-100% CSS/SVG.
+**Sem gerador, é o estilo que mais ganha com banco de imagem.** Foto de banco com recorte limpo
+cai direto no branco sem tratamento nenhum — e este é o único dos sete em que **não tratar é o
+certo**, porque qualquer conversão de cor tira da foto o que ela veio trazer. Em código puro ele
+funciona, mas fica sendo tipografia sobre branco com blocos de cor chapada: honesto, e mais magro.
 
-**Imagem: só quando o usuário pedir.** É o único dos sete que **não recebe imagem gerada na capa
-por padrão**, mesmo com gerador conectado — e isso vale contra a regra geral da skill. A peça vive
-do papel vazio e de uma forma chapada; foto ocupa os dois ao mesmo tempo e sobra um cartaz de
-outro estilo.
-Se o usuário pedir imagem, ela entra como forma: recortada dentro do círculo, nunca sangrando.
+**Cuidado verificado:** o risco aqui não é parecer feito por IA — é **parecer não-feito**. Branco
+com pouco texto passa perto de "slide em branco", e o que separa uma coisa da outra é a
+tipografia: corpo grande o bastante, `letter-spacing` negativo no título, e o vazio **contíguo**,
+não distribuído. Quatro folgas iguais leem como erro de diagramação; um vão único e grande lê como
+decisão.
 
-**Material: nenhum, e é regra dura.** Grão, ruído, brilho, textura e degradê estão proibidos.
+E o segundo: **canto arredondado.** É o reflexo de quem diagrama "estilo Apple" e é exatamente o
+que faz a peça ler como print de app dentro do card. Aqui tudo é canto vivo.
 
-**Ritmo:** a cor que domina a forma alterna a cada card, e o tamanho da forma cresce e diminui. Ela
-sobe ou desce do centro óptico — nunca fica no meio exato duas vezes seguidas. O fundo não entra
-no ritmo: ele é a constante contra a qual o resto varia.
-
-**Cuidado verificado:** este estilo passa **a um degradê de distância do clichê de IA.** Forma
-chapada sobre papel lê como cartaz de exposição; a mesma forma com um degradê lilás→azul lê como
-capa de SaaS, e a régua antipadrão da skill derruba na hora. **Não existe gradiente aqui** — nem
-dentro da forma, nem entre formas que se cruzam.
-
-E o segundo risco é a própria centralização: composição centrada em oito cards vira slide de
-template. O que salva é a **assimetria vertical** — a forma sobe num card e desce no outro, e o
-título nunca fica à mesma altura duas vezes seguidas. Centralizado no eixo x, não no y.
-
-**O cartaz aqui:** cartaz de exposição de arte contemporânea. Papel, uma forma, e o nome pequeno.
+**O cartaz aqui:** página de produto. Uma coisa, muito branco, e o nome dela pequeno embaixo.
 
 ---
 

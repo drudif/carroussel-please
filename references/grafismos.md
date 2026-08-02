@@ -167,8 +167,8 @@ Antes de usar: **olhe o print procurando dado pessoal.** Nome, e-mail, cliente, 
 
 **A exceção: o gerador conectado.** Aí não é mais último recurso — todos os cards nascem de
 gabarito gerado, e a tipografia entra por cima em HTML. É o laço do gabarito, em
-[geradores.md](geradores.md#o-laço-do-gabarito--quando-há-gerador-conectado). O iridescente
-minimal é a única exceção: só recebe imagem a pedido do usuário.
+[geradores.md](geradores.md#o-laço-do-gabarito--quando-há-gerador-conectado). O superminimal, que
+substituiu o superminimal, deixou de ser exceção: nele a imagem em bloco é o evento.
 
 Nos demais cards, só quando o card pede retrato, cena, textura ou ilustração. Como chamar cada gerador está em [geradores.md](geradores.md).
 

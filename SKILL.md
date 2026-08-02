@@ -258,8 +258,8 @@ número embaralha: o mais barato tem o número maior. Os números existem só no
 Três coisas ditas junto, em uma linha cada:
 
 - **Só a sob medida responde ao seu assunto.** Nas outras duas você usa o que existe
-- **Sem foto não é a versão pobre.** Em brutalista, terminal, neo-brutalismo e iridescente o
-  desenho costuma ficar melhor que foto, porque nasce já nas cores certas
+- **Sem foto não é a versão pobre.** Em brutalista, terminal e neo-brutalismo o desenho costuma
+  ficar melhor que foto, porque nasce já nas cores certas
 - **Banco depende do tema dar foto.** Relacionamento, viagem, comida, trabalho manual: rende.
   Um método, um conceito, uma ferramenta: não existe foto disso, e aí o desenho ganha
 
@@ -398,7 +398,7 @@ escolha de estilo começa, e dizer isso em uma linha faz a etapa seguinte parece
 uma consequência, não um menu novo:
 
 > *"Sem foto então. Nesse caso dois estilos são feitos sob medida para isso, vou te mostrar
-> primeiro: terminal e iridescente."*
+> primeiro: terminal e brutalista."*
 
 O board já preparou o terreno — ele mostra os estilos agrupados por caminho, e o usuário chega na
 etapa 2 sabendo que existem sete e por que dois deles vieram primeiro.
@@ -418,7 +418,7 @@ São **sete, fixos**, especificados em [references/estilos.md](references/estilo
 | 4 | **Mixed media / colagem** | camadas de origens diferentes, toda emenda à mostra | **foto processada** |
 | 5 | **Neo-brutalismo colorido** | contorno preto grosso e sombra dura sobre campo saturado | forma |
 | 6 | **Minimalista editorial quente** | duas colunas, serifa de contraste alto, e muito vazio | vazio + **uma** foto |
-| 7 | **Iridescente minimal** | papel fixo, uma forma grande e centralizada, tudo em volta vazio | **vazio** |
+| 7 | **Superminimal** | branco, preto, e a imagem entrando como bloco chapado — nenhum grafismo | **vazio + imagem** |
 
 ### O funil: o nível de imagem já escolheu por onde começar
 
@@ -427,7 +427,7 @@ como cada estilo reage ao nível fechado na etapa 1:
 
 | nível | abra primeiro | por quê |
 |---|---|---|
-| **3 · só código** | **terminal**, **iridescente** | nasceram sem foto: o desenho já entrega o material, e nos dois o vazio é o material |
+| **3 · só código** | **terminal**, **brutalista** | nasceram sem foto: o desenho já entrega o material |
 | **2 · banco aberto** | **colagem**, **risografia** | colagem recorta qualquer coisa e riso pede gradação — é o que banco de imagem dá |
 | **1 · gerador** | **risografia**, **colagem** | são os dois que **mudam de patamar**: a tinta riso existe para cair sobre imagem, e o recorte fotográfico é o centro da colagem |
 
@@ -437,7 +437,7 @@ exatamente ali**, e essa é uma decisão legítima que só aparece se você nome
 
 Os outros dois de cada nível entram como **"também funcionam aqui"**, com o custo em uma linha —
 riso e colagem no nível 3 viram retícula e recorte desenhados, o que funciona mas tira o centro do
-estilo; terminal e iridescente nos níveis 1 e 2 simplesmente não pedem foto.
+estilo; o terminal não pede foto em nível nenhum, e o superminimal é o inverso — ele quer.
 
 **Nenhum estilo some da conversa.** O funil ordena, não esconde: os sete continuam disponíveis, e
 o usuário sabe que são sete.
