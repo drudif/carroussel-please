@@ -28,7 +28,7 @@ Tudo de que a skill precisa está dentro dela. Nada aqui depende de outra skill 
 
 ```dot
 digraph carrossel {
-  "0 · Perfil" [shape=box];
+  "0 · Perfil\n(inclui o inventário:\no que ele já tem)" [shape=box];
   "1 · Nível de imagem" [shape=box];
   "2 · Estilo" [shape=box];
   "3 · Direção aprovada?" [shape=diamond];
@@ -38,10 +38,12 @@ digraph carrossel {
   "7 · Produção" [shape=box];
   "PNG + PDF" [shape=doublecircle];
 
-  "0 · Perfil" -> "1 · Nível de imagem" -> "2 · Estilo" -> "3 · Direção aprovada?";
+  "0 · Perfil\n(inclui o inventário:\no que ele já tem)" -> "1 · Nível de imagem" -> "2 · Estilo" -> "3 · Direção aprovada?";
   "3 · Direção aprovada?" -> "2 · Estilo" [label="não"];
   "3 · Direção aprovada?" -> "4 · Conteúdo" [label="sim"];
   "4 · Conteúdo" -> "5 · Anti-slop" -> "6 · Texto aprovado?";
+  "0 · Perfil\n(inclui o inventário:\no que ele já tem)" -> "5 · Anti-slop"
+      [label="texto pronto:\na 4 não roda", style=dashed];
   "6 · Texto aprovado?" -> "4 · Conteúdo" [label="não"];
   "6 · Texto aprovado?" -> "7 · Produção" [label="sim"];
   "7 · Produção" -> "PNG + PDF";
@@ -125,7 +127,7 @@ A pessoa do outro lado quer um post bonito. Ela não precisa saber como a peça 
 |---|---|
 | "vou renderizar em HTML/CSS e capturar via headless" | "vou montar a arte e te mostrar" |
 | "aplicando duotone com mapeamento de rampa na paleta" | "vou deixar a foto nas cores do estilo" |
-| "o corpo está com 30px, abaixo do piso" | "o texto ficou pequeno demais para o feed, vou subir" |
+| "o corpo está com 28px, abaixo do piso" | "o texto ficou pequeno demais para o feed, vou subir" |
 | "gerando o gabarito para extrair as coordenadas" | *não diga nada — isso é trabalho interno* |
 | "detectei conflito na área de segurança" | "isso ia sumir no corte do LinkedIn, arrumei" |
 
@@ -148,7 +150,28 @@ perfil dele atrapalha o teste. Nesse caso rode o setup inteiro e **não leia o a
 o que estava lá. Se ele disse "ignore o gerador conectado" junto, trate como quem nunca
 conectou nada: as opções sem conexão vão na conversa como se fossem as únicas.
 
-As perguntas estão em [references/perfil.md](references/perfil.md), em três rodadas curtas e **sem jargão**. Elas cobrem: quem assina e onde publica, se há identidade de marca fechada, e se o usuário quer gerar imagem ou desenhar tudo.
+As perguntas estão em [references/perfil.md](references/perfil.md), em quatro rodadas curtas e
+**sem jargão**: quem publica · **o que já existe** · como parece · com o que produz.
+
+### A rodada 2 é o inventário, e ela reescreve o fluxo
+
+**Antes de qualquer pergunta de direção visual, saiba o que o usuário já tem pronto.** São duas
+perguntas — o texto e as imagens —, e as respostas mudam etapas inteiras adiante:
+
+| ele já tem | o que acontece |
+|---|---|
+| **o texto, pronto e aprovado** | **a etapa 4 não roda.** Leia, ecoe uma linha do que leu, passe a régua anti-slop e vá para a aprovação da etapa 6 |
+| **um rascunho do texto** | a etapa 4 vira edição, não entrevista: aponte o que falta para fechar o arco e proponha só o delta |
+| **as fotos** | são **material**, com os direitos de quem mandou. A etapa 1 continua rodando, mas só para os cards que sobrarem |
+| **nada** | fluxo inteiro, como está escrito |
+
+**Por que aqui e não adiante.** Perguntar direção visual antes disso é montar entrevista para
+quem não precisa dela, e é a queixa nº 1 de quem testa a skill. Perguntar depois de já ter
+entrevistado é pior: aí a rodada já foi gasta.
+
+Isso é irmão da regra de [retomar um trabalho](#retomando-um-trabalho-as-etapas-já-respondidas-não-se-refazem)
+e resolve o mesmo problema por outro caminho — lá o material está em arquivo de uma sessão
+anterior, aqui o usuário traz na mão. Nos dois casos, **ecoe o que leu antes de seguir.**
 
 Antes de propor estilo você precisa saber também: **o assunto e quantos cards**. Sem isso não dá para testar se uma direção escala.
 
@@ -222,33 +245,10 @@ confundi-las coloca a foto do usuário dentro do card sem ninguém decidir isso:
 Imagem para entrar na arte é **material**, não referência: vai para o fluxo de quem entrega
 arquivo pronto, e os direitos de uso são de quem mandou — diga isso uma vez, sem sermão.
 
-**A leitura, em cinco perguntas.** São as mesmas cinco em qualquer referência, e as respostas
-caem direto no critério do funil:
-
-| o que olhar | e o que isso quer dizer |
-|---|---|
-| **Onde está a massa da peça** — foto, forma chapada, ou vazio | é o critério inteiro: define o caminho |
-| **A tipografia é o evento ou é legenda** | tipo gigante pede estilo de forma; tipo pequeno pede vazio ou foto |
-| **Quantas cores, e são chapadas ou têm rampa** | rampa contínua pede foto ou meio-tom; chapado dispensa os dois |
-| **Tem material — grão, retícula, fibra, textura — ou é limpo** | material impresso quase sempre veio de foto processada |
-| **A composição é split, cascata, bento ou centralizada** | diz qual arquétipo o carrossel vai puxar, e centralizada é sinal de iridescente |
-
-Devolva em **duas frases, sem jargão**, e nessa ordem: o que a peça precisa para existir, e de
-qual dos sete ela está mais perto.
-
-> *"Essa aí vive de foto tratada — dá para fazer com banco grátis, e fica ainda mais parecida
-> com imagem sob medida. Entre os sete, ela é praticamente a colagem."*
-
-**A referência não vira um oitavo estilo.** Ela escolhe entre os sete e afina o escolhido —
-paleta, peso do tipo, quanto de vazio. Direção inventada na hora sai bonita na capa e quebra no
-card 5, e é por isso que os sete são fechados. Se o usuário insistir em reproduzir a referência
-fora dos sete, é decisão dele: diga em uma linha que a direção não passou por teste de escala,
-e siga.
-
-**Se ele já escolheu "feitas sob medida", a referência não mexe no caminho.** Com gerador ligado
-os sete funcionam bem, e aí ela serve para duas coisas melhores: entra no **bloco de prompt** do
-estilo escolhido, e entra na geração como **mídia de referência** — o mesmo mecanismo que o laço
-do gabarito já usa para manter os sete cards irmãos.
+**A leitura** — as cinco perguntas, o que devolver ao usuário e a regra de que **referência não
+vira um oitavo estilo** — está em
+[estilos.md](references/estilos.md#ler-uma-referência-trazida-pelo-usuário). São as mesmas cinco
+em qualquer referência, e as respostas caem direto no critério do funil.
 
 Grave no `DIRECAO.md`:
 
@@ -281,6 +281,23 @@ O passo a passo de cada ligação está em [references/geradores.md](references/
 Em todos: **a chave nunca é colada no chat** — o que passa por aqui fica registrado. A pessoa
 guarda no computador dela e responde só "pronto". A skill grava o fato,
 `gemini: chave configurada em AAAA-MM-DD`, nunca o valor.
+
+### Se ele já tem as fotos
+
+Veio da rodada 2 do perfil, e **não é uma quarta opção do board** — é uma resposta parcial. As
+fotos dele resolvem os cards que elas cobrem; a pergunta continua valendo para o resto, e o
+**tratamento continua vindo do estilo**.
+
+Três coisas, uma linha cada:
+
+- **Pergunte quantos cards elas cobrem.** Se não cobrem todos, o resto sai de banco ou de
+  desenho — e isso é decisão dele, dita agora, não descoberta na entrega
+- **Foto pronta não dispensa tratamento.** Ela entra na paleta e no material do estilo como
+  qualquer outra. Sem isso, lê como colagem de duas peças diferentes
+- **Os direitos são de quem mandou.** Diga uma vez, sem sermão
+
+No funil, foto do usuário lê como **banco aberto**: a massa da peça é foto processada, então os
+estilos que abrem primeiro são colagem e risografia. Grave `imagem: 2 · fotos do usuário`.
 
 ### Se escolheu **de banco grátis**
 
@@ -403,8 +420,13 @@ essa linha, e **para se ela não existir**:
 ```markdown
 imagem: 1 · higs / nano_banana_pro     ← feitas sob medida
 imagem: 2 · dupe + openverse           ← de banco grátis
+imagem: 2 · fotos do usuário           ← ele trouxe o material
 imagem: 3 · só desenho em código       ← sem foto nenhuma
 ```
+
+Foto do usuário é **2**, e não um número novo: para tudo o que vem depois — funil de estilos,
+tratamento, escolha de esqueleto — ela se comporta como banco. O que muda é a procedência, e
+isso a própria linha registra.
 
 Esta é a **única** superfície em que os níveis são números: o `exportar.sh` lê essa linha. Na
 conversa eles têm nome.
@@ -433,6 +455,27 @@ Uma por vez:
 Só depois do mapa aprovado o texto é escrito de verdade.
 
 **Por que nesta ordem:** discutir o mapa custa uma rodada; descobrir na etapa 6 que o carrossel conta a história errada custa todas. E sete linhas de roteiro se julgam melhor que sete blocos de texto acabado, onde a redação disputa atenção com a estrutura.
+
+### Se o texto já existe, esta etapa é outra — ou não acontece
+
+A rodada 2 do perfil já perguntou isso, e a resposta manda aqui:
+
+| o que ele trouxe | o que você faz |
+|---|---|
+| **texto pronto e aprovado** | **não entreviste, não proponha mapa.** Leia, ecoe uma linha — *"li 8 cards, assinatura @fulano, assunto X"* —, passe a régua anti-slop e vá para a etapa 6 |
+| **rascunho** | leia primeiro. Depois **uma pergunta só**: o que falta para o arco fechar. Proponha o delta, não o carrossel inteiro |
+
+**A entrevista das três perguntas é para quem tem assunto, não texto.** Rodá-la em cima de texto
+pronto devolve ao usuário um mapa do que ele mesmo escreveu, e a resposta certa dele é "isso eu
+já te mandei".
+
+Duas coisas continuam valendo, e são justamente as que o texto pronto não traz:
+
+- **A régua anti-slop roda sempre**, inclusive em texto do usuário. Mas aqui a etapa 5 ganha
+  uma ressalva de peso: o que parece fórmula pode ser voz deliberada dele. Na dúvida, **aponte
+  em uma linha e deixe ele decidir** em vez de cortar
+- **O alt text costuma não vir junto.** Escreva, e lembre que ele é o briefing de imagem da
+  etapa 7 — está em [grafismos.md](references/grafismos.md#o-alt-text-é-o-melhor-briefing-de-imagem-que-existe-na-pasta)
 
 A regra que vale em qualquer plataforma: **um card = uma ideia**. Essa não cede nunca.
 
@@ -508,27 +551,18 @@ Este é o erro que já aconteceu em produção: o gerador foi conectado, a skill
 solta e montou como se não houvesse gerador nenhum. **Conectar e não rodar o laço desperdiça a
 única coisa que o nível 1 compra.**
 
-O laço, em uma linha cada — os cinco passos completos estão no arquivo:
+O laço tem cinco passos e eles estão no arquivo: **gera com texto descartável → mede a chapa →
+acha a fonte pela `assets/regua-fonte.py` → refaz sem texto → monta o HTML por cima.**
 
-1. **Gera o card inteiro, com título e sub.** O texto no prompt não é para usar: é para o modelo
-   ter o que diagramar. Sem texto ele devolve ilustração, não cartaz
-2. **Mede a chapa.** É esta a entrega da etapa — ela sobrevive mesmo que a imagem seja jogada fora
-3. **Acha a fonte open-source mais próxima:** `assets/regua-fonte.py <chapa.png> <topo,base>
-   "<a string que está ali>" ` compara as três medidas contra todas as faces embutidas e elege
-4. **Refaz sem texto.** Gerar do zero devolve outra composição e o gabarito se perde
-5. **Monta o HTML por cima**, com o texto vindo do `TEXTOS.md`
+Leve daqui as duas regras que decidem se ele fecha, porque as duas custam crédito quando se
+esquece delas:
 
-**A regra que custa crédito quando se esquece dela: a chapa manda, o layout cede.** A proporção
-que o gerador devolve não é a que foi pedida — desvios medidos de até 19 pontos, trocando de
-sinal entre rodadas. Não planeje o layout e force a chapa a caber nele: gere, meça o vão que
-veio, dimensione o tipo para ele. Pedir fração no prompt não funciona; peça faixa desenhada e
-campo vazio grande.
-
-**E a âncora de referência carrega tinta, não composição.** Passar a capa como mídia de
-referência sobrescreve a geometria do prompt, por cima de instrução em caixa alta — três
-gerações voltaram com a proporção idêntica ao pixel. Se a composição precisa mudar entre os
-cards, e num carrossel precisa, **a âncora sai**. Quem mantém os cards irmãos é o bloco de
-estilo, e a tipografia já é a mesma porque é o mesmo CSS.
+- **A chapa manda, o layout cede.** A proporção que volta não é a que foi pedida — desvios de até
+  19 pontos, trocando de sinal entre rodadas. Gere, meça o vão que veio, dimensione o tipo para
+  ele. Não peça fração; peça faixa desenhada e campo vazio grande
+- **Mídia de referência prende geometria.** No mesmo card isso é o que você quer, e é o passo 4.
+  **Entre cards diferentes é defeito** — congela os sete no enquadramento da capa. Quem mantém
+  os cards irmãos é o bloco de estilo, e a tipografia já é a mesma porque é o mesmo CSS
 
 ### O esqueleto do nível 1 é outro arquivo
 
@@ -537,27 +571,24 @@ estilo, e a tipografia já é a mesma porque é o mesmo CSS.
 | `1 · <gerador>` | **`assets/esqueleto-chapa.html`** |
 | `2 · <banco>` ou `3 · só desenho` | `assets/esqueleto.html` |
 
-Não são o mesmo arquivo com outra cor. No `esqueleto.html` o grafismo é **filho** do card e o
+Não são o mesmo arquivo com outra cor. No `esqueleto.html` o grafismo é **filho** do card, e o
 empilhamento rígido torna sobreposição impossível por construção. No nível 1 a chapa é o **fundo
 sangrado do card inteiro** e o texto é absoluto dentro de um vão medido — não existe "o que
-sobra", então o `flex` não protege nada e o `.gfx` fica vazio. Quem adapta um no outro reescreve
-a estrutura do card, que é exatamente o que o passo 1 abaixo proíbe, e perde `white-space:nowrap`
-e a troca automática de entrelinha no caminho. Já aconteceu.
+sobra", então o `flex` não protege nada e o `.gfx` fica vazio. Escolher pela linha `imagem:` é
+o que evita adaptar um no outro, que é reescrever a estrutura do card.
 
-O `?medir=1` do `esqueleto-chapa.html` confere três coisas, e as três produzem PNG do tamanho
-certo quando falham: título transbordando, bloco fora do quadrado vivo, e **bloco fora do vão
-medido** — que é letra caindo sobre ilustração.
+E o `?medir=1` do de chapa confere uma coisa a mais: **o bloco caindo fora do vão medido**, que
+é letra sobre ilustração. Como as outras duas — título transbordando, bloco fora do quadrado
+vivo —, ela produz PNG do tamanho certo quando falha.
 
-1. Copie o esqueleto da tabela acima para a pasta do trabalho e aplique a direção aprovada. **O HTML lê `TEXTOS.md`; ele não guarda texto**
+1. Copie o esqueleto da tabela acima e aplique a direção aprovada. **O HTML lê `TEXTOS.md`; ele
+   não guarda texto**
 
-   **Copie e troque valores. Não reescreva o CSS do zero.** Parece mais rápido escrever um
-   arquivo limpo com a direção já aplicada, e é onde a produção quebra: o esqueleto carrega
-   propriedades que não parecem importantes e são estruturais — `white-space:nowrap` no `.tt`,
-   que impede o título de quebrar sozinho, e `overflow:hidden` no `.gfx`, que é o que faz o
-   empilhamento valer para elemento posicionado em absoluto. Quem reescreve perde as duas e
-   descobre depois de capturar, olhando. **Mude cor, fonte, tamanho e composição; a mecânica
-   fica.** Vale o mesmo para os scripts: `exportar.sh` já traz o laço de captura, a checagem de
-   erro de JS e a conferência dos PNGs. Reimplementar isso custa as armadilhas de novo
+   **Troque valores; não reescreva o CSS do zero.** Escrever um arquivo limpo parece mais rápido
+   e é onde a produção quebra: o esqueleto carrega propriedades que não parecem importantes e são
+   estruturais — `white-space:nowrap` no `.tt`, `overflow:hidden` no `.gfx`, a troca automática
+   de entrelinha do `.q`. Quem reescreve perde as três e descobre depois de capturar. **Mude cor,
+   fonte, tamanho e composição; a mecânica fica** — e o mesmo vale para o `exportar.sh`
 2. `assets/fontes.sh <estilo>` gera o `fonts.css`. As 15 faces são **embutidas na skill**, não
    baixadas: o piso de entrelinha e o comprimento de linha do laço saem do arquivo, e uma
    revisão da fonte no Google mudaria os dois em silêncio
@@ -605,25 +636,15 @@ Junto com o artefato, o aviso do `TEXTOS.md` da etapa 6 — e a parte que faz di
 | LinkedIn | PDF sequencial **1080×1080** | o corte 1:1 central do mesmo PNG — ver abaixo |
 | Stories | PNG 1080×1920 | só se pedirem |
 
-**O PDF do LinkedIn é quadrado, e sai do próprio PNG vertical:** recorte cada card em `y=135..1215`
-e monte o PDF com os recortes. Não rediagrame nada.
+**O PDF do LinkedIn é quadrado, e sai do próprio PNG vertical:** recorte cada card em
+`y=135..1215` e monte o PDF com os recortes. **Não rediagrame nada** — e não precisa, porque a
+margem do quadrado já foi reservada na diagramação, que é o que a área de segurança abaixo faz.
+Se algo sumiu no corte ou ficou espremido nele, o erro está na diagramação, não na exportação.
+O `exportar.sh` já monta os dois PDFs.
 
-**Mas o recorte só funciona se a margem já estiver dentro dele.** Foi assim que a queixa apareceu:
-*"a versão do LinkedIn está virando só um crop, o texto fica sem respiro em cima e embaixo"* —
-e estava certa. O card tinha sido diagramado com margem contada a partir da borda de 1350, então
-o corte comia a margem inteira e entregava texto colado no topo da página. A área viva de
-924×924 abaixo existe por causa disso: **a margem do quadrado se reserva na diagramação, não na
-exportação.**
-
-Se algo essencial sumiu no corte, ou ficou espremido nele, o erro está na diagramação do card.
-
-```python
-sq = [Image.open(p).crop((0, 135, 1080, 1215)) for p in pngs]
-sq[0].save('linkedin-1080.pdf', 'PDF', resolution=150, save_all=True, append_images=sq[1:])
-```
-
-O feed do LinkedIn é largo e reduz o documento: o piso geral de corpo é **30px** sobre 1080, e
-**34px** quando o LinkedIn é o destino principal.
+O feed do LinkedIn é largo e reduz o documento, e a maioria dos carrosséis vai para os dois
+destinos — então o caso do LinkedIn é o normal: **o piso de corpo é 34px** sobre 1080, e 30 é
+exceção justificada.
 
 ### Área de segurança — obrigatória, sempre
 
@@ -739,17 +760,20 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 | "Ele mandou uma imagem, então é para usar no card" | Pergunte qual das duas coisas é. Referência é como ele quer que fique; imagem para entrar na arte é material, com direitos dele. Confundir põe a foto dentro do card sem ninguém ter decidido isso |
 | "A referência dele é a direção, vou reproduzir" | Ela escolhe entre os sete e afina o escolhido. Direção inventada na hora sai bonita na capa e quebra no card 5 — é a razão de os sete serem fechados |
 | "Mostro só os recomendados, é mais rápido" | O usuário precisa saber que são sete. O funil ordena, não esconde — e três deles servem em qualquer nível, o que é informação de decisão |
-| "Adianto a arte enquanto ele responde o texto" | Arte nenhuma existe antes da etapa 7. Nem para adiantar, nem para ilustrar a conversa |
 | "Meu default escuro com acento neon é bonito e seguro" | É exatamente o visual que hoje lê como IA. Seguro e indistinguível são a mesma coisa |
-| "Renderizo uma capa rápida só para ele ver a direção" | Ela vem antes do nível de imagem: mostra uma peça que não é a que será produzida. E o texto ainda é provisório, então metade do que voltar é sobre palavra que já ia mudar |
+| "Renderizo uma capa rápida só para ele ver a direção" | Arte nenhuma existe antes da etapa 7 — nem para adiantar, nem para ilustrar a conversa. Ela viria antes do nível de imagem, mostrando uma peça que não é a que será produzida, e com o texto ainda provisório |
 | "Ele tem conector ligado, então é nível 1 — não preciso perguntar" | Ter conector não é querer gastar crédito neste post. A pergunta é sobre o resultado, e as três opções vão inteiras |
 | "Não tem gerador, então é tudo desenhado em código" | Faltou o meio. Banco aberto não conecta nada e é a resposta certa quando o tema dá foto |
 | "O gerador acertou a letra dessa vez" | Acertou nessa geração. Não vai acertar nas oito. E o acento é onde ele erra primeiro |
+| "Ele mandou o texto, mas vou entrevistar pra garantir" | Devolve a ele um mapa do que ele mesmo escreveu. A entrevista é para quem tem assunto; quem tem texto pula a etapa 4 e vai para o anti-slop |
+| "Ele tem as fotos, então não preciso perguntar do nível" | As fotos dele cobrem alguns cards, não o carrossel. Pergunte quantos, e resolva o resto com ele — não em silêncio, na entrega |
 | "Gero a imagem e ajusto o texto pra caber" | O texto passa a servir a imagem. Inverte a peça inteira |
 | "Isso é fácil de desenhar, gero mais rápido" | Gerar custa uma rodada de prompt, uma de download e uma de recorte. Um `<div>` custa uma linha |
 | "Depois eu olho os PNGs" | Captura falha em silêncio. Olhe antes de entregar, um por um |
 | "Mando a pasta e ele abre" | Entrega é o que ele vê, não o que ele encontra |
 | "Tenho gerador ligado, gero as ilustrações e monto" | Gerar ilustração solta é o nível 2 pagando preço de nível 1. Com gerador, o card inteiro nasce dele e a letra entra por cima — é o laço do gabarito |
+| "Peço 34% de ilustração e o modelo obedece" | Não obedece. Desvios de até 19 pontos, trocando de sinal entre rodadas. Peça faixa desenhada e campo vazio, depois **meça o que veio** e dimensione o tipo para ele |
+| "Passo a capa como referência nos outros, pra ficarem irmãos" | Mídia de referência prende **geometria**: os sete saem no enquadramento da capa, por cima de instrução em caixa alta. Quem mantém a série é o bloco de estilo |
 | "Gero o card sem texto, que é o que eu quero no fim" | Sem texto no prompt o modelo devolve ilustração, não cartaz. O texto da primeira geração é descartável; a composição dele é o produto |
 
 ## Sobre disparar agentes

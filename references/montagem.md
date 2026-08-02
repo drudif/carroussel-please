@@ -174,14 +174,9 @@ Depois disso, **abra cada PNG e olhe**. As duas coisas que só aparecem olhando:
 
 ## Área de segurança
 
-**A área viva é um quadrado de 924×924 no centro do card** — `x 78..1002`, `y 213..1137`. Texto
-mora ali, inclusive o pé; fora dela até a borda é sangria, onde grafismo entra e texto não.
-
-Dois cortes se encaixam nessa conta. O **1:1 central**, `y 135..1215`, é o que o Explore aplica e
-**é também a página do PDF do LinkedIn** — e página tem margem, que é o que os 78px seguintes
-reservam. Contar a margem a partir da borda de 1350 entrega 165px de folga no Instagram e 15px no
-LinkedIn: o mesmo card, respirando num e espremido no outro, sem que a exportação possa fazer
-nada a respeito.
+A conta, o diagrama e o porquê de 213 estão na
+[SKILL.md](../SKILL.md#área-de-segurança--obrigatória-sempre). Em uma linha: **área viva de
+924×924 em `x 78..1002`, `y 213..1137`**; texto mora ali, inclusive o pé, e fora dela é sangria.
 
 Gabarito por query, para conferir sem adivinhar:
 
@@ -219,7 +214,7 @@ print(f'proporção: {mb[2]/mb[3]:.3f}')
 print('trailer ok:', b.rstrip().endswith(b'%%EOF'))
 ```
 
-O feed do LinkedIn é mais largo e reduz o documento, então corpo abaixo de 30px sobre 1080 fica no limite de leitura. Se o carrossel for prioritariamente para lá, suba os corpos antes de exportar.
+O feed do LinkedIn é mais largo e reduz o documento, e a maioria dos carrosséis vai para os dois destinos — então **o piso de corpo é 34px** sobre 1080, e 30 é exceção justificada.
 
 ## Entrelinha em pt-BR — o piso é calculado, não estimado
 

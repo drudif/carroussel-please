@@ -22,11 +22,13 @@ Na dúvida, desenhe. Gerar custa uma rodada de prompt, uma de download, uma de r
 
 ## O grafismo é mudo
 
-**Grafismo não gera texto.** Se você desenhou algo e precisou escrever um rótulo para ele se explicar, o problema é o desenho.
+**Grafismo não gera texto.** Se você desenhou algo e precisou escrever um rótulo para ele se
+explicar, o problema é o desenho — troque o desenho, não acrescente a legenda.
 
-Texto dentro de um grafismo só é legítimo se veio da etapa 4, aprovado, ou se é dado duro e verdadeiro. Rótulo inventado, botão fictício, contagem descritiva e resumo no rodapé são a mesma coisa que eyebrow vazio — slot criado pelo template, preenchido por necessidade. Ver [anti-slop.md](anti-slop.md).
-
-Antes de renderizar, cubra o texto do grafismo com a mão. O desenho continua dizendo a mesma coisa? Então o texto era enfeite.
+A checagem: cubra o texto do grafismo com a mão. Se o desenho continua dizendo a mesma coisa, o
+texto era enfeite. A regra inteira, com os cinco sintomas vistos em produção, está em
+[anti-slop.md](anti-slop.md#o-grafismo-não-gera-texto) — é a mesma auditoria de slot, aplicada
+ao desenho.
 
 ## Desenhar — a rota padrão
 
@@ -83,6 +85,12 @@ sobre tela grande não parece cartaz, parece PDF.
 A dose é o que separa material de filtro: **grão fino em `.07`–`.10`, dente de papel largo em
 `.04`–`.06`**, ambos em `multiply` e por cima de tudo, inclusive da tipografia — tinta impressa não
 escolhe onde assentar. Acima de `.12` vira papel amassado.
+
+**Essa dose é a EFETIVA, e não é o número que você escreve no `opacity` da camada.** As texturas
+são SVG com `opacity` própria no `<rect>` de dentro, e as duas se multiplicam: o `.grao` do
+esqueleto tem `opacity:.34` na camada e `.4` no rect, o que dá **`.136` de dose real**. Ler o
+`.34` como se fosse a dose e "corrigir" para `.10` apaga o grão. Quando comparar com esta tabela,
+multiplique.
 
 E a textura entra **nos dois lugares**: na peça, em CSS, e no prompt da imagem gerada. Imagem lisa
 dentro de card texturizado denuncia a colagem na hora.
@@ -157,7 +165,10 @@ Antes de usar: **olhe o print procurando dado pessoal.** Nome, e-mail, cliente, 
 
 ## Gerar — o último recurso, com uma exceção fixa
 
-**A exceção: a capa.** Havendo MCP conectado, a capa sempre recebe imagem gerada, independentemente do estilo. Ver a regra em `SKILL.md`, seção de padrões de composição.
+**A exceção: o gerador conectado.** Aí não é mais último recurso — todos os cards nascem de
+gabarito gerado, e a tipografia entra por cima em HTML. É o laço do gabarito, em
+[geradores.md](geradores.md#o-laço-do-gabarito--quando-há-gerador-conectado). O iridescente
+minimal é a única exceção: só recebe imagem a pedido do usuário.
 
 Nos demais cards, só quando o card pede retrato, cena, textura ou ilustração. Como chamar cada gerador está em [geradores.md](geradores.md).
 
@@ -249,7 +260,8 @@ m = int(w * .15)                                  # ajuste olhando
 im.crop((m, m, w-m, h-m)).save('gerado-crop.png')
 ```
 
-4. Se a imagem entra num card 1080×1350 e o gerador devolveu menos que isso, ela vai ser ampliada. Sob a retícula de meio-tom isso não aparece; em detalhe fino, aparece muito. É mais um motivo para desenhar.
+4. **Veio texto por acidente?** Não tente corrigir com prompt — recorte fora, ou cubra com um bloco de tinta chapada, que é peça legítima de composição impressa e custa uma linha de CSS
+5. Se a imagem entra num card 1080×1350 e o gerador devolveu menos que isso, ela vai ser ampliada. Sob a retícula de meio-tom isso não aparece; em detalhe fino, aparece muito. É mais um motivo para desenhar.
 
 ---
 

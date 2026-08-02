@@ -115,14 +115,13 @@ Serve para **ampliar e recompor imagem existente**, não para criar do zero. Út
 
 ---
 
-## Depois de gerar, sempre
+## Depois de gerar
 
-1. Baixe e **confirme que o arquivo tem tamanho maior que zero**
-2. **Abra e olhe.** O modelo entrega imagem errada com a mesma confiança da certa
-3. **Recorte a moldura** se vier margem branca ou borda decorativa — dentro do card vira caixa-dentro-de-caixa
-4. Se veio texto por acidente, não tente corrigir com prompt: recorte fora, ou cubra com um bloco de tinta chapada, que é peça legítima de composição impressa
+Baixar, conferir tamanho, **abrir e olhar**, recortar moldura: a lista está em
+[grafismos.md](grafismos.md#depois-de-gerar-sempre), com o recorte em Python.
 
-O briefing de imagem — como escolher o assunto, o teste da troca, o que proibir no prompt — está em [grafismos.md](grafismos.md).
+E o briefing de imagem — como escolher o assunto, o teste da troca, o que proibir no prompt —
+está no mesmo arquivo.
 
 ---
 
@@ -158,6 +157,11 @@ etapa** — ela sobrevive mesmo que a imagem seja descartada.
 
 **4 · Refaz sem texto**, passando a primeira geração como **mídia de referência**. Gerar do
 zero devolve outra composição e o gabarito se perde.
+
+> Repare que aqui a mídia de referência é usada **para prender a composição**, e é por isso que
+> ela funciona. É o mesmo mecanismo que, usado **entre cards diferentes**, congela os sete no
+> enquadramento da capa — ver a âncora, abaixo. A regra única: **mídia de referência prende
+> geometria.** No mesmo card isso é o que você quer; entre cards, é o defeito.
 
 **5 · Monta em HTML por cima**, com o texto vindo do `TEXTOS.md`.
 

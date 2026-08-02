@@ -44,13 +44,20 @@ Defina a escala antes de diagramar e fique nela. Para 1080 de largura, uma escal
 |---|---|---|
 | Título de capa | 100–130 | três a cinco linhas; entrelinha pelo piso da fonte |
 | Título de card | 90–125 | duas a três linhas |
-| Corpo | 30–36 | **nunca abaixo de 30**; 34 se o destino é LinkedIn |
+| Corpo | 34–40 | **34 é o piso**; 30 é exceção justificada |
 | Legenda, rótulo | 17–19 | só onde carregar informação verdadeira |
 
-**Sobre o corpo:** 30 é piso, não alvo. O erro comum é diagramar o corpo pequeno porque *sobra espaço* —
-e sobra justamente porque o título já domina. Corpo de 26px sobre 1080 parece elegante na tela do
-computador e some no feed, que é onde a peça vive. Se o texto não couber em 30px, **corte o texto**,
-não reduza o corpo: a hierarquia é leitura > respiro > grafismo, e o corpo é leitura.
+**Sobre o corpo: 34 é piso, não alvo — e já foi 30.** Subiu depois de ver o sub espremido em
+produção: o LinkedIn reduz o documento no feed e a maioria dos carrosséis vai para os dois
+destinos, então o caso do LinkedIn é o caso normal, não a exceção.
+
+O erro comum é diagramar o corpo pequeno porque *sobra espaço* — e sobra justamente porque o
+título já domina. Corpo de 26px sobre 1080 parece elegante na tela do computador e some no feed,
+que é onde a peça vive. Se o texto não couber em 34px, **corte o texto**, não reduza o corpo: a
+hierarquia é leitura > respiro > grafismo, e o corpo é leitura.
+
+E a largura da linha do sub também é medida: ele não corre a folha inteira quando a ilustração
+está do outro lado — respeita a mesma coluna do título.
 
 A razão entre o maior e o menor corpo fica em pelo menos **2,5:1**. Abaixo disso não há hierarquia, só tamanhos diferentes.
 
@@ -86,13 +93,3 @@ Duas perguntas, olhando o PNG pronto:
 **Dá para dizer que esta peça é desta direção, sem ler o texto?** Se a resposta depende do conteúdo, a direção não pegou — ela virou fundo colorido.
 
 **Onde o olho entra?** Deve haver uma resposta única e óbvia. Se houver duas, faltou hierarquia; se não houver nenhuma, faltou o evento.
-
----
-
-## O piso do corpo é 34, não 30
-
-Corrigido depois de ver o sub espremido em produção. O LinkedIn reduz o documento no feed e a
-maioria dos carrosséis vai para os dois destinos: **34px é o piso, 30 é exceção justificada.**
-
-E a largura da linha do sub também é medida: ele não corre a folha inteira quando a ilustração
-está do outro lado — respeita a mesma coluna do título.

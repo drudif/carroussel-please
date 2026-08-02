@@ -21,6 +21,22 @@ O que **não** veio da `brainstorming`: o documento de spec, a passagem para `wr
 
 ---
 
+## Quando o texto já vem pronto
+
+A rodada 2 do perfil pergunta isso antes de qualquer coisa de direção, e a resposta manda na
+etapa 4. **Texto pronto não passa pela entrevista** — devolver ao usuário um mapa do que ele
+mesmo escreveu queima uma rodada e soa a desatenção.
+
+O que continua valendo em cima do texto dele:
+
+- **A estrutura das quatro zonas abaixo vira diagnóstico, não fôrma.** Leia procurando o que
+  falta — costuma faltar contexto, que é o card que mais some por parecer dispensável — e
+  **aponte em uma linha** em vez de reescrever
+- **A régua anti-slop roda**, com a ressalva que já está lá: guia de voz da marca vence qualquer
+  regra daqui, e o que parece fórmula pode ser voz deliberada. Na dúvida, aponte e deixe ele
+  decidir
+- **O alt text quase nunca vem junto.** Escreva você, um por card
+
 ## A estrutura, em quatro zonas
 
 Vale para qualquer plataforma. O que muda de uma para outra é a quantidade, não a forma.
@@ -63,7 +79,7 @@ Vale para qualquer plataforma. O que muda de uma para outra é a quantidade, nã
 
 **Instagram:** peça salvamento e envio de forma explícita — são os sinais que a plataforma pesa. Alt text por card, na configuração de acessibilidade.
 
-**LinkedIn:** o feed é largo e reduz o documento. O piso geral é 30px sobre 1080; **se o LinkedIn é o destino principal, suba para 34** antes de exportar.
+**LinkedIn:** o feed é largo e reduz o documento — e como a maioria dos carrosséis vai para os dois destinos, **o piso de corpo é 34px** sobre 1080, com 30 como exceção justificada.
 
 **TikTok:** o texto sobre a imagem *é* o gancho, não a legenda. Áudio em alta amplia a distribuição mesmo em post de fotos.
 
@@ -73,14 +89,15 @@ Vale para qualquer plataforma. O que muda de uma para outra é a quantidade, nã
 
 ---
 
-## As perguntas da etapa 4
+## As perguntas da etapa 4 são três
 
-Nesta ordem, uma por vez:
+E são as três da [SKILL.md](../SKILL.md#etapa-4--conteúdo) — tese, fechamento, dado próprio.
+**Não são cinco.** O gancho da capa e os passos card a card já foram perguntas aqui, e saíram:
+os dois se respondem melhor no **mapa dos cards** que você propõe depois, porque o usuário julga
+um roteiro pronto mais rápido do que redige um do zero. Perguntar os passos um a um é fazer o
+trabalho da skill virar formulário.
 
-1. **O gancho da capa** — qual a promessa, e por que alguém pararia o dedo nela
-2. **A tese** — o fio que liga todos os cards. Sem isso vira lista solta
-3. **Os passos** — um por card
-4. **O fechamento** — qual ação, e o que o leitor ganha em fazê-la
-5. **Onde ficam os links** — no card, na legenda, na bio, ou em vários
+Onde ficam os links entrou na tabela por plataforma acima, que é onde a resposta já está.
 
-Depois disso, e antes de mostrar qualquer coisa, roda a etapa 5. Sem exceção.
+Depois do mapa aprovado, o texto é escrito — e antes de mostrar qualquer coisa, roda a etapa 5.
+Sem exceção.

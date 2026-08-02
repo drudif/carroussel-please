@@ -42,12 +42,15 @@ atrapalha ou é indiferente conforme essa fonte.
 | **vazio** — o material principal é a área que não tem nada | terminal, iridescente | **compete com o material.** Ocupa exatamente o que sustenta a peça |
 | **vazio + uma foto** | editorial | o sistema prevê **uma** imagem grande sangrando por um lado. Uma, não oito |
 
+**Foto trazida pelo usuário cai na primeira linha**, e por isso lê como nível 2: o que decide é
+onde está a massa da peça, não de onde o arquivo veio.
+
 Daí sai a ordem em que os estilos são abertos:
 
 | nível | abra primeiro | também funcionam, com o custo dito |
 |---|---|---|
 | **3 · só código** | **terminal**, **iridescente** | riso e colagem viram retícula e recorte desenhados — funciona, mas tira o centro do estilo |
-| **2 · banco aberto** | **colagem**, **riso** | brutalista só se quantizar em três degraus · terminal e iridescente não pedem foto |
+| **2 · banco aberto, ou fotos do próprio usuário** | **colagem**, **riso** | brutalista só se quantizar em três degraus · terminal e iridescente não pedem foto |
 | **1 · gerador** | **riso**, **colagem** | terminal não pede imagem · iridescente só a pedido do usuário |
 
 **Brutalista, neo-brutalismo e editorial são polivalentes** — servem nos três níveis, e isso se
@@ -65,9 +68,44 @@ a massa da peça — foto, forma ou vazio — e você tem o caminho que ela exig
 está mais perto. É por isso que a oferta de mandar referência mora na etapa 1 e não na 2: ela
 responde à pergunta do nível, só que de trás para frente.
 
-O protocolo — as cinco perguntas da leitura, o que devolver ao usuário e a regra de que
-referência não vira um oitavo estilo — está na
-[etapa 1 da SKILL.md](../SKILL.md#se-ele-trouxer-uma-referência-própria).
+A oferta e a pergunta que desfaz a ambiguidade — *referência de como quer que fique, ou imagem
+para entrar na arte?* — estão na [etapa 1 da SKILL.md](../SKILL.md#se-ele-trouxer-uma-referência-própria).
+O resto da leitura é aqui.
+
+### Ler uma referência trazida pelo usuário
+
+**Cinco perguntas.** São as mesmas cinco em qualquer referência, e as respostas caem direto no
+critério do funil:
+
+| o que olhar | e o que isso quer dizer |
+|---|---|
+| **Onde está a massa da peça** — foto, forma chapada, ou vazio | é o critério inteiro: define o caminho |
+| **A tipografia é o evento ou é legenda** | tipo gigante pede estilo de forma; tipo pequeno pede vazio ou foto |
+| **Quantas cores, e são chapadas ou têm rampa** | rampa contínua pede foto ou meio-tom; chapado dispensa os dois |
+| **Tem material — grão, retícula, fibra, textura — ou é limpo** | material impresso quase sempre veio de foto processada |
+| **A composição é split, cascata, bento ou centralizada** | diz qual arquétipo o carrossel vai puxar, e centralizada é sinal de iridescente |
+
+Devolva em **duas frases, sem jargão**, e nessa ordem: o que a peça precisa para existir, e de
+qual dos sete ela está mais perto.
+
+> *"Essa aí vive de foto tratada — dá para fazer com banco grátis, e fica ainda mais parecida
+> com imagem sob medida. Entre os sete, ela é praticamente a colagem."*
+
+**A referência não vira um oitavo estilo.** Ela escolhe entre os sete e afina o escolhido —
+paleta, peso do tipo, quanto de vazio. Direção inventada na hora sai bonita na capa e quebra no
+card 5, e é por isso que os sete são fechados. Se o usuário insistir em reproduzir a referência
+fora dos sete, é decisão dele: diga em uma linha que a direção não passou por teste de escala,
+e siga.
+
+**Se ele já escolheu "feitas sob medida", a referência não mexe no caminho.** Com gerador ligado
+os sete funcionam bem, e aí ela serve para afinar o **bloco de prompt** do estilo escolhido:
+paleta, peso do tipo, quanto de vazio, que material aparece.
+
+**O que ela NÃO faz é entrar na geração como mídia de referência.** Mídia de referência
+sobrescreve a geometria pedida no prompt — medido, três gerações voltaram com a proporção
+idêntica ao pixel, por cima de instrução em caixa alta. Num carrossel a composição precisa variar
+de card para card, então passar a referência do usuário como imagem congela todos eles no
+enquadramento dela. Ver [geradores.md](geradores.md#consistência-entre-os-cards-a-âncora-carrega-tinta-não-composição).
 
 ## Escolha
 
@@ -83,9 +121,13 @@ Os sete rodam **sem nenhum gerador de imagem** — todo grafismo é CSS/SVG. Doi
 | Minimalista editorial quente | completo | uma imagem grande sangrando por um lado |
 | **Iridescente minimal** | completo | **só se o usuário pedir** — ver a exceção abaixo |
 
-Regra fixa: **havendo gerador conectado, a capa recebe imagem gerada** — com **uma** exceção, o
-iridescente minimal, que vive do campo chapado e do vazio e perde os dois quando entra foto. Ali a
-imagem só entra a pedido do usuário.
+Regra fixa: **havendo gerador conectado, todos os cards nascem de gabarito gerado** — não só a
+capa. É o laço do gabarito, na etapa 7. A capa é o piso, não o teto: com crédito curto, gere a
+capa e o fecho e desenhe o miolo, dizendo o número de créditos ao usuário em vez de decidir em
+silêncio.
+
+**Uma exceção:** o iridescente minimal vive do campo chapado e do vazio, e perde os dois quando
+entra foto. Ali a imagem só entra a pedido do usuário.
 
 ## As fontes
 
@@ -322,7 +364,10 @@ listra de rolo, cobertura irregular, fibra. Cada um que você tirar, o modelo su
 
 **Grafismo:** CSS. Retícula com `radial-gradient`, fibra com `feTurbulence`, erro de registro com cópia deslocada em `mix-blend-mode:multiply`. Receitas em [grafismos.md](grafismos.md).
 
-**Material:** obrigatório — é o estilo. Retícula em `opacity:.38`, fibra em `.16`. **Sempre abaixo do texto** na ordem de empilhamento; retícula sobre corpo de texto come a leitura, que é a prioridade 1.
+**Material:** obrigatório — é o estilo. Retícula em `opacity:.38`, fibra em `.16`. **A retícula
+fica abaixo do texto; a fibra e o grão, acima** — retícula tem estrutura e come a leitura, que é a
+prioridade 1; grão é ruído sem forma e é justamente o que faz tipo e chapa virarem a mesma
+superfície. É essa a ordem dos dois esqueletos.
 
 **Imagem gerada:** onde este estilo mais compensa. Retrato, objeto, cena — sempre passada por duotone das duas tintas antes de entrar. Imagem escura precisa de `brightness(1.4)` antes do duotone, ou vira mancha.
 
@@ -553,7 +598,7 @@ estilos mata a direção — é por isso que os blocos são separados e não um 
 
 **Ritmo:** muda **qual coluna o título ocupa e onde o vazio fica**. Sem variar isso, oito cards viram oito paredes iguais — é o estilo que mais precisa de disciplina de ritmo e o que mais castiga a falta dela.
 
-**Cuidado verificado:** é o oposto de um carrossel de feed — pouco contraste e muito vazio convidam a diagramar o corpo pequeno. Não caia nisso: **o piso de 30px vale aqui como em todos os outros**, e 34 se o destino é LinkedIn. O vazio deste estilo é a margem, não o corpo do texto. E Fraunces tem eixo óptico: em corpo grande use o corte de display, ou os traços finos somem.
+**Cuidado verificado:** é o oposto de um carrossel de feed — pouco contraste e muito vazio convidam a diagramar o corpo pequeno. Não caia nisso: **o piso de 34px vale aqui como em todos os outros**. O vazio deste estilo é a margem, não o corpo do texto. E Fraunces tem eixo óptico: em corpo grande use o corte de display, ou os traços finos somem.
 
 E um risco de estilo, não de execução: papel creme com serifa e acento terracota é hoje **um dos clichês de peça gerada por IA**. O que salva esta direção é o rigor da grade e a quantidade de vazio — se o card ficar "aconchegante" em vez de rigoroso, ele caiu no clichê. Compare com `editorial-1-split.jpg`: dois terços do card são papel vazio, e é isso que o tira do lugar-comum.
 
