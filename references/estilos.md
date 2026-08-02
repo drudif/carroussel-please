@@ -751,4 +751,22 @@ regeração:
 
 
 
-As vinte e uma imagens de `assets/referencias/` foram geradas com **Nano Banana Pro** via MCP do Higgsfield, em 4:5, 2K, a partir de prompts que combinam: o briefing de sistema acima, a especificação de paleta e material de cada estilo, os três arquétipos de layout do variance engine da `high-end-visual-design`, e a lista de antipadrões da `bencium-innovative-ux-designer` aplicada como negativa. Os masters em resolução cheia ficam fora do repositório.
+As vinte e uma imagens de `assets/referencias/` foram geradas com **Nano Banana Pro** pelo conector do Higgsfield, em 4:5, 2K, a 2 créditos cada, a partir de prompts que combinam: o briefing de sistema acima, a especificação de paleta e material de cada estilo, os três arquétipos de layout do variance engine da `high-end-visual-design`, e a lista de antipadrões da `bencium-innovative-ux-designer` aplicada como negativa. Os masters em resolução cheia ficam fora do repositório.
+
+**As três do superminimal foram geradas em 2026-08-02, e custaram o dobro do previsto.** Seis
+gerações para três imagens, porque as três primeiras vieram com defeito — e os defeitos foram
+os mesmos que este arquivo já documenta, mais um novo:
+
+- **o modelo desenha grotesca condensada quando você pede cartaz.** Pedir *"modern geometric
+  sans-serif"* não basta: as três primeiras voltaram com uma condensada alta e estreita, que é o
+  oposto do que este estilo é. O que resolveu foi **proibir por extenso** — `NORMAL-WIDTH`,
+  `NOT condensed, NOT compressed, NOT narrow, NOT a tall skinny grotesque`, mais `wide round O`
+- **ele imprime a instrução quando ela descreve o texto em vez de dar o texto.** Pedir *"the small
+  grey line reads a four word caption"* devolveu a peça com `a four word caption` escrito nela.
+  Dê as palavras exatas, sempre
+- **e duplicou o título** numa delas: `ONE` apareceu duas vezes, em dois corpos. `The headline
+  appears EXACTLY ONCE — never repeat it, never echo it in a second size` resolveu
+
+Uma travou em `in_progress` por três consultas — o critério deste arquivo — e o redisparo com o
+prompt reescrito voltou `failed`; o segundo redisparo saiu. Confirma a regra: **não repolar, e
+não desistir no primeiro erro.**

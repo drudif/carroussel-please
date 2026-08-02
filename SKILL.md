@@ -318,10 +318,25 @@ São **sete, fixos**, especificados em [references/estilos.md](references/estilo
 Não é o mesmo catálogo com ressalvas: são duas apresentações diferentes, porque **o que é bom
 depende do que ele tem**. Recomendar riso a quem não vai ter foto é vender o que não se entrega.
 
-**Nos dois:** cada estilo aparece com as **três referências fixas** de `assets/referencias/` —
+**Os dois estão prontos, montados, e é só abrir:**
+
+```bash
+open <pasta-da-skill>/assets/catalogo-a.jpg    # sem conector
+open <pasta-da-skill>/assets/catalogo-b.jpg    # com conector
+```
+
+Cada estilo aparece neles com as **três referências fixas** de `assets/referencias/` —
 `<estilo>-1-split.jpg`, `-2-cascata.jpg`, `-3-bento.jpg` —, uma por arquétipo de layout. São três
 porque uma capa bonita não prova nada: o que quebra no card 5 é o estilo não ter três composições,
 e é exatamente isso que as três mostram.
+
+**A numeração é do estilo, não da posição na lista** — brutalista 1, riso 2, terminal 3, colagem
+4, neubrutal 5, editorial 6, superminimal 7. Ela é a mesma nos dois catálogos, no `estilos.md` e
+no `DIRECAO.md`, de propósito: o usuário responde com um número, e ele precisa significar a mesma
+coisa numa conversa que retome o trabalho depois. O catálogo A ordena por recomendação e os
+números saem fora de sequência — isso é o certo, não um erro.
+
+Para regerar qualquer um dos dois, `assets/board/catalogo.html` é a fonte: `?c=a` e `?c=b`.
 
 #### Catálogo A — sem conector
 
