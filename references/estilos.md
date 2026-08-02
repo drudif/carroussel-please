@@ -31,7 +31,7 @@ As três referências de cada estilo são o mesmo sistema visual em três compos
 
 ## O critério: de onde vem a espessura da peça
 
-**A escolha do estilo é um funil, e quem abre o funil é o nível de imagem da etapa 1.** Não é
+**A escolha do estilo é um funil, e quem abre o funil é a conexão da etapa 1.** Não é
 questão de gosto: cada estilo tira o que tem de melhor de uma fonte diferente, e a foto ajuda,
 atrapalha ou é indiferente conforme essa fonte.
 
@@ -76,7 +76,7 @@ está mais perto. É por isso que a oferta de mandar referência mora na etapa 1
 responde à pergunta do nível, só que de trás para frente.
 
 A oferta e a pergunta que desfaz a ambiguidade — *referência de como quer que fique, ou imagem
-para entrar na arte?* — estão na [etapa 1 da SKILL.md](../SKILL.md#se-ele-trouxer-uma-referência-própria).
+para entrar na arte?* — estão na [etapa 2 da SKILL.md](../SKILL.md#se-ele-mandar-uma-referência-própria).
 O resto da leitura é aqui.
 
 ### Ler uma referência trazida pelo usuário
@@ -707,7 +707,7 @@ que faz a peça ler como print de app dentro do card. Aqui tudo é canto vivo.
 
 ## A conversa da etapa 2
 
-**Abra pelos recomendados do nível.** A etapa 1 já fechou o nível de imagem, e o critério acima
+**Abra pelo catálogo que a etapa 1 escolheu.** A conexão já foi verificada, e o critério acima
 diz quais estilos ele favorece — comece por esses dois, uma linha cada dizendo por que aquele
 nível funciona neles. Depois, uma frase: *"os outros também funcionam aqui — quer ver?"*. E, em
 qualquer nível, nomeie os polivalentes: brutalista, neubrutal e editorial servem nos três, e há
@@ -719,7 +719,7 @@ propósito: uma capa bonita não prova nada, e o que quebra no card 5 é o estil
 arquétipos de layout. É isso que a pessoa está julgando.
 
 **Não renderize nada com o assunto dele aqui.** Preview do trabalho real só existe na etapa 7,
-com o texto aprovado e o nível de imagem decidido — a regra está no topo da SKILL.md. Preview de
+com o texto aprovado e a imagem de cada card decidida — a regra está no topo da SKILL.md. Preview de
 estilo chega antes de qualquer produção, então mostra uma peça feita por um caminho de produção que talvez
 nem seja o escolhido, com texto provisório que ainda vai mudar: o usuário opina duas vezes sobre
 a mesma coisa e a segunda contradiz a primeira.

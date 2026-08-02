@@ -22,8 +22,12 @@ Uma pergunta por mensagem, seguindo o protocolo de [texto.md](texto.md). Toda pe
 Agrupe em quatro rodadas curtas: **quem publica**, **o que já existe**, **como parece**, **com o
 que produz**.
 
-São onze perguntas. A de nível de imagem **não está aqui** — ela é a etapa 1, logo depois do
-perfil.
+A pergunta da **conexão não está aqui** — ela é a etapa 1, logo depois da introdução, e é
+verificada antes de ser perguntada.
+
+> **Este arquivo é o repertório completo do perfil, não o roteiro da conversa.** A etapa 0 da
+> SKILL.md pergunta só quatro coisas — assunto, o que ele já tem, identidade, e assinatura mais
+> plataforma. O resto daqui se pergunta **quando fizer falta**, não de véspera.
 
 **A rodada 2 é a que muda mais coisa depois.** Ela não é sobre gosto: é o inventário do que o
 usuário traz pronto, e a resposta dela reescreve duas etapas adiante. Perguntar direção visual
@@ -66,12 +70,12 @@ errado.
 
 | resposta | o que muda |
 |---|---|
-| **é para você resolver** | fluxo normal: a etapa 1 pergunta como as imagens são feitas, com as três opções |
+| **é para você resolver** | fluxo normal: a etapa 1 verifica se há gerador ligado e, não havendo, oferece conectar |
 | **tenho as fotos** | elas são **material**, com os direitos de quem mandou, e entram **sem tratamento** salvo pedido dele. A etapa 1 continua, mas só para o que faltar |
 
 **Material não é referência**, e confundir os dois põe a foto do usuário dentro do card sem
 ninguém ter decidido isso. Se ele mandar imagem sem dizer qual das duas é, pergunte — a
-distinção está na [etapa 1 da SKILL.md](../SKILL.md#se-ele-trouxer-uma-referência-própria).
+distinção está na [etapa 2 da SKILL.md](../SKILL.md#se-ele-mandar-uma-referência-própria).
 
 **Foto do usuário entra como ela é**, por padrão: sem duotone, sem retícula, sem quantizar — o
 oposto do que se faz com foto de banco, e de propósito. Ele escolheu aquela foto porque é o
@@ -108,10 +112,13 @@ Fonte que não está instalada não entra. E fonte de marca precisa passar pela 
 
 ## Rodada 4 — com o que produz
 
-**Não pergunte de imagem nesta rodada, nem em versão binária** — *"quer gerar imagem ou desenhar
-tudo?"*. Binário não distingue **banco aberto** de **desenho em código**, e toda vez que a
-pergunta vazou para cá a etapa 1 foi tratada como já respondida: o meio sumiu do trabalho
-inteiro, e com ele o funil de estilos. Ela é a etapa 1, com três opções.
+**Não pergunte de imagem nesta rodada.** A conexão é a etapa 1, e lá ela é **verificada** antes de
+ser perguntada — o que torna qualquer versão dela aqui não só redundante, mas pior: perguntar o
+que dá para descobrir sozinho é a pior pergunta que existe.
+
+E não a antecipe numa versão binária de gosto — *"quer gerar imagem ou desenhar tudo?"*. A escolha
+entre banco de imagem e desenho em código **deixou de ser pergunta**: ela virou referência dentro
+do catálogo da etapa 2. Toda vez que ela vazou para cá, a etapa 1 foi tratada como já respondida.
 
 **9. Onde salvo o trabalho?**
 → Padrão: `./carrossel-<assunto>/`

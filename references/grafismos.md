@@ -292,7 +292,7 @@ card, e a forma vem do `image_type` do banco — nada além disso.
 > **Nada desta seção vale para foto que o usuário subiu.** Aqui o assunto é banco de imagem, que
 > é foto neutra de terceiro e precisa do tratamento para pertencer à peça. Foto do usuário é o
 > contrário: **entra como ela é**, e quem se adapta é o card. Ver a
-> [etapa 1 da SKILL.md](../SKILL.md#se-ele-já-tem-as-fotos).
+> [última pergunta da etapa 2](../SKILL.md#a-última-pergunta-da-etapa-2--só-se-ele-subiu-fotos).
 
 ### A escolha da foto depende do tratamento, não só do assunto
 

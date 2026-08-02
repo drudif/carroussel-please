@@ -74,40 +74,42 @@ else
   BASE="cards.html"
 fi
 
-# ── trava do nível de imagem ───────────────────────────────────────────────────
-# Quatro testes seguidos falharam pelo mesmo motivo: a decisão da etapa 1 não
-# sobreviveu até aqui — ou porque a pergunta nunca foi feita, ou porque foi feita
-# com duas opções em vez de três. Prosa não segurou. Isto segura, porque roda
-# sempre e é a última coisa entre a arte e a entrega.
+# ── trava da conexão ──────────────────────────────────────────────────────────
+# Isto já foi a trava do "nível de imagem", com três opções — e a do meio sumia em
+# toda sessão de teste. A correção não foi escrever melhor: foi deixar de perguntar.
+# A capacidade de gerar imagem se VERIFICA (uma chamada de balance), o resto virou
+# binário, e a escolha entre banco e desenho deixou de ser pergunta para virar
+# referência dentro do catálogo. Esta linha é a prova de que a catraca rodou.
 DIR_MD=""
 [ -f DIRECAO.md ] && DIR_MD="DIRECAO.md"
 [ -f ../DIRECAO.md ] && DIR_MD="../DIRECAO.md"
 
-NIVEL=""
+CONECTOR=""
 # o `|| true` não é decoração: com pipefail, o grep sem achar nada derruba o script
 # inteiro — e a trava morria em silêncio, saindo com erro e sem imprimir uma linha
-[ -n "$DIR_MD" ] && NIVEL=$(grep -i '^imagem:' "$DIR_MD" | head -1 | cut -d: -f2- | tr -d ' ' || true)
+[ -n "$DIR_MD" ] && CONECTOR=$(grep -i '^conector:' "$DIR_MD" | head -1 | cut -d: -f2- | sed 's/^ *//' || true)
 
-if [ -z "$NIVEL" ]; then
-  echo "PARADO — não há nível de imagem gravado."
+if [ -z "$CONECTOR" ]; then
+  echo "PARADO — não há linha de conector no DIRECAO.md."
   echo
   if [ -z "$DIR_MD" ]; then
-    echo "  Não achei DIRECAO.md. A etapa 3 devia ter gravado: paleta, fontes, grade"
-    echo "  e a linha do nível de imagem."
+    echo "  Não achei DIRECAO.md. A etapa 3 devia ter gravado paleta, fontes, grade,"
+    echo "  e as linhas de estilo e conector."
   else
-    echo "  $DIR_MD existe mas não tem a linha 'imagem:'."
+    echo "  $DIR_MD existe mas não tem a linha 'conector:'."
   fi
   echo
-  echo "  A etapa 1 pergunta como as imagens do carrossel são feitas, e tem TRÊS"
-  echo "  opções — não duas:"
-  echo "     1 · feitas sob medida por um gerador conectado"
-  echo "     2 · de banco aberto (Dupe, Openverse) — não conecta nada"
-  echo "     3 · sem foto nenhuma, tudo desenhado em código"
+  echo "  A etapa 1 é uma catraca, e ela tem duas partes:"
+  echo "     1 · VERIFICAR se há gerador ligado — com uma chamada de balance, não"
+  echo "         perguntando. Ferramenta que aparece na lista não é ferramenta autorizada"
+  echo "     2 · não havendo, OFERECER conectar, com o passo a passo, e dizer que é a"
+  echo "         forma mais rica de trabalhar. Duas respostas valem: 'me ajude a"
+  echo "         conectar' e 'seguimos sem'"
   echo
-  echo "  A opção 2 é a que some sozinha. Se você não fez essa pergunta ao usuário,"
-  echo "  faça agora: montar sem ela é escolher no lugar dele."
-  echo
-  echo "  Depois grave no DIRECAO.md, uma linha:   imagem: 2 · dupe + openverse"
+  echo "  A linha do RECUSADO importa tanto quanto a do ligado — sem ela não dá para"
+  echo "  distinguir 'ele não quis' de 'ninguém perguntou'. Grave uma das duas:"
+  echo "     conector: higgsfield · verificado em AAAA-MM-DD"
+  echo "     conector: nenhum · oferecido e recusado em AAAA-MM-DD"
   echo
   echo "  Já perguntou e só faltou gravar? FORCA=1 ./exportar.sh $N"
   [ -z "${FORCA:-}" ] && exit 1
@@ -130,8 +132,8 @@ if [ -z "$ESTILO" ]; then
   echo "  O DIRECAO.md precisa de uma linha própria:   estilo: riso · aprovado por ele"
   echo
   echo "  São SETE, fixos: brutalista · riso · terminal · colagem · neubrutal ·"
-  echo "  editorial · iridescente. O nível de imagem ordena quais abrem primeiro;"
-  echo "  ele não escolhe no lugar do usuário."
+  echo "  editorial · superminimal. A conexão ordena qual catálogo abre primeiro;"
+  echo "  ela não escolhe no lugar do usuário."
   echo
   echo "  E LEIA ISTO se houve referência do usuário: ler a referência RESOLVE para"
   echo "  um estilo, não ESCOLHE por ele. 'resolveu para colagem' é sugestão sua; a"
@@ -141,9 +143,12 @@ if [ -z "$ESTILO" ]; then
   [ -z "${FORCA:-}" ] && exit 1
 fi
 
-if [ -n "$NIVEL" ]; then
-  case "$NIVEL" in
-    1*|gerador*)
+# com conector ligado, o laço do gabarito é obrigatório: é a única coisa que o
+# conector compra, e montar sem ele cobra crédito por um resultado sem ele
+if [ -n "$CONECTOR" ]; then
+  case "$CONECTOR" in
+    nenhum*|sem*|nao*|não*) ;;
+    *)
       # isole o status: com pipefail, o ls falhando num glob vazio derruba o teste
       # inteiro e a trava dispara mesmo com o gabarito ali do lado
       # gfx/ está aqui porque o esqueleto usa essa pasta para grafismo e a documentação
@@ -152,14 +157,14 @@ if [ -n "$NIVEL" ]; then
       TEM=$(ls gabarito-*.png chapa-*.png gfx/gabarito-*.png gfx/chapa-*.png \
                ../gabarito/*.png 2>/dev/null | head -1 || true)
       if [ -z "$TEM" ]; then
-        echo "PARADO — o DIRECAO.md diz nível 1 (gerador ligado) e não há gabarito nenhum aqui."
+        echo "PARADO — o DIRECAO.md diz que há gerador ligado e não há gabarito nenhum aqui."
         echo
-        echo "  Nível 1 não é 'ilustração gerada e colada no card'. O card inteiro nasce"
+        echo "  Conector não é 'ilustração gerada e colada no card'. O card inteiro nasce"
         echo "  composto pelo gerador e a tipografia entra por cima, limpa. O laço está em"
         echo "  references/geradores.md e os arquivos ficam como gabarito-NN.png e chapa-NN.png."
         echo
-        echo "  Montar sem ele desperdiça a única coisa que o nível 1 compra, e cobra crédito"
-        echo "  por um resultado de nível 2."
+        echo "  Montar sem ele desperdiça a única coisa que o conector compra, e cobra crédito"
+        echo "  por um resultado que não precisava dele."
         echo
         echo "  Se o laço já rodou e as chapas têm outro nome: FORCA=1 ./exportar.sh $N"
         [ -z "${FORCA:-}" ] && exit 1

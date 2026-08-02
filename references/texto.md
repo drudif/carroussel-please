@@ -91,7 +91,7 @@ Vale para qualquer plataforma. O que muda de uma para outra é a quantidade, nã
 
 ## As perguntas da etapa 4 são três
 
-E são as três da [SKILL.md](../SKILL.md#etapa-4--conteúdo) — tese, fechamento, dado próprio.
+E são as três da [SKILL.md](../SKILL.md#etapa-4--análise-e-texto) — tese, fechamento, dado próprio.
 **Não são cinco.** O gancho da capa e os passos card a card já foram perguntas aqui, e saíram:
 os dois se respondem melhor no **mapa dos cards** que você propõe depois, porque o usuário julga
 um roteiro pronto mais rápido do que redige um do zero. Perguntar os passos um a um é fazer o
