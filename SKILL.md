@@ -451,6 +451,9 @@ justamente quando as duas disputam a mesma camada. Feche isso no `DIRECAO.md` e 
 Ao fechar, registre em `DIRECAO.md` na pasta do trabalho: paleta em hex com o uso de cada cor,
 fontes com nome de arquivo, lógica de grade, e como cada tipo de card se comporta.
 
+**E é aqui que se pergunta o rodapé**, não na abertura: ◇ *tem logo, ou fica só o arroba em
+texto?* Agora existe direção para ele pertencer.
+
 **Duas linhas têm formato exato, e o `exportar.sh` para se qualquer uma faltar.** A primeira é o
 estilo, e ela é a prova de que a etapa 2 aconteceu:
 
@@ -534,6 +537,10 @@ Quatro caminhos, e a etapa 0 já disse qual:
 | **uma ideia ou rascunho** | escreve em cima. Leia primeiro, aponte **em uma linha** o que falta para o arco fechar, e proponha o delta |
 | **texto pronto, organizado** | não reescreva. Distribua nos cards e passe a régua |
 | **texto pronto, mas grande demais ou fora de ordem** | **resuma e organize.** É o caso mais comum de quem traz texto: o material é bom e não cabe. Corte para o tamanho do card, mantenha as palavras dele onde der, e diga o que cortou |
+
+**Duas perguntas do perfil moram aqui, e não na abertura:** *para quem é isso* e *qual é a voz*.
+São as que mudam a redação, e perguntá-las agora — com o usuário já falando de conteúdo — é a
+diferença entre uma pergunta útil e um formulário. Se o perfil salvo já responde, não repita.
 
 **A entrevista das três perguntas é para quem tem assunto, não texto.** Rodá-la em cima de texto
 pronto devolve ao usuário um mapa do que ele mesmo escreveu, e a resposta certa dele é *"isso eu

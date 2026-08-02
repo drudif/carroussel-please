@@ -48,6 +48,7 @@ mapa ela custa uma linha para corrigir; depois custa um card montado.
 | CTA em pergunta — "Quer fazer as suas?" | Vira afirmação |
 | Eyebrow que só existe porque o template tem a caixa | Mata o slot inteiro |
 | Todos os cards com a mesma estrutura e comprimento | Assimetria deliberada em pelo menos um |
+| **Resumo forçado** — argumento picado para caber numa contagem de palavras, sem conectivo, em sentenças soltas | É a fôrma vencendo o conteúdo, igual às outras. O que precisa de linearidade fica inteiro; ver o teto **medido** em [texto.md](texto.md#o-corpo-dos-cards-do-meio-25-palavras-era-pouco) |
 
 ## O grafismo não gera texto
 

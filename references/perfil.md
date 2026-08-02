@@ -25,9 +25,26 @@ que produz**.
 A pergunta da **conexão não está aqui** — ela é a etapa 1, logo depois da introdução, e é
 verificada antes de ser perguntada.
 
-> **Este arquivo é o repertório completo do perfil, não o roteiro da conversa.** A etapa 0 da
-> SKILL.md pergunta só quatro coisas — assunto, o que ele já tem, identidade, e assinatura mais
-> plataforma. O resto daqui se pergunta **quando fizer falta**, não de véspera.
+> **Este arquivo é o repertório do perfil, não o roteiro da conversa.** A etapa 0 pergunta
+> quatro coisas; o resto tem **endereço marcado** — cada pergunta abaixo diz em que etapa ela é
+> feita. *"Quando fizer falta"* seria prosa sem gatilho, e prosa sem gatilho já falhou nesta
+> skill.
+
+## Onde cada pergunta é feita
+
+| pergunta | etapa |
+|---|---|
+| quem assina · onde publica | **0** — introdução |
+| o texto já existe · já tem as imagens | **0**, fundidas numa só |
+| cor e fonte fechadas | **0** |
+| **para quem** · **qual a voz** | **4** — na hora de escrever, que é onde muda alguma coisa. O usuário já está falando de conteúdo, e a pergunta deixa de ser burocracia |
+| **logo ou assinatura no rodapé** | **3** — junto do resto da direção |
+| **quantos cards** | **4** — proposto a partir da análise do material, nunca perguntado no vazio |
+| **onde salvo o trabalho** | **7**, ou nem se pergunta: usa o padrão e diz onde ficou |
+| **guardo isso pra não perguntar de novo** | **no fim, depois da entrega** — é quando ele sabe se valeu |
+
+Perguntar tudo na abertura foi o que a etapa 0 deixou de fazer. Perguntar **quando a resposta
+muda o que você vai fazer em seguida** é o que substituiu.
 
 **A rodada 2 é a que muda mais coisa depois.** Ela não é sobre gosto: é o inventário do que o
 usuário traz pronto, e a resposta dela reescreve duas etapas adiante. Perguntar direção visual
@@ -42,9 +59,9 @@ antes de saber se o texto já existe é montar entrevista para quem não precisa
 **2. Onde publica?** Instagram, LinkedIn, os dois, outro lugar. Define quantidade de cards e densidade de texto; a tabela está em [texto.md](texto.md).
 → Padrão: Instagram, 8 a 10 cards.
 
-**3. Para quem?** Uma frase sobre quem lê. "Criativo de agência que não programa" e "dev sênior" produzem carrosséis opostos a partir do mesmo assunto.
+**3. Para quem?**  · *etapa 4* Uma frase sobre quem lê. "Criativo de agência que não programa" e "dev sênior" produzem carrosséis opostos a partir do mesmo assunto.
 
-**4. Qual a voz?** Dois ou três adjetivos e, se existir, um post que soou certo. Se o projeto tiver `.agents/social-media-context-sms.md`, **leia o arquivo e pule a pergunta** — a voz já está documentada lá.
+**4. Qual a voz?**  · *etapa 4* Dois ou três adjetivos e, se existir, um post que soou certo. Se o projeto tiver `.agents/social-media-context-sms.md`, **leia o arquivo e pule a pergunta** — a voz já está documentada lá.
 
 ---
 
@@ -103,7 +120,7 @@ ls ~/Library/Fonts | sed 's/-.*//;s/\..*//' | sort -u
 
 Fonte que não está instalada não entra. E fonte de marca precisa passar pela conferência de acentos da etapa 3 como qualquer outra.
 
-**8. Tem logo ou assinatura para o rodapé?** Caminho do arquivo, ou só o arroba em texto.
+**8. Tem logo ou assinatura para o rodapé?**  · *etapa 3* Caminho do arquivo, ou só o arroba em texto.
 → Padrão: arroba em texto, e só na capa e no fecho.
 
 *(Não pergunte se vai impulsionar. A área de segurança do corte quadrado é obrigatória sempre — post orgânico vira impulsionado depois sem ninguém refazer a arte.)*
@@ -120,10 +137,10 @@ E não a antecipe numa versão binária de gosto — *"quer gerar imagem ou dese
 entre banco de imagem e desenho em código **deixou de ser pergunta**: ela virou referência dentro
 do catálogo da etapa 2. Toda vez que ela vazou para cá, a etapa 1 foi tratada como já respondida.
 
-**9. Onde salvo o trabalho?**
+**9. Onde salvo o trabalho?**  · *etapa 7, ou nunca*
 → Padrão: `./carrossel-<assunto>/`
 
-**10. Quantos cards?** Recomende, com o motivo: 8 a 10 no Instagram (teto de 10), 9 a 10 se o
+**10. Quantos cards?**  · *etapa 4, proposto a partir do material* Recomende, com o motivo: 8 a 10 no Instagram (teto de 10), 9 a 10 se o
 LinkedIn é o destino principal.
 
 Isto **não é detalhe de produção, é pré-requisito da etapa 2**: uma direção que fecha bem em
@@ -133,7 +150,7 @@ se ela aguenta o número. Sem o número, não há o que julgar.
 E **pergunte uma vez só.** Sabendo o número, a etapa 2 confirma — *"são sete, certo?"* — nunca
 repete a pergunta do zero.
 
-**11. Guardo isso pra não perguntar de novo?** Se sim, grave o arquivo. Se não, vale só nesta sessão.
+**11. Guardo isso pra não perguntar de novo?**  · *no fim, depois da entrega* Se sim, grave o arquivo. Se não, vale só nesta sessão.
 
 ---
 

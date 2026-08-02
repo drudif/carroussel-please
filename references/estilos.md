@@ -238,8 +238,9 @@ errada no seu CSS, não na fonte.
 
 ## Palavra não é a unidade, caractere é
 
-A régua de 25 palavras foi feita para fonte proporcional. **Dois dos sete estilos usam
-monoespaçada no corpo** — IBM Plex Mono no brutalista, Cascadia Mono no terminal — e ali o mesmo
+O teto medido em [texto.md](texto.md#o-corpo-dos-cards-do-meio-25-palavras-era-pouco) — 56 a 80
+palavras — foi medido em **fonte proporcional**. **Dois dos sete estilos usam monoespaçada no
+corpo** — IBM Plex Mono no brutalista, Cascadia Mono no terminal — e ali o mesmo
 texto ocupa muito mais.
 
 O número que serve para os dois casos: **a 34px sobre uma coluna de 924px, uma mono cabe ~45
@@ -294,7 +295,7 @@ interface. A dose é o que separa: acima de `.12` vira papel amassado e aí sim 
 
 **Ritmo:** o bloco de cor muda de tamanho, lado e sangria a cada card; a tipografia fica ancorada à esquerda.
 
-**Cuidado verificado:** Anton é muito condensada. Título de quatro linhas em caixa alta vira parede preta e o olho não acha onde entrar — **máximo três linhas na capa**. E IBM Plex Mono é larga: 25 palavras nela ocupam mais que em qualquer outra do conjunto, então corte antes de diagramar.
+**Cuidado verificado:** Anton é muito condensada. Título de quatro linhas em caixa alta vira parede preta e o olho não acha onde entrar — **máximo três linhas na capa**. E IBM Plex Mono é larga: o mesmo texto nela ocupa mais que em qualquer outra do conjunto, então **meça com o `?medir=1` antes de fechar o texto**, não depois.
 
 **O cartaz aqui:** cartaz de protesto suíço. Uma palavra enorme, uma forma, e ar.
 

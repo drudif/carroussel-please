@@ -45,9 +45,46 @@ Vale para qualquer plataforma. O que muda de uma para outra é a quantidade, nã
 
 **Contexto.** Uma ou duas frases enquadrando o problema. É a ponte entre o gancho e o valor, e é o card que mais some por parecer dispensável — sem ele o leitor não sabe por que deveria se importar.
 
-**Corpo.** Uma ideia por card, sem exceção. Um título curto que entrega o ponto sozinho, e um corpo que cabe em **25 palavras**. Se não coube, são dois cards.
+**Corpo.** Uma ideia por card, sem exceção — **essa** não cede. O tamanho do corpo, sim, e
+generosamente: ver a seção abaixo.
 
 **Fecho.** Uma frase que fecha a tese e uma ação concreta. Não desperdice o último card com "obrigado por ler".
+
+### O corpo dos cards do meio: 25 palavras era pouco
+
+**A régua era 25 palavras, e ela estava estragando o carrossel.** Cortar tudo para caber nesse
+teto mata justamente o que precisa de **linearidade** para ser entendido — um raciocínio com dois
+passos, uma causa e sua consequência, um "por isso" que depende do que veio antes. Picado em
+sentenças de 25 palavras, o argumento vira tópico solto e o leitor não reconstrói o fio.
+
+**E resumo forçado é slop.** Não é uma opinião de gosto: é a mesma falha da família inteira —
+uma fôrma aplicada independentemente do conteúdo. Texto espremido para caber numa contagem fica
+telegráfico e sem conectivo, que é exatamente o "slop ao contrário" que o
+[anti-slop.md](anti-slop.md#os-limites) já avisa.
+
+**O teto passa a ser físico, e ele foi medido.** No quadrado vivo de 924×924, corpo a 34px com
+entrelinha 1,45, título de duas linhas a 104px e o pé reservado:
+
+| o card tem | cabe |
+|---|---|
+| título de 2 linhas + zona de grafismo preservada | **56 palavras**, 8 linhas |
+| título um pouco menor, 92px, com grafismo | **64 palavras**, 9 linhas |
+| **sem grafismo** — só título, corpo e pé | **80 palavras**, 11 linhas |
+
+Então a régua de trabalho:
+
+- **capa e fecho ficam curtos.** Uma promessa e um fechamento não ganham nada com volume
+- **os cards do meio carregam o argumento, e podem ir a 55–65 palavras** com grafismo, ou até
+  **80 sem ele.** O grafismo é o que cede primeiro na hierarquia da skill — um card que precisa
+  explicar tem direito de abrir mão dele
+- **quem diz que chegou no limite é o `?medir=1`**, não a contagem: ele mede a altura real com a
+  fonte real. Contar palavra é estimativa; medir é medida
+- **e não encha para preencher.** O teto subiu, o piso não existe: se a ideia se resolve em duas
+  linhas, ela se resolve em duas linhas. Volume por volume é o defeito espelhado do resumo forçado
+
+**Quando dividir em dois cards, então?** Quando são **duas ideias**, não quando o texto ficou
+longo. A pergunta certa é *"o leitor entende a segunda parte sem a primeira?"* — se entende, são
+dois cards; se não entende, é um card só e ele precisa do espaço.
 
 ---
 
@@ -72,7 +109,7 @@ Vale para qualquer plataforma. O que muda de uma para outra é a quantidade, nã
 | **Formato** | carrossel nativo | PDF, documento nativo | post de imagens | Idea Pin | multifoto |
 | **Quantidade** | 8–10 (teto de 10) | 7–12, ideal 9–10 | 6–12 | 6–10 páginas | 5–8 |
 | **Proporção** | 1080×1350 (4:5) | **1080×1080 (1:1)** | 1080×1920 (9:16) | 1080×1920 | 1:1 |
-| **Densidade** | baixa — ~25 palavras | alta, aceita profundidade | mínima — até 6 palavras por card | média, guiada por palavra-chave | média |
+| **Densidade** | média — o teto medido, sem encher | alta, e é onde o teto de 80 palavras mais vale | mínima — até 6 palavras por card | média, guiada por palavra-chave | média |
 | **Legenda** | gancho nos 125 primeiros caracteres | gancho + 2 parágrafos; **link só no comentário** | até 150 caracteres | descrição com palavra-chave | conversacional, 200–500 |
 | **Hashtags** | 3 a 10 | 3 a 5 | 3 a 5 | ignoradas — use palavra-chave no texto | 1 a 3 |
 | **Sinal que importa** | salvar e enviar | comentário e reação | reassistir | salvar | comentário |
