@@ -1,9 +1,9 @@
 <meta charset="utf-8">
 <title>Carrossel — chapa</title>
 <!--
-  ESQUELETO DE CHAPA — a mecânica do NÍVEL 1, quando há gerador conectado e o laço do
-  gabarito rodou. Use este quando o DIRECAO.md diz `imagem: 1`. Para os níveis 2 e 3,
-  use o esqueleto.html, que é o empilhamento rígido.
+  ESQUELETO DE CHAPA — a mecânica de quando há gerador conectado e o laço do
+  gabarito rodou. Use este quando o DIRECAO.md tem uma linha `conector:` com um gerador.
+  Dizendo `conector: nenhum`, use o esqueleto.html, que é o empilhamento rígido.
 
   A DIFERENÇA, e é arquitetural — não é o mesmo arquivo com outra cor:
 
@@ -135,7 +135,7 @@ const CARDS = [
                lede:'Subtítulo bem menor — razão de pelo menos 2,5 para 1 com o título.'}),
   () => chapa({n:'02', img:'gfx/chapa-02.png', vao:{y:213, h:390},
                t:['NOME DO','ITEM'], px:104, ancora:'vao',
-               lede:'Corpo de até 25 palavras. Uma ideia por card.'}),
+               lede:'Uma ideia por card — essa não cede. O tamanho do corpo cede: nos cards do meio ele vai a 55–65 palavras com grafismo, e até 80 sem. Ver texto.md.'}),
   () => chapa({n:'03', img:'gfx/chapa-03.png', vao:{y:760, h:377},
                t:['FECHO.'], px:130, ancora:'pe', claro:true,
                lede:'Frase de resumo e a chamada final.'}),

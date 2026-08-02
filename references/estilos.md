@@ -128,10 +128,9 @@ Os sete rodam **sem nenhum gerador de imagem** — todo grafismo é CSS/SVG. Doi
 | Minimalista editorial quente | completo | uma imagem grande sangrando por um lado |
 | **Superminimal** | funciona, mas magro | **muda de patamar** — a imagem em bloco é o evento do estilo |
 
-Regra fixa: **havendo gerador conectado, todos os cards nascem de gabarito gerado** — não só a
-capa. É o laço do gabarito, na etapa 7. A capa é o piso, não o teto: com crédito curto, gere a
-capa e o fecho e desenhe o miolo, dizendo o número de créditos ao usuário em vez de decidir em
-silêncio.
+Regra fixa: **havendo gerador conectado, todos os cards nascem de gabarito gerado**, não só a
+capa — a regra inteira, com o que fazer quando o crédito é curto, está na
+[etapa 7 da SKILL.md](../SKILL.md#antes-do-passo-1-há-gerador-ligado).
 
 **Não há mais exceção.** Ela existia para o iridescente minimal, que vivia do campo chapado e
 perdia os dois quando entrava foto. O superminimal, que tomou o lugar dele, é o oposto: a imagem
@@ -139,7 +138,7 @@ em bloco é o evento.
 
 ## As fontes
 
-Doze famílias, quinze faces, **todas OFL 1.1** e **embutidas em `assets/fontes/`** com a licença
+Treze famílias, quinze faces, **todas OFL 1.1** e **embutidas em `assets/fontes/`** com a licença
 de cada uma ao lado. Acentos pt-BR conferidos glifo a glifo — `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` mais
 `º ª « » — " "`. Nenhuma sai de acervo pessoal: o carrossel precisa ser reproduzível por quem
 clonar a skill.

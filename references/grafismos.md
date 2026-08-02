@@ -190,8 +190,8 @@ idioma visual, material, traço, e o que aquele estilo proíbe.
 bloco do estilo  →  assunto (a metáfora)  →  cauda universal
 ```
 
-**A ordem importa.** O modelo pesa mais o começo, e o que precisa dominar é o estilo. Começar pelo
-assunto devolve foto de banco de imagem com a paleta sugerida por cima — que é exatamente o defeito.
+**A ordem importa, e o porquê está em [estilos.md](estilos.md#a-cauda-que-vale-para-os-sete)**,
+junto da cauda universal.
 
 E **as proibições diferem por estilo**: o brutalista proíbe meio-tom, o editorial quente exige
 meio-tom. Um bloco genérico com a paleta trocada mata metade das direções.
@@ -316,10 +316,22 @@ paleta e briga com tudo o mais.
 Para esses três estilos, **desenhar ganha do banco**. Foto, no entanto, funciona no brutalista
 quando chapada em três degraus: o que falha ali é época, não fotografia.
 
-### Ordem dos bancos
+### Ordem dos bancos, e as duas ferramentas
 
 **Dupe** primeiro, pelo acervo — fotografia editorial contemporânea, luz dura, recorte limpo,
 sem cara de banco. **Openverse** depois, que é a segura: filtro `cc0` e `pdm` no parâmetro.
+
+As duas estão escritas, e busca por **assunto**, nunca por estilo:
+
+```bash
+assets/ferramentas/dupe.py "torn paper" 8              # Dupe, sem chave nem cadastro
+assets/ferramentas/prancha.py buscar "anatomia do ouvido"     # Openverse, só cc0 e pdm
+assets/ferramentas/prancha.py tratar cand/x.jpg gfx/02.png brutalista --alt 1010
+```
+
+A `prancha.py` também **trata na paleta do estilo** — o que vale para foto de banco e **não**
+para foto do usuário, que entra como ela é. E a relevância da busca erra bastante nas duas:
+baixe três, **olhe**, e escolha. Não automatize a escolha.
 
 Ressalva do Dupe, dita **antes** de usar: não é API pública. O endpoint é o backend que o site
 chama (`POST /api/v1/content/search`, corpo `{"label": "..."}`), sem termos publicados para uso

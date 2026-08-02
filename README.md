@@ -43,31 +43,32 @@ pergunta.
 
 | | Etapa | O que acontece |
 |---|---|---|
-| 0 | Perfil | quem assina, onde publica. Roda uma vez e fica salvo |
-| 1 | Nível de imagem | gerador conectado, banco aberto, ou só desenho em código |
-| 2 | Estilo | sete fixos, escolhidos pelas três referências visuais de cada um |
-| 3 | Direção | aprovação, e a direção fica registrada em `DIRECAO.md` |
-| 4 | Conteúdo | três perguntas, e o mapa dos cards antes de escrever o texto |
-| 5 | Anti-slop | o texto passa por uma régua antes de você ver |
-| 6 | Aprovação | você lê o que ficou e ajusta no `.md` |
+| 0 | Introdução | sobre o que é · o que você já tem · identidade fechada? · como assina e onde publica |
+| 1 | Conexão | a skill **verifica** se há gerador ligado. Não havendo, oferece conectar e ajuda no passo a passo |
+| 2 | Estilo | um dos **dois catálogos**, conforme a etapa 1. Sete estilos, três referências cada |
+| 3 | Direção | aprovação, e a direção registrada em `DIRECAO.md` |
+| 4 | Análise e texto | lê o seu material, **propõe o número de cards com o motivo**, e escreve ou organiza o texto |
+| 5 | Anti-slop + imagens | a régua no texto e a imagem de cada card, as duas antes de você ver qualquer coisa |
+| 6 | O mapa | por card: título, corpo e a imagem descrita. **É a única aprovação** |
 | 7 | Produção | a arte, os PNGs, os PDFs |
 
-Na hora de escolher o nível, a skill abre um **board** (`assets/board-niveis.jpg`) com os três
-caminhos lado a lado e os sete estilos agrupados por afinidade — o que cada caminho custa, e que
-cara ele tem. Ele se regera com `assets/board/gerar.sh`.
+**A conexão vem antes do estilo, e é de propósito.** É ela que decide qual catálogo você vê:
+sem gerador, recomendar risografia seria vender o que não se entrega — a tinta riso existe para
+cair sobre imagem. O catálogo A ordena pelo que aguenta o caminho sem gerador e diz, em laranja,
+quais dois perdem qualidade ali. O catálogo B põe os sete em pé de igualdade.
 
-**Você pode mandar a sua própria referência** em vez de responder a pergunta: de como a peça
-parece dá para deduzir o que ela custa para fazer, então a skill lê a referência e devolve qual
-caminho ela pede e de qual dos sete estilos ela está mais perto. Ela não vira um oitavo estilo —
-escolhe entre os sete e afina o escolhido.
+Essa etapa já foi uma pergunta de três opções — *sem foto · banco · sob medida* — e sumia em toda
+sessão de teste, sempre pelo meio. A saída não foi escrever melhor: foi **deixar de perguntar**.
+A capacidade se verifica, o resto vira binário, e a escolha entre banco e desenho deixou de ser
+pergunta abstrata para virar **referência dentro do catálogo**.
 
-**O nível de imagem vem antes do estilo, e é de propósito.** Cada nível favorece estilos
-diferentes — terminal e brutalista nascem sem foto, superminimal vive dela, riso e colagem mudam de patamar com uma —,
-então a escolha do nível já ordena a lista. Os sete continuam à vista; o que muda é por onde a
-conversa começa.
+**Você pode mandar a sua própria referência** em vez de escolher pelo catálogo: de como a peça
+parece dá para deduzir o que ela custa para fazer. A skill lê, diz de qual dos sete ela está mais
+perto, e **confirma com você antes de seguir** — você pode ter gostado da paleta, da tipografia
+ou da foto, e cada uma leva a um estilo diferente. Ela não vira um oitavo estilo.
 
-**Você vê arte uma vez: pronta.** Não há preview intermediário — ele chegaria antes da etapa 2,
-mostrando uma peça feita por um caminho que talvez nem seja o escolhido, com texto ainda
+**Você vê arte uma vez: pronta.** Não há preview intermediário — ele chegaria antes de a imagem
+estar decidida, mostrando uma peça que talvez nem seja a que será produzida, com texto ainda
 provisório. A escolha de estilo se faz nas 21 referências fixas que já vêm na skill.
 
 ## Os sete estilos
@@ -85,21 +86,27 @@ provisório. A escolha de estilo se faz nas 21 referências fixas que já vêm n
 Cada um traz paleta em hex, par tipográfico open-source com acentos pt-BR conferidos glifo a
 glifo, entrelinha calculada a partir das métricas da fonte, e três referências visuais fixas.
 
-## Imagem: três níveis, e nenhum obrigatório
+## Imagem: de onde ela vem
 
-**Mínimo — só código.** SVG e CSS, custo zero, e é o padrão. Para os estilos de forma
-(brutalista, terminal, neo-brutalismo) costuma ganhar de banco de imagem, porque o desenho
-nasce na paleta e carrega o conceito.
+**Desenho em código.** SVG e CSS, custo zero, e é o padrão para tudo o que é estrutura — grade,
+diagrama, abstração de interface, ícone, tabela. Nos estilos de forma — brutalista, terminal,
+neo-brutalismo — costuma ganhar de banco de imagem, porque nasce na paleta e carrega o conceito.
 
-**Médio — bancos abertos.** Dupe e Openverse, tratados na paleta do estilo. Não pede chave nem
-cadastro. Rende quando o tema é imagético; em tema abstrato, o desenho ainda ganha.
+**Bancos abertos.** Dupe e Openverse, tratados na paleta do estilo. Não pede chave nem cadastro.
+É o que faz o **superminimal** funcionar sem gerador: recorte limpo cai direto no branco.
 
-**Rico — gerador conectado.** MCP (Higgsfield, Magnific) ou chave própria de Gemini/OpenAI. É
-o único nível em que a imagem responde ao briefing. Aqui a skill roda o *laço do gabarito*:
-gera o card inteiro com texto só para ter o que diagramar, mede a composição, acha a fonte
-open-source mais próxima, refaz a imagem sem texto usando a primeira como referência, e monta
-a tipografia real por cima. O gerador compõe melhor do que escreve — o laço usa cada um no que
-ele faz bem.
+**Fotos suas.** Entram **como elas são** — sem duotone, sem retícula, sem remapear paleta. Você
+escolheu aquela foto porque é o seu produto, o seu trabalho, a pessoa certa. O tratamento só entra
+se você pedir, e a skill pergunta uma vez, depois do estilo escolhido.
+
+**Gerador conectado.** Higgsfield, Magnific, ou chave própria de Gemini/OpenAI. É o único caminho
+em que a imagem responde ao seu assunto, e aqui roda o *laço do gabarito*: gera o card inteiro com
+texto só para ter o que diagramar, mede a composição, acha a fonte open-source mais próxima com a
+`regua-fonte.py`, refaz a imagem sem texto, e monta a tipografia real por cima. O gerador compõe
+melhor do que escreve — o laço usa cada um no que ele faz bem.
+
+Custo, dito antes de começar: **4 créditos por card no caminho feliz, 6 a 8 quando a geometria
+precisa de segunda tentativa.**
 
 **A chave nunca é colada no chat.** Você exporta no terminal e diz "pronto".
 
@@ -117,6 +124,7 @@ Traz embutido o `sprayantislop` (Fernando Drudi) sobre o Zero-Lero (MIT, Viniciu
 destilados de `brainstorming`, `carousel-writer-sms`, `bencium-innovative-ux-designer` e
 `high-end-visual-design`. Procedência completa em [CREDITOS.md](CREDITOS.md).
 
-Fontes: Google Fonts, todas OFL ou Apache.
+Fontes: treze famílias do Google Fonts, **todas OFL**, embutidas no pacote com a licença de
+cada uma. Para os sete estilos a skill não precisa de rede em momento nenhum.
 
 MIT.

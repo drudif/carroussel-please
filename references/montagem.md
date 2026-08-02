@@ -216,23 +216,18 @@ print('trailer ok:', b.rstrip().endswith(b'%%EOF'))
 
 O feed do LinkedIn é mais largo e reduz o documento, e a maioria dos carrosséis vai para os dois destinos — então **o piso de corpo é 34px** sobre 1080, e 30 é exceção justificada.
 
-## Entrelinha em pt-BR — o piso é calculado, não estimado
+## Entrelinha em pt-BR
 
-Título em caixa alta com entrelinha apertada fica lindo em inglês e **quebra em português**: o til
-do `Ã` e o agudo do `Ó` sobem acima da altura da linha e batem na letra de cima. Não lê como erro
-de espaçamento — lê como sujeira, e o leitor não sabe dizer o que está errado.
-
-`fontes.sh` calcula o piso de cada face e grava em `fonts.css`:
+O piso se calcula, não se estima — e o `fontes.sh` já calculou, para as quinze faces. Use a
+variável, nunca um número a olho:
 
 ```css
 h1 { line-height: var(--lh-titulo) }
 ```
 
-Use a variável, nunca um número escolhido a olho. A tabela dos sete estilos está em
-[estilos.md](estilos.md).
-
-**A conferência:** renderize o título com `ÃÕÇ` e `Ó` em linhas seguidas, amplie o PNG a 200% e
-olhe a junção. Se o acento encosta na letra de cima, encosta — 1px de folga ainda lê como colisão.
+**O porquê, a tabela dos sete e as duas variáveis** — `--lh-titulo` e `--lh-titulo-q`, esta para
+quando `Ç`, `Q` ou `J` cai numa linha que não é a última — estão em
+[estilos.md](estilos.md#a-régua-da-entrelinha). O esqueleto troca sozinho entre elas.
 
 ## Grafismo se ancora na zona, não em pixel
 
@@ -419,6 +414,18 @@ Inverter o cinza **e** trocar as pontas da rampa de cor devolve exatamente a ima
 Inverta uma coisa só.
 
 ## Medir a chapa antes de diagramar
+
+**A ferramenta existe: `assets/ferramentas/medir-chapa.py`.**
+
+```bash
+./medir-chapa.py gfx/chapa-01.png
+# gfx/chapa-01.png  esq  topo 561  alt 493  fundo papel  pe 1100  campo False
+```
+
+Ela devolve, por chapa: de que lado está a área livre, o **topo e a altura do maior vão**, a
+largura utilizável, se o fundo ali é papel ou tinta — o que decide a cor do tipo e se pode
+multiplicar —, e onde começa a faixa do pé. `topo` e `alt` entram direto como o `vao:{y,h}` do
+`esqueleto-chapa.html`.
 
 Posicionar título e lede na mão é chutar o que dá para medir. A chapa carrega a informação.
 

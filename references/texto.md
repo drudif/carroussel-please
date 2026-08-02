@@ -116,7 +116,7 @@ dois cards; se não entende, é um card só e ele precisa do espaço.
 
 **Instagram:** peça salvamento e envio de forma explícita — são os sinais que a plataforma pesa. Alt text por card, na configuração de acessibilidade.
 
-**LinkedIn:** o feed é largo e reduz o documento — e como a maioria dos carrosséis vai para os dois destinos, **o piso de corpo é 34px** sobre 1080, com 30 como exceção justificada.
+**LinkedIn:** o feed é largo e reduz o documento, e é onde o teto de 80 palavras mais vale. O piso de corpo — **34px** — está na [etapa 7](../SKILL.md#formatos).
 
 **TikTok:** o texto sobre a imagem *é* o gancho, não a legenda. Áudio em alta amplia a distribuição mesmo em post de fotos.
 

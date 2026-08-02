@@ -27,7 +27,9 @@ O que foi extraído são as regras operacionais. O que ficou de fora está lista
 ### carousel-writer-sms
 
 **Onde:** [references/texto.md](references/texto.md), seções "A estrutura, em quatro zonas", "Regras de escrita" e "Por plataforma"
-**O que entrou:** a tabela de formato por plataforma — quantidade de cards, proporção, densidade de texto, papel da legenda, sinal de engajamento que importa em cada uma — e a estrutura capa/contexto/corpo/fecho, com a regra de 25 palavras por card.
+**O que entrou:** a tabela de formato por plataforma — quantidade de cards, proporção, densidade de texto, papel da legenda, sinal de engajamento que importa em cada uma — e a estrutura capa/contexto/corpo/fecho.
+
+**O que foi revertido:** a regra de **25 palavras por card**, que veio de lá e estava estragando o carrossel — cortar tudo para caber nesse teto mata o que precisa de linearidade. O teto agora é físico e medido no navegador: 56 a 80 palavras conforme o card tenha ou não grafismo. Ver [references/texto.md](references/texto.md#o-corpo-dos-cards-do-meio-25-palavras-era-pouco).
 **O que ficou de fora:** os cinco formatos de carrossel (listicle, framework, antes/depois, dados, estudo de caso), os exemplos de saída e a seção de limites. São genéricos e já estão cobertos pelas perguntas da etapa 4.
 
 ### brainstorming
@@ -77,14 +79,14 @@ As vinte e uma imagens de `assets/referencias/` foram geradas com **Nano Banana 
 
 ## As fontes
 
-As treze famílias dos sete estilos — **quinze faces, 1,8 MB** — estão **embutidas** em
+As treze famílias dos sete estilos — **quinze faces, 1,9 MB** — estão **embutidas** em
 `assets/fontes/`, e não baixadas em tempo de execução. Todas vieram do Google Fonts e **todas
 são OFL 1.1**, não OFL-ou-Apache como esta linha dizia antes de eu conferir arquivo por arquivo.
 A licença de cada família viaja junto, em `assets/fontes/LICENCA-<familia>.txt`, que é o que a
 OFL exige de quem redistribui.
 
 Anton · IBM Plex Mono · Antonio · Bricolage Grotesque · Newsreader · Cascadia Mono · Bodoni Moda
-· Karla · Chivo · Chivo Mono · Fraunces · Work Sans · Hanken Grotesk. Acentos pt-BR conferidos
+· Karla · Chivo · Chivo Mono · Fraunces · Work Sans · Plus Jakarta Sans. Acentos pt-BR conferidos
 glifo a glifo nas quinze — o `fontes.sh` reconfere a cada execução e avisa se faltar algum.
 
 **Por que embutidas e não baixadas**, já que baixar funcionava: o piso de entrelinha e o
@@ -94,7 +96,7 @@ silêncio, num sistema que existe para eles serem estáveis entre os oito cards.
 dependia de mandar um User-Agent antigo para a API devolver TTF em vez de woff2, que é
 comportamento não documentado.
 
-**Não subsetadas, de propósito.** Reduzir aos glifos usados levaria os 1,8 MB para uns 200 KB, e
+**Não subsetadas, de propósito.** Reduzir aos glifos usados levaria os 1,9 MB para uns 200 KB, e
 reintroduziria exatamente a falha que o `montagem.md` gasta um parágrafo avisando: o navegador
 troca **só o glifo faltante** por outra fonte, sem erro no console. Os esqueletos usam `→` no pé
 e `·` na paginação. 1,5 MB é barato perto de uma classe nova de erro silencioso.

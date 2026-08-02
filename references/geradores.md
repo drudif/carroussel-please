@@ -149,9 +149,10 @@ para eliminar esse vaivém; a faixa deve encolher, e o número acima não é a n
 **1 · Gera o card inteiro, com título e sub.** O texto no prompt não é para usar — é para o
 modelo ter o que diagramar. Sem texto ele devolve ilustração, não cartaz.
 
-**2 · Mede.** Isola as linhas do título por projeção, tira razão largura/caixa-alta, contagem
-de quebras, onde cada cor entra, onde a imagem cruza o tipo. **A medida é o produto desta
-etapa** — ela sobrevive mesmo que a imagem seja descartada.
+**2 · Mede**, com `assets/ferramentas/medir-chapa.py <chapa.png>`. Ela devolve o vão livre —
+lado, topo, altura, largura —, se o fundo é papel ou tinta, e onde começa o pé. **A medida é o
+produto desta etapa**: ela sobrevive mesmo que a imagem seja descartada, e `topo` e `alt` entram
+direto como o `vao:{y,h}` do esqueleto.
 
 **3 · Acha a fonte open-source mais próxima, na hora.** Ver a régua de substituição abaixo.
 

@@ -336,7 +336,7 @@ no `DIRECAO.md`, de propósito: o usuário responde com um número, e ele precis
 coisa numa conversa que retome o trabalho depois. O catálogo A ordena por recomendação e os
 números saem fora de sequência — isso é o certo, não um erro.
 
-Para regerar qualquer um dos dois, `assets/board/catalogo.html` é a fonte: `?c=a` e `?c=b`.
+Para regerar qualquer um dos dois, `assets/catalogo/catalogo.html` é a fonte: `?c=a` e `?c=b`.
 
 #### Catálogo A — sem conector
 
@@ -562,9 +562,8 @@ Não precisa instalar nada.
 
 Se você passou o texto e não cortou nada, você não aplicou. Volte e aplique.
 
-**Grave o registro dos cortes no arquivo, não na resposta.** No momento em que o usuário precisa
-julgar o texto, a memória de cálculo atrapalha. A única exceção é um corte que atropelou o que
-parecia escolha deliberada de voz — esse você aponta, em uma linha, para ele decidir.
+**O registro dos cortes vai no arquivo, não na resposta** — e a única exceção, o corte que
+atropelou o que parecia voz deliberada, está em [anti-slop.md](references/anti-slop.md#o-registro-dos-cortes).
 
 **A revisão de slop gráfico não é aqui.** Ela produzia texto genérico para descrever problema
 visual — o oposto do que esta etapa faz. O que é visual se resolve olhando o PNG na etapa 7.
@@ -685,6 +684,12 @@ o que evita adaptar um no outro, que é reescrever a estrutura do card.
 E o `?medir=1` do de chapa confere uma coisa a mais: **o bloco caindo fora do vão medido**, que
 é letra sobre ilustração. Como as outras duas — título transbordando, bloco fora do quadrado
 vivo —, ela produz PNG do tamanho certo quando falha.
+
+> **As ferramentas do laço estão em `assets/ferramentas/`**, e três delas fazem o que este
+> arquivo pede em prosa: `medir-chapa.py` devolve o vão de cada chapa, `dupe.py` e `prancha.py`
+> buscam nos dois bancos. A quarta, `montar.py`, é **exemplo trabalhado, não ferramenta de uso
+> cego** — ela mostra como o corpo do título sai da menor entre duas restrições, mas tem o número
+> de cards e o comprimento de linha de um trabalho específico dentro dela.
 
 1. Copie o esqueleto da tabela acima e aplique a direção aprovada. **O HTML lê `TEXTOS.md`; ele
    não guarda texto**

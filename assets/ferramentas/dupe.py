@@ -9,7 +9,9 @@ dizer ao usuário antes de usar:
   · não há termos publicados para uso programático
   · não há versionamento: pode mudar ou fechar sem aviso
   · a licença de cada foto é do autor que subiu, e precisa ser conferida caso a caso
-Por isso o Dupe entra DEPOIS do Pixabay na ordem de prioridade, e antes da Openverse
+Por isso o Dupe é oferecido com essa ressalva dita ANTES de usar, e a Openverse fica como a
+segura — cc0 e pdm, licença sem dúvida. (O Pixabay saiu da skill: exigia chave, e a chave
+vazou no chat uma vez.)
 só porque o acervo é mais moderno e mais editorial.
 """
 import json, os, sys, urllib.request, time
