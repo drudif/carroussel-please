@@ -82,7 +82,7 @@ necessária em nenhum momento**.
 real, e é isto:
 
 - o `TEXTOS.md` com o texto aprovado e a régua anti-slop passada
-- o `DIRECAO.md` fechado: paleta, fontes, grade, a linha `imagem:`
+- o `DIRECAO.md` fechado: paleta, fontes, grade, e as linhas `estilo:` e `imagem:`
 - o `cards.html` e o `fonts.css` prontos, com as fontes já embutidas em base64
 
 E uma frase ao usuário, sem rodeio: *"aqui não tem como imprimir os PNGs. Está tudo pronto —
@@ -122,7 +122,7 @@ exatamente a queixa nº 1 de quem testa a skill, com a agravante de que agora te
 | o que existe | o que isso fecha |
 |---|---|
 | `TEXTOS.md` com os blocos no formato | **etapas 4, 5 e 6** |
-| `DIRECAO.md` com paleta, fontes e a linha `imagem:` | **etapas 1, 2 e 3** |
+| `DIRECAO.md` com paleta, fontes e as linhas `estilo:` e `imagem:` | **etapas 1, 2 e 3** — e sem a linha `estilo:` a 2 **não** está fechada, por mais que a paleta esteja lá |
 | o usuário nomeia estilo e nível na mesma frase | **etapas 1 e 2** |
 | chapas ou gabaritos na pasta | o laço já rodou — **não regere** |
 
@@ -286,11 +286,24 @@ vira um oitavo estilo** — está em
 [estilos.md](references/estilos.md#ler-uma-referência-trazida-pelo-usuário). São as mesmas cinco
 em qualquer referência, e as respostas caem direto no critério do funil.
 
-Grave no `DIRECAO.md`:
+**Resolver não é escolher, e essa distinção já custou uma etapa inteira.** A leitura devolve
+*"ela é praticamente a colagem"* — isso é **sugestão sua**, e a etapa 2 acontece igual: você abre
+as três referências da colagem, mostra ao lado das do vizinho mais próximo, e **ele diz sim**.
+Tratar a leitura como decisão fechada pula a etapa 2, e o sintoma é a escolha reaparecer no meio
+da montagem como pergunta sobre um card que não fecha.
+
+Se a referência for **PDF ou tiver várias páginas**, diga qual página você leu. Um PDF de
+apresentação costuma ter capa, miolo e fecho com composições diferentes, e ler só a primeira
+resolve para o estilo errado.
+
+Grave no `DIRECAO.md`, e repare que são **duas linhas separadas de propósito**:
 
 ```markdown
 referencia: caminho/do/arquivo.jpg · lida em AAAA-MM-DD · resolveu para colagem
+estilo: colagem · aprovado por ele em AAAA-MM-DD
 ```
+
+A segunda só se escreve depois do sim dele. **O `exportar.sh` para se ela não existir.**
 
 E uma linha que evita um mal-entendido caro: **referência é referência, não modelo para copiar.**
 A peça sai no sistema do estilo escolhido, não decalcada — e é isso que a mantém sua.
@@ -406,9 +419,19 @@ o usuário sabe que são sete.
 
 **Não descreva os sete e peça para escolher.** Ninguém escolhe direção visual lendo adjetivo.
 Cada estilo tem três referências fixas em `assets/referencias/` — `<estilo>-1-split.jpg`,
-`-2-cascata.jpg`, `-3-bento.jpg` — e são elas que vão para o usuário, abertas com `open`, não
-descritas. São três porque uma capa bonita não prova nada: o que quebra no card 5 é o estilo
-não ter três arquétipos de layout, e as três referências mostram justamente isso.
+`-2-cascata.jpg`, `-3-bento.jpg` — e são elas que vão para o usuário. São três porque uma capa
+bonita não prova nada: o que quebra no card 5 é o estilo não ter três arquétipos de layout, e as
+três referências mostram justamente isso.
+
+**Mostrar é o objetivo; `open` é só uma das rotas.** Use a que a superfície tiver — `open`,
+imagem anexada na resposta, artefato. As referências são arquivos dentro do pacote, então em
+qualquer ambiente existe **alguma** forma de pôr aquela imagem na frente do usuário.
+
+> **E se não houver nenhuma, a etapa não é pulada — ela fica mais explícita.** Descreva, diga
+> em uma linha que escolher sem ver é pior, e **pergunte assim mesmo**. Foi exatamente aqui que
+> a etapa evaporou em produção: sem conseguir mostrar, o fluxo seguiu como se a decisão já
+> tivesse sido tomada. Não mostrar é um problema de qualidade; **não perguntar é escolher no
+> lugar dele.**
 
 **O board da etapa 1 já mostrou os sete agrupados** — o usuário chegou aqui sabendo quantos são
 e por que dois vieram na frente. Aqui você abre as **três** referências dos recomendados, no
@@ -450,8 +473,18 @@ justamente quando as duas disputam a mesma camada. Feche isso no `DIRECAO.md` e 
 Ao fechar, registre em `DIRECAO.md` na pasta do trabalho: paleta em hex com o uso de cada cor,
 fontes com nome de arquivo, lógica de grade, e como cada tipo de card se comporta.
 
-**Registre o nível de imagem numa linha própria, com este formato exato** — o `exportar.sh` lê
-essa linha, e **para se ela não existir**:
+**Duas linhas têm formato exato, e o `exportar.sh` para se qualquer uma faltar.** A primeira é o
+estilo, e ela é a prova de que a etapa 2 aconteceu:
+
+```markdown
+estilo: riso · aprovado por ele em AAAA-MM-DD
+```
+
+Escreva-a **só depois do sim explícito**. Estilo deduzido de uma referência, herdado do perfil ou
+escolhido por você porque "combina com o assunto" não é escolha dele — e essa etapa era a única
+do fluxo sem trava justamente quando sumiu em produção.
+
+A segunda é o nível de imagem:
 
 ```markdown
 imagem: 1 · higs / nano_banana_pro     ← feitas sob medida
@@ -575,7 +608,7 @@ a etapa que a produz foi pulada:
 
 | | existe? | quem produz |
 |---|---|---|
-| `DIRECAO.md` com a linha `imagem: N` | senão o `exportar.sh` para | etapas 1 e 3 |
+| `DIRECAO.md` com as linhas `estilo:` e `imagem:` | senão o `exportar.sh` para, duas vezes | etapas 1, 2 e 3 |
 | `TEXTOS.md` com o texto aprovado | senão a arte é chute | etapas 4 a 6 |
 | número de cards confirmado | senão a grade não fecha | etapa 0 |
 
@@ -806,6 +839,8 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 | "Gero a imagem e ajusto o texto pra caber" | O texto passa a servir a imagem. Inverte a peça inteira |
 | "Isso é fácil de desenhar, gero mais rápido" | Gerar custa uma rodada de prompt, uma de download e uma de recorte. Um `<div>` custa uma linha |
 | "Não tem navegador aqui, mas eu monto a arte de outro jeito" | Não existe outro jeito: a arte é impressa por um navegador, e é daí que vem a letra com acento. Entregue o texto e os arquivos prontos, e diga que a impressão é numa máquina com Chrome |
+| "A referência dele resolveu para colagem, então o estilo está escolhido" | Resolveu é sugestão sua; escolhido é ele dizendo sim. Pular esse passo faz a escolha voltar no meio da montagem, como pergunta sobre um card que não fecha — foi assim que a etapa 2 sumiu em produção |
+| "Não consigo abrir as referências aqui, sigo com a que faz mais sentido" | Não mostrar é problema de qualidade; **não perguntar é escolher no lugar dele.** Descreva, diga que escolher sem ver é pior, e pergunte assim mesmo |
 | "Depois eu olho os PNGs" | Captura falha em silêncio. Olhe antes de entregar, um por um |
 | "Mando a pasta e ele abre" | Entrega é o que ele vê, não o que ele encontra |
 | "Tenho gerador ligado, gero as ilustrações e monto" | Gerar ilustração solta é o nível 2 pagando preço de nível 1. Com gerador, o card inteiro nasce dele e a letra entra por cima — é o laço do gabarito |

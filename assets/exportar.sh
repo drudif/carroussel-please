@@ -113,6 +113,34 @@ if [ -z "$NIVEL" ]; then
   [ -z "${FORCA:-}" ] && exit 1
 fi
 
+# ── trava do estilo ────────────────────────────────────────────────────────────
+# A etapa 2 era a única decisão do fluxo SEM trava, e ela sumiu em produção: o
+# usuário subiu uma referência, a leitura dela resolveu para um estilo, e isso foi
+# tratado como escolha feita. A escolha só reapareceu no meio da montagem, como
+# pergunta sobre um slide vazio — que é a assinatura de gate pulado: a decisão
+# volta depois, como problema, em vez de antes, como pergunta.
+# Aconteceu no app e não no IDE, porque no IDE as referências abrem e o próprio
+# ato de mostrar carrega a etapa. Onde não abrem, nada segurava.
+ESTILO=""
+[ -n "$DIR_MD" ] && ESTILO=$(grep -i '^estilo:' "$DIR_MD" | head -1 | cut -d: -f2- | sed 's/^ *//' || true)
+
+if [ -z "$ESTILO" ]; then
+  echo "PARADO — não há estilo gravado."
+  echo
+  echo "  O DIRECAO.md precisa de uma linha própria:   estilo: riso · aprovado por ele"
+  echo
+  echo "  São SETE, fixos: brutalista · riso · terminal · colagem · neubrutal ·"
+  echo "  editorial · iridescente. O nível de imagem ordena quais abrem primeiro;"
+  echo "  ele não escolhe no lugar do usuário."
+  echo
+  echo "  E LEIA ISTO se houve referência do usuário: ler a referência RESOLVE para"
+  echo "  um estilo, não ESCOLHE por ele. 'resolveu para colagem' é sugestão sua; a"
+  echo "  linha 'estilo:' só se escreve depois de ele dizer sim, com essas letras."
+  echo
+  echo "  Já perguntou e só faltou gravar? FORCA=1 ./exportar.sh $N"
+  [ -z "${FORCA:-}" ] && exit 1
+fi
+
 if [ -n "$NIVEL" ]; then
   case "$NIVEL" in
     1*|gerador*)
