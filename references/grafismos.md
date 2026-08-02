@@ -289,6 +289,11 @@ painel industrial, `lever` devolve alavanca de câmbio.
 **O estilo é nosso e entra no tratamento, depois.** A busca tem dois eixos: o assunto vem do
 card, e a forma vem do `image_type` do banco — nada além disso.
 
+> **Nada desta seção vale para foto que o usuário subiu.** Aqui o assunto é banco de imagem, que
+> é foto neutra de terceiro e precisa do tratamento para pertencer à peça. Foto do usuário é o
+> contrário: **entra como ela é**, e quem se adapta é o card. Ver a
+> [etapa 1 da SKILL.md](../SKILL.md#se-ele-já-tem-as-fotos).
+
 ### A escolha da foto depende do tratamento, não só do assunto
 
 Alto contraste e silhueta alimentam o brutalista e matam o riso. Gradação alimenta o riso e

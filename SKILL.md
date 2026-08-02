@@ -337,16 +337,43 @@ Veio da rodada 2 do perfil, e **não é uma quarta opção do board** — é uma
 fotos dele resolvem os cards que elas cobrem; a pergunta continua valendo para o resto, e o
 **tratamento continua vindo do estilo**.
 
-Três coisas, uma linha cada:
+**Foto que o usuário subiu entra como ela é — sem duotone, sem retícula, sem quantizar, sem
+remapear paleta.** O padrão é o inverso do banco de imagem, e de propósito: ele escolheu aquela
+foto porque é o produto dele, o trabalho dele, a pessoa certa. Tingir isso em duas tintas destrói
+exatamente o que ele queria mostrar. **Tratamento só se ele pedir.**
 
+Ofereça **uma vez**, e siga:
+
+> *"Posso deixar essas fotos nas cores do estilo, se você quiser. Por mim entram como estão —
+> elas são suas e ficam melhores assim."*
+
+Disse que não, ou não respondeu: **entram como estão e o assunto morre ali.**
+
+### Sem tratamento, quem se adapta é o card
+
+Aí a paleta do estilo aparece **em volta** — no tipo, nos campos chapados, na régua, no
+grafismo —, nunca por cima da foto. É isso que impede a peça de ler como duas coisas coladas, e é
+o caminho certo: **o enquadramento aceita a foto; a foto não vira o estilo.**
+
+Três coisas continuam valendo:
+
+- **Ajustar não é tratar.** Recorte para a proporção do slot e escala são obrigatórios — sem eles
+  a foto não cabe. O que não entra é conversão de cor e de material
 - **Pergunte quantos cards elas cobrem.** Se não cobrem todos, o resto sai de banco ou de
-  desenho — e isso é decisão dele, dita agora, não descoberta na entrega
-- **Foto pronta não dispensa tratamento.** Ela entra na paleta e no material do estilo como
-  qualquer outra. Sem isso, lê como colagem de duas peças diferentes
-- **Os direitos são de quem mandou.** Diga uma vez, sem sermão
+  desenho, e é decisão dele, dita agora, não descoberta na entrega
+- **Os direitos são de quem mandou.** Uma linha, sem sermão
 
-No funil, foto do usuário lê como **banco aberto**: a massa da peça é foto processada, então os
-estilos que abrem primeiro são colagem e risografia. Grave `imagem: 2 · fotos do usuário`.
+**E isso muda o funil.** Foto que não vai ser convertida pede estilo que **emoldura**, não estilo
+que **filtra**: abra primeiro **editorial**, que já é feito de vazio mais uma foto grande, e
+**colagem**, que recorta em vez de converter. **Risografia é a que mais sofre** — a tinta riso
+existe justamente para cair sobre a imagem, e sem isso vira papel colorido com foto por cima.
+Diga isso em uma linha se ele pedir riso mesmo assim, e siga com a escolha dele.
+
+Grave as duas linhas:
+
+```markdown
+imagem: 2 · fotos do usuário · sem tratamento
+```
 
 ### Se escolheu **de banco grátis**
 
@@ -808,6 +835,8 @@ E mais:
 - [ ] Nada essencial fora do quadrado vivo de 924×924 — e **olhe o PDF quadrado**, não só o PNG:
       é lá que a falta de margem aparece
 - [ ] Nenhum corte ou overflow — confira também os 8px finais de cada PNG
+- [ ] **Foto do usuário saiu sem tratamento**, salvo se ele pediu. O `#duo` do esqueleto vem
+      ligado e é fácil esquecer de tirar — confira olhando, não confiando no CSS
 - [ ] Print de app real revisado por dado pessoal: nome, e-mail, cliente, token
 - [ ] Acentos conferidos, se entrou fonte de fora dos sete estilos
 - [ ] Ritmo: passando os cards em sequência, algo muda de posição ou escala
@@ -841,6 +870,7 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 | "Não tem navegador aqui, mas eu monto a arte de outro jeito" | Não existe outro jeito: a arte é impressa por um navegador, e é daí que vem a letra com acento. Entregue o texto e os arquivos prontos, e diga que a impressão é numa máquina com Chrome |
 | "A referência dele resolveu para colagem, então o estilo está escolhido" | Resolveu é sugestão sua; escolhido é ele dizendo sim. Pular esse passo faz a escolha voltar no meio da montagem, como pergunta sobre um card que não fecha — foi assim que a etapa 2 sumiu em produção |
 | "Não consigo abrir as referências aqui, sigo com a que faz mais sentido" | Não mostrar é problema de qualidade; **não perguntar é escolher no lugar dele.** Descreva, diga que escolher sem ver é pior, e pergunte assim mesmo |
+| "A foto dele fica melhor na paleta do estilo, vou aplicar o duotone" | Foto do usuário entra COMO ELA É. Ele subiu aquela foto porque é o produto, o trabalho ou a pessoa dele — tingir em duas tintas destrói o que ele queria mostrar. Ofereça uma vez; sem o sim, não trate |
 | "Depois eu olho os PNGs" | Captura falha em silêncio. Olhe antes de entregar, um por um |
 | "Mando a pasta e ele abre" | Entrega é o que ele vê, não o que ele encontra |
 | "Tenho gerador ligado, gero as ilustrações e monto" | Gerar ilustração solta é o nível 2 pagando preço de nível 1. Com gerador, o card inteiro nasce dele e a letra entra por cima — é o laço do gabarito |

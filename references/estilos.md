@@ -45,6 +45,12 @@ atrapalha ou é indiferente conforme essa fonte.
 **Foto trazida pelo usuário cai na primeira linha**, e por isso lê como nível 2: o que decide é
 onde está a massa da peça, não de onde o arquivo veio.
 
+**Com uma ressalva que inverte parte da tabela:** foto do usuário entra **sem tratamento** por
+padrão, e estilo que vive de *converter* a foto perde o que tem de melhor. Aí o que serve é
+estilo que **emoldura** — **editorial** primeiro, que já é vazio mais uma foto grande, e
+**colagem**, que recorta em vez de converter. **Risografia é a que mais sofre:** a tinta riso
+existe para cair sobre a imagem, e sem isso vira papel colorido com foto por cima.
+
 Daí sai a ordem em que os estilos são abertos:
 
 | nível | abra primeiro | também funcionam, com o custo dito |

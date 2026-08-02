@@ -67,16 +67,20 @@ errado.
 | resposta | o que muda |
 |---|---|
 | **é para você resolver** | fluxo normal: a etapa 1 pergunta como as imagens são feitas, com as três opções |
-| **tenho as fotos** | elas são **material**, e vêm com os direitos de quem mandou. A etapa 1 continua acontecendo, mas só para o que faltar — e o tratamento continua vindo do estilo |
+| **tenho as fotos** | elas são **material**, com os direitos de quem mandou, e entram **sem tratamento** salvo pedido dele. A etapa 1 continua, mas só para o que faltar |
 
 **Material não é referência**, e confundir os dois põe a foto do usuário dentro do card sem
 ninguém ter decidido isso. Se ele mandar imagem sem dizer qual das duas é, pergunte — a
 distinção está na [etapa 1 da SKILL.md](../SKILL.md#se-ele-trouxer-uma-referência-própria).
 
-Uma coisa dita agora e não na entrega: **foto pronta não dispensa tratamento.** Ela entra na
-paleta e no material do estilo escolhido como qualquer outra, senão lê como colagem de duas
-peças. E se as fotos não cobrirem todos os cards, diga isso agora — o resto sai de banco ou de
-desenho, e essa é uma decisão dele.
+**Foto do usuário entra como ela é.** Sem duotone, sem retícula, sem quantizar — o oposto do que
+se faz com foto de banco, e de propósito: ele escolheu aquela foto porque é o produto dele, o
+trabalho dele, a pessoa certa. Ofereça o tratamento **uma vez** e siga; disse que não, entra como
+está. O que se adapta é o card, não a foto — a paleta do estilo aparece em volta, no tipo e nos
+campos, nunca por cima dela.
+
+E se as fotos não cobrirem todos os cards, diga agora — o resto sai de banco ou de desenho, e
+essa é uma decisão dele.
 
 ---
 
