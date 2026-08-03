@@ -39,9 +39,11 @@ h1 i{font-style:normal;color:var(--fraco)}
 .refs figcaption{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
                  color:var(--fraco);margin-top:6px}
 
-.propria{border:2px dashed var(--fraco);padding:20px 24px;margin-top:34px;
-         font-size:15px;line-height:1.55;color:#26231E}
-.propria b{font-weight:400;font-family:'Tit';font-size:22px;display:block;margin-bottom:6px}
+.est.propria{border:2px dashed var(--fraco);border-bottom:2px dashed var(--fraco);
+         padding:22px 26px;margin-top:30px;align-items:center}
+.num.zero{color:var(--fraco)}
+.txt-zero{font-size:15px;line-height:1.55;color:#26231E}
+.txt-zero b{font-weight:400;background:rgba(15,95,166,.11);padding:1px 5px}
 
 .cta{background:var(--tinta);color:var(--papel);padding:26px 30px;margin-top:22px;
      display:flex;justify-content:space-between;align-items:center;gap:30px}
@@ -63,17 +65,23 @@ const est = (n, chave, nome, linha) => `<div class="est">
     <div class="linha1">${linha}</div></div>
   <div class="refs">${REF(chave)}</div></div>`;
 
-const PROPRIA = `<div class="propria"><b>Ou a sua própria referência</b>
-  Se você já tem uma peça que te agradou — um post, um cartaz, um print, um PDF —, me manda.
-  Eu leio e te digo de qual desses sete ela está mais perto, e confirmo com você antes de seguir.
-  <em style="font-style:normal;color:#8A8378"> Ela escolhe entre os sete e afina o escolhido; não
-  vira um oitavo estilo — direção inventada na hora sai bonita na capa e quebra no card 5.</em></div>`;
+const PROPRIA = `<div class="est propria"><div><div class="num zero">0</div>
+    <div class="nome">Nenhum dos sete</div>
+    <div class="linha1">Quero mandar <b>minhas referências</b></div></div>
+  <div class="txt-zero">Se você já tem uma peça que te agradou — um post, um cartaz, um print, um
+  PDF —, escreva <b>0</b> e me manda. Eu leio, te digo de qual desses sete ela está mais perto, e
+  <b>confirmo com você antes de seguir</b>.
+  <em style="font-style:normal;color:#8A8378;display:block;margin-top:7px">Ela escolhe entre os
+  sete e afina o escolhido; não vira um oitavo estilo — direção inventada na hora sai bonita na
+  capa e quebra no card 5. É por isso que o número é zero, e não oito.</em></div></div>`;
 
 const CTA = `<div class="cta">
   <div class="g">Escreva o número<br>da opção que você prefere.</div>
-  <div class="p">É só o número — ele é do estilo, não da posição na lista, então vale igual em
-    qualquer conversa. Ficou dividido entre dois? Escreva os dois: eu mostro os seis lado a
-    lado e a gente desempata olhando.</div></div>`;
+  <div class="p"><b style="font-weight:400;border-bottom:1.5px solid #C9C1B4">1 a 7</b> para um
+    estilo, <b style="font-weight:400;border-bottom:1.5px solid #C9C1B4">0</b> se não for nenhum
+    deles. O número é do estilo, não da posição na lista, então vale igual em qualquer conversa.
+    Ficou dividido entre dois? Escreva os dois — eu mostro os seis lado a lado e a gente desempata
+    olhando.</div></div>`;
 
 const A = `
 <div class="top"><h1>catálogo<i>.</i></h1>

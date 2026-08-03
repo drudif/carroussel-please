@@ -454,18 +454,25 @@ Aqui o que se diz é o que **muda de patamar** — riso e colagem —, não o qu
 
 ### O que fecha os dois catálogos
 
-**Um parágrafo sobre trazer a própria referência**, sempre, nos dois:
+**São oito respostas possíveis, e a oitava é o zero:**
 
-> *"Se você já tem uma referência que te agradou — um post, um cartaz, um print, um PDF —, me
-> manda. Eu leio e te digo de qual desses sete ela está mais perto."*
+> **1 a 7** — o estilo que ele escolheu
+> **0 — nenhum dos sete, quero mandar minhas referências**
 
-**E um acionável, destacado, no fim:**
+**O zero não é enfeite de menu: é a saída de quem não se viu em nenhum dos sete**, e sem ela essa
+pessoa responde um número por eliminação, ou trava. Ela existe nos dois catálogos, com o mesmo
+destaque das outras.
 
-> **Escreva o número da opção que você prefere e a gente segue.**
+> *"Ou, se você já tem uma referência que te agradou — um post, um cartaz, um print, um PDF —,
+> escreva **0** e me manda. Eu leio e te digo de qual desses sete ela está mais perto."*
 
-Numere os estilos no catálogo e peça o número. Descrição por nome volta ambígua — *"aquele
-minimalista"* serve para dois — e responder com um número é a coisa mais rápida que se pede a
-alguém no meio de uma conversa.
+**Por que zero e não oito.** Oito leria como um oitavo estilo, e ele não existe: a referência
+escolhe **entre** os sete e afina o escolhido. Zero lê como *"nenhum desses"*, que é exatamente o
+que a pessoa está dizendo.
+
+**E peça o número, não o nome.** Descrição por nome volta ambígua — *"aquele minimalista"* serve
+para dois — e responder com um número é a coisa mais rápida que se pede a alguém no meio de uma
+conversa.
 
 ### Se ele mandar uma referência própria
 
@@ -518,11 +525,11 @@ Para a régua de gosto — escala, respiro, o que faz uma peça parecer cara e o
 não existe: "quer nas cores do estilo?" sem estilo escolhido é oferecer o tratamento de uma direção
 que ninguém decidiu.
 
-◇ **Suas fotos: entram inteiras, como você mandou, ou passam pelo tratamento da risografia?**
+◇ **Suas fotos: entram exatamente como você mandou, ou passam pelo tratamento da risografia?**
 
 | opção | o que acontece |
 |---|---|
-| **inteiras** — o padrão | cor, luz e detalhe ficam intactos. O estilo aparece em volta: no tipo, nos campos chapados, na régua. **É o padrão porque a foto é dele** |
+| **exatamente como vieram** — o padrão | cor, luz, enquadramento e detalhe ficam intactos. O estilo aparece em volta: no tipo, nos campos chapados, na régua. **É o padrão porque a foto é dele** |
 | **no estilo** | a foto passa pelo material daquele estilo — duas tintas na riso, três degraus no brutalista, recorte na colagem — e a peça fica de uma superfície só |
 
 **No superminimal a pergunta quase não se faz:** ali não tratar é o certo por construção, porque

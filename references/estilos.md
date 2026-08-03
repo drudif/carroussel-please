@@ -81,6 +81,9 @@ O resto da leitura é aqui.
 
 ### Ler uma referência trazida pelo usuário
 
+**Ela tem número no catálogo: é o `0`** — *nenhum dos sete, quero mandar minhas referências*.
+Zero e não oito, porque oito leria como um oitavo estilo, e ele não existe.
+
 **Cinco perguntas.** São as mesmas cinco em qualquer referência, e as respostas caem direto no
 critério do funil:
 
