@@ -1,6 +1,6 @@
 # Gerar imagem — o guia para quem nunca conectou nada
 
-É aqui que quem não é técnico trava. Conduza com paciência: diga **o que muda no resultado** antes de pedir qualquer coisa, e trate conectar como opcional de verdade. Quatro dos sete ficam completos sem nenhum gerador, e um quinto — o superminimal — resolve com banco de imagem.
+É aqui que quem não é técnico trava. Conduza com paciência: diga **o que muda no resultado** antes de pedir qualquer coisa, e trate conectar como opcional de verdade. Quatro dos sete ficam completos sem nenhum gerador.
 
 ## O que muda, em português
 
@@ -18,7 +18,7 @@ E o que **não** muda em nenhuma das três: a tipografia é sempre desenhada em 
 
 Perfeitamente viável, e diga isso em voz alta para ele não sentir que escolheu a versão pobre. A maior parte de um carrossel é estrutura — grade, lista, ícone, diagrama, abstração de interface — e estrutura se **desenha** melhor do que se gera: nasce na paleta certa, mostra só o que interessa, e não vaza dado nenhum.
 
-Os quatro estilos que ficam completos assim: brutalista vetorial, terminal, neo-brutalismo colorido e minimalista editorial quente. O **superminimal** fica de pé em código puro — tipografia preta sobre branco com blocos de cor chapada —, mas é o único dos sete que fica claramente **magro** sem imagem: nele a foto é o evento, e sem gerador quem resolve isso é banco de imagem, não desenho.
+Os quatro estilos que ficam completos assim: brutalista vetorial, terminal, neo-brutalismo colorido e minimalista editorial quente. O **superminimal** fica de pé em código puro — tipografia preta sobre branco com blocos de cor chapada —, mas é o único dos sete que fica claramente **magro** sem imagem: nele a foto é o evento. Sem gerador, quem resolve isso são as fotos do próprio usuário.
 
 ---
 

@@ -87,7 +87,7 @@ errado.
 
 | resposta | o que muda |
 |---|---|
-| **é para você resolver** | fluxo normal: a etapa 1 verifica se há gerador ligado e, não havendo, oferece conectar |
+| **é para você resolver** | fluxo normal: a etapa 1 verifica se há gerador ligado e, não havendo, oferece conectar. **Não havendo gerador nem foto dele, diga o que isso custa** — está na etapa 0 |
 | **tenho as fotos** | elas são **material**, com os direitos de quem mandou, e entram **sem tratamento** salvo pedido dele. A etapa 1 continua, mas só para o que faltar |
 
 **Material não é referência**, e confundir os dois põe a foto do usuário dentro do card sem

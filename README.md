@@ -92,12 +92,19 @@ glifo, entrelinha calculada a partir das métricas da fonte, e três referência
 diagrama, abstração de interface, ícone, tabela. Nos estilos de forma — brutalista, terminal,
 neo-brutalismo — costuma ganhar de banco de imagem, porque nasce na paleta e carrega o conceito.
 
-**Bancos abertos.** Dupe e Openverse, tratados na paleta do estilo. Não pede chave nem cadastro.
+**Fotos suas.** Você sobe, de onde tiver tirado — inclusive de um banco que você mesmo procurou.
 É o que faz o **superminimal** funcionar sem gerador: recorte limpo cai direto no branco.
 
-**Fotos suas.** Entram **como elas são** — sem duotone, sem retícula, sem remapear paleta. Você
-escolheu aquela foto porque é o seu produto, o seu trabalho, a pessoa certa. O tratamento só entra
-se você pedir, e a skill pergunta uma vez, depois do estilo escolhido.
+**A skill não busca em banco de terceiro.** Dupe e Openverse saíram: o endpoint de um não era API
+pública, e foto de banco responde ao que existe, não ao seu assunto. A procedência passa a ser sua,
+dita e registrada.
+
+Elas entram **como são** — sem duotone, sem retícula, sem remapear paleta. Você escolheu aquela
+foto porque é o seu produto, o seu trabalho, a pessoa certa. O tratamento só entra se você pedir,
+e a skill pergunta uma vez, depois do estilo escolhido.
+
+**Não tendo nem gerador nem foto, a skill avisa na primeira etapa** — a peça sai graficamente
+correta e pouco relevante, e você merece saber disso enquanto ainda dá para resolver.
 
 **Gerador conectado.** Higgsfield, Magnific, ou chave própria de Gemini/OpenAI. É o único caminho
 em que a imagem responde ao seu assunto, e aqui roda o *laço do gabarito*: gera o card inteiro com

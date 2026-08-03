@@ -75,7 +75,7 @@ Além da tradução de meio, dois motivos:
 
 ## As referências visuais
 
-As vinte e uma imagens de `assets/referencias/` foram geradas com **Nano Banana Pro** (Google), via conector do Higgsfield, em 4:5 e 2K, a 2 créditos cada. Os prompts combinam: o briefing de sistema `posts inspired in editorial graphic posters`, a especificação de paleta e material de cada estilo, os três arquétipos de layout da `high-end-visual-design`, e a lista de antipadrões da `bencium` aplicada como negativa.
+As vinte e uma imagens de `assets/referencias/` foram geradas com **Nano Banana Pro** (Google), via conector do Higgsfield, em 4:5 e 2K, a 2 créditos cada. Nenhuma vem de banco de imagem — a skill não consulta acervo de terceiro. Os prompts combinam: o briefing de sistema `posts inspired in editorial graphic posters`, a especificação de paleta e material de cada estilo, os três arquétipos de layout da `high-end-visual-design`, e a lista de antipadrões da `bencium` aplicada como negativa.
 
 ## As fontes
 

@@ -278,64 +278,33 @@ Use como assunto da chapa ou do desenho. E **confira a volta**: se a arte diverg
 virou descrição falsa de uma imagem real, que é pior do que alt text ausente. A checagem da
 etapa 7 pede isso explicitamente.
 
-## Banco de imagem — se buscar assunto, nunca estilo
+## Foto do usuário — a única foto que a skill não vai buscar
 
-Verificado contra três bancos. Pedir **estilo** devolve o que o rótulo significa para quem sobe
-foto: `collage` devolve foto de scrapbook, `mixed media` devolve print de ícone de app,
-`organic shapes` devolve a ilustração decorativa genérica que a régua anti-slop existe para
-barrar. Pedir **assunto** funciona: `sequence` devolve fases da lua, `pushing buttons` devolve
-painel industrial, `lever` devolve alavanca de câmbio.
+**A skill deixou de buscar em banco de imagem.** Dupe e Openverse saíram, com as ferramentas que
+os consultavam. Dois motivos, e o segundo é o que decidiu:
 
-**O estilo é nosso e entra no tratamento, depois.** A busca tem dois eixos: o assunto vem do
-card, e a forma vem do `image_type` do banco — nada além disso.
+- **o endpoint do Dupe não era API pública.** Sem termos publicados para uso programático, sem
+  versionamento, e a licença de cada foto sendo do autor que subiu — a conferir caso a caso
+- **e a foto de banco quase nunca era a foto certa.** Ela responde ao que existe, não ao assunto
+  do carrossel. Metade do trabalho virava tratar uma imagem quase certa para ela parecer
+  pertencer à peça
 
-> **Nada desta seção vale para foto que o usuário subiu.** Aqui o assunto é banco de imagem, que
-> é foto neutra de terceiro e precisa do tratamento para pertencer à peça. Foto do usuário é o
-> contrário: **entra como ela é**, e quem se adapta é o card. Ver a
-> [última pergunta da etapa 2](../SKILL.md#a-última-pergunta-da-etapa-2--só-se-ele-subiu-fotos).
+Sobraram **três origens**, e elas cobrem o que importa:
 
-### A escolha da foto depende do tratamento, não só do assunto
+| origem | quando |
+|---|---|
+| **gerada** | há gerador ligado. É a única em que a imagem responde ao assunto dele |
+| **do usuário** | ele subiu. De onde ele tirou é decisão dele — inclusive de um banco que ele mesmo procurou |
+| **desenhada em código** | é estrutura: grade, diagrama, abstração de interface, ícone, tabela. **É o caso mais comum** |
 
-Alto contraste e silhueta alimentam o brutalista e matam o riso. Gradação alimenta o riso e
-vira mancha no brutalista. A colagem aceita quase tudo, porque não converte a imagem: recorta.
+**Foto do usuário entra como ela é** — sem duotone, sem retícula, sem quantizar, sem remapear
+paleta. Quem se adapta é o card: a paleta do estilo aparece em volta, no tipo e nos campos, nunca
+por cima dela. A regra inteira, com a pergunta que a skill faz uma vez, está na
+[última pergunta da etapa 2](../SKILL.md#a-última-pergunta-da-etapa-2--só-se-ele-subiu-fotos).
 
-### Foto em estilo chapado exige quantizar antes de mapear
-
-Rampa contínua de 256 níveis serve riso e editorial. No brutalista reprova — o estilo é chapa
-de cor, não transição. Quantize o cinza em **três degraus** antes de mapear na paleta, e a foto
-vira serigrafia. Sem isso vira meio-tom e some.
-
-### Acervo tem período
-
-Não existe acervo público de forma vetorial chapada do século XX: no Art Institute são **275
-obras em domínio público entre 1920 e 1975**, num acervo de 62 mil. O domínio público nos EUA
-para em ~1930, e é justamente o período que brutalismo e neo-brutalismo citam.
-Gravura acadêmica recolorida na paleta certa continua sendo gravura acadêmica — combina com a
-paleta e briga com tudo o mais.
-
-Para esses três estilos, **desenhar ganha do banco**. Foto, no entanto, funciona no brutalista
-quando chapada em três degraus: o que falha ali é época, não fotografia.
-
-### Ordem dos bancos, e as duas ferramentas
-
-**Dupe** primeiro, pelo acervo — fotografia editorial contemporânea, luz dura, recorte limpo,
-sem cara de banco. **Openverse** depois, que é a segura: filtro `cc0` e `pdm` no parâmetro.
-
-As duas estão escritas, e busca por **assunto**, nunca por estilo:
-
-```bash
-assets/ferramentas/dupe.py "torn paper" 8              # Dupe, sem chave nem cadastro
-assets/ferramentas/prancha.py buscar "anatomia do ouvido"     # Openverse, só cc0 e pdm
-assets/ferramentas/prancha.py tratar cand/x.jpg gfx/02.png brutalista --alt 1010
-```
-
-A `prancha.py` também **trata na paleta do estilo** — o que vale para foto de banco e **não**
-para foto do usuário, que entra como ela é. E a relevância da busca erra bastante nas duas:
-baixe três, **olhe**, e escolha. Não automatize a escolha.
-
-Ressalva do Dupe, dita **antes** de usar: não é API pública. O endpoint é o backend que o site
-chama (`POST /api/v1/content/search`, corpo `{"label": "..."}`), sem termos publicados para uso
-programático, sem versionamento, e a licença é de quem subiu a foto — confira caso a caso.
+**E se ele não tem imagem nenhuma, isso se diz na etapa 0**, não se descobre na entrega — a peça
+fica graficamente correta e pouco relevante, e ele merece saber disso enquanto ainda dá para
+resolver.
 
 ### Desenho é autorado para a proporção do slot
 

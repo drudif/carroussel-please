@@ -55,11 +55,11 @@ digraph carrossel {
 que decide **qual dos dois catálogos** o usuário vê. Recomendar risografia a quem não vai ter foto
 é vender o que não se entrega — a tinta riso existe para cair sobre imagem.
 
-Essa etapa já foi uma pergunta de três opções — *sem foto · banco · sob medida* — e sumia em toda
+Essa etapa já foi uma pergunta de três opções — *sem foto · banco de imagem · sob medida* — e sumia em toda
 sessão de teste, sempre pelo meio. A saída não foi escrever melhor: foi **deixar de perguntar**.
-A capacidade de gerar imagem se **verifica**, o resto vira binário, e a escolha entre banco e
-desenho deixa de ser pergunta abstrata para virar **referência dentro do catálogo**. Não se pula
-uma opção que não é pergunta.
+A capacidade de gerar imagem se **verifica**, e o resto virou binário. O banco de imagem saiu da
+skill por inteiro — ela não busca mais em acervo de terceiro —, e o que sobrou são três origens
+de imagem: **gerada**, **do usuário**, ou **desenhada em código**.
 
 O protocolo de como perguntar — uma por vez, múltipla escolha, trava a cada bloco — está em [references/texto.md](references/texto.md). Este arquivo diz *o quê* e *em que ordem*.
 
@@ -198,6 +198,29 @@ trabalho; a quarta é o perfil.
 **Peça o material agora, não depois.** Se ele disse que tem, peça que suba — e aceite como vier,
 sem pedir formato nenhum. Converter é seu trabalho, não dele.
 
+#### Disse que não tem imagens? Avise, na hora
+
+**Vale mesmo que ele tenha os textos** — e é aqui, não na entrega. Diga assim, ou parecido:
+
+> *"Um aviso que vale a pena agora: um carrossel bom precisa de **imagem que segure o olho** até
+> o fim. Sem isso ele sai graficamente bonito e pouco relevante — as pessoas passam no card 3.*
+>
+> *O que resolve é uma das duas: **ligar um gerador de imagem aqui** — o que te dá imagem feita
+> para o seu assunto —, ou **você me mandar fotos** que tenha, inclusive as que for buscar. Dá
+> para seguir sem nenhuma das duas, e aí a peça vive só da tipografia e do desenho: em alguns
+> estilos isso é forte, em outros é a versão reduzida."*
+
+**Por que na etapa 0 e não depois.** Descobrir na entrega que faltou imagem é descobrir tarde: o
+texto já foi escrito para um número de cards, o estilo já foi escolhido, e voltar custa tudo. Aqui
+custa uma frase, e ele ainda tem as duas saídas abertas.
+
+**Diga uma vez e siga.** Se ele responder que segue sem, siga — e não volte ao assunto. A etapa 1
+ainda vai oferecer o gerador uma vez; duas ofertas é insistência.
+
+**E a skill não busca imagem em banco de terceiro.** Nem Dupe, nem Openverse, nem nenhum outro:
+saíram. Se ele quiser foto de banco, ele busca e sobe — a procedência e a licença passam a ser
+decisão dele, dita e registrada, em vez de uma dívida escondida na sua entrega.
+
 ◇ **3 · Você já tem uma identidade visual fechada — cores e fontes definidas — ou quer escolher
 uma direção comigo?**
 
@@ -285,7 +308,7 @@ Quem tem 60 créditos precisa saber disso enquanto ainda dá para escolher outro
 ### Sem conector, o carrossel continua completo
 
 Diga isso uma vez, em uma linha, e siga: quatro dos sete estilos ficam completos sem gerador
-nenhum, e o superminimal resolve com banco de imagem. Incentivar a conexão é honesto porque ela
+nenhum. Incentivar a conexão é honesto porque ela
 **é** melhor; empurrar seria dizer que sem ela não dá — e dá.
 
 Grave no `DIRECAO.md`:
@@ -345,7 +368,8 @@ informação:
 
 | destaque | estilos | por quê |
 |---|---|---|
-| **em primeiro** | **terminal** · **superminimal** · **brutalista** | os que ficam inteiros aqui. O terminal e o brutalista nascem sem foto; o superminimal resolve com banco de imagem, e é o que mais ganha com ele — recorte limpo cai direto no branco, sem tratamento |
+| **em primeiro** | **terminal** · **brutalista** | os dois que ficam inteiros sem imagem nenhuma: o desenho já é o material |
+| **e o superminimal**, se ele tiver as fotos | **superminimal** | com as imagens dele é o mais forte deste catálogo — recorte limpo cai direto no branco, sem tratamento. Sem imagem nenhuma, fica magro: a foto é o evento do estilo |
 | **abaixo** | **neo-brutalismo** · **editorial** | funcionam bem, com o custo dito: o neubrutal envelhece rápido, e o editorial pede **uma** imagem grande e boa |
 | **por último, com aviso** | **riso** · **colagem** | **perdem qualidade aqui.** A tinta riso existe para cair sobre imagem, e o recorte fotográfico é o centro da colagem. Em código viram retícula e recorte desenhados: funciona, mas é a versão reduzida |
 
@@ -495,7 +519,7 @@ Sem essa linha a etapa 7 decide sozinha, e o padrão silencioso de qualquer diag
 o estilo — que aqui é o contrário do certo.
 
 Foto do usuário é **2**, e não um número novo: para tudo o que vem depois — funil de estilos,
-tratamento, escolha de esqueleto — ela se comporta como banco. O que muda é a procedência, e
+tratamento, escolha de esqueleto — a massa da peça é foto processada. O que muda é a procedência, e
 isso a própria linha registra.
 
 Esta é a **única** superfície em que os níveis são números: o `exportar.sh` lê essa linha. Na
@@ -585,7 +609,6 @@ Card a card, e a decisão é uma destas quatro:
 |---|---|
 | **gerada** | há conector, e o card pede retrato, cena, textura ou colagem |
 | **fornecida** | ele subiu uma que serve àquele card |
-| **de banco** | não há conector, o tema dá foto, e o estilo aceita |
 | **desenhada em código** | é estrutura: grade, diagrama, abstração de interface, ícone, tabela — e **é o caso mais comum** |
 
 A rota de cada card e o repertório do que se desenha estão em
@@ -696,9 +719,8 @@ E o `?medir=1` do de chapa confere uma coisa a mais: **o bloco caindo fora do v�
 vivo —, ela produz PNG do tamanho certo quando falha.
 
 > **As ferramentas do laço estão em `assets/ferramentas/`**, e três delas fazem o que este
-> arquivo pede em prosa: `medir-chapa.py` devolve o vão de cada chapa, `dupe.py` e `prancha.py`
-> buscam nos dois bancos. A quarta, `montar.py`, é **exemplo trabalhado, não ferramenta de uso
-> cego** — ela mostra como o corpo do título sai da menor entre duas restrições, mas tem o número
+> arquivo pede em prosa: `medir-chapa.py` devolve o vão de cada chapa. A outra, `montar.py`, é
+> **exemplo trabalhado, não ferramenta de uso cego** — ela mostra como o corpo do título sai da menor entre duas restrições, mas tem o número
 > de cards e o comprimento de linha de um trabalho específico dentro dela.
 
 1. Copie o esqueleto da tabela acima e aplique a direção aprovada. **O HTML lê `TEXTOS.md`; ele
@@ -885,7 +907,7 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 | "Meu default escuro com acento neon é bonito e seguro" | É exatamente o visual que hoje lê como IA. Seguro e indistinguível são a mesma coisa |
 | "Renderizo uma capa rápida só para ele ver a direção" | Arte nenhuma existe antes da etapa 7 — nem para adiantar, nem para ilustrar a conversa. Ela viria antes de a imagem estar decidida, mostrando uma peça que não é a que será produzida, e com o texto ainda provisório |
 | "Ele tem conector ligado, então já sei tudo" | Ter conector não é querer gastar crédito neste post. Diga a faixa — 4 créditos por card no caminho feliz, 6 a 8 com vaivém — antes de começar, não depois |
-| "Não tem gerador, então é tudo desenhado em código" | Banco de imagem não conecta nada e resolve quando o tema dá foto. No catálogo A ele aparece como referência, não como pergunta |
+| "Não tem gerador, então é tudo desenhado em código" | Falta perguntar se ele tem fotos. E não tendo nem uma coisa nem outra, **diga o que isso custa na etapa 0** — a peça sai correta e pouco relevante, e ele merece saber enquanto dá para resolver |
 | "O gerador acertou a letra dessa vez" | Acertou nessa geração. Não vai acertar nas oito. E o acento é onde ele erra primeiro |
 | "Ele mandou o texto, mas vou entrevistar pra garantir" | Devolve a ele um mapa do que ele mesmo escreveu. A entrevista é para quem tem assunto; quem tem texto pula a etapa 4 e vai para o anti-slop |
 | "Ele tem as fotos, então não preciso perguntar do nível" | As fotos dele cobrem alguns cards, não o carrossel. Pergunte quantos, e resolva o resto com ele — não em silêncio, na entrega |

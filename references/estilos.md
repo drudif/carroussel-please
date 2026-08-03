@@ -56,9 +56,9 @@ Daí sai a ordem em que os estilos são abertos:
 
 | nível | abra primeiro | também funcionam, com o custo dito |
 |---|---|---|
-| **3 · só código** | **terminal**, **brutalista** | superminimal fica de pé, mas magro — ele quer imagem · riso e colagem viram retícula e recorte desenhados |
-| **2 · banco aberto, ou fotos do próprio usuário** | **superminimal**, **colagem**, **riso** | superminimal é o que mais ganha: recorte limpo cai direto no branco, sem tratamento · brutalista só se quantizar em três degraus · terminal não pede foto |
-| **1 · gerador** | **riso**, **colagem**, **superminimal** | terminal não pede imagem |
+| **sem imagem nenhuma** | **terminal**, **brutalista** | superminimal fica de pé, mas magro — ele quer imagem · riso e colagem viram retícula e recorte desenhados |
+| **fotos do próprio usuário** | **superminimal**, **colagem**, **riso** | superminimal é o que mais ganha: recorte limpo cai direto no branco, sem tratamento · terminal não pede foto |
+| **gerador ligado** | **riso**, **colagem**, **superminimal** | terminal não pede imagem |
 
 **Brutalista, neo-brutalismo e editorial são polivalentes** — servem nos três níveis, e isso se
 diz com essas palavras em qualquer um deles. Não é prêmio de consolação: **quem não quer que a
@@ -95,8 +95,8 @@ critério do funil:
 Devolva em **duas frases, sem jargão**, e nessa ordem: o que a peça precisa para existir, e de
 qual dos sete ela está mais perto.
 
-> *"Essa aí vive de foto tratada — dá para fazer com banco grátis, e fica ainda mais parecida
-> com imagem sob medida. Entre os sete, ela é praticamente a colagem."*
+> *"Essa aí vive de foto tratada. Entre os sete, ela é praticamente a colagem — e para chegar
+> perto vai precisar de imagem: ou gerada aqui, ou suas."*
 
 **A referência não vira um oitavo estilo.** Ela escolhe entre os sete e afina o escolhido —
 paleta, peso do tipo, quanto de vazio. Direção inventada na hora sai bonita na capa e quebra no
@@ -707,10 +707,13 @@ a trava do gabarito abrir sozinha.
 Nos outros seis estilos isso não vale: neles o gerador ainda tem o que fazer com a foto do
 usuário na peça — tinta, retícula, recorte, campo. Aqui não há nada para ele fazer.
 
-**Sem gerador, é o estilo que mais ganha com banco de imagem.** Foto de banco com recorte limpo
-cai direto no branco sem tratamento nenhum — e este é o único dos sete em que **não tratar é o
-certo**, porque qualquer conversão de cor tira da foto o que ela veio trazer. Em código puro ele
-funciona, mas fica sendo tipografia sobre branco com blocos de cor chapada: honesto, e mais magro.
+**Sem gerador, é o estilo que mais ganha com as fotos do próprio usuário.** Recorte limpo cai
+direto no branco sem tratamento nenhum — e este é o único dos sete em que **não tratar é o
+certo**, porque qualquer conversão de cor tira da foto o que ela veio trazer.
+
+**Sem gerador E sem foto nenhuma, ele fica magro:** vira tipografia preta sobre branco com blocos
+de cor chapada. Funciona, e é honesto dizer que é a versão reduzida — ele é o estilo em que a
+imagem é o evento.
 
 **Cuidado verificado:** o risco aqui não é parecer feito por IA — é **parecer não-feito**. Branco
 com pouco texto passa perto de "slide em branco", e o que separa uma coisa da outra é a
