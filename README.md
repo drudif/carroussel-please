@@ -1,4 +1,4 @@
-# carroussel-please
+# um-carrossel-por-favor
 
 Skill para [Claude Code](https://claude.com/claude-code) que monta carrossel de feed com
 arte-final: direção de arte, texto revisado e arquivos prontos para Instagram e LinkedIn.
@@ -10,7 +10,7 @@ onde não há texto.
 ## Instalar
 
 ```bash
-git clone https://github.com/drudif/carroussel-please.git ~/.claude/skills/carroussel-please
+git clone https://github.com/drudif/um-carrossel-por-favor.git ~/.claude/skills/um-carrossel-por-favor
 ```
 
 Depois é só pedir um carrossel no Claude Code — a skill se ativa sozinha.

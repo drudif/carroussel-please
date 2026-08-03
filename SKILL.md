@@ -1,5 +1,5 @@
 ---
-name: carroussel-please
+name: um-carrossel-por-favor
 description: Use quando o usuário pedir um carrossel para Instagram ou LinkedIn com arte pronta — "faz um carrossel", "post pro Instagram", "cards pro feed", "slides pro Insta", "carrossel de projetos", "documento pro LinkedIn", "monta a arte do carrossel". Também quando um carrossel gerado por modelo de imagem saiu com letra torta ou acento errado e precisa ser refeito, ou quando o usuário quer transformar prints de um app, um processo ou uma lista em post editorial. Entrega PNGs 1080x1350 e um PDF sequencial.
 metadata:
   language: pt-BR
@@ -11,7 +11,7 @@ metadata:
   requisito: um navegador (Chrome/Chromium/Brave/Edge) + bash e python3. Sem navegador não há etapa 7
 ---
 
-# Carroussel Please
+# Um Carrossel Por Favor
 
 Carrossel de feed com arte-final. **Toda tipografia é renderizada em HTML/CSS e capturada em PNG.** Modelo de imagem entra só onde não há palavra a ler.
 
