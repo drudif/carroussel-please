@@ -1,6 +1,6 @@
 # Gerar imagem — o guia para quem nunca conectou nada
 
-É aqui que quem não é técnico trava. Conduza com paciência: diga **o que muda no resultado** antes de pedir qualquer coisa, e trate conectar como opcional de verdade. Quatro dos sete ficam completos sem nenhum gerador.
+É aqui que quem não é técnico trava. Conduza com paciência: diga **o que muda no resultado** antes de pedir qualquer coisa, e trate conectar como opcional de verdade. Três dos sete — terminal, brutalista e neubrutal — ficam inteiros sem imagem nenhuma, e com as fotos dele os outros quatro também fecham.
 
 ## O que muda, em português
 
@@ -272,7 +272,7 @@ vertical proportion` escrito em caixa alta. Sem âncora, a geometria obedeceu na
 entre um card e outro — e num carrossel ela precisa, senão são sete paredes iguais —, **a
 âncora sai**.
 
-**E isso quase não dói, por um motivo estrutural:** num carrossel de nível 1 **a tipografia é
+**E isso quase não dói, por um motivo estrutural:** mesmo com o laço rodando, **a tipografia é
 HTML**. O principal serviço que a âncora prestava — manter o sistema tipográfico e o
 comprimento de linha entre os cards — já está garantido pelo CSS, que é o mesmo arquivo para
 os sete. Quem segura a impressão sozinho é o **bloco de estilo** do estilo escolhido, que é
@@ -324,6 +324,13 @@ E o corpo de cada card sai de **duas restrições, a menor manda**: o compriment
 gabarito, que faz os sete lerem como a mesma série, e a altura do vão medido na chapa, que
 impede o título de invadir a ilustração. Num carrossel de sete, o comprimento mandou em quatro
 e a altura em três — corpos de 107 a 280 px, e mesmo assim um sistema só.
+
+**E isso substitui o teto de palavras de [texto.md](texto.md#o-corpo-dos-cards-do-meio-25-palavras-era-pouco)
+sempre que há conector.** Aquele teto (55–65 palavras com grafismo) foi medido contra uma zona de
+grafismo fixa, desenhada em CSS — com o laço, a zona é o que o gerador devolveu, e um carrossel
+real deu vãos de 350 a 500px, abaixo do que 55 palavras + título de 2 linhas pedem. Escreva o
+texto mirando 55–65 como ponto de partida; **corte para o que o `alt` medido desta chapa permite,
+depois de medir, não antes.**
 
 ## A régua da chapa é o divisor das zonas
 

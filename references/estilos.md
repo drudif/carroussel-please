@@ -31,7 +31,7 @@ As três referências de cada estilo são o mesmo sistema visual em três compos
 
 ## O critério: de onde vem a espessura da peça
 
-**A escolha do estilo é um funil, e quem abre o funil é a conexão da etapa 1.** Não é
+**A escolha do estilo é ordenada, e quem ordena é a conexão da etapa 1.** Não é
 questão de gosto: cada estilo tira o que tem de melhor de uma fonte diferente, e a foto ajuda,
 atrapalha ou é indiferente conforme essa fonte.
 
@@ -43,8 +43,8 @@ atrapalha ou é indiferente conforme essa fonte.
 | **vazio + imagem em bloco** | superminimal | **é o evento.** A cor da peça vem dela — sem imagem, o card é só tipografia sobre branco |
 | **vazio + uma foto** | editorial | o sistema prevê **uma** imagem grande sangrando por um lado. Uma, não oito |
 
-**Foto trazida pelo usuário cai na primeira linha**, e por isso lê como nível 2: o que decide é
-onde está a massa da peça, não de onde o arquivo veio.
+**Foto trazida pelo usuário cai na primeira linha:** o que decide é onde está a massa da peça,
+não de onde o arquivo veio.
 
 **Com uma ressalva que inverte parte da tabela:** foto do usuário entra **sem tratamento** por
 padrão, e estilo que vive de *converter* a foto perde o que tem de melhor. Aí o que serve é
@@ -52,28 +52,30 @@ estilo que **emoldura** — **editorial** primeiro, que já é vazio mais uma fo
 **colagem**, que recorta em vez de converter. **Risografia é a que mais sofre:** a tinta riso
 existe para cair sobre a imagem, e sem isso vira papel colorido com foto por cima.
 
-Daí sai a ordem em que os estilos são abertos:
+Daí sai a ordem em que os estilos são abertos — e os catálogos da etapa 2 são **dois**, não três:
+quem tem conector vê o B, quem não tem vê o A. As fotos do usuário não abrem um terceiro; elas
+mudam a ordem **dentro do A**.
 
-| nível | abra primeiro | também funcionam, com o custo dito |
+| catálogo | abra primeiro | também funcionam, com o custo dito |
 |---|---|---|
-| **sem imagem nenhuma** | **terminal**, **brutalista** | superminimal fica de pé, mas magro — ele quer imagem · riso e colagem viram retícula e recorte desenhados |
-| **fotos do próprio usuário** | **superminimal**, **colagem**, **riso** | superminimal é o que mais ganha: recorte limpo cai direto no branco, sem tratamento · terminal não pede foto |
-| **gerador ligado** | **riso**, **colagem**, **superminimal** | terminal não pede imagem |
+| **A · sem conector, sem fotos dele** | **terminal**, **brutalista**, **neubrutal** | os três ficam inteiros sem imagem nenhuma — o desenho é o material · superminimal fica de pé, mas magro, ele quer imagem · riso e colagem viram retícula e recorte desenhados |
+| **A · sem conector, com as fotos dele** | **superminimal**, **editorial**, **colagem** | superminimal é o que mais ganha: recorte limpo cai direto no branco, sem tratamento · editorial e colagem **emolduram** em vez de converter, que é o que a foto sem tratamento pede · terminal não pede foto |
+| **B · com conector** | **os sete em pé de igualdade** | não há ressalva a fazer: todos recebem imagem sob medida. O que se diz aqui é o que **muda de patamar** — riso e colagem —, não o que fica devendo |
 
-**Brutalista, neo-brutalismo e editorial são polivalentes** — servem nos três níveis, e isso se
-diz com essas palavras em qualquer um deles. Não é prêmio de consolação: **quem não quer que a
+**Brutalista, neo-brutalismo e editorial são polivalentes** — funcionam nos dois catálogos, e a
+imagem é acessório nos dois primeiros e **uma só** no editorial. Isso se diz com essas palavras. Não é prêmio de consolação: **quem não quer que a
 peça dependa de imagem escolhe exatamente ali**, e essa decisão só aparece se ela for nomeada.
 
-**O funil ordena, não esconde.** Os sete continuam disponíveis e o usuário sabe que são sete. Se
-ele escolher fora da recomendação, diga o que muda em uma linha, ofereça mudar de nível **uma
-vez**, e siga com a escolha dele.
+**O catálogo ordena, não esconde.** Os sete continuam disponíveis e o usuário sabe que são sete.
+Se ele escolher fora da recomendação, diga o que muda em uma linha, ofereça ligar um gerador
+**uma vez**, e siga com a escolha dele.
 
 ### O critério roda nos dois sentidos
 
 A mesma pergunta que ordena os estilos **lê uma referência trazida pelo usuário**: olhe onde está
 a massa da peça — foto, forma ou vazio — e você tem o caminho que ela exige e o estilo de que ela
-está mais perto. É por isso que a oferta de mandar referência mora na etapa 1 e não na 2: ela
-responde à pergunta do nível, só que de trás para frente.
+está mais perto. É por isso que a referência é a **opção 0 do catálogo**, na etapa 2, e não um
+estilo à parte: ela responde à mesma pergunta, só que de trás para frente.
 
 A oferta e a pergunta que desfaz a ambiguidade — *referência de como quer que fique, ou imagem
 para entrar na arte?* — estão na [etapa 2 da SKILL.md](../SKILL.md#se-ele-mandar-uma-referência-própria).
@@ -85,7 +87,7 @@ O resto da leitura é aqui.
 Zero e não oito, porque oito leria como um oitavo estilo, e ele não existe.
 
 **Cinco perguntas.** São as mesmas cinco em qualquer referência, e as respostas caem direto no
-critério do funil:
+critério acima:
 
 | o que olhar | e o que isso quer dizer |
 |---|---|
@@ -200,13 +202,19 @@ Os sete já vêm calculados, e são **duas** variáveis:
 | brutalista | Anton | **1,15** | 1,65 |
 | riso | Antonio | **1,18** | 1,69 |
 | riso *com imagem por baixo* | Bricolage Grotesque | **0,97** | 1,39 |
-| terminal | Cascadia Mono Light | **0,98** | 1,40 |
+| terminal | Cascadia Mono Light | **1,07** | 1,27 |
 | colagem | Bodoni Moda | **1,09** | 1,53 |
 | neubrutal | Chivo | **0,95** | 1,35 |
 | editorial | Fraunces | **0,99** | 1,39 |
 | superminimal | Plus Jakarta Sans Medium | **1,06** | 1,48 |
 
 Repare que **Anton é o caso extremo**: caixa alta de 0,867 em, mas o acento chega a 1,101 — mais alto que o próprio corpo da fonte. É por isso que ela é a única do conjunto que precisa de entrelinha maior que o tamanho da letra.
+
+**Terminal é o único medido em caixa baixa**, porque é o único tipografado assim (ver o cuidado
+verificado do estilo, abaixo). `fontes.sh` sabe disso pelo nome do estilo e mede o alfabeto
+minúsculo — que tem uma cauda que a caixa alta não tem: **P, G e Y descem em caixa baixa e não
+descem em caixa alta.** Medir só Ç/Q/J, como os outros seis, dava piso para um alfabeto que o
+esqueleto nunca desenha nesse estilo.
 
 ### A segunda coluna resolve leitura, não colisão — e o esqueleto aplica sozinha
 
@@ -227,8 +235,8 @@ geométricos da primeira: com 0,04 são 3px e lê como acento; com 0,24 são 18p
 Duas consequências práticas:
 
 - **Não escolha a coluna na mão, e não olhe o PNG para decidir.** O esqueleto troca sozinho:
-  se qualquer linha do título que não seja a última tem `Ç`, `Q` ou `J`, ele usa
-  `--lh-titulo-q`. Julgamento visual foi o que deixou passar
+  se qualquer linha do título que não seja a última tem `Ç`, `Q` ou `J` — ou, no terminal, `P`,
+  `G` ou `Y` também — ele usa `--lh-titulo-q`. Julgamento visual foi o que deixou passar
 - **Não recalcule o piso por string.** Otimizar para o par de linhas real dá um número menor —
   foi assim que o card acima ficou com `1.221`, que é geometricamente correto e
   tipograficamente errado. **O piso publicado já é o pior caso da família, e é o número seguro**
@@ -322,8 +330,8 @@ interface. A dose é o que separa: acima de `.12` vira papel amassado e aí sim 
 
 **Entrelinha do título: `1.18`** — `var(--lh-titulo)`.
 
-**O par muda quando entra imagem gerada.** Com o card composto só de tipo e forma — o nível 3,
-que é o padrão —, a Antonio é a certa: condensada, ela devolve linha longa em corpo grande, e é
+**O par muda quando entra imagem gerada.** Com o card composto só de tipo e forma — o caminho do
+catálogo A, que é o padrão —, a Antonio é a certa: condensada, ela devolve linha longa em corpo grande, e é
 corpo grande que faz a chapa fora de registro ler como material em vez de defeito. O
 deslocamento de 9px que some numa Bricolage de 70px é evidente numa Antonio de 110px.
 
@@ -345,8 +353,8 @@ contra um gabarito real, pela régua de substituição:
 | **Antonio 700** | 4,514 | 0,532 | 14,8% | **21,5%** |
 
 A Bricolage tem **o dobro da largura** do que o modelo desenha. Seguir a regra pela leitura
-antiga — *"havendo imagem gerada"*, que descreve exatamente o nível 1 — jogaria fora a única
-coisa que o laço compra. **Nível 1 é Antonio.**
+antiga — *"havendo imagem gerada"*, que descreve exatamente o caminho com conector — jogaria fora
+a única coisa que o laço compra. **Com laço do gabarito, é Antonio.**
 
 **O grão vai ACIMA do texto, e isso é regra, não gosto.** Tipo vetorial nítido sobre chapa
 impressa lê como adesivo colado por cima da peça — as duas superfícies não se encontram. Uma
@@ -427,7 +435,8 @@ significado entre um card e outro é decoração.
 
 **Fontes:** Cascadia Mono **Light 300** (`Titulo`) · Cascadia Mono 400 (`Corpo`) — `fontes.sh terminal`
 
-**Entrelinha do título: `0.98`** — `var(--lh-titulo)`. E **teto de corpo: 84px**. É o único dos sete
+**Entrelinha do título: `1.07`** — `var(--lh-titulo)`, medida em caixa baixa (ver "A régua da
+entrelinha" acima — é o único dos sete medido assim). E **teto de corpo: 84px**. É o único dos sete
 com teto: aqui o título não cresce até encher o campo, ele para.
 
 Peso leve sobre fundo escuro é o par que funciona — a haste fina ganha contraste do chumbo e a
@@ -734,10 +743,10 @@ que faz a peça ler como print de app dentro do card. Aqui tudo é canto vivo.
 ## A conversa da etapa 2
 
 **Abra pelo catálogo que a etapa 1 escolheu.** A conexão já foi verificada, e o critério acima
-diz quais estilos ele favorece — comece por esses dois, uma linha cada dizendo por que aquele
-nível funciona neles. Depois, uma frase: *"os outros também funcionam aqui — quer ver?"*. E, em
-qualquer nível, nomeie os polivalentes: brutalista, neubrutal e editorial servem nos três, e há
-quem escolha justamente por isso.
+diz quais estilos ela favorece — comece por esses, uma linha cada dizendo por que funcionam nesse
+caminho. Depois, uma frase: *"os outros também funcionam aqui — quer ver?"*. E, nos dois
+catálogos, nomeie os polivalentes: brutalista, neubrutal e editorial funcionam com foto ou sem, e
+há quem escolha justamente por isso.
 
 Não descreva os sete em texto e peça para escolher. **Mostre as três referências do estilo** —
 `<estilo>-1-split.jpg`, `-2-cascata.jpg`, `-3-bento.jpg` — abertas, não descritas. São três de

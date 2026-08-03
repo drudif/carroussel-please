@@ -4,7 +4,7 @@ description: Use quando o usuário pedir um carrossel para Instagram ou LinkedIn
 metadata:
   language: pt-BR
   estilos: 7, fixos — ver references/estilos.md. A conexão (etapa 1) decide qual dos dois catálogos abre
-  geracao-de-imagem: opcional; chave de API ou conector. Cinco dos sete estilos não precisam
+  geracao-de-imagem: opcional; chave de API ou conector. Três dos sete ficam inteiros sem imagem nenhuma
   embutido: sprayantislop (Fernando Drudi) sobre Zero-Lero (MIT, Vinicius Stanula)
   destilado: brainstorming, carousel-writer-sms, bencium-innovative-ux-designer, high-end-visual-design
   autossuficiente: não depende de outra skill; fontes e referências viajam no pacote, sem rede
@@ -93,7 +93,7 @@ E uma frase ao usuário, sem rodeio: *"aqui não tem como imprimir os PNGs. Est�
 numa máquina com Chrome, um comando entrega a arte."*
 
 **Por que isso importa mais do que parece.** Quase toda trava desta skill é executável: o
-`exportar.sh` sozinho tem sete pontos de parada, e o que faz a etapa 1 não ser pulada é o board
+`exportar.sh` sozinho tem oito pontos de parada, e o que faz a etapa 1 não ser pulada é o board
 abrir, não a regra estar escrita. **Prosa já falhou nos testes — foi por isso que as travas
 viraram código.** Num ambiente sem execução, a skill volta a ser a versão que já se sabe que não
 segura, e montar arte assim entrega defeito com cara de entrega.
@@ -119,7 +119,7 @@ layout. Escolhe-se olhando aquilo.
 ### Retomando um trabalho: as etapas já respondidas não se refazem
 
 O fluxo está escrito para quem começa do zero, e **metade das sessões reais não começa do zero.**
-O usuário chega com um `TEXTOS.md` aprovado numa conversa anterior e decide estilo e nível numa
+O usuário chega com um `TEXTOS.md` aprovado numa conversa anterior e decide conexão e estilo numa
 frase só — *"com mcp higsfield layout risografia"*. Rodar as oito etapas em cima disso é
 exatamente a queixa nº 1 de quem testa a skill, com a agravante de que agora tem razão.
 
@@ -127,7 +127,7 @@ exatamente a queixa nº 1 de quem testa a skill, com a agravante de que agora te
 |---|---|
 | `TEXTOS.md` com os blocos no formato | **etapas 4, 5 e 6** |
 | `DIRECAO.md` com paleta, fontes e as linhas `estilo:` e `conector:` | **etapas 1, 2 e 3** — e sem a linha `estilo:` a 2 **não** está fechada, por mais que a paleta esteja lá |
-| o usuário nomeia estilo e nível na mesma frase | **etapas 1 e 2** |
+| o usuário nomeia o gerador e o estilo na mesma frase | **etapas 1 e 2** |
 | chapas ou gabaritos na pasta | o laço já rodou — **não regere** |
 
 O que sobra é gravar o que falta no `DIRECAO.md` e ir para a etapa 7. E a confirmação vira **uma
@@ -314,7 +314,14 @@ Esta é a **forma mais rica** de a skill trabalhar, e vale dizer isso com todas 
 gerador, a imagem responde ao assunto dele em vez de ser o que existia; a peça inteira nasce
 composta; e os sete estilos ficam disponíveis em pé de igualdade.
 
-◇ **Você tem conta em algum gerador de imagem que a gente possa ligar aqui?**
+**Se ele veio da opção 3 ou 4 da etapa 0, pule a pergunta abaixo — ele já respondeu.** Opção 3
+("tenho conta, quero conectar") é resposta 1 da tabela; opção 4 ("não sei se tenho conta") é
+resposta 2. Perguntar nome de novo é o que a "verifique, não pergunte" desta etapa quer evitar —
+a verificação é o `balance`, que já rodou; a conta ele já disse que tem ou não sabe.
+
+◇ **Você tem conta em algum gerador de imagem que a gente possa ligar aqui?** — só se ele chegou
+aqui de outro jeito, sem passar pela etapa 0 (por exemplo: já tinha imagem própria, então o aviso
+da etapa 0 nunca apareceu).
 
 | | dá para ligar? |
 |---|---|
@@ -334,8 +341,7 @@ Três respostas, e as três seguem o trabalho:
 
 **A 1 e a 2 não são a mesma pergunta com palavras diferentes.** Quem tem conta precisa de seis
 passos; quem não tem precisa de vinte, e tratar os dois igual perde o segundo no primeiro clique
-— ele abre uma página de preços que não entende e desiste. Se ele veio da opção 4 da etapa 0,
-**ele já é o caso 2**: não repergunte.
+— ele abre uma página de preços que não entende e desiste.
 
 ### Caso 1 — ele tem conta
 
@@ -379,8 +385,9 @@ Quem tem 60 créditos precisa saber disso enquanto ainda dá para escolher outro
 
 ### Sem conector, o carrossel continua completo
 
-Diga isso uma vez, em uma linha, e siga: quatro dos sete estilos ficam completos sem gerador
-nenhum. Incentivar a conexão é honesto porque ela
+Diga isso uma vez, em uma linha, e siga: **três dos sete ficam inteiros sem imagem nenhuma** —
+terminal, brutalista e neo-brutalismo, onde o desenho já é o material. Os outros quatro pedem
+imagem, dele ou gerada. Incentivar a conexão é honesto porque ela
 **é** melhor; empurrar seria dizer que sem ela não dá — e dá.
 
 Grave no `DIRECAO.md`:
@@ -440,9 +447,9 @@ informação:
 
 | destaque | estilos | por quê |
 |---|---|---|
-| **em primeiro** | **terminal** · **brutalista** | os dois que ficam inteiros sem imagem nenhuma: o desenho já é o material |
+| **em primeiro** | **terminal** · **brutalista** | dois dos três que ficam inteiros sem imagem nenhuma: o desenho já é o material |
 | **e o superminimal**, se ele tiver as fotos | **superminimal** | com as imagens dele é o mais forte deste catálogo — recorte limpo cai direto no branco, sem tratamento. Sem imagem nenhuma, fica magro: a foto é o evento do estilo |
-| **abaixo** | **neo-brutalismo** · **editorial** | funcionam bem, com o custo dito: o neubrutal envelhece rápido, e o editorial pede **uma** imagem grande e boa |
+| **abaixo** | **neo-brutalismo** · **editorial** | funcionam bem, com o custo dito: o neubrutal **também fica inteiro sem imagem** — é o terceiro —, mas envelhece rápido; o editorial pede **uma** imagem grande e boa |
 | **por último, com aviso** | **riso** · **colagem** | **perdem qualidade aqui.** A tinta riso existe para cair sobre imagem, e o recorte fotográfico é o centro da colagem. Em código viram retícula e recorte desenhados: funciona, mas é a versão reduzida |
 
 #### Catálogo B — com conector
@@ -561,7 +568,17 @@ cada camada** — paleta, tipografia, material, grafismo —, porque estilo mist
 justamente quando as duas disputam a mesma camada. Feche isso no `DIRECAO.md` e siga.
 
 Ao fechar, registre em `DIRECAO.md` na pasta do trabalho: paleta em hex com o uso de cada cor,
-fontes com nome de arquivo, lógica de grade, e como cada tipo de card se comporta.
+fontes com nome de arquivo, lógica de grade, como cada tipo de card se comporta, e a linha
+`destino:` — vem da resposta já dada na etapa 0 (Instagram · LinkedIn · os dois · outro), não se
+pergunta de novo. Sem essa linha o `exportar.sh` assume **os dois** e monta o PDF de LinkedIn
+mesmo quando ninguém pediu — foi o que aconteceu nos três testes de UX em paralelo, e a única
+correção manual que os três precisaram fazer foi apagar esse PDF. Formato:
+
+```markdown
+destino: instagram
+destino: linkedin
+destino: os dois
+```
 
 **E é aqui que se pergunta o rodapé**, não na abertura: ◇ *tem logo, ou fica só o arroba em
 texto?* Agora existe direção para ele pertencer.
@@ -577,15 +594,18 @@ Escreva-a **só depois do sim explícito**. Estilo deduzido de uma referência, 
 escolhido por você porque "combina com o assunto" não é escolha dele — e essa etapa era a única
 do fluxo sem trava justamente quando sumiu em produção.
 
-A segunda é a conexão, e ela é a prova de que a catraca da etapa 1 rodou:
+A segunda é a conexão, e ela é a prova de que a catraca da etapa 1 rodou — com a linha do
+**recusado importando tanto quanto a do ligado**, porque sem ela não dá para distinguir "ele não
+quis" de "ninguém perguntou":
 
 ```markdown
 conector: higgsfield · verificado em AAAA-MM-DD
 conector: nenhum · oferecido e recusado em AAAA-MM-DD
 ```
 
-Ela é a prova de que a catraca da etapa 1 rodou — e a linha do **recusado importa tanto quanto a
-do ligado**, porque sem ela não dá para distinguir "ele não quis" de "ninguém perguntou".
+Sem ela a etapa 7 não sabe que existe gerador ligado e monta pelo caminho de quem não tem — foi
+assim que um Higgsfield conectado terminou sem laço de gabarito nenhum. Os arquivos do laço ficam
+como `gabarito-NN.png` e `chapa-NN.png`.
 
 E uma terceira, quando ele subiu fotos, dizendo o que foi decidido na última pergunta da etapa 2:
 
@@ -597,17 +617,13 @@ fotos: do usuário · tratadas no estilo
 Sem essa linha a etapa 7 decide sozinha, e o padrão silencioso de qualquer diagramador é aplicar
 o estilo — que aqui é o contrário do certo.
 
-Foto do usuário é **2**, e não um número novo: para tudo o que vem depois — funil de estilos,
-tratamento, escolha de esqueleto — a massa da peça é foto processada. O que muda é a procedência, e
-isso a própria linha registra.
+**Foto do usuário não abre um caminho novo.** Para tudo o que vem depois — ordem do catálogo,
+tratamento, escolha de esqueleto — o que decide é onde está a massa da peça, e foto do usuário é
+superfície fotográfica como qualquer outra. O que muda é a procedência, e isso a própria linha
+registra.
 
-Esta é a **única** superfície em que os níveis são números: o `exportar.sh` lê essa linha. Na
-conversa eles têm nome.
-
-O número é o da etapa 1, e a linha é a prova de que a etapa aconteceu. Sem ela a etapa 7 não
-sabe que existe gerador ligado e monta pelo caminho de quem não tem — foi assim que um
-Higgsfield conectado terminou sem laço de gabarito nenhum. Os arquivos do laço ficam como
-`gabarito-NN.png` e `chapa-NN.png`.
+**Nenhuma dessas linhas leva número.** O `exportar.sh` lê as quatro — `conector:`, `estilo:`,
+`fotos:` e `destino:` — por extenso, com as palavras acima.
 
 **Cheque os acentos antes de fechar.** Os pares dos sete estilos já foram conferidos glifo a glifo. Mas se o usuário trouxe fonte de marca, renderize `ÁÀÂÃÉÊÍÓÔÕÚÜÇ áàâãéêíóôõúüç` e olhe — o navegador troca só o glifo faltante por outra fonte, o que é pior do que quebrar, porque passa despercebido. Faltando: troque a fonte, ou use **`abrasileirar-fonte`** para desenhar os acentos no traço da própria fonte.
 
@@ -682,7 +698,7 @@ visual — o oposto do que esta etapa faz. O que é visual se resolve olhando o 
 
 ### 2 · A imagem de cada card, decidida
 
-Card a card, e a decisão é uma destas quatro:
+Card a card, e a decisão é uma destas três:
 
 | origem | quando |
 |---|---|
@@ -756,7 +772,7 @@ a etapa que a produz foi pulada:
 |---|---|---|
 | `DIRECAO.md` com as linhas `estilo:` e `conector:` | senão o `exportar.sh` para, duas vezes | etapas 1, 2 e 3 |
 | `TEXTOS.md` com o texto aprovado | senão a arte é chute | etapas 4 a 6 |
-| número de cards confirmado | senão a grade não fecha | etapa 0 |
+| número de cards confirmado | senão a grade não fecha | etapa 4 — **nunca a 0**, onde perguntar seria pedir que ele adivinhe |
 
 ### Antes do passo 1: há gerador ligado?
 
@@ -861,7 +877,8 @@ Junto com o artefato, o aviso do `TEXTOS.md` da etapa 6 — e a parte que faz di
 `y=135..1215` e monte o PDF com os recortes. **Não rediagrame nada** — e não precisa, porque a
 margem do quadrado já foi reservada na diagramação, que é o que a área de segurança abaixo faz.
 Se algo sumiu no corte ou ficou espremido nele, o erro está na diagramação, não na exportação.
-O `exportar.sh` já monta os dois PDFs.
+O `exportar.sh` monta o PDF de cada destino que a linha `destino:` do `DIRECAO.md` pedir — **os
+dois** por padrão, se a linha faltar.
 
 O feed do LinkedIn é largo e reduz o documento, e a maioria dos carrosséis vai para os dois
 destinos — então o caso do LinkedIn é o normal: **o piso de corpo é 34px** sobre 1080, e 30 é
@@ -911,7 +928,7 @@ verde.
 
 **O grafismo é mudo.** Se você desenhou algo e precisou escrever um rótulo para ele se explicar, o problema é o desenho. Texto dentro de grafismo só é legítimo se veio da etapa 4, aprovado, ou se é dado duro e verdadeiro.
 
-**Ritmo por arquétipo.** Os três arquétipos de layout — editorial split, cascata Z, bento assimétrico — entram em rodízio ao longo do carrossel. Oito cards no mesmo arquétipo viram oito paredes iguais.
+**Ritmo por arquétipo — executável, não prosa.** `assets/esqueleto.html` tem os três arquétipos — `split` (duas colunas, título domina), `cascata` (camadas giradas, cortadas pela borda), `bento` (grade de células desiguais, uma sempre vazia) — como o parâmetro `layout` de `conteudo()`. Gire com `layout:ROD(n)`, já pronto no arquivo; **não escolha o arquétipo à mão card a card**. Antes desta correção só existia um arquétipo no código (chamado `split` mas sem a estrutura de duas colunas que o nome promete), e a instrução em prosa de girar entre os três nunca teve com o quê — oito cards saíam na mesma silhueta. Isto não vale para o `esqueleto-chapa.html`: ali quem decide a composição é a chapa gerada, não o CSS.
 
 **Havendo gerador conectado, todos os cards nascem de gabarito gerado** — não só a capa. O laço
 está na etapa 7. A capa é o piso, não o teto: se o crédito for curto, gere a capa e o fecho e
@@ -930,7 +947,7 @@ Sacrifique nesta ordem, **de baixo para cima**:
 2. **Respiro** — cede pouco. Vão vazio é composição, não desperdício
 3. **Grafismo** — cede primeiro. Encolhe, corta, ou sai
 
-Texto sobrepondo grafismo é falha estrutural, não ajuste fino. Resolva com empilhamento rígido — cabeça, texto, grafismo, pé — onde o texto reserva a altura de que precisa e o grafismo fica com o que sobra. O esqueleto já é assim.
+Texto sobrepondo grafismo é falha estrutural, não ajuste fino. Resolva com áreas de grid separadas — `txt` e `gfx` nunca dividem a mesma área, em nenhum dos três arquétipos — onde o texto reserva o espaço de que precisa e o grafismo fica com o que sobra. O esqueleto já é assim, nos três.
 
 ## Checagem antes de entregar
 
@@ -979,17 +996,17 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 |---|---|
 | "Com pressa, conversa de setup é hostil" | Roda uma vez e fica salva. Errar a lista invalida os oito cards |
 | "Descrevo os sete estilos, ele escolhe pelo nome" | Ninguém escolhe direção visual lendo. Abra as três referências fixas do estilo |
-| "Pergunto o estilo primeiro, imagem depois" | Era assim, e não funcionava. O nível é o funil: perguntado depois, ele vira detalhe — e o estilo escolhido pode ser justamente o que menos aproveita o nível que ele tem |
+| "Pergunto o estilo primeiro, imagem depois" | Era assim, e não funcionava. **É a conexão que abre o catálogo:** verificada depois, ela vira detalhe — e o estilo escolhido pode ser justamente o que menos aproveita a imagem que ele tem |
 | "Ele mandou uma imagem, então é para usar no card" | Pergunte qual das duas coisas é. Referência é como ele quer que fique; imagem para entrar na arte é material, com direitos dele. Confundir põe a foto dentro do card sem ninguém ter decidido isso |
 | "A referência dele é a direção, vou reproduzir" | Ela escolhe entre os sete e afina o escolhido. Direção inventada na hora sai bonita na capa e quebra no card 5 — é a razão de os sete serem fechados |
-| "Mostro só os recomendados, é mais rápido" | O usuário precisa saber que são sete. O funil ordena, não esconde — e três deles servem em qualquer nível, o que é informação de decisão |
+| "Mostro só os recomendados, é mais rápido" | O usuário precisa saber que são sete. O catálogo ordena, não esconde — e três deles ficam inteiros sem imagem nenhuma, o que é informação de decisão |
 | "Meu default escuro com acento neon é bonito e seguro" | É exatamente o visual que hoje lê como IA. Seguro e indistinguível são a mesma coisa |
 | "Renderizo uma capa rápida só para ele ver a direção" | Arte nenhuma existe antes da etapa 7 — nem para adiantar, nem para ilustrar a conversa. Ela viria antes de a imagem estar decidida, mostrando uma peça que não é a que será produzida, e com o texto ainda provisório |
 | "Ele tem conector ligado, então já sei tudo" | Ter conector não é querer gastar crédito neste post. Diga a faixa — 4 créditos por card no caminho feliz, 6 a 8 com vaivém — antes de começar, não depois |
 | "Não tem gerador, então é tudo desenhado em código" | Falta perguntar se ele tem fotos. E não tendo nem uma coisa nem outra, **diga o que isso custa na etapa 0** — a peça sai correta e pouco relevante, e ele merece saber enquanto dá para resolver |
 | "O gerador acertou a letra dessa vez" | Acertou nessa geração. Não vai acertar nas oito. E o acento é onde ele erra primeiro |
 | "Ele mandou o texto, mas vou entrevistar pra garantir" | Devolve a ele um mapa do que ele mesmo escreveu. A entrevista é para quem tem assunto; quem tem texto pula a etapa 4 e vai para o anti-slop |
-| "Ele tem as fotos, então não preciso perguntar do nível" | As fotos dele cobrem alguns cards, não o carrossel. Pergunte quantos, e resolva o resto com ele — não em silêncio, na entrega |
+| "Ele tem as fotos, então não preciso verificar o conector" | As fotos dele cobrem alguns cards, não o carrossel. Pergunte quantos, e resolva o resto com ele — não em silêncio, na entrega |
 | "Gero a imagem e ajusto o texto pra caber" | O texto passa a servir a imagem. Inverte a peça inteira |
 | "Isso é fácil de desenhar, gero mais rápido" | Gerar custa uma rodada de prompt, uma de download e uma de recorte. Um `<div>` custa uma linha |
 | "Não tem navegador aqui, mas eu monto a arte de outro jeito" | Não existe outro jeito: a arte é impressa por um navegador, e é daí que vem a letra com acento. Entregue o texto e os arquivos prontos, e diga que a impressão é numa máquina com Chrome |
