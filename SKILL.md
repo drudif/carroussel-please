@@ -432,6 +432,15 @@ que ninguém decidiu.
 **No superminimal a pergunta quase não se faz:** ali não tratar é o certo por construção, porque
 qualquer conversão de cor tira da foto exatamente o que ela veio trazer.
 
+> **E o superminimal com fotos dele tem mais uma consequência, esta cara: o gerador não entra —
+> nem se estiver ligado.** Aquele estilo é branco, preto e blocos de foto, sem grafismo nenhum;
+> com as imagens na mão **não sobra nada para o gerador fazer**. Rodar o laço ali gastaria 4 a 8
+> créditos por card para produzir o que já existe, e o gabarito ainda voltaria com imagem
+> inventada disputando espaço com a foto dele. Monta-se tudo em código, com o `esqueleto.html`.
+> O `exportar.sh` reconhece o caso pelas duas linhas do `DIRECAO.md` e abre a trava do gabarito
+> sozinho. Nos outros seis não vale: neles o gerador ainda tem o que fazer com a foto — tinta,
+> retícula, recorte, campo.
+
 **Mostre, não descreva — e isto não fere a regra do preview.** Trate **uma** foto dele e ponha as
 duas lado a lado. É a foto, não é um card: sem texto, sem diagramação, sem paginação. A regra do
 preview existe contra card montado com texto provisório; aqui não há nem card nem texto. E o
@@ -670,10 +679,11 @@ esquece delas:
 
 ### Com conector, o esqueleto é outro arquivo
 
-| a linha `conector:` do `DIRECAO.md` diz | copie |
+| o `DIRECAO.md` diz | copie |
 |---|---|
-| um gerador ligado | **`assets/esqueleto-chapa.html`** |
-| `nenhum` | `assets/esqueleto.html` |
+| `conector:` com um gerador ligado | **`assets/esqueleto-chapa.html`** |
+| `conector: nenhum` | `assets/esqueleto.html` |
+| **`estilo: superminimal` + `fotos: do usuário`** | `assets/esqueleto.html` — **mesmo com conector**, porque ali o laço não roda |
 
 Não são o mesmo arquivo com outra cor. No `esqueleto.html` o grafismo é **filho** do card, e o
 empilhamento rígido torna sobreposição impossível por construção. Com o laço, a chapa é o **fundo
@@ -885,6 +895,7 @@ Estes pensamentos aparecem quando o usuário diz "tenho pressa". Todos custam ma
 | "A referência dele resolveu para colagem, então o estilo está escolhido" | Resolveu é sugestão sua; escolhido é ele dizendo sim. Pular esse passo faz a escolha voltar no meio da montagem, como pergunta sobre um card que não fecha — foi assim que a etapa 2 sumiu em produção |
 | "Não consigo abrir as referências aqui, sigo com a que faz mais sentido" | Não mostrar é problema de qualidade; **não perguntar é escolher no lugar dele.** Descreva, diga que escolher sem ver é pior, e pergunte assim mesmo |
 | "O mapa é só um rascunho, o anti-slop roda depois" | O mapa é texto que vai ao usuário, e a regra diz *qualquer texto*. Pior: é onde a ESTRUTURA se decide, e estrutura com slop não se conserta reescrevendo frase — se refaz o carrossel |
+| "Superminimal com as fotos dele e conector ligado — rodo o laço" | Não roda. Ali não sobra nada para o gerador fazer: o estilo é branco, preto e blocos de foto. Gastaria crédito para refazer o que já existe, e o gabarito voltaria inventando imagem em cima |
 | "Pergunto logo na etapa 1 se ele quer as fotos no estilo" | Não há estilo ainda. A pergunta é a última da etapa 2, quando dá para dizer o nome e mostrar uma foto dele tratada ao lado da original |
 | "A foto dele fica melhor na paleta do estilo, vou aplicar o duotone" | Foto do usuário entra COMO ELA É. Ele subiu aquela foto porque é o produto, o trabalho ou a pessoa dele — tingir em duas tintas destrói o que ele queria mostrar. Ofereça uma vez; sem o sim, não trate |
 | "Depois eu olho os PNGs" | Captura falha em silêncio. Olhe antes de entregar, um por um |

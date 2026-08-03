@@ -687,6 +687,26 @@ template**, que é a morte deste estilo — ele não tem material nem cor para d
 > `white. Crisp focus, high detail, no vignette. No frame, no border, no rounded corners, no drop`
 > `shadow, no gradient, no reflection, no props, no background scenery, no texture.`
 
+### Se ele subiu as fotos, o gerador não entra — nem se estiver ligado
+
+**Regra dura, e é a única exceção viva ao "havendo conector, todos os cards nascem de gabarito".**
+Com as imagens dele na mão, **não sobra nada para o gerador fazer neste estilo**: a peça é
+tipografia preta sobre branco mais os blocos de foto, e isso se monta em código.
+
+O que aconteceria rodando o laço, e é por isso que a regra é dura:
+
+- **gasta crédito para produzir o que já existe.** O laço custa 4 a 8 créditos por card, e o
+  produto dele — a composição da chapa — aqui é trivial: bloco e vazio
+- **e volta com imagem inventada disputando espaço com a foto dele.** O gabarito não sabe que as
+  fotos já existem; ele preenche
+
+Então: **`esqueleto.html`, não `esqueleto-chapa.html`**, mesmo com conector ligado. O
+`exportar.sh` reconhece o caso — `estilo: superminimal` mais uma linha `fotos: do usuário` fazem
+a trava do gabarito abrir sozinha.
+
+Nos outros seis estilos isso não vale: neles o gerador ainda tem o que fazer com a foto do
+usuário na peça — tinta, retícula, recorte, campo. Aqui não há nada para ele fazer.
+
 **Sem gerador, é o estilo que mais ganha com banco de imagem.** Foto de banco com recorte limpo
 cai direto no branco sem tratamento nenhum — e este é o único dos sete em que **não tratar é o
 certo**, porque qualquer conversão de cor tira da foto o que ela veio trazer. Em código puro ele

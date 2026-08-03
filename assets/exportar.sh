@@ -143,9 +143,23 @@ if [ -z "$ESTILO" ]; then
   [ -z "${FORCA:-}" ] && exit 1
 fi
 
+# ── a exceção do superminimal ─────────────────────────────────────────────────
+# Este estilo é branco, preto e blocos de foto — NÃO TEM GRAFISMO NENHUM. Se o
+# usuário subiu as próprias imagens, não sobra nada para o gerador fazer: a
+# composição é tipografia sobre branco, que se monta em código. Rodar o laço ali
+# gasta crédito para produzir o que já existe, e o gabarito ainda volta com
+# imagem inventada disputando espaço com a foto dele.
+FOTOS=""
+[ -n "$DIR_MD" ] && FOTOS=$(grep -i '^fotos:' "$DIR_MD" | head -1 || true)
+ESTILO_L=$(printf '%s' "${ESTILO:-}" | tr '[:upper:]' '[:lower:]')
+SEM_LACO=""
+case "$ESTILO_L" in
+  superminimal*) case "$FOTOS" in *usuário*|*usuario*) SEM_LACO=1;; esac ;;
+esac
+
 # com conector ligado, o laço do gabarito é obrigatório: é a única coisa que o
 # conector compra, e montar sem ele cobra crédito por um resultado sem ele
-if [ -n "$CONECTOR" ]; then
+if [ -n "$CONECTOR" ] && [ -z "$SEM_LACO" ]; then
   case "$CONECTOR" in
     nenhum*|sem*|nao*|não*) ;;
     *)
