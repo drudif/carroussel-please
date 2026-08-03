@@ -187,10 +187,36 @@ if [ -n "$CONECTOR" ] && [ -z "$SEM_LACO" ]; then
 fi
 
 mkdir -p out
+
+# a porta era fixa e o bind nunca era conferido. Com dois carrosséis rodando ao mesmo
+# tempo (aconteceu nos três testes de UX em paralelo), o segundo processo falhava o
+# bind em silêncio e o Chrome capturava o servidor DO OUTRO — PNG do tamanho certo,
+# carrossel errado, sem aviso nenhum. Ache uma porta livre e confirme antes de seguir.
+achar_porta_livre () {
+  local p="$1" tentativas=0
+  while [ "$tentativas" -lt 20 ]; do
+    if ! lsof -iTCP:"$p" -sTCP:LISTEN >/dev/null 2>&1; then echo "$p"; return 0; fi
+    p=$((p + 1)); tentativas=$((tentativas + 1))
+  done
+  return 1
+}
+if PORTA=$(achar_porta_livre "$PORTA"); then :; else
+  echo "PARADO — não achei porta livre a partir de $PORTA em 20 tentativas."
+  exit 1
+fi
+
 python3 -m http.server "$PORTA" --directory "$RAIZ" >/dev/null 2>&1 &
 SRV=$!
 trap 'kill $SRV 2>/dev/null || true' EXIT
 sleep 2
+
+# confirma que É este processo quem está ouvindo a porta — não outro servidor que
+# subiu entre a checagem acima e o bind (janela pequena, mas foi ela que causou o
+# defeito no teste)
+if ! kill -0 "$SRV" 2>/dev/null; then
+  echo "PARADO — o servidor em $PORTA não subiu (kill -0 falhou logo depois do start)."
+  exit 1
+fi
 
 URL="http://localhost:$PORTA/$BASE"
 
@@ -221,9 +247,11 @@ done
 #     dos pixels fora do corte e 99,67% dos de dentro desviam igual. Para isso existe
 #     o `safe`, que desenha as guias no PNG para você olhar.
 python3 - "$N" <<'PY'
-import sys, os
-from PIL import Image
+import sys, os, hashlib
+from collections import defaultdict
+from PIL import Image, ImageStat
 n = int(sys.argv[1]); alerta = 0
+hashes = defaultdict(list)
 for i in range(1, n+1):
     f = f'out/card-{i:02d}.png'
     if not os.path.exists(f) or os.path.getsize(f) == 0:
@@ -232,32 +260,69 @@ for i in range(1, n+1):
     if (w, h) != (1080, 1350):
         print(f'  TAMANHO ERRADO {f}: {w}x{h}'); alerta += 1; continue
     g = im.convert('L')
-    esc = sum(1 for p in g.crop((0, h-8, w, h)).getdata() if p < 110)
-    if esc > 400:
-        print(f'  conteúdo colado no pé: {f}'); alerta += 1
+    # "conteúdo colado" comparava luminância absoluta (<110) contra um piso pensado
+    # para papel claro — em qualquer estilo de fundo escuro (terminal, colagem sobre
+    # campo escuro) o fundo sozinho já passa do piso, e a checagem dá alerta em TODO
+    # card, sempre, mesmo vazio. A referência agora é a própria imagem: compara a
+    # faixa dos 8px finais contra uma faixa de fundo 40–60px acima (mesma cor de
+    # papel, sem conteúdo esperado ali). Fundo uniforme — claro ou escuro — tem
+    # desvio-padrão ~0 nas duas faixas; letra, fio ou bloco de tinta invadindo o pé
+    # cria contraste local (std alto) ou muda a média (a faixa deixa de ser só fundo).
+    alvo = g.crop((0, h-8, w, h))
+    ref = g.crop((0, h-60, w, h-40))
+    media_alvo, media_ref = ImageStat.Stat(alvo).mean[0], ImageStat.Stat(ref).mean[0]
+    std_alvo = ImageStat.Stat(alvo).stddev[0]
+    if std_alvo > 15 or abs(media_alvo - media_ref) > 40:
+        print(f'  conteúdo colado no pé: {f}  (desvio {std_alvo:.0f}, faixa {media_alvo:.0f} vs fundo {media_ref:.0f})')
+        alerta += 1
+    hashes[hashlib.md5(open(f, 'rb').read()).hexdigest()].append(f)
+# PNGs byte a byte idênticos são o defeito que passou pelas checagens acima num dos
+# testes de UX: o servidor serviu a pasta ERRADA (outro processo na mesma porta), a
+# captura saiu do tamanho certo e em branco, e "ok" foi o que a conferência disse. Card
+# 1 igual ao 2 também pega captura que travou e devolveu a MESMA tela pros dois.
+for h_, fs in hashes.items():
+    if len(fs) > 1:
+        print(f'  IDÊNTICOS byte a byte, provável captura da pasta errada: {", ".join(fs)}')
+        alerta += 1
 print('  conferência automática: ok' if not alerta else f'  {alerta} ponto(s) para olhar')
 PY
 
-# 4 · os dois PDFs
+# 4 · o PDF de cada destino
 #    Instagram é 4:5. O LinkedIn é QUADRADO, e sai do recorte central do mesmo PNG.
 #    Não rediagrame: o recorte só entrega margem se a margem tiver sido reservada na
 #    diagramação — a área viva é o quadrado de 924x924 em x78..1002, y213..1137. Card
 #    diagramado com o texto em y=150 sai com 15px de respiro na página do LinkedIn, e
 #    nao ha nada que a exportacao possa fazer por ele.
-python3 - "$N" <<'PY'
+#
+#    Qual PDF montar vem da linha `destino:` do DIRECAO.md — sem ela, os dois, que é o
+#    comportamento de sempre. Nos três testes de UX em paralelo, "só Instagram" foi
+#    apagado à mão porque não havia onde essa decisão morar; agora mora aqui.
+DESTINO=""
+[ -n "$DIR_MD" ] && DESTINO=$(grep -i '^destino:' "$DIR_MD" | head -1 | cut -d: -f2- | sed 's/^ *//' | tr '[:upper:]' '[:lower:]' || true)
+QUER_IG=1; QUER_LI=1
+case "$DESTINO" in
+  instagram) QUER_LI="" ;;
+  linkedin)  QUER_IG="" ;;
+esac
+
+python3 - "$N" "$QUER_IG" "$QUER_LI" <<'PY'
 import sys, os
 from PIL import Image
-n = int(sys.argv[1])
+n, quer_ig, quer_li = int(sys.argv[1]), sys.argv[2], sys.argv[3]
 pngs = [f'out/card-{i:02d}.png' for i in range(1, n+1)]
-
 v = [Image.open(p).convert('RGB') for p in pngs]
-v[0].save('carrossel-1080x1350.pdf', save_all=True, append_images=v[1:], resolution=150.0)
 
-q = [im.crop((0, 135, 1080, 1215)) for im in v]
-q[0].save('carrossel-linkedin-1080.pdf', save_all=True, append_images=q[1:], resolution=150.0)
+if quer_ig:
+    v[0].save('carrossel-1080x1350.pdf', save_all=True, append_images=v[1:], resolution=150.0)
+if quer_li:
+    q = [im.crop((0, 135, 1080, 1215)) for im in v]
+    q[0].save('carrossel-linkedin-1080.pdf', save_all=True, append_images=q[1:], resolution=150.0)
 
-for f in ('carrossel-1080x1350.pdf', 'carrossel-linkedin-1080.pdf'):
-    print(f'  {f} — {n} páginas, {os.path.getsize(f)//1024} KB')
+for f, quer in (('carrossel-1080x1350.pdf', quer_ig), ('carrossel-linkedin-1080.pdf', quer_li)):
+    if quer:
+        print(f'  {f} — {n} páginas, {os.path.getsize(f)//1024} KB')
+    else:
+        print(f'  {f} — não montado (fora do destino declarado)')
 PY
 
 echo

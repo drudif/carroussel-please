@@ -34,6 +34,42 @@ ao desenho.
 
 A maior parte do que um carrossel precisa é geometria, e geometria é o que CSS faz melhor.
 
+### Camadas para a cascata
+
+O arquétipo `cascata` do esqueleto (ver montagem.md) dá o vão; quem faz a peça ler como "camadas
+sobrepostas, giradas, cortadas pela borda" é o `art` que você passa para dentro dele. Duas a três
+formas — imagem, bloco de cor, fragmento de texto curto — cada uma girada alguns graus e
+deslocada para fora do centro, com pelo menos uma delas sangrando para fora do `.card` (o
+`overflow:hidden` do card faz o corte, você não precisa calcular onde):
+
+```html
+<div style="position:absolute;left:-40px;top:10px;width:70%;transform:rotate(-6deg)">
+  <img src="capa.png" style="width:100%;object-fit:cover">
+</div>
+<div style="position:absolute;right:-30px;bottom:-20px;width:55%;height:280px;
+            background:var(--acento);transform:rotate(4deg)"></div>
+```
+
+**Não gire o texto.** A rotação é do grafismo; `.txt` fica em área própria, sempre horizontal —
+é o que mantém "camada sobre camada" sem virar "letra sobre imagem".
+
+### Células para o bento
+
+O arquétipo `bento` transforma `.gfx` numa grade 3×2 (`display:grid` já no CSS do esqueleto).
+Passe `art` como uma sequência de blocos — a maioria com conteúdo, **um sempre vazio**:
+
+```html
+<div style="background:var(--papel)"></div>              <!-- a célula vazia -->
+<img src="foto-1.jpg" style="grid-row:span 2;object-fit:cover;width:100%;height:100%">
+<div style="background:var(--acento)"></div>
+<div style="display:flex;align-items:center;justify-content:center;
+            font-family:'Titulo';font-size:52px">03</div>
+```
+
+Vale a mesma regra do resto do estilo: célula vazia é `var(--papel)` chapado, nunca um ícone ou
+rótulo inventado para não deixá-la em branco — isso é slot preenchido às pressas, e a auditoria
+de slots em [anti-slop.md](anti-slop.md) reprova.
+
 ### Abstração de interface
 
 Quando o card apresenta um app, uma versão **desenhada** da interface costuma bater o print: você controla o que aparece, o resultado nasce na paleta certa, e nenhum dado real vaza. Reduza a tela ao seu esqueleto — barra, pílulas de filtro, grade de cards, lista, campo de composição — e desenhe em blocos.

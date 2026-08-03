@@ -71,7 +71,18 @@ entrelinha 1,45, título de duas linhas a 104px e o pé reservado:
 | título um pouco menor, 92px, com grafismo | **64 palavras**, 9 linhas |
 | **sem grafismo** — só título, corpo e pé | **80 palavras**, 11 linhas |
 
-Então a régua de trabalho:
+**Esta tabela vale para `assets/esqueleto.html` — a zona de grafismo ali é CSS nosso, com altura
+que a gente decide.** Com conector ligado, quem monta o vão é o gerador, não este arquivo: o
+`medir-chapa.py` do laço (ver [geradores.md](geradores.md#o-laço-do-gabarito--quando-há-gerador-conectado))
+devolveu vãos de **350 a 500px** num carrossel real — abaixo dos ~550–620px que esta tabela supõe
+para título de 2 linhas + 55 palavras. Escrever para o teto desta tabela e só depois medir a
+chapa é escrever para um vão que pode não existir naquele card: **com conector, o teto de cada
+card sai do `alt` medido daquele card, não desta tabela.** A régua está em geradores.md — a
+menor entre o comprimento de linha do gabarito e a altura do vão manda, e ela pode dar bem menos
+que 55 palavras num card e mais em outro. Escreva as 55–65 como ponto de partida do texto, mas
+corte para o vão real depois de medir — nunca o contrário.
+
+Então a régua de trabalho, **para o esqueleto sem conector**:
 
 - **capa e fecho ficam curtos.** Uma promessa e um fechamento não ganham nada com volume
 - **os cards do meio carregam o argumento, e podem ir a 55–65 palavras** com grafismo, ou até

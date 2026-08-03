@@ -94,8 +94,11 @@ const E = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 /* Cauda de Ç, Q ou J que POUSA sobre a letra de baixo vira o acento dela — "O ALMOÇO
    CHEGA / NA PISTA" leu "NA PISTÁ" com a cedilha 3px acima do A, sem encostar em nada.
    O piso geométrico impede colisão, não leitura errada. A troca é automática de
-   propósito: julgamento visual foi o que deixou o defeito passar. */
-const CAUDA = /[ÇQJ]/;
+   propósito: julgamento visual foi o que deixou o defeito passar.
+   P, G, Y entram porque o terminal tipografa em caixa baixa — ali essas três TÊM
+   cauda, embora não tenham em caixa alta; fontes.sh mede o piso certo para os dois
+   alfabetos, esta troca só decide quando aplicá-lo. */
+const CAUDA = /[ÇQJçqjpgy]/;
 const temCauda = linhas => linhas.slice(0, -1).some(l => CAUDA.test(l));
 
 const T = (linhas, px, extra='') =>

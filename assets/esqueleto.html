@@ -25,23 +25,57 @@
 html,body{background:#333}
 body{display:flex;flex-direction:column;align-items:center;gap:28px}
 
-/* ═══ o card: empilhamento rígido, texto nunca sobre grafismo ═══ */
+/* ═══ o card: grid de três arquétipos, texto nunca sobre grafismo ═══
+   A base é GRID, não flex — trocar de arquétipo troca só grid-template-areas,
+   nunca a regra "txt e gfx são áreas diferentes". É essa separação, não a
+   direção do empilhamento, que torna sobreposição impossível por construção.
+   Antes desta correção só existia o 'split' com um nome que não avisava disso,
+   e "troque valores, não reescreva o CSS" prendia todo carrossel nele — oito
+   cards saíam na mesma silhueta porque não havia outra para trocar. */
 .card{
-  position:relative;width:var(--W);height:var(--H);overflow:hidden;
+  position:relative;width:var(--W);height:var(--H);overflow:hidden;   /* ESTRUTURAL:
+      é o overflow:hidden do CARD, não do .gfx, que corta camada girada na borda —
+      é o mecanismo que a cascata usa para "cortadas pela borda" */
   background:var(--papel);color:var(--tinta);
   font-family:'Corpo',ui-monospace,monospace;
-  display:flex;flex-direction:column;padding:var(--SY) var(--M);
+  display:grid;padding:var(--SY) var(--M);
+  grid-template-columns:1fr;
+  grid-template-rows:auto auto 1fr auto;
+  grid-template-areas:"head" "txt" "gfx" "foot";
 }
-.head{flex:0 0 auto;position:relative;z-index:30;display:flex;
+/* split — duas colunas assimétricas, título domina, gfx se espreme e sangra só a
+   margem externa (a interna fecha no gap, contra o texto). Card de virada, capa. */
+.card.split{
+  grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+  grid-template-rows:auto 1fr auto;
+  grid-template-areas:"head head" "txt gfx" "foot foot";
+  column-gap:32px;
+}
+/* cascata Z — gfx vem ANTES do texto e recebe o vão maior, para levar duas ou três
+   camadas giradas e deslocadas (ver "Camadas para a cascata" em grafismos.md) que sangram e
+   se cortam na borda do .card. O texto mora depois, em área própria: nunca a mesma
+   área do gfx, então "sobreposto" aqui é camada contra camada, nunca letra contra
+   imagem. Processo, acúmulo, "e tem mais". */
+.card.cascata{
+  grid-template-rows:auto minmax(420px,1fr) auto auto;
+  grid-template-areas:"head" "gfx" "txt" "foot";
+}
+/* bento assimétrico — o gfx vira grade de células desiguais. Passe `art` como HTML
+   com 5–6 blocos (`arte-bento()` em grafismos.md) e deixe UMA célula sempre vazia —
+   só var(--papel) ou um campo chapado, nunca conteúdo inventado para preenchê-la.
+   Comparação, lista, dado. */
+.card.bento .gfx{
+  display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:10px;
+}
+.head{grid-area:head;position:relative;z-index:30;display:flex;
       justify-content:space-between;align-items:baseline;
       padding-bottom:14px;border-bottom:4px solid var(--tinta)}
-.txt {flex:0 0 auto;position:relative;z-index:20;padding-top:34px}
-.gfx {flex:1 1 auto;min-height:0;position:relative;overflow:hidden;   /* ESTRUTURAL: sem
-      isto o empilhamento não vale para filho posicionado em absoluto, e grafismo girado
-      atravessa o pé. É o que torna "sobreposição impossível por construção" verdade */
+.txt {grid-area:txt;position:relative;z-index:20;padding-top:34px;min-width:0}
+.gfx {grid-area:gfx;min-height:0;min-width:0;position:relative;overflow:hidden;
       margin:38px calc(var(--M) * -1) 30px}
+.card.split .gfx{margin:38px calc(var(--M) * -1) 30px 0}   /* só a borda externa sangra */
 .gfx img{width:100%;height:100%;object-fit:cover;display:block}
-.foot{flex:0 0 auto;position:relative;z-index:30;display:flex;
+.foot{grid-area:foot;position:relative;z-index:30;display:flex;
       justify-content:flex-end;border-top:2px solid var(--tinta);padding-top:14px}
 
 /* ═══ tipografia ═══ */
@@ -100,7 +134,11 @@ const E = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
    O piso geométrico não pega isso: ele impede colisão, não leitura errada. Por isso a
    troca é AUTOMÁTICA e não julgamento visual — foi olhar o PNG e decidir na mão que
    deixou o defeito passar. A última linha não conta: não há linha abaixo dela. */
-const CAUDA = /[ÇQJ]/;
+/* maiúsculas: Ç Q J (os seis estilos de caixa alta). minúsculas: acrescenta P, G, Y —
+   que NÃO têm cauda em caixa alta e por isso ficavam de fora — para o terminal, o
+   único estilo de título em caixa baixa. fontes.sh já mede o piso certo para os dois
+   casos; esta troca só decide QUANDO aplicar o piso com folga de leitura. */
+const CAUDA = /[ÇQJçqjpgy]/;
 const temCauda = linhas => linhas.slice(0, -1).some(l => CAUDA.test(l));
 
 const T = (linhas, px, extra='') =>
@@ -113,7 +151,11 @@ const camadas = '<div class="retic"></div><div class="fibra"></div><div class="g
 
 /* ── card de conteúdo: cabeça · texto · grafismo · pé ── */
 // cabeça e pé são opt-in: passe `cabeca:false` ou `pe:false` onde não informarem nada
-const conteudo = ({n, kick, t, px, urls=[], lede, art='', cabeca=true, pe=true}) => `<div class="card">
+// `layout` escolhe o arquétipo — 'split' (default) · 'cascata' · 'bento'. É esta
+// palavra, não a prosa do SKILL.md, que faz o rodízio acontecer: sem ela variar o
+// arquétipo depende de reescrever CSS, que é exatamente o que "troque valores, não
+// reescreva" proíbe. Gire com ROD abaixo, não escolha à mão card a card.
+const conteudo = ({n, kick, t, px, urls=[], lede, art='', cabeca=true, pe=true, layout='split'}) => `<div class="card ${layout}">
   <div class="grade"></div>
   ${cabeca ? head(n) : ''}
   <div class="txt">
@@ -125,6 +167,10 @@ const conteudo = ({n, kick, t, px, urls=[], lede, art='', cabeca=true, pe=true})
   <div class="gfx">${art}</div>
   ${pe ? foot() : ''}
   ${camadas}</div>`;
+
+// rodízio dos três arquétipos — capa e fecho não entram (têm layout próprio).
+// Uso: layout: ROD(n)  dentro de cada conteudo({...}) do array CARDS.
+const ROD = n => ['split', 'cascata', 'bento'][(n - 2) % 3];
 
 /* ── capa: imagem sangrando, bloco de tinta, título por cima ── */
 const capa = ({t, px, lede, img}) => `<div class="card" style="padding:0">
@@ -172,7 +218,10 @@ const CARDS = [
   () => conteudo({n:'02', kick:'rótulo', t:['NOME DO','ITEM'], px:104,
                   urls:['exemplo.com/link'],
                   lede:'Uma ideia por card — essa não cede. O tamanho do corpo cede: nos cards do meio ele vai a 55–65 palavras com grafismo, e até 80 sem. Ver texto.md.',
-                  art:'<!-- desenho em CSS, screenshot ou <img> -->'}),
+                  art:'<!-- desenho em CSS, screenshot ou <img> -->',
+                  layout:ROD(2)}),
+  // acrescente um conteudo({...}) por card do meio, sempre com layout:ROD(n) — é
+  // o `n` do card (2, 3, 4…) que faz split/cascata/bento se alternarem sozinhos
   () => fecho({t:['FECHO.'], px:130, lede:'Frase de resumo.',
                itens:[['01','Item um','exemplo.com/um'],['02','Item dois','exemplo.com/dois']],
                cta:'Chamada final.'}),

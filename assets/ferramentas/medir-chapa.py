@@ -23,16 +23,44 @@ PE_MAX = 1100
 PE_ALT = 215        # régua + até três linhas de 34 + respiro
 
 
-def regua(im):
-    """A régua laranja da chapa É o divisor entre a zona do título e a do sub.
-    O gerador a desenhou ali de propósito; ler a imagem em vez de dividir por conta
-    própria foi o que faltou nas montagens anteriores."""
-    a = np.array(im).astype(int)
-    lar = (a[:, :, 0] > a[:, :, 2] + 55) & (a[:, :, 0] > 150)
+LIMIAR_COR = 28   # distância euclidiana em RGB (0-441) para contar como "não é o papel"
+
+
+def cor_de_fundo(a):
+    """Amostra cantos e meios de borda em vez de assumir um hex fixo — funciona no
+    creme da riso, no kraft da colagem, no chumbo do terminal, em qualquer paleta.
+    A régua velha comparava contra `#EDEAE3` fixo e devolvia número errado, com toda
+    confiança, em qualquer chapa que não fosse riso — inclusive fundo cinza, que
+    passava inteiro como "sem tinta nenhuma".
+
+    Não basta mediana simples dos pontos: a zona de ilustração do laço (geradores.md)
+    tem licença explícita para sangrar até a borda, inclusive canto. Um canto coberto
+    de ilustração dá amostra errada, e a mediana simples desliza na direção dele. Por
+    isso vota: a cor de fundo é a que tem mais OUTRAS amostras por perto — maioria
+    vence quando uma ou duas amostras caem em cima de ilustração que sangrou até lá."""
+    h, w, _ = a.shape
+    k = 30
+    pontos = [a[0:k, 0:k], a[0:k, w-k:w], a[h-k:h, 0:k], a[h-k:h, w-k:w],
+              a[0:k, w//2-k:w//2+k], a[h-k:h, w//2-k:w//2+k]]
+    amostras = [np.median(p.reshape(-1, 3), axis=0) for p in pontos]
+    melhor, votos = amostras[0], -1
+    for c in amostras:
+        n = sum(1 for o in amostras if np.linalg.norm(c - o) < LIMIAR_COR)
+        if n > votos:
+            melhor, votos = c, n
+    return melhor
+
+
+def regua(tinta):
+    """A régua da chapa É o divisor entre a zona do título e a do sub — não importa
+    a cor dela. O gerador a desenhou ali de propósito; ler a imagem em vez de dividir
+    por conta própria foi o que faltou nas montagens anteriores. `tinta` já é
+    relativo ao fundo desta chapa (ver `cor_de_fundo`), então a régua funciona em
+    qualquer paleta, não só na laranja da risografia."""
     for y in range(int(H * .25), H - 40):
-        faixa = lar[y:y + 14]
+        faixa = tinta[y:y + 14]
         if faixa.any(axis=0).mean() > .34:        # corrida horizontal longa
-            grosso = lar[y:y + 40].sum(axis=0).max()
+            grosso = tinta[y:y + 40].sum(axis=0).max()
             if grosso <= 26:                      # fina: é régua, não campo de cor
                 return y
     return None
@@ -41,9 +69,10 @@ def regua(im):
 def classificar(arq):
     im = Image.open(arq).convert("RGB").resize((W, H), Image.LANCZOS)
     a = np.array(im).astype(int)
-    # tinta = qualquer pixel que não seja o papel creme
-    papel = (a[:, :, 0] > 205) & (a[:, :, 1] > 198) & (a[:, :, 2] > 180)
-    return im, ~papel
+    papel = cor_de_fundo(a)
+    dist = np.linalg.norm(a - papel, axis=2)
+    tinta = dist > LIMIAR_COR
+    return im, tinta
 
 
 def maior_vao(perfil):
@@ -88,7 +117,7 @@ def medir(arq):
     # O pé mora DENTRO da mesma faixa livre, no fim dela — porque foi assim que o
     # gabarito foi gerado: zona do título e zona do sub são vizinhas, não opostas.
     # Procurar de baixo para cima punha a régua em cima do grafismo do card seguinte.
-    r = regua(im)
+    r = regua(tinta)
     if r is not None and b["topo"] + 120 < r < H - 90:
         pe = r                                    # a régua da chapa manda
         b["regua_propria"] = True

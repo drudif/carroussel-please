@@ -94,31 +94,45 @@ for f in "$TITULO" "$CORPO"; do
 done
 
 # ── acentos, pisos de entrelinha, fonts.css ────────────────────────────────────
-python3 - "${ARQS[@]}" <<'PY'
+# terminal é o único dos sete com título em CAIXA BAIXA (estilos.md) — passamos o
+# nome do estilo para o Python medir o alfabeto certo. Sem isso a régua de cauda
+# mede Ç/Q/J maiúsculos, que não têm equivalente para P, G e Y minúsculos (essas
+# três NÃO têm cauda em caixa alta), e o piso publicado não vale para o que o
+# esqueleto realmente desenha nesse estilo.
+python3 - "${1:-}" "${ARQS[@]}" <<'PY'
 from fontTools.ttLib import TTFont
 from fontTools.pens.boundsPen import BoundsPen
 import base64, sys, os, math
 
-ALVO   = 'ÁÀÂÃÉÊÍÓÔÕÚÜÇáàâãéêíóôõúüç'
-ACENTO = 'ÃÕÁÀÂÉÊÍÓÔÚÜ'   # o que sobe acima da caixa alta
-OVER   = 'SOCGU'          # transbordo óptico da caixa alta abaixo da linha de base
-DESC   = 'QJÇ'            # descendentes de verdade
+ESTILO = sys.argv[1]
+ARQS = sys.argv[2:]
+CAIXA_BAIXA = (ESTILO == 'terminal')
+
+ALVO = 'ÁÀÂÃÉÊÍÓÔÕÚÜÇáàâãéêíóôõúüç'
+
+# Duas famílias de conjunto — maiúscula (seis estilos) e minúscula (só terminal).
+# P, G e Y não têm cauda em caixa alta, mas TÊM em caixa baixa: medir só o conjunto
+# maiúsculo mede a fonte errada para o único estilo que tipografa em minúscula.
+ACENTO_MAI, OVER_MAI, DESC_MAI = 'ÃÕÁÀÂÉÊÍÓÔÚÜ', 'SOCGU', 'QJÇ'
+ACENTO_MIN, OVER_MIN, DESC_MIN = 'ãõáàâéêíóôúü', 'socgu', 'qjpgyç'
+ACENTO, OVER, DESC = (ACENTO_MIN, OVER_MIN, DESC_MIN) if CAIXA_BAIXA else (ACENTO_MAI, OVER_MAI, DESC_MAI)
 
 # Duas folgas, e a diferença entre elas é a lição inteira desta trava.
 #
 # FOLGA resolve COLISÃO: acento da linha de baixo contra a letra de cima. 1px de gap
 # ainda lê como encosto, então 0,04em basta.
 #
-# FOLGA_Q resolve LEITURA, que é outro problema. A cauda de Ç, Q ou J não precisa
-# encostar para estragar a palavra: basta pousar SOBRE uma letra da linha de baixo, e
-# ela vira o acento dela. Medido num PNG entregue: com 0,04 a folga era de 3px e
-# "NA PISTA" leu "NA PISTÁ" por causa do Ç de "ALMOÇO" logo acima. Com 0,24 são 18px
-# e a cauda volta a pertencer à palavra de cima. Não encostar não é o critério.
+# FOLGA_Q resolve LEITURA, que é outro problema. A cauda de Ç, Q ou J (ou, em caixa
+# baixa, também P, G, Y) não precisa encostar para estragar a palavra: basta pousar
+# SOBRE uma letra da linha de baixo, e ela vira o acento dela. Medido num PNG
+# entregue: com 0,04 a folga era de 3px e "NA PISTA" leu "NA PISTÁ" por causa do Ç de
+# "ALMOÇO" logo acima. Com 0,24 são 18px e a cauda volta a pertencer à palavra de
+# cima. Não encostar não é o critério.
 FOLGA   = 0.04
 FOLGA_Q = 0.24
 
 nomes=['Titulo','Corpo']; css=[]; lh={}
-for i,p in enumerate(sys.argv[1:]):
+for i,p in enumerate(ARQS):
     t=TTFont(p); cm=t.getBestCmap(); gs=t.getGlyphSet(); u=t['head'].unitsPerEm
     fam=[str(r) for r in t['name'].names if r.nameID==4][0]
 
@@ -142,7 +156,9 @@ for i,p in enumerate(sys.argv[1:]):
     pisoQ = math.ceil((sobe-desc+FOLGA_Q)*100)/100
     nome = nomes[i] if i<2 else fam
     lh[nome] = piso; lh[nome+'-q'] = pisoQ
-    print(f"     entrelinha mínima em caixa alta: {piso}  ·  {pisoQ} com Q, J ou Ç na linha de cima")
+    caixa = 'caixa baixa' if CAIXA_BAIXA else 'caixa alta'
+    cauda = 'P, G ou Y' if CAIXA_BAIXA else 'Q, J ou Ç'
+    print(f"     entrelinha mínima em {caixa}: {piso}  ·  {pisoQ} com {cauda} na linha de cima")
 
     b=open(p,'rb').read()
     css.append("@font-face{font-family:'%s';font-weight:400;font-style:normal;"
@@ -153,7 +169,8 @@ css.insert(0, ':root{' + ''.join(f'--lh-{k.lower()}:{v};' for k,v in lh.items())
 open('fonts.css','w').write('\n'.join(css))
 print(f"  fonts.css: {os.path.getsize('fonts.css')//1024} KB — font-family:'Titulo' e 'Corpo'")
 print( "             titulo: line-height:var(--lh-titulo). O esqueleto troca sozinho para")
-print( "             var(--lh-titulo-q) na linha que tiver Ç, Q ou J — não faça isso na mão,")
-print( "             e NÃO recalcule por string: o piso publicado já é o pior caso da família.")
+print(f"             var(--lh-titulo-q) na linha que tiver {'P, G, Y, Ç, Q ou J' if CAIXA_BAIXA else 'Ç, Q ou J'}")
+print( "             — não faça isso na mão, e NÃO recalcule por string: o piso publicado já é")
+print( "             o pior caso da família.")
 print( "             corpo: diagrame entre 1.35 e 1.45 (--lh-corpo é conferência, não uso)")
 PY
