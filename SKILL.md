@@ -214,12 +214,47 @@ sem pedir formato nenhum. Converter é seu trabalho, não dele.
 texto já foi escrito para um número de cards, o estilo já foi escolhido, e voltar custa tudo. Aqui
 custa uma frase, e ele ainda tem as duas saídas abertas.
 
-**Diga uma vez e siga.** Se ele responder que segue sem, siga — e não volte ao assunto. A etapa 1
-ainda vai oferecer o gerador uma vez; duas ofertas é insistência.
+**E ofereça as quatro saídas, numeradas.** Ele responde com um número:
 
-**E a skill não busca imagem em banco de terceiro.** Nem Dupe, nem Openverse, nem nenhum outro:
-saíram. Se ele quiser foto de banco, ele busca e sobe — a procedência e a licença passam a ser
-decisão dele, dita e registrada, em vez de uma dívida escondida na sua entrega.
+| | |
+|---|---|
+| **1 · Seguir sem imagem** | a peça vive de tipografia e desenho. Em terminal e brutalista isso é forte; nos outros é a versão reduzida, e você diz qual é o caso do estilo que ele escolher |
+| **2 · Quero usar imagens gratuitas** | você devolve **a lista de bancos abaixo**, ele busca, escolhe e sobe. A skill não busca por ele |
+| **3 · Tenho conta num gerador, quero conectar** | vai para a etapa 1, no passo a passo de conexão |
+| **4 · Quero o melhor resultado, mas não sei se tenho conta** | vai para a etapa 1, no caminho **do zero** — criar a conta antes de conectar |
+
+**As opções 3 e 4 não são a mesma.** Quem tem conta precisa de seis passos; quem não tem precisa
+de vinte, e tratar os dois igual perde o segundo no primeiro clique. A etapa 1 separa os dois.
+
+### A lista de bancos — opção 2
+
+**A skill não consulta nenhum deles.** Ela entrega os endereços, ele busca e sobe o que escolher.
+A diferença importa: o que saiu da skill foi a **busca programática** em acervo de terceiro, com o
+problema de licença e de endpoint não público que ela trazia. Indicar onde procurar não tem esse
+problema, e a procedência fica com quem escolheu a foto.
+
+| | onde | o que tem de melhor |
+|---|---|---|
+| **Unsplash** | `unsplash.com` | mais de um milhão de fotos, e o acervo com menos cara de banco |
+| **Pexels** | `pexels.com` | foto e vídeo em HD, bem organizado — o mais fácil de garimpar |
+| **Pixabay** | `pixabay.com` | 4,2 milhões de itens, o mais variado |
+| **Freepik** | `freepik.com` | vetor, ícone e ilustração além de foto |
+| **StockSnap** | `stocksnap.io` | seleção profissional, atualizada com frequência |
+| **Life of Pix** | `lifeofpix.com` | qualidade artística, acervo pequeno e bom |
+| **Gratisography** | `gratisography.com` | estilo ousado e original — serve quando o assunto pede estranheza |
+| **Burst** | `shopify.com/stock-photos` | feito para negócio e autônomo, do Shopify |
+| **Styled Stock** | `styledstock.co` | visual claro em tons pastel |
+| **The Noun Project** | `thenounproject.com` | ícone e pictograma, não foto |
+
+**Diga duas coisas ao entregar a lista**, uma linha cada:
+
+- **busque por assunto, nunca por estilo.** Procurar *"minimal aesthetic"* traz foto de banco com
+  a estética por cima, que é o defeito. O estilo é nosso e entra depois
+- **confira a licença de cada foto que baixar.** "Gratuito" nesses sites quer dizer coisas
+  diferentes, e algumas pedem atribuição
+
+**Diga uma vez e siga.** Se ele escolher a 1, siga — e não volte ao assunto. A etapa 1 ainda vai
+verificar o conector; duas ofertas é insistência.
 
 ◇ **3 · Você já tem uma identidade visual fechada — cores e fontes definidas — ou quer escolher
 uma direção comigo?**
@@ -289,17 +324,54 @@ composta; e os sete estilos ficam disponíveis em pé de igualdade.
 | **ChatGPT Plus ou Pro** | **a assinatura não serve.** O acesso automático é cobrado à parte |
 | **Midjourney** | não liga. Mas dá para gerar por lá e me entregar o arquivo |
 
-Duas respostas, e as duas seguem o trabalho:
+Três respostas, e as três seguem o trabalho:
 
-| | |
+| | o que você faz |
 |---|---|
-| **1 · Quero o melhor resultado, me ajude a conectar** | conduza o passo a passo de [references/geradores.md](references/geradores.md), um passo por mensagem, e confirme com a chamada de `balance` antes de seguir |
-| **2 · Não tenho, vamos seguir sem** | siga, e **sem insistir** |
+| **1 · Tenho conta, quero conectar** | o passo a passo de conexão. Seis passos, e ele já sabe onde é |
+| **2 · Quero o melhor resultado, mas não sei se tenho conta** | **o caminho do zero** — criar a conta antes de conectar. É outro roteiro, abaixo |
+| **3 · Não tenho, vamos seguir sem** | siga, e **sem insistir** |
 
-**Conduza a instalação de verdade.** Quem escolheu a opção 1 não sabe onde clicar — é a etapa que
-mais trava quem não é técnico. Um passo por mensagem, e a chave **nunca é colada no chat**: ele
-guarda no computador dele e responde só "pronto". A skill grava o fato — `gemini: chave
-configurada em AAAA-MM-DD` — nunca o valor.
+**A 1 e a 2 não são a mesma pergunta com palavras diferentes.** Quem tem conta precisa de seis
+passos; quem não tem precisa de vinte, e tratar os dois igual perde o segundo no primeiro clique
+— ele abre uma página de preços que não entende e desiste. Se ele veio da opção 4 da etapa 0,
+**ele já é o caso 2**: não repergunte.
+
+### Caso 1 — ele tem conta
+
+Um passo por mensagem, sempre. O roteiro por gerador está em
+[references/geradores.md](references/geradores.md); confirme com a chamada de `balance` antes de
+seguir, porque ferramenta que aparece na lista não é ferramenta autorizada.
+
+### Caso 2 — do zero, e sem jargão
+
+**Primeiro escolha por ele, não com ele.** Pedir que compare quatro produtos que ele não conhece
+é devolver o problema. Pergunte só o que decide:
+
+◇ **Você prefere uma coisa gratuita para testar, ou tanto faz pagar uns trocados por imagem?**
+
+| ele diz | recomende | por quê |
+|---|---|---|
+| **grátis para testar** | **Gemini** | a chave é gratuita, sai em cinco minutos, e não pede cartão |
+| **tanto faz pagar** | **Higgsfield** | conector, autoriza numa janela, e é o que compõe melhor cartaz |
+
+E não ofereça as quatro. **ChatGPT Plus não serve** — o acesso automático é cobrado à parte, e
+essa é a confusão mais cara desta etapa. **Magnific** só amplia e recompõe; não é para começar.
+
+**Depois conduza, um passo por mensagem, esperando resposta em cada um.** Não mande a lista
+inteira: quem precisa deste caminho se perde numa lista de dez passos. O roteiro completo de cada
+um está em [references/geradores.md](references/geradores.md), e a regra é a mesma nos dois:
+
+- **diga o que ele vai ver na tela antes de ele clicar** — *"vai abrir uma página com um botão
+  azul escrito Create API key, no canto direito"*
+- **uma coisa por vez, e espere o "pronto"**
+- **se ele travar num passo, resolva aquele passo** — não recomece do início
+- **a chave nunca é colada no chat.** Ele exporta no terminal e responde só "pronto". A skill
+  grava o fato — `gemini: chave configurada em AAAA-MM-DD` — **nunca o valor**
+
+**E diga quando parar.** Se depois de dois passos ele estiver claramente travado, ofereça a saída
+sem constrangimento: *"dá para seguir sem isso agora e ligar depois — o carrossel sai do mesmo
+jeito, com o desenho no lugar da foto."* Insistir aqui é onde a skill perde a pessoa.
 
 **E diga a faixa de custo antes de começar**, não depois: com conector o laço do gabarito custa
 **4 créditos por card no caminho feliz, 6 a 8 quando a geometria precisa de segunda tentativa**.

@@ -22,6 +22,40 @@ Os quatro estilos que ficam completos assim: brutalista vetorial, terminal, neo-
 
 ---
 
+## Quem nunca criou conta: o roteiro do zero
+
+**Este é o caminho da opção 4 da etapa 0 e do caso 2 da etapa 1**, e ele é diferente do outro por
+uma razão prática: quem tem conta precisa de seis passos e quem não tem precisa de vinte. Tratar
+os dois igual perde o segundo no primeiro clique — ele abre uma página de preços que não entende
+e desiste.
+
+**Escolha por ele, com uma pergunta só:**
+
+◇ *Você prefere uma coisa gratuita para testar, ou tanto faz pagar uns trocados por imagem?*
+
+| ele diz | recomende | por quê |
+|---|---|---|
+| **grátis para testar** | **Gemini** | a chave é gratuita, sai em cinco minutos, e não pede cartão |
+| **tanto faz pagar** | **Higgsfield** | conector, autoriza numa janela, e compõe cartaz melhor |
+
+**Não ofereça as quatro opções.** Comparar quatro produtos que ele não conhece é devolver o
+problema. E duas ficam fora por motivo próprio: **ChatGPT Plus não serve** — a assinatura não dá
+acesso automático, que é cobrado à parte, e essa é a confusão mais cara desta etapa; **Magnific**
+só amplia e recompõe, então não é por onde se começa.
+
+**Como conduzir, e vale para os dois:**
+
+- **um passo por mensagem**, esperando o "pronto" de cada um. Não mande a lista de dez passos:
+  quem precisa deste caminho se perde nela
+- **diga o que vai aparecer na tela antes de ele clicar** — *"vai abrir uma página com um botão
+  azul escrito Create API key, no canto direito"*. É o que separa conduzir de mandar
+- **travando num passo, resolva aquele passo.** Não recomece do início
+- **e diga quando parar.** Dois passos seguidos travado, ofereça a saída sem constrangimento:
+  *"dá para seguir sem isso agora e ligar depois — o carrossel sai do mesmo jeito, com o desenho
+  no lugar da foto."* Insistir aqui é onde a skill perde a pessoa
+
+---
+
 ## Caminho 2 — chave de API
 
 Vale quando o carrossel depende de imagem de verdade. O custo real são **centavos por imagem**, e um carrossel usa poucas.
